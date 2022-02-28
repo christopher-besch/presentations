@@ -1,5 +1,4 @@
 reveal/
 public/
-dist/
-plugin/
-
+dist
+plugin
