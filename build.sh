@@ -9,12 +9,15 @@ pushd reveal
 git stash
 git checkout 4.2.1
 
+echo "installing custom themes..."
+cp ../theme/* ./css/theme/source
+
 echo "installing dependencies..."
 rm -v package-lock.json
 yarn install
 
 echo "building reveal.js..."
-yarn run gulp default
+yarn run build
 popd
 
 echo "creating public dir..."
