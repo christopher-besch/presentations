@@ -1,9 +1,24 @@
-/**
- * Black theme for reveal.js. This is the opposite of the 'white' theme.
- *
- * By Hakim El Hattab, http://hakim.se
- */
 @import url(./fonts/source-sans-pro/source-sans-pro.css);
+.titleslide .header-left {
+  display: none;
+}
+
+.reveal .header-left {
+  position: absolute;
+  left: 1em;
+  top: 1em;
+  font-size: 0.5em;
+  z-index: 100;
+}
+
+.reveal .header-right {
+  position: absolute;
+  right: 1em;
+  top: 1em;
+  font-size: 0.5em;
+  z-index: 100;
+}
+
 section.has-light-background, section.has-light-background h1, section.has-light-background h2, section.has-light-background h3, section.has-light-background h4, section.has-light-background h5, section.has-light-background h6 {
   color: #222;
 }
@@ -13,7 +28,7 @@ section.has-light-background, section.has-light-background h1, section.has-light
  *********************************************/
 :root {
   --r-background-color: #191919;
-  --r-main-font: Source Sans Pro, Helvetica, sans-serif;
+  --r-main-font: Gill Sans, Helvetica, sans-serif;
   --r-main-font-size: 42px;
   --r-main-color: #fff;
   --r-block-margin: 20px;
