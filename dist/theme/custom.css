@@ -1,22 +1,53 @@
+/* MIT License */
+/* Copyright (c) 2022 Christopher Besch */
+/* Permission is hereby granted, free of charge, to any person obtaining a copy */
+/* of this software and associated documentation files (the "Software"), to deal */
+/* in the Software without restriction, including without limitation the rights */
+/* to use, copy, modify, merge, publish, distribute, sublicense, and/or sell */
+/* copies of the Software, and to permit persons to whom the Software is */
+/* furnished to do so, subject to the following conditions: */
+/* The above copyright notice and this permission notice shall be included in all */
+/* copies or substantial portions of the Software. */
+/* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR */
+/* IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, */
+/* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE */
+/* AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER */
+/* LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, */
+/* OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE */
+/* SOFTWARE. */
 @import url(./fonts/source-sans-pro/source-sans-pro.css);
 .titleslide .header-left {
   display: none;
 }
 
-.reveal .header-left {
+.reveal .header-left,
+.reveal .header-right {
+  font-size: 17px;
+  line-height: 17px;
   position: absolute;
-  left: 1em;
-  top: 1em;
-  font-size: 0.5em;
   z-index: 100;
 }
 
+.reveal .header-right em,
+.reveal .header-left em {
+  font-size: 17px;
+}
+
+.reveal .header-left {
+  left: 1em;
+  top: 1em;
+}
+
 .reveal .header-right {
-  position: absolute;
   right: 1em;
   top: 1em;
-  font-size: 0.5em;
-  z-index: 100;
+}
+
+.reveal .header-left sup,
+.reveal .header-right sup {
+  vertical-align: super;
+  font-size: 14.1447px;
+  line-height: 14.1667px;
 }
 
 section.has-light-background, section.has-light-background h1, section.has-light-background h2, section.has-light-background h3, section.has-light-background h4, section.has-light-background h5, section.has-light-background h6 {
