@@ -16,6 +16,23 @@
 /* OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE */
 /* SOFTWARE. */
 @import url(./fonts/source-sans-pro/source-sans-pro.css);
+/* MIT License */
+/* Copyright (c) 2022 Christopher Besch */
+/* Permission is hereby granted, free of charge, to any person obtaining a copy */
+/* of this software and associated documentation files (the "Software"), to deal */
+/* in the Software without restriction, including without limitation the rights */
+/* to use, copy, modify, merge, publish, distribute, sublicense, and/or sell */
+/* copies of the Software, and to permit persons to whom the Software is */
+/* furnished to do so, subject to the following conditions: */
+/* The above copyright notice and this permission notice shall be included in all */
+/* copies or substantial portions of the Software. */
+/* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR */
+/* IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, */
+/* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE */
+/* AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER */
+/* LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, */
+/* OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE */
+/* SOFTWARE. */
 .titleslide .header-left {
   display: none;
 }
@@ -50,22 +67,22 @@
   line-height: 14.1667px;
 }
 
-section.has-light-background, section.has-light-background h1, section.has-light-background h2, section.has-light-background h3, section.has-light-background h4, section.has-light-background h5, section.has-light-background h6 {
-  color: #222;
+section.has-dark-background, section.has-dark-background h1, section.has-dark-background h2, section.has-dark-background h3, section.has-dark-background h4, section.has-dark-background h5, section.has-dark-background h6 {
+  color: #fff;
 }
 
 /*********************************************
  * GLOBAL STYLES
  *********************************************/
 :root {
-  --r-background-color: #191919;
-  --r-main-font: Gill Sans, Helvetica, sans-serif;
+  --r-background-color: #fff;
+  --r-main-font: Source Sans Pro, Helvetica, sans-serif;
   --r-main-font-size: 42px;
-  --r-main-color: #fff;
+  --r-main-color: #222;
   --r-block-margin: 20px;
   --r-heading-margin: 0 0 20px 0;
   --r-heading-font: Source Sans Pro, Helvetica, sans-serif;
-  --r-heading-color: #fff;
+  --r-heading-color: #222;
   --r-heading-line-height: 1.2;
   --r-heading-letter-spacing: normal;
   --r-heading-text-transform: uppercase;
@@ -77,15 +94,15 @@ section.has-light-background, section.has-light-background h1, section.has-light
   --r-heading3-size: 1.3em;
   --r-heading4-size: 1em;
   --r-code-font: monospace;
-  --r-link-color: #42affa;
-  --r-link-color-dark: #068de9;
-  --r-link-color-hover: #8dcffc;
-  --r-selection-background-color: #bee4fd;
+  --r-link-color: #2a76dd;
+  --r-link-color-dark: #1a53a1;
+  --r-link-color-hover: #6ca0e8;
+  --r-selection-background-color: #98bdef;
   --r-selection-color: #fff;
 }
 
 .reveal-viewport {
-  background: #191919;
+  background: #fff;
   background-color: var(--r-background-color);
 }
 
