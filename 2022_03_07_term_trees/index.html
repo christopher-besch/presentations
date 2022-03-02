@@ -45,7 +45,19 @@
     <script src="../plugin/highlight/highlight.js"></script>
     <script>
         Reveal.initialize({
+            controls: true,
+            controlsTutorial: false,
+            progress: false,
+            slideNumber: "c/t",
+            hashOneBasedIndex: true,
             hash: true,
+            navigationMode: "linear",
+            embedded: false,
+            showNotes: false,
+            transition: "slide",
+            transitionSpeed: "default",
+            backgroundTransition: "fade",
+            pdfSeparateFragments: false,
 
             plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
         });
