@@ -25,17 +25,19 @@ set -euo pipefail
 IFS=$' \n\t'
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
 
+cd $DIR
+
 echo "cloning reveal.js..."
 git clone https://github.com/hakimel/reveal.js reveal || true
 pushd reveal
-git stash
 git checkout 4.2.1
 
 echo "installing custom themes..."
-cp ../theme/* ./css/theme/source
+cp -v ../theme/source/* ./css/theme/source
+cp -v ../theme/template/* ./css/theme/template
 
 echo "installing dependencies..."
-rm -v package-lock.json
+rm -v package-lock.json || true
 yarn install
 
 echo "building reveal.js..."
@@ -46,8 +48,8 @@ echo "creating public dir..."
 rm -rv public || true
 mkdir -v public
 
-echo "moving files..."
-mv -v reveal/{dist,plugin} public
+echo "copying reveal output files..."
+cp -rv reveal/{dist,plugin} public
 # missing, to be created by other script: index.html, lib, images, *.md
 
 echo "creating symlinks..."
