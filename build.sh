@@ -36,7 +36,7 @@ echo "installing custom themes..."
 cp -v ../theme/source/* ./css/theme/source
 cp -v ../theme/template/* ./css/theme/template
 
-echo "installing dependencies..."
+echo "installing yarn dependencies..."
 rm -v package-lock.json || true
 yarn install
 
@@ -51,6 +51,11 @@ mkdir -v public
 echo "copying reveal output files..."
 cp -rv reveal/{dist,plugin} public
 # missing, to be created by other script: index.html, lib, images, *.md
+
+# required to not use any CDNs
+echo "copying vendor dependencies..."
+rm -rfv public/vendor
+cp -rv vendor public/vendor
 
 echo "creating symlinks..."
 ln -sv public/dist dist
