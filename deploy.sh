@@ -37,5 +37,5 @@ echo "copying presentations..."
 find . -maxdepth 1 -mindepth 1 -type d -not -path "./.*" -not -path "./reveal" -not -path "./public" -not -path "./theme" -exec cp -rv {} public \;
 
 echo "creating table of contents page..."
-find . -maxdepth 1 -mindepth 1 -type d -not -path "./.*" -not -path "./reveal" -not -path "./public" -not -path "./theme" -exec echo "<a href='{}'>{}<a><br />" \; > public/index.html
+find . -maxdepth 1 -mindepth 1 -type d -not -path "./.*" -not -path "./reveal" -not -path "./public" -not -path "./theme" -not path "./vendor" -exec echo "<a href='{}'>{}<a><br />" \; > public/index.html
 
