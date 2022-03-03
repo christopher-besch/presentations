@@ -37,10 +37,10 @@
             <!-- task a -->
             <section>
                 <section data-auto-animate>
-                    <img src="./abb1_2.png">
+                    <img src="./abb1_2.png" height="300">
                 </section>
                 <section data-auto-animate>
-                    <img src="./abb1_2.png">
+                    <img src="./abb1_2.png" height="300">
                     $$
                     (25+75) \cdot (75 \cdot 4 + 28 + 72)
                     $$
@@ -63,17 +63,50 @@
                 </section>
 
                 <section>
-                    <p>InOrder Traversierung</p>
-                    <p class="fragment fade-up">
-                        Der Wert einer Wurzel ergibt sich immer aus den Teilwerten der Blätter.
-                        Die Klammern, die im Term solche Relationen deklarieren, sind somit überflüssig.
-                    </p>
+                    <h3>Traversierung</h3>
+                    <ul>
+                        <li class="fragment fade-up">Inorder Traversierung</li>
+                        <li class="fragment fade-up">
+                            Der Wert einer Wurzel ergibt sich immer aus den Teilwerten der Blätter.
+                            Die Klammern, die im Term solche Relationen deklarieren, sind somit überflüssig.
+                        </li>
+                    </ul>
                 </section>
             </section>
 
             <!-- task b -->
             <section>
+                <h3>Lösung des Terms</h3>
                 <pre><code class="language-java" data-code="./berechne.java"></code></pre>
+            </section>
+
+            <!-- task c -->
+            <section>
+                <h3>Überprüfung der Klammern</h3>
+                <img src="./struktogram.png" height="500">
+            </section>
+
+            <!-- task d -->
+            <section>
+                <section data-auto-animate>
+                    <h3>Postfixnotation</h3>
+                    <img src="abb1_3.png" height="500">
+                </section>
+                <section data-auto-animate>
+                    <h3>Postfixnotation</h3>
+                    <img src="abb1_3.png" height="300">
+                    <ul data-id="2">
+                        <li>1</li>
+                    </ul>
+                </section>
+                <section data-auto-animate>
+                    <h3>Postfixnotation</h3>
+                    <img src="abb1_3.png" height="300">
+                    <ul data-id="2">
+                        <li>1</li>
+                        <li>2</li>
+                    </ul>
+                </section>
             </section>
         </div>
     </div>
@@ -99,6 +132,7 @@
             transitionSpeed: "default",
             backgroundTransition: "fade",
             pdfSeparateFragments: false,
+            autoAnimateDuration: 0.4,
 
             plugins: [
                 // needs to be before highlighting
