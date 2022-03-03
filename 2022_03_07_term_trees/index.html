@@ -18,6 +18,16 @@
 
     <!-- code highlighting theme -->
     <link rel="stylesheet" href="../plugin/highlight/monokai.css">
+    <style>
+        /* fragments that just faded out and ought to be removed */
+        .reveal .fragment.fade-out.visible.fragment-remove,
+        .reveal .fragment.fade-in-then-out.visible.fragment-remove:not(.current-fragment) {
+            display: none;
+            height: 0px;
+            line-height: 0px;
+            font-size: 0px;
+        }
+    </style>
 </head>
 
 <body>
@@ -94,18 +104,70 @@
                 </section>
                 <section data-auto-animate>
                     <h3>Postfixnotation</h3>
-                    <img src="abb1_3.png" height="300">
-                    <ul data-id="2">
-                        <li>1</li>
-                    </ul>
-                </section>
-                <section data-auto-animate>
-                    <h3>Postfixnotation</h3>
-                    <img src="abb1_3.png" height="300">
-                    <ul data-id="2">
-                        <li>1</li>
-                        <li>2</li>
-                    </ul>
+                    <div style="width: 100%;">
+                        <div style="float: left; width: 50%;">
+                            <img src="abb1_3.png" height="500" style="">
+                        </div>
+                        <div style="float: right; width: 50%;">
+                            <p>
+                                <span class="fragment fade-out" data-fragment-index="1">7</span>
+                                <span class="fragment fade-out" data-fragment-index="2">13</span>
+                                <span class="fragment fade-out" data-fragment-index="3">+</span>
+                                <span class="fragment fade-out" data-fragment-index="4">30</span>
+                                <span class="fragment fade-out" data-fragment-index="5">+</span>
+                                <span class="fragment fade-out" data-fragment-index="6">13</span>
+                                <span class="fragment fade-out" data-fragment-index="7">37</span>
+                                <span class="fragment fade-out" data-fragment-index="8">+</span>
+                                <span class="fragment fade-out" data-fragment-index="9">10</span>
+                                <span class="fragment fade-out" data-fragment-index="10">25</span>
+                                <span class="fragment fade-out" data-fragment-index="11">$\cdot$</span>
+                                <span class="fragment fade-out" data-fragment-index="12">+</span>
+                                <span class="fragment fade-out" data-fragment-index="13">$\cdot$</span>
+                            </p>
+                            <h4>Stack <code>st</code></h4>
+                            <div>
+                                <span class="fragment" data-fragment-index="1">
+                                    <div class="fragment fade-out fragment-remove" data-fragment-index="3">7</div>
+                                </span>
+                                <span class="fragment" data-fragment-index="2">
+                                    <div class="fragment fade-out fragment-remove" data-fragment-index="3">13</div>
+                                </span>
+                                <span class="fragment" data-fragment-index="3">
+                                    <div class="fragment fade-out fragment-remove" data-fragment-index="5">20</div>
+                                </span>
+                                <span class="fragment" data-fragment-index="4">
+                                    <div class="fragment fade-out fragment-remove" data-fragment-index="5">30</div>
+                                </span>
+                                <span class="fragment" data-fragment-index="5">
+                                    <div class="fragment fade-out fragment-remove" data-fragment-index="13">50</div>
+                                </span>
+                                <span class="fragment" data-fragment-index="6">
+                                    <div class="fragment fade-out fragment-remove" data-fragment-index="8">13</div>
+                                </span>
+                                <span class="fragment" data-fragment-index="7">
+                                    <div class="fragment fade-out fragment-remove" data-fragment-index="8">37</div>
+                                </span>
+                                <span class="fragment" data-fragment-index="8">
+                                    <div class="fragment fade-out fragment-remove" data-fragment-index="12">50</div>
+                                </span>
+                                <span class="fragment" data-fragment-index="9">
+                                    <div class="fragment fade-out fragment-remove" data-fragment-index="11">10</div>
+                                </span>
+                                <span class="fragment" data-fragment-index="10">
+                                    <div class="fragment fade-out fragment-remove" data-fragment-index="11">25</div>
+                                </span>
+                                <span class="fragment" data-fragment-index="11">
+                                    <div class="fragment fade-out fragment-remove" data-fragment-index="12">250</div>
+                                </span>
+                                <span class="fragment" data-fragment-index="12">
+                                    <div class="fragment fade-out fragment-remove" data-fragment-index="13">300</div>
+                                </span>
+                                <span class="fragment" data-fragment-index="13">
+                                    15000
+                                </span>
+                            </div>
+                        </div>
+                    </div>
                 </section>
             </section>
         </div>
@@ -131,8 +193,12 @@
             transition: "slide",
             transitionSpeed: "default",
             backgroundTransition: "fade",
-            pdfSeparateFragments: false,
+            pdfSeparateFragments: true,
             autoAnimateDuration: 0.4,
+
+            margin: 0.04,
+            width: 1280,
+            height: 720,
 
             plugins: [
                 // needs to be before highlighting
