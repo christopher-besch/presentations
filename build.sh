@@ -35,6 +35,8 @@ git checkout 4.2.1
 echo "installing custom themes..."
 cp -v ../theme/source/* ./css/theme/source
 cp -v ../theme/template/* ./css/theme/template
+mkdir -p ./plugin/other
+cp -v ../theme/other/* ./plugin/other
 
 echo "installing yarn dependencies..."
 rm -v package-lock.json || true
