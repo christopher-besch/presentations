@@ -54,3 +54,12 @@
     font-size: 14.1447px;
     line-height: 14.1667px;
 }
+
+// fragments that just faded out and ought to be removed
+.reveal .fragment.fade-out.visible.fragment-remove,
+.reveal .fragment.fade-in-then-out.visible.fragment-remove:not(.current-fragment) {
+    display: none;
+    height: 0px;
+    line-height: 0px;
+    font-size: 0px;
+}
