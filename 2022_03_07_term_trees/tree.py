@@ -69,3 +69,27 @@ class Tree2(Scene):
             (10, 12), (10, 11),
         ]
         self.add(create_tree(labels, edges))
+
+class Tree3(Scene):
+    def construct(self):
+        labels = {
+            0: "\cdot",
+            1: "+",
+            2: "25",
+            3: "75",
+            4: "+",
+            5: "\cdot",
+            6: "75",
+            7: "4",
+            8: "+",
+            9: "28",
+            10: "72",
+        }
+        edges = [
+            (0, 4), (0, 1),
+            (1, 3), (1, 2),
+            (4, 8), (4, 5),
+            (5, 7), (5, 6),
+            (8, 10), (8, 9)
+        ]
+        self.add(create_tree(labels, edges))
