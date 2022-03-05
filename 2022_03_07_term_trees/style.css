@@ -1,0 +1,13 @@
+#stack {
+    display: flex;
+    flex-direction: column-reverse;
+    height: 5em;
+    width: 200px;
+    border-bottom: 2px solid black;
+}
+
+#fucking-stack-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
