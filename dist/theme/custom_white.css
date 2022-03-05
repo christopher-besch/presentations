@@ -67,8 +67,9 @@
   line-height: 14.1667px;
 }
 
-.reveal .fragment.fade-out.visible.fragment-remove,
-.reveal .fragment.fade-in-then-out.visible.fragment-remove:not(.current-fragment) {
+.reveal .fragment.fragment-remove.fade-out.visible,
+.reveal .fragment.fragment-remove.fade-in-then-out.visible:not(.current-fragment),
+.reveal .fragment.fragment-remove:not(.visible):not(.fade-out) {
   display: none;
   height: 0px;
   line-height: 0px;
