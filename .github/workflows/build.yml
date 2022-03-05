@@ -14,6 +14,14 @@ jobs:
         with:
           submodules: recursive
 
+      # not supported by netlify
+      # - name: Install Manim
+      #   run: |
+      #     docker pull manimcommunity/manim:stable
+      #     manim() {
+      #       docker run --user="$(id -u):$(id -g)" --rm -it -v "$(pwd):/manim" manimcommunity/manim manim "$@"
+      #     }
+
       - name: Build reveal.js and Deploy Presentations
         run: ./deploy.sh
 
