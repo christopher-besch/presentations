@@ -15,6 +15,8 @@
 
     <!-- code highlighting theme -->
     <link rel="stylesheet" href="../plugin/other/oceanicnext.css">
+
+    <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
@@ -56,7 +58,7 @@
                         (16+44) \cdot (2+8) + 6 + 2 \cdot (11+89)
                         $$
                     </div>
-                    <img src="./baum1.png">
+                    <img src="./baum3.png" height=500>
                 </section>
 
                 <section>
@@ -96,7 +98,7 @@
                             <img src="abb1_3.png">
                         </div>
                         <div style="float: right; width: 50%;">
-                            <h4>Postfixnotation <code>postFN</code></h4>
+                            <h4><code>postFN</code></h4>
                             <p>
                                 <span class="fragment fade-out" data-fragment-index="1">7</span>
                                 <span class="fragment fade-out" data-fragment-index="2">13</span>
@@ -112,48 +114,53 @@
                                 <span class="fragment fade-out" data-fragment-index="12">+</span>
                                 <span class="fragment fade-out" data-fragment-index="13">$\cdot$</span>
                             </p>
-                            <h4>Stack <code>st</code></h4>
-                            <div>
-                                <span class="fragment fragment-remove" data-fragment-index="1">
-                                    <div class="fragment fade-out fragment-remove" data-fragment-index="3">7</div>
-                                </span>
-                                <span class="fragment fragment-remove" data-fragment-index="2">
-                                    <div class="fragment fade-out fragment-remove" data-fragment-index="3">13</div>
-                                </span>
-                                <span class="fragment fragment-remove" data-fragment-index="3">
-                                    <div class="fragment fade-out fragment-remove" data-fragment-index="5">20</div>
-                                </span>
-                                <span class="fragment fragment-remove" data-fragment-index="4">
-                                    <div class="fragment fade-out fragment-remove" data-fragment-index="5">30</div>
-                                </span>
-                                <span class="fragment fragment-remove" data-fragment-index="5">
-                                    <div class="fragment fade-out fragment-remove" data-fragment-index="13">50</div>
-                                </span>
-                                <span class="fragment fragment-remove" data-fragment-index="6">
-                                    <div class="fragment fade-out fragment-remove" data-fragment-index="8">13</div>
-                                </span>
-                                <span class="fragment fragment-remove" data-fragment-index="7">
-                                    <div class="fragment fade-out fragment-remove" data-fragment-index="8">37</div>
-                                </span>
-                                <span class="fragment fragment-remove" data-fragment-index="8">
-                                    <div class="fragment fade-out fragment-remove" data-fragment-index="12">50</div>
-                                </span>
-                                <span class="fragment fragment-remove" data-fragment-index="9">
-                                    <div class="fragment fade-out fragment-remove" data-fragment-index="11">10</div>
-                                </span>
-                                <span class="fragment fragment-remove" data-fragment-index="10">
-                                    <div class="fragment fade-out fragment-remove" data-fragment-index="11">25</div>
-                                </span>
-                                <span class="fragment fragment-remove" data-fragment-index="11">
-                                    <div class="fragment fade-out fragment-remove" data-fragment-index="12">250</div>
-                                </span>
-                                <span class="fragment fragment-remove" data-fragment-index="12">
-                                    <div class="fragment fade-out fragment-remove" data-fragment-index="13">300</div>
-                                </span>
-                                <span class="fragment fragment-remove" data-fragment-index="13">
-                                    15000
-                                </span>
+                            <h4><code>st</code></h4>
+                            <div id="fucking-stack-wrapper">
+                                <div id="stack">
+                                    <span class="fragment fragment-remove" data-fragment-index="1">
+                                        <div class="fragment fade-out fragment-remove" data-fragment-index="3">7</div>
+                                    </span>
+                                    <span class="fragment fragment-remove" data-fragment-index="2">
+                                        <div class="fragment fade-out fragment-remove" data-fragment-index="3">13</div>
+                                    </span>
+                                    <span class="fragment fragment-remove" data-fragment-index="3">
+                                        <div class="fragment fade-out fragment-remove" data-fragment-index="5">20</div>
+                                    </span>
+                                    <span class="fragment fragment-remove" data-fragment-index="4">
+                                        <div class="fragment fade-out fragment-remove" data-fragment-index="5">30</div>
+                                    </span>
+                                    <span class="fragment fragment-remove" data-fragment-index="5">
+                                        <div class="fragment fade-out fragment-remove" data-fragment-index="13">50</div>
+                                    </span>
+                                    <span class="fragment fragment-remove" data-fragment-index="6">
+                                        <div class="fragment fade-out fragment-remove" data-fragment-index="8">13</div>
+                                    </span>
+                                    <span class="fragment fragment-remove" data-fragment-index="7">
+                                        <div class="fragment fade-out fragment-remove" data-fragment-index="8">37</div>
+                                    </span>
+                                    <span class="fragment fragment-remove" data-fragment-index="8">
+                                        <div class="fragment fade-out fragment-remove" data-fragment-index="12">50</div>
+                                    </span>
+                                    <span class="fragment fragment-remove" data-fragment-index="9">
+                                        <div class="fragment fade-out fragment-remove" data-fragment-index="11">10</div>
+                                    </span>
+                                    <span class="fragment fragment-remove" data-fragment-index="10">
+                                        <div class="fragment fade-out fragment-remove" data-fragment-index="11">25</div>
+                                    </span>
+                                    <span class="fragment fragment-remove" data-fragment-index="11">
+                                        <div class="fragment fade-out fragment-remove" data-fragment-index="12">250
+                                        </div>
+                                    </span>
+                                    <span class="fragment fragment-remove" data-fragment-index="12">
+                                        <div class="fragment fade-out fragment-remove" data-fragment-index="13">300
+                                        </div>
+                                    </span>
+                                    <span class="fragment fragment-remove" data-fragment-index="13">
+                                        15000
+                                    </span>
+                                </div>
                             </div>
+                            <!-- <hr style="margin-top: 5px; width: 200px; align: center;"> -->
                         </div>
                     </div>
                 </section>
@@ -190,7 +197,7 @@
             controlsTutorial: false,
             progress: false,
             slideNumber: "c/t",
-            hashOneBasedIndex: true,
+            hashOneBasedIndex: false,
             hash: true,
             navigationMode: "linear",
             embedded: false,
