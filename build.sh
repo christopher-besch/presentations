@@ -59,7 +59,13 @@ echo "copying vendor dependencies..."
 rm -rfv public/vendor
 cp -rv vendor public/vendor
 
+echo "copying presentations..."
+find . -maxdepth 1 -mindepth 1 -type d -not -path "./.*" -not -path "./reveal" -not -path "./public" -not -path "./theme" -not -path "./vendor" -exec cp -rv {} public \;
+
+echo "creating table of contents page..."
+find . -maxdepth 1 -mindepth 1 -type d -not -path "./.*" -not -path "./reveal" -not -path "./public" -not -path "./theme" -not -path "./vendor" -exec echo "<a href='{}'>{}<a><br />" \; > public/index.html
+
 echo "creating symlinks..."
 ln -sv public/dist dist
 ln -sv public/plugin plugin
-
+ln -sv public/index.html index.html

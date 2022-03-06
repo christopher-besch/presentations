@@ -3,6 +3,7 @@ public/
 dist
 plugin
 media/
+./index.html
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

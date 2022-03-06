@@ -22,8 +22,8 @@ jobs:
       #       docker run --user="$(id -u):$(id -g)" --rm -it -v "$(pwd):/manim" manimcommunity/manim manim "$@"
       #     }
 
-      - name: Build reveal.js and Deploy Presentations
-        run: ./deploy.sh
+      - name: Build reveal.js Presentations
+        run: ./build.sh
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@4.1.4

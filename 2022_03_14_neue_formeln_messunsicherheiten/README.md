@@ -21,6 +21,7 @@
 - Rundungsstelle kann durch Zehnerpotenz/Einheit nur auf einerstelle oder Nachkommastelle verschoben werden
 - signifikante Stellen: erste ungleich 0 bis Rundungsstelle
 - zwischen 0,1 und 1000
+- bei Ablesen halbe Skalenteile, wenn sonst nichts bekannt
 
 - color codes fuer verschiedene Stellentypen
 - Relevanz, warum machen wir das ueberhaupt?
@@ -30,6 +31,8 @@
 - daemlich zitieren + korrigieren (vlt. "Ergebnisse werden mit einer um eins höheren Anzahl signifikanter Stellen angegeben als die Messgröße mit der geringsten Anzahl signifikanter Stellen aufweist.")
 - Unterschied 6 - 6,0
 - 20000 -> angenommen zwischen 19999,5 und 20000,5
+- prozentuale Abweichung (Differenz/Literaturwert)
+- Massnahmen fuer Reduzierung
 
 ## Fehlerfortpflanzungsrechnung
 
@@ -42,3 +45,5 @@
 - [Signifikante Stellen](https://de.wikipedia.org/wiki/Signifikante_Stellen)
 - [Messwerte](https://de.wikipedia.org/wiki/Messwert)
 - Niedersachsen KC
+- [Messunsicherheit](https://de.wikipedia.org/wiki/Messunsicherheit)
+
