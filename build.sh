@@ -52,12 +52,27 @@ mkdir -v public
 
 echo "copying reveal output files..."
 cp -rv reveal/{dist,plugin} public
-# missing, to be created by other script: index.html, lib, images, *.md
 
 # required to not use any CDNs
 echo "copying vendor dependencies..."
 rm -rfv public/vendor
 cp -rv vendor public/vendor
+
+# required because some dependencies are compiled
+echo "downloading other dependencies..."
+rm -rfv public/dwn_vendor
+mkdir public/dwn_vendor
+wget https://github.com/KaTeX/KaTeX/releases/download/v0.15.2/katex.tar.gz -O public/dwn_vendor/katex.tar.gz
+
+echo "extracting other dependencies..."
+pushd public/dwn_vendor
+tar xfv katex.tar.gz
+rm -v katex.tar.gz
+# katex needs weird dist directory
+mv katex dist
+mkdir katex
+mv dist katex/dist
+popd
 
 echo "copying presentations..."
 find . -maxdepth 1 -mindepth 1 -type d -not -path "./.*" -not -path "./reveal" -not -path "./public" -not -path "./theme" -not -path "./vendor" -exec cp -rv {} public \;
@@ -66,6 +81,7 @@ echo "creating table of contents page..."
 find . -maxdepth 1 -mindepth 1 -type d -not -path "./.*" -not -path "./reveal" -not -path "./public" -not -path "./theme" -not -path "./vendor" -exec echo "<a href='{}'>{}<a><br />" \; > public/index.html
 
 echo "creating symlinks..."
-ln -sv public/dist dist
-ln -sv public/plugin plugin
-ln -sv public/index.html index.html
+ln -svf public/dist dist
+ln -svf public/plugin plugin
+ln -svf public/dwn_vendor dwn_vendor
+ln -svf public/index.html index.html

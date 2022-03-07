@@ -24,17 +24,17 @@
 - bei Ablesen halbe Skalenteile, wenn sonst nichts bekannt
 
 - color codes fuer verschiedene Stellentypen
-- Relevanz, warum machen wir das ueberhaupt?
 - Struthoff Zitat
 - Aufgaben stellen, fragen wie anzugeben
 - uebertriebenes Beispiel (vlt. Austrittsarbeit)
 - daemlich zitieren + korrigieren (vlt. "Ergebnisse werden mit einer um eins höheren Anzahl signifikanter Stellen angegeben als die Messgröße mit der geringsten Anzahl signifikanter Stellen aufweist.")
 - Unterschied 6 - 6,0
+
+### Missing
+- Relevanz, warum machen wir das ueberhaupt?
 - 20000 -> angenommen zwischen 19999,5 und 20000,5
 - prozentuale Abweichung (Differenz/Literaturwert)
 - Massnahmen fuer Reduzierung
-
-## Fehlerfortpflanzungsrechnung
 
 # Quellen
 - [Friendly Feuds: Experimental Physicists vs. Theoretical Physicists](https://youtu.be/IET9VX_Ufrc)
@@ -47,3 +47,7 @@
 - Niedersachsen KC
 - [Messunsicherheit](https://de.wikipedia.org/wiki/Messunsicherheit)
 
+## Fragen
+- merkwuerdige "sachgerechte Abschaetzung"?
+- bei Auslassungspunkten runden?
+- Auslassungspunkte fuer ABI?

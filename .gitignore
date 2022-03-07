@@ -2,6 +2,7 @@ reveal/
 public/
 dist
 plugin
+dwn_vendor
 media/
 /index.html
 
