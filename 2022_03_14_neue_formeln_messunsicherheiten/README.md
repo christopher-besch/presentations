@@ -22,6 +22,7 @@
 - signifikante Stellen: erste ungleich 0 bis Rundungsstelle
 - zwischen 0,1 und 1000
 - bei Ablesen halbe Skalenteile, wenn sonst nichts bekannt
+- 20000 -> angenommen zwischen 19999,5 und 20000,5
 
 - color codes fuer verschiedene Stellentypen
 - Struthoff Zitat
@@ -29,12 +30,10 @@
 - uebertriebenes Beispiel (vlt. Austrittsarbeit)
 - daemlich zitieren + korrigieren (vlt. "Ergebnisse werden mit einer um eins höheren Anzahl signifikanter Stellen angegeben als die Messgröße mit der geringsten Anzahl signifikanter Stellen aufweist.")
 - Unterschied 6 - 6,0
+- prozentuale Abweichung (Differenz/Literaturwert)
 
 ### Missing
 - Relevanz, warum machen wir das ueberhaupt?
-- 20000 -> angenommen zwischen 19999,5 und 20000,5
-- prozentuale Abweichung (Differenz/Literaturwert)
-- Massnahmen fuer Reduzierung
 
 # Quellen
 - [Friendly Feuds: Experimental Physicists vs. Theoretical Physicists](https://youtu.be/IET9VX_Ufrc)
@@ -46,8 +45,17 @@
 - [Messwerte](https://de.wikipedia.org/wiki/Messwert)
 - Niedersachsen KC
 - [Messunsicherheit](https://de.wikipedia.org/wiki/Messunsicherheit)
+- [Fehlerbetrachtung](https://www.lernhelfer.de/schuelerlexikon/physik/artikel/fehlerbetrachtungen)
 
 ## Fragen
+- Massnahmen fuer Reduzierung?
+- wie relative Messunsicherheit bestimmen?
 - merkwuerdige "sachgerechte Abschaetzung"?
 - bei Auslassungspunkten runden?
 - Auslassungspunkte fuer ABI?
+- wie Werte mit expliziter Messunsicherheit anzugeben?
+- relative Fehler auch mit zwei signifikanten Stellen?
+
+## Zu ueberpruefen
+- relative Messunsicherheit?
+- relative Fehler?

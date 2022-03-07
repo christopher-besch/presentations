@@ -123,6 +123,23 @@
                         </ol>
                     </div>
                 </section>
+
+                <section data-auto-animate>
+                    <div data-id="title">
+                        <h2>Signifikante Stellen&mdash;Zweck</h2>
+                    </div>
+                    <ul>
+                        <li class="fragment">Impliziert Messunsicherheit</li>
+                        <li class="fragment">$0,0\htmlClass{sig}{690}m$
+                            <span class="fragment">$\Rightarrow 0,0\htmlClass{sig}{690}m \pm 0,0000\htmlClass{sig}{50}m$
+                        </li>
+                        <li class="fragment">$0,0\htmlClass{sig}{690}\htmlClass{wrong}{000}m$
+                            <span class="fragment">$\Rightarrow 0,0\htmlClass{sig}{690}\htmlClass{wrong}{000}m \pm
+                                0,0000\htmlClass{wrong}{000}\htmlClass{sig}{50}m$
+                        </li>
+                        <li class="fragment">Messunsicherheit explizit mit zwei signifikanten Stellen anzugeben</li>
+                    </ul>
+                </section>
             </section>
 
             <section>
@@ -247,7 +264,7 @@
                     <div class="fragment half-part" data-fragment-index="2" data-id="abs">
                         Absolute Messunsicherheit:<br />
                         \[\begin{aligned}
-                        \frac{|500nm - 470nm|}{2} \Rightarrow \pm 15nm
+                        \frac{|500nm - 470nm|}{2} \Rightarrow \pm \htmlClass{sig}{15}nm
                         \end{aligned}\]
                     </div>
                 </section>
@@ -259,21 +276,66 @@
                     <div>
                         \[\begin{aligned}
                         \lambda = \frac{1}{500}mm \cdot \sin\left( \arctan\left( \frac{5,0cm}{20,1cm} \right)
-                        \right) = 498nm \pm 15nm
+                        \right) = 498nm
                         \end{aligned}\]
                     </div>
                     <div class="half-part fragment">
                         Relative Messunsicherheit:
                         \[\begin{aligned}
-                        \frac{15nm}{498nm} = 3,0\%
+                        \frac{15nm}{498nm} = \htmlClass{sig}{3,0}\%
                         \end{aligned}\]
                     </div>
                     <div class="half-part" data-id="abs">
                         Absolute Messunsicherheit:<br />
                         \[\begin{aligned}
-                        \frac{|500nm - 470nm|}{2} \Rightarrow \pm 15nm
+                        \frac{|500nm - 470nm|}{2} \Rightarrow \pm \htmlClass{sig}{15}nm
                         \end{aligned}\]
                     </div>
+                </section>
+
+                <section>
+                    <h2>Relative Fehler</h2>
+                    <div class="fragment">
+                        \[\begin{aligned}
+                        \frac{|\text{Gemessener Wert} - \text{Literaturwert}|}{\text{Literaturwert}} =
+                        \frac{\text{Differenz}}{\text{Literaturwert}} \\
+                        \end{aligned}\]
+                    </div>
+                    <div class="fragment">
+                        \[\begin{aligned}
+                        \frac{|5 \cdot 10^{-34}Js - 6,62607015 \cdot 10^{-34}Js|}
+                        {6,62607015 \cdot 10^{-34}Js} = \htmlClass{sig}{25}\%
+                        \end{aligned}\]
+                    </div>
+                </section>
+            </section>
+
+            <section>
+                <section>
+                    <h2>Messunsicherheit&mdash;Zusammenfassend</h2>
+                    <ul>
+                        <li class="fragment">Nicht nach Rundungsstelle angeben</li>
+                        <li class="fragment">Eine signifikante Stelle mehr als ungenauste Messgroesse</li>
+                        <li class="fragment">Minimal-Maximal-Abschaetzung fuer explizite Messunsicherheit (zwei
+                            signifikante Stelle angeben)</li>
+                        <li class="fragment">Relative Fehler:
+                            $\frac{\text{Differenz}}{\text{Literaturwert}}$</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Neue Formeln&mdash;Zusammenfassend</h2>
+                    <ul>
+                        <li>I like cheese</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Quellen</h2>
+                </section>
+
+                <section>
+                    <h1>The End</h1>
                 </section>
             </section>
         </div>
