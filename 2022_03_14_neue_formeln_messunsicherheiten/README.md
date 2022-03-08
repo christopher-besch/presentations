@@ -1,6 +1,7 @@
 # Vorgehen bei der Entwicklung neuer Formeln
 - Abitur Stark-Verlag rotes Buch EA 2020-25
 - KC Physik NDS
+- Stromwaage
 
 - Theoretiker:
     - nicht nur, wie die Welt ist, sonder auch wie sie sein koennte
@@ -52,13 +53,17 @@
 - [Kondensatoraufladung](https://www.physik.gym-wst.de/de/qphase/ea/elektrischesfeld/05.aufentladungpk)
 
 ## Fragen
-- Massnahmen fuer Reduzierung?
-- wie relative Messunsicherheit bestimmen?
-- merkwuerdige "sachgerechte Abschaetzung"?
-- bei Auslassungspunkten runden?
+- Massnahmen fuer Reduzierung? Ja
+- wie relative Messunsicherheit bestimmen? Differenz durch Ergebnis
+- merkwuerdige "sachgerechte Abschaetzung"? Nein
+- bei Auslassungspunkten runden? Ja
 - Auslassungspunkte fuer ABI?
-- wie Werte mit expliziter Messunsicherheit anzugeben?
-- relative Fehler auch mit zwei signifikanten Stellen?
+- wie Werte mit expliziter Messunsicherheit anzugeben? Garnicht
+- relative Fehler auch mit zwei signifikanten Stellen? Eine reicht
+
+- nicht erschrecken, schnelle Ergebnisse, sinnvolle Faustregel
+- viele Beispiele besonders min, max
+- 
 
 ## Zu ueberpruefen
 - relative Messunsicherheit?
