@@ -37,6 +37,8 @@
 
 ### Missing
 - Relevanz, warum machen wir das ueberhaupt?
+- Massnahmen fuer Reduzierung
+- Aufgabe Minimal-Maximal-Abschaetzung
 
 # Quellen
 - [Friendly Feuds: Experimental Physicists vs. Theoretical Physicists](https://youtu.be/IET9VX_Ufrc)
@@ -52,18 +54,14 @@
 - [Leitfaden Naturwissenschaft](https://www.ib-klotsche.de/wp-content/uploads/2019/05/LeitfadenNaturwissenschaft-190531.pdf)
 - [Kondensatoraufladung](https://www.physik.gym-wst.de/de/qphase/ea/elektrischesfeld/05.aufentladungpk)
 
-## Fragen
-- Massnahmen fuer Reduzierung? Ja
-- wie relative Messunsicherheit bestimmen? Differenz durch Ergebnis
+## Beantwortete Fragen
 - merkwuerdige "sachgerechte Abschaetzung"? Nein
+- wie relative Messunsicherheit bestimmen? Differenz durch Ergebnis
 - bei Auslassungspunkten runden? Ja
-- Auslassungspunkte fuer ABI?
+- Auslassungspunkte fuer ABI? Nein
 - wie Werte mit expliziter Messunsicherheit anzugeben? Garnicht
 - relative Fehler auch mit zwei signifikanten Stellen? Eine reicht
-
 - nicht erschrecken, schnelle Ergebnisse, sinnvolle Faustregel
-- viele Beispiele besonders min, max
-- 
 
 ## Zu ueberpruefen
 - relative Messunsicherheit?
