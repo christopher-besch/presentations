@@ -28,20 +28,20 @@
             <em>Christopher</em> &bullet; 14. März 2022
         </div>
         <div class="slides">
+            <!-- Intro -->
             <section data-state="titleslide">
                 <section data-auto-animate data-background-image="./eichhoernchen.jpeg" data-background-opacity="0.7">
-                    <!-- TODO: fucking boring title -->
                     <h2>
-                        <div data-id="1" style="display: inline;">Messunsicherheit</div>
+                        <span data-id="1">Messunsicherheit</span>
                         und
-                        <div data-id="2" style="display: inline;">neue Formeln</div>
+                        <span data-id="2">neue Formeln</span>
                     </h2>
                 </section>
 
                 <section data-auto-animate>
                     <div class="half-part">
                         <h4>
-                            <div data-id="1">Messunsicherheit</div>
+                            <span data-id="1">Messunsicherheit</span>
                         </h4>
                         <ul>
                             <li>Normgerechter Umgang mit Messwerten</li>
@@ -50,7 +50,7 @@
                     </div>
                     <div class="half-part">
                         <h4>
-                            <div data-id="2">Neue Formeln</div>
+                            <span data-id="2">Neue Formeln</span>
                         </h4>
                         <ul>
                             <li>something</li>
@@ -61,12 +61,13 @@
                 </section>
             </section>
 
+            <!-- Messunsicherheit -->
             <section>
                 <section data-auto-animate>
-                    <img src="./corporate_difference_meme.png">
-                    <aside class="notes">
-                        Wo Unterschied?
+                    <aside class="notes" data-markdown>
+                        - Wo Unterschied?
                     </aside>
+                    <img src="./corporate_difference_meme.png">
                 </section>
                 <section data-auto-animate>
                     <img src="./corporate_difference_meme.png" height="500">
@@ -131,11 +132,12 @@
                     <ul>
                         <li class="fragment">Impliziert Messunsicherheit</li>
                         <li class="fragment">$0,0\htmlClass{sig}{690}m$
-                            <span class="fragment">$\Rightarrow 0,0\htmlClass{sig}{690}m \pm 0,0000\htmlClass{sig}{50}m$
+                            <span class="fragment">$\Rightarrow 0,0\htmlClass{sig}{690}m \pm
+                                0,0000\htmlClass{sig}{50}m$</span>
                         </li>
                         <li class="fragment">$0,0\htmlClass{sig}{690}\htmlClass{wrong}{000}m$
                             <span class="fragment">$\Rightarrow 0,0\htmlClass{sig}{690}\htmlClass{wrong}{000}m \pm
-                                0,0000\htmlClass{wrong}{000}\htmlClass{sig}{50}m$
+                                0,0000\htmlClass{wrong}{000}\htmlClass{sig}{50}m$</span>
                         </li>
                         <li class="fragment">Messunsicherheit explizit mit zwei signifikanten Stellen anzugeben</li>
                     </ul>
@@ -144,6 +146,9 @@
 
             <section>
                 <section data-auto-animate data-auto-animate-restart>
+                    <aside class="notes" data-markdown>
+                        - einfach drei signifikante Nachkommastellen
+                    </aside>
                     <h2>Wie soll ich denn jetzt runden?</h2>
 
                     <blockquote>
@@ -186,6 +191,9 @@
                 </section>
 
                 <section>
+                    <aside class="notes" data-markdown>
+                        - Auslassungsstellen runden
+                    </aside>
                     <h2>Sonderfaelle</h2>
                     <div class="half-part">
                         <ul>
@@ -198,7 +206,7 @@
                             <li class="fragment" data-fragment-index="3">
                                 Exakt bekannte, unendlicher Menge Nachkommastellen
                                 \[\begin{aligned}
-                                \frac{1}{7} &= 0.1428\dots
+                                \frac{1}{7} &= 0.1429\dots
                                 \end{aligned}\]
                             </li>
                         </ul>
@@ -209,7 +217,7 @@
                                 Exakt bekannte, endlicher Menge Nachkommastellen
                                 \[\begin{aligned}
                                 h &= 6,62607015 \cdot 10^{-34} Js \\
-                                &= 6,6260\dots\vphantom{} \cdot 10^{-34} Js
+                                &= 6,6261\dots\vphantom{} \cdot 10^{-34} Js
                                 \end{aligned}\]
                             </li>
                         </ul>
@@ -237,15 +245,20 @@
                     <div style="clear: both;"></div>
                     <ul style="margin-top: 50px;">
                         <li class="fragment">Fehlerfortpflanzungsrechnung</li>
-                        <div data-id="abs">
-                            <li class="fragment">Minimal-Maximal-Abschaetzung</li>
+                        <div data-id="abs" style="display: inline;">
+                            <li class="fragment">
+                                Minimal-Maximal-Abschaetzung
+                            </li>
                         </div>
                     </ul>
                 </section>
 
                 <section data-auto-animate>
+                    <aside class="notes" data-markdown>
+                        - signifikante Stellen irrelevant
+                    </aside>
                     <div data-id="abs">
-                        <h2>Minimal-Maximal-Abschaetzung</h2>
+                        <h3>Minimal-Maximal-Abschaetzung</h3>
                     </div>
                     <div class="fragment" data-fragment-index="1">
                         \[\begin{aligned}
@@ -261,7 +274,7 @@
                         a &= 20,1cm &\pm 0,3cm
                         \end{aligned}\]
                     </div>
-                    <div class="fragment half-part" data-fragment-index="2" data-id="abs">
+                    <div class="fragment half-part" data-id="abs" data-fragment-index="2" style="display: inline;">
                         Absolute Messunsicherheit:<br />
                         \[\begin{aligned}
                         \frac{|500nm - 470nm|}{2} \Rightarrow \pm \htmlClass{sig}{15}nm
@@ -271,7 +284,7 @@
 
                 <section data-auto-animate>
                     <div data-id="abs">
-                        <h2>Minimal-Maximal-Abschaetzung</h2>
+                        <h3>Minimal-Maximal-Abschaetzung</h3>
                     </div>
                     <div>
                         \[\begin{aligned}
@@ -282,19 +295,30 @@
                     <div class="half-part fragment">
                         Relative Messunsicherheit:
                         \[\begin{aligned}
-                        \frac{15nm}{498nm} = \htmlClass{sig}{3,0}\%
+                        \frac{|500nm - 470nm|}{498nm} = \htmlClass{sig}{6,0}\%
                         \end{aligned}\]
                     </div>
-                    <div class="half-part" data-id="abs">
+                    <div class="half-part" data-id="abs_mess">
                         Absolute Messunsicherheit:<br />
                         \[\begin{aligned}
                         \frac{|500nm - 470nm|}{2} \Rightarrow \pm \htmlClass{sig}{15}nm
                         \end{aligned}\]
                     </div>
                 </section>
+                <section data-auto-animate>
+                    <div data-id="abs">
+                        <h3>Minimal-Maximal-Abschaetzung&mdash;Aufgabe</h3>
+                    </div>
+                    <div>
+
+                    </div>
+                </section>
 
                 <section>
                     <h2>Relative Fehler</h2>
+                    <aside class="notes" data-markdown>
+                        - eine oder zwei signifikante Stellen
+                    </aside>
                     <div class="fragment">
                         \[\begin{aligned}
                         \frac{|\text{Gemessener Wert} - \text{Literaturwert}|}{\text{Literaturwert}} =
@@ -310,6 +334,17 @@
                 </section>
             </section>
 
+            <!-- neue Formeln -->
+            <section>
+                <section>
+                    <h2>Theoretiker und Experimentatoren</h2>
+                </section>
+                <section>
+                    <h3>Theoretiker</h3> und <h3>Experimentatoren</h3>
+                </section>
+            </section>
+
+            <!-- Schluss -->
             <section>
                 <section>
                     <h2>Messunsicherheit&mdash;Zusammenfassend</h2>
