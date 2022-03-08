@@ -30,7 +30,7 @@
         <div class="slides">
             <!-- Intro -->
             <section data-state="titleslide">
-                <section data-auto-animate data-background-image="./eichhoernchen.jpeg" data-background-opacity="0.7">
+                <section data-auto-animate data-background-image="./eichhoernchen.jpeg" data-background-opacity="0.3">
                     <h2>
                         <span data-id="1">Messunsicherheit</span>
                         und
@@ -245,7 +245,7 @@
                     <div style="clear: both;"></div>
                     <ul style="margin-top: 50px;">
                         <li class="fragment">Fehlerfortpflanzungsrechnung</li>
-                        <div data-id="abs" style="display: inline;">
+                        <div data-id="abs">
                             <li class="fragment">
                                 Minimal-Maximal-Abschaetzung
                             </li>
@@ -274,7 +274,7 @@
                         a &= 20,1cm &\pm 0,3cm
                         \end{aligned}\]
                     </div>
-                    <div class="fragment half-part" data-id="abs" data-fragment-index="2" style="display: inline;">
+                    <div class="fragment half-part" data-id="abs_mess" data-fragment-index="2" style="display: inline;">
                         Absolute Messunsicherheit:<br />
                         \[\begin{aligned}
                         \frac{|500nm - 470nm|}{2} \Rightarrow \pm \htmlClass{sig}{15}nm
@@ -336,11 +336,44 @@
 
             <!-- neue Formeln -->
             <section>
-                <section>
-                    <h2>Theoretiker und Experimentatoren</h2>
+                <section data-auto-animate>
+                    <h2>
+                        <span data-id="1">Theoretiker</span>
+                        und
+                        <span data-id="2">Experimentatoren</span>
+                    </h2>
                 </section>
-                <section>
-                    <h3>Theoretiker</h3> und <h3>Experimentatoren</h3>
+                <section data-auto-animate>
+                    <aside class="notes" data-markdown>
+                        - Probleme mit Gesetzen
+                        - Wie koennten neue Gesetze aussehen
+                        - Vergleich Ball im Zug, draussen
+                        - Einsteins Labor im Kopf
+                        - kein Ether
+
+                        - Beispiele fuer Bestaetigung, kann nie komplett belegt werden
+                    </aside>
+                    <div class="half-part">
+                        <h3>
+                            <span data-id="1">Theoretiker</span>
+                        </h3>
+                        <ul>
+                            <li class="fragment">Wie koennte die Welt sein?</li>
+                            <li class="fragment">Maxwell-Gleichungen: Licht feste Geschwindigkeit</li>
+                            <li class="fragment">Newton: keine absolute Ruhe<br />
+                                $\rightarrow$ Geschwindigkeit relativ</li>
+                            <li class="fragment">Spezielle Relativitaetstheorie: Raum und Zeit relativ</li>
+                        </ul>
+                    </div>
+                    <div class="half-part">
+                        <h3>
+                            <span data-id="2">Experimentatoren</span>
+                        </h3>
+                        <ul>
+                            <li class="fragment">Welche moegliche Welt ist unsere</li>
+                            <li class="fragment">Michelson-Morley Experiment: kein Ether</li>
+                        </ul>
+                    </div>
                 </section>
             </section>
 

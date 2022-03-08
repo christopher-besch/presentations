@@ -53,6 +53,7 @@
 - [Fehlerbetrachtung](https://www.lernhelfer.de/schuelerlexikon/physik/artikel/fehlerbetrachtungen)
 - [Leitfaden Naturwissenschaft](https://www.ib-klotsche.de/wp-content/uploads/2019/05/LeitfadenNaturwissenschaft-190531.pdf)
 - [Kondensatoraufladung](https://www.physik.gym-wst.de/de/qphase/ea/elektrischesfeld/05.aufentladungpk)
+- [A Brief History of Time p. 11](https://www.fisica.net/relatividade/stephen_hawking_a_brief_history_of_time.pdf)
 
 ## Beantwortete Fragen
 - merkwuerdige "sachgerechte Abschaetzung"? Nein
