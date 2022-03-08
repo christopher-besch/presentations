@@ -7,6 +7,8 @@
 - Experimentator:
     - welche moeglich Welt ist unsere
 - pro Messreihe eine Variable anpassen
+- Versuch: alle Messungen fuer eine Variante des Versuchsaufbaus
+- Versuchsreihe: mehrere Versuche mit verschiedenen Varianten des Versuchsaufbaus
 
 # Umgang mit Messunsicherheiten
 - DIN 1319, 1333
@@ -46,6 +48,8 @@
 - Niedersachsen KC
 - [Messunsicherheit](https://de.wikipedia.org/wiki/Messunsicherheit)
 - [Fehlerbetrachtung](https://www.lernhelfer.de/schuelerlexikon/physik/artikel/fehlerbetrachtungen)
+- [Leitfaden Naturwissenschaft](https://www.ib-klotsche.de/wp-content/uploads/2019/05/LeitfadenNaturwissenschaft-190531.pdf)
+- [Kondensatoraufladung](https://www.physik.gym-wst.de/de/qphase/ea/elektrischesfeld/05.aufentladungpk)
 
 ## Fragen
 - Massnahmen fuer Reduzierung?
