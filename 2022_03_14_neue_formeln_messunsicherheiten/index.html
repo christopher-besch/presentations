@@ -343,14 +343,16 @@
             <section>
                 <section>
                     <aside class="notes" data-markdown>
+                        - nur generell
                         - $a$ in Interferenz
                         - (Schallgeschwindigkeit mehrere Wellenberge)
                     </aside>
                     <h2>Massnahmen zur Messunsicherheitsverringerung</h2>
                     <ul>
-                        <li>Groessere Laengen</li>
-                        <li>Mehrfache Laengen (vom linken 3. Maximum zum rechten 3. statt 1. zum 0.)</li>
-                        <li>Mehrere Messungen (andere Varianten und Bildung des Mittelwerts)</li>
+                        <li class="fragment">Groessere Laengen</li>
+                        <li class="fragment">Mehrfache Laengen (vom linken 3. Maximum zum rechten 3. statt 1. zum 0.)
+                        </li>
+                        <li class="fragment">Mehrere Messungen (andere Varianten und Bildung des Mittelwerts)</li>
                     </ul>
                 </section>
             </section>
@@ -408,6 +410,7 @@
                     <blockquote>
                         Machen Sie Messungen!
                         Von Anfang an mit theoretischen Modellen zu arbeiten ist Alchemie.
+                        <!-- TODO: better name -->
                         <span style="float: right;">—Unbekannter Professor</span>
                     </blockquote>
                     <!-- Naturwissenschaft ist die Summe aller moeglichen Experimente. -->
@@ -419,6 +422,7 @@
                     </aside>
                     <h2>Was ist ein Experiment?</h2>
                     <ul>
+                        <!-- TODO: technical terms required? -->
                         <li class="fragment">Reproduzierbare Situation</li>
                         <li class="fragment">Stoerenden Variablen ausgeschaltet\kompensiert</li>
                         <li class="fragment"><b>Jeweils eine</b> unabhaengige Variable veraendert</li>
@@ -427,17 +431,24 @@
                         <li class="fragment">Versuchsreihe: mehrere Versuche, verschiedene Varianten</li>
                     </ul>
                 </section>
+            </section>
 
+            <section>
                 <section data-auto-animate>
                     <h2 data-id="head">Stromwaage</h2>
-                    <ul>
-                        <li data-id="1">Stromstaerke</li>
-                        <li data-id="2">Leiterlaenge</li>
-                        <li data-id="3">Kraft auf Leiter</li>
-                        <li>Temperatur</li>
-                        <li>Windgeschwindigkeit</li>
-                        <li>Mondphase</li>
-                    </ul>
+                    <div class="half-part">
+                        <ul class="fragment">
+                            <li data-id="1">Stromstaerke $I$</li>
+                            <li data-id="2">Leiterlaenge $l$</li>
+                            <li data-id="3">Kraft auf Leiter $F_l$</li>
+                            <li>Temperatur</li>
+                            <li>Windgeschwindigkeit</li>
+                            <li>Mondphase</li>
+                        </ul>
+                    </div>
+                    <div class="half-part">
+                        <img src="./stromwaage.jpg" height="500">
+                    </div>
                 </section>
                 <section data-auto-animate>
                     <h2 data-id="head">Stromwaage</h2>
@@ -451,17 +462,22 @@
                     <div class="half-part">
                         <h5>Abhaengige Variablen</h5>
                         <ul>
-                            <li data-id="3">Kraft auf Leiter $F$</li>
+                            <li data-id="3">Kraft auf Leiter $F_l$</li>
                         </ul>
                     </div>
                 </section>
 
                 <section data-auto-animate>
-                    <h2 data-id="head">Stromwaage</h2>
+                    <h4 data-id="1">Veraenderung der Stromstaerke</h4>
+                    <div>
+                        \[\begin{aligned}
+                        l = 8cm
+                        \end{aligned}\]
+                    </div>
                     <table>
                         <thead>
                             <tr>
-                                <th>$I_L$ in $A$</th>
+                                <th>$I$ in $A$</th>
                                 <td>$5,0$</td>
                                 <td>$10,0$</td>
                                 <td>$15,0$</td>
@@ -469,18 +485,37 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <th>$F_m$ in $mN$</th>
+                                <th>$F_l$ in $mN$</th>
                                 <td>$1,9$</td>
                                 <td>$3,8$</td>
                                 <td>$5,8$</td>
                             </tr>
+                            <tr class="fragment">
+                                <th>$\frac{F_l}{I}$ in $\frac{mN}{A}$</th>
+                                <td>$0,38$</td>
+                                <td>$0,38$</td>
+                                <td>$0,39$</td>
+                            </tr>
                         </tbody>
                     </table>
+                    <div class="fragment">
+                        \[\begin{aligned}
+                        F_l \propto l
+                        \end{aligned}\]
+                    </div>
+                </section>
 
+                <section data-auto-animate>
+                    <h4 data-id="2">Veraenderung der Leiterlaenge</h4>
+                    <div>
+                        \[\begin{aligned}
+                        I = 10A
+                        \end{aligned}\]
+                    </div>
                     <table>
                         <thead>
                             <tr>
-                                <th>$l$ in $A$</th>
+                                <th>$l$ in $cm$</th>
                                 <td>$1,0$</td>
                                 <td>$2,0$</td>
                                 <td>$4,0$</td>
@@ -489,14 +524,44 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <th>$F_m$ in $mN$</th>
+                                <th>$F_l$ in $mN$</th>
                                 <td>$0,4$</td>
                                 <td>$0,9$</td>
                                 <td>$2,0$</td>
                                 <td>$3,8$</td>
                             </tr>
+                            <tr class="fragment">
+                                <th>$\frac{F_l}{l}$ in $\frac{mN}{cm}$</th>
+                                <td>$0,40$</td>
+                                <td>$0,45$</td>
+                                <td>$0,50$</td>
+                                <td>$0,48$</td>
+                            </tr>
                         </tbody>
                     </table>
+                    <div class="fragment" data-id="res">
+                        \[\begin{aligned}
+                        F_l \propto l
+                        \end{aligned}\]
+                    </div>
+                </section>
+                <section data-auto-animate>
+                    <h2>Stromwaage</h2>
+                    <div data-id="res">
+                        \[\begin{aligned}
+                        F_l &\propto I \\
+                        F_l &\propto l
+                        \end{aligned}\]
+                    </div>
+                    <div class="fragment">
+                        \[\begin{aligned}
+                        F_l &\propto I \cdot l \\
+                        F_l &= B \cdot I \cdot l
+                        \end{aligned}\]
+                    </div>
+                    <div class="fragment">
+                        $\Rightarrow$ neue Groesse $B$, abhaengig vom Magnetfeld
+                    </div>
                 </section>
             </section>
 
