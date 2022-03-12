@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <title>Messunsicherheit und neue Formel</title>
+    <title>Neue Formel und Messunsicherheit</title>
     <meta name="description" content="Messunsicherheit und Entwicklung neuer Formeln">
     <meta name="author" content="Christopher">
 
@@ -22,367 +22,90 @@
 <body>
     <div class="reveal">
         <div class="header-left">
-            Messunsicherheit und neue Formeln
+            Neue Formeln und Messunsicherheit
         </div>
         <div class="header-right">
             <em>Christopher</em> &bullet; 14. März 2022
         </div>
         <div class="slides">
             <!-- Intro -->
-            <section data-state="titleslide">
-                <section data-auto-animate data-background-image="./eichhoernchen.jpeg" data-background-opacity="0.3">
+            <section>
+                <section data-state="titleslide" data-auto-animate data-background-image="./eichhoernchen.jpeg"
+                    data-background-opacity="0.3">
                     <h2>
-                        <span data-id="1">Messunsicherheit</span>
+                        <div data-id="1" style="display: inline;">Neue Formeln</div>
                         und
-                        <span data-id="2">neue Formeln</span>
+                        <div data-id="2" style="display: inline;">Messunsicherheit</div>
                     </h2>
                 </section>
-
                 <section data-auto-animate>
                     <div class="half-part">
                         <h4>
-                            <span data-id="1">Messunsicherheit</span>
+                            <div data-id="1" style="display: inline;">Neue Formeln</div>
                         </h4>
                         <ul>
-                            <li>Normgerechter Umgang mit Messwerten</li>
+                            <li>Zweck von Experimenten</li>
+                            <li>Experimentelle Bestimmung neuer Formeln</li>
+                        </ul>
+                    </div>
+                    <div class="half-part">
+                        <h4>
+                            <div data-id="2" style="display: inline;">Messunsicherheit</div>
+                        </h4>
+                        <ul>
+                            <li>Umgang mit Messwerten</li>
                             <li>Bestimmung von Messunsicherheiten</li>
+                            <li>Relative Fehler</li>
                         </ul>
                     </div>
-                    <div class="half-part">
-                        <h4>
-                            <span data-id="2">Neue Formeln</span>
-                        </h4>
-                        <ul>
-                            <li>something</li>
-                            <li>something</li>
-                            <li>something</li>
-                        </ul>
-                    </div>
-                </section>
-            </section>
-
-            <!-- Messunsicherheit -->
-            <section>
-                <section data-auto-animate>
-                    <aside class="notes" data-markdown>
-                        - Wo Unterschied?
-                    </aside>
-                    <img src="./corporate_difference_meme.png">
-                </section>
-                <section data-auto-animate>
-                    <img src="./corporate_difference_meme.png" height="500">
-                    <p>Unterschied: Anzahl signifikanter Stellen</p>
-                </section>
-
-                <section data-auto-animate>
-                    <div data-id="title">
-                        <h2>Signifikante Stellen</h2>
-                    </div>
-                    <div data-id="num">$4562,30m$</div>
-                </section>
-                <section data-auto-animate>
-                    <div data-id="title">
-                        <h3>Signifikante Stellen</h3>
-                    </div>
-                    <div class="half-part">
-                        <div data-id="num">
-                            <ul>
-                                <li>
-                                    $\htmlClass{sig}{4562,3\underline{0}}m$
-                                </li>
-
-                                <li class="fragment" data-fragment-index="1">
-                                    $0000\htmlClass{sig}{4562,3\underline{0}}m$
-                                </li>
-                                <li class="fragment" data-fragment-index="2">
-                                    $\htmlClass{sig}{4562,3\underline{0}}\htmlClass{wrong}{0000}$
-                                </li>
-                                <li class="fragment" data-fragment-index="3">
-                                    <!-- vphantom needed to add space around cdot without colouring -->
-                                    $0,00\htmlClass{sig}{45623\underline{0}}\vphantom{}\cdot 10^6m$
-                                </li>
-                                <li class="fragment" data-fragment-index="4">
-                                    $\htmlClass{sig}{4,5623\underline{0}}\vphantom{}\cdot 10^3m$
-                                </li>
-                                <li class="fragment" data-fragment-index="5">
-                                    $\htmlClass{sig}{4,5623\underline{0}}km$
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="half-part">
-                        <ol>
-                            <li>Von erster nicht-Null Stelle zur Rundungsstelle</li>
-                            <li class="fragment" data-fragment-index="1">Fuehrende Nullen irrelevant</li>
-                            <li class="fragment" data-fragment-index="2">Folgende Nullen taeuschen falsche
-                                Genauigkeit
-                                vor<br />
-                                $\rightarrow$ Rundungsstelle ist letzte Stelle!</li>
-                            <li class="fragment" data-fragment-index="3">Zehnerpotens kann angepasst werden <span
-                                    class="fragment" data-fragment-index="4">(zwischen $0,1$ und $1000$ gut)</span>
-                            </li>
-                        </ol>
-                    </div>
-                </section>
-
-                <section data-auto-animate>
-                    <div data-id="title">
-                        <h2>Signifikante Stellen&mdash;Zweck</h2>
-                    </div>
-                    <ul>
-                        <li class="fragment">Impliziert Messunsicherheit</li>
-                        <li class="fragment">$0,0\htmlClass{sig}{690}m$
-                            <span class="fragment">$\Rightarrow 0,0\htmlClass{sig}{690}m \pm
-                                0,0000\htmlClass{sig}{50}m$</span>
-                        </li>
-                        <li class="fragment">$0,0\htmlClass{sig}{690}\htmlClass{wrong}{000}m$
-                            <span class="fragment">$\Rightarrow 0,0\htmlClass{sig}{690}\htmlClass{wrong}{000}m \pm
-                                0,0000\htmlClass{wrong}{000}\htmlClass{sig}{50}m$</span>
-                        </li>
-                        <li class="fragment">Messunsicherheit explizit mit zwei signifikanten Stellen anzugeben</li>
-                    </ul>
-                </section>
-            </section>
-
-            <section>
-                <section data-auto-animate data-auto-animate-restart>
-                    <aside class="notes" data-markdown>
-                        - einfach drei signifikante Nachkommastellen
-                    </aside>
-                    <h2>Wie soll ich denn jetzt runden?</h2>
-
-                    <blockquote>
-                        "Ich runde grundsätzlich auf volle Tausender."
-                        <span class="fragment" style="float: right;">—Frau Struthoff</span>
-                    </blockquote>
-                </section>
-                <section data-auto-animate>
-                    <h2>Wie soll ich denn jetzt runden?</h2>
-
-                    <div class="half-part">
-                        <ul>
-                            <li>Im TI gar nicht!</li>
-                            <li class="fragment">Endergebnisse, um keine zu hohe Genauigkeit vorzutaeuschen</li>
-                            <li class="fragment">Nur korrekte Stellen + 1</li>
-                            <li class="fragment">
-                                Faustregel fuer's ABI:<br />
-                                korrekten Stellen $\leftarrow$ Anzahl signifikanter Stellen der ungenausten
-                                Messgroesse
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="half-part">
-                        <div class="fragment">
-                            <h4>Beispiel</h4>
-                            \[\begin{aligned}
-                            F &= \htmlClass{sig}{17,\underline{1}}mN \\
-                            I &= \htmlClass{sig}{5,6\underline{4}}A \\
-                            s &= \htmlClass{sig}{4,\underline{0}}cm \\
-                            B &= \frac{F}{I \cdot s} =
-                            \frac{\htmlClass{sig}{17,\underline{1}}mN}
-                            {\htmlClass{sig}{5,6\underline{4}}A \cdot \htmlClass{sig}{4,\underline{0}}cm} \\
-                            &= 0,07579\dots T \\
-                            &\approx
-                            \htmlClass{fragment}{\htmlClass{sig}{75,\underline{8}}mT}
-                            \end{aligned}\]
-                        </div>
-                    </div>
-                </section>
-
-                <section>
-                    <aside class="notes" data-markdown>
-                        - Auslassungsstellen runden
-                    </aside>
-                    <h2>Sonderfaelle</h2>
-                    <div class="half-part">
-                        <ul>
-                            <li class="fragment" data-fragment-index="1">
-                                Natuerliche Zahlen
-                                \[\begin{aligned}
-                                k &= 2
-                                \end{aligned}\]
-                            </li>
-                            <li class="fragment" data-fragment-index="3">
-                                Exakt bekannte, unendlicher Menge Nachkommastellen
-                                \[\begin{aligned}
-                                \frac{1}{7} &= 0.1429\dots
-                                \end{aligned}\]
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="half-part">
-                        <ul>
-                            <li class="fragment" data-fragment-index="2">
-                                Exakt bekannte, endlicher Menge Nachkommastellen
-                                \[\begin{aligned}
-                                h &= 6,62607015 \cdot 10^{-34} Js \\
-                                &= 6,6261\dots\vphantom{} \cdot 10^{-34} Js
-                                \end{aligned}\]
-                            </li>
-                        </ul>
-                    </div>
-                </section>
-
-                <section>
-                    <aside class="notes" data-markdown>
-                        - praktisch 1/4 Skaleneinheit auch vorhanden
-                    </aside>
-                    <h2>Ablesen aus Graphiken</h2>
-                    <ul>
-                        <li class="fragment">Moeglichst genau ablesen</li>
-                        <li class="fragment">Ableseungenauigkeit mit signifikanten Stellen kennzeichnen</li>
-                        <li class="fragment">Wenn auf Millimeter genau gemessen, nur bis Millimeter angeben</li>
-                        <li class="fragment">Faustregel: $\pm$ viertel Skaleneinheit</li>
-                        <li class="fragment">Einteilung von $1\degree$ $\rightarrow$ Unsicherheit von $\pm 0.25\degree$
-                        </li>
-                    </ul>
-                </section>
-            </section>
-
-            <section>
-                <section data-auto-animate>
-                    <h2>Bestimmung der Messunsicherheit</h2>
-                    <blockquote>
-                        "Ermitteln Sie [...] die absolute Messunsicherheit der kurzwelligen Grenze des
-                        Wellenlängenbereichs."
-                        <span style="float: right;">—Abituraufgabe 2021 II</span>
-                    </blockquote>
-                    <div style="clear: both;"></div>
-                    <ul style="margin-top: 50px;">
-                        <li class="fragment">Fehlerfortpflanzungsrechnung</li>
-                        <div data-id="abs">
-                            <li class="fragment">
-                                Minimal-Maximal-Abschaetzung
-                            </li>
-                        </div>
-                    </ul>
-                </section>
-
-                <section data-auto-animate>
-                    <aside class="notes" data-markdown>
-                        - signifikante Stellen irrelevant
-                    </aside>
-                    <div data-id="abs">
-                        <h3>Minimal-Maximal-Abschaetzung</h3>
-                    </div>
-                    <div class="fragment" data-fragment-index="1">
-                        \[\begin{aligned}
-                        \lambda_{min} &= \frac{1}{500}mm \cdot \sin\left( \arctan\left( \frac{5,1cm}{19,8cm} \right)
-                        \right) &= 500nm \\
-                        \lambda_{max} &= \frac{1}{500}mm \cdot \sin\left( \arctan\left( \frac{4,9cm}{20,4cm} \right)
-                        \right) &= 470nm
-                        \end{aligned}\]
-                    </div>
-                    <div class="half-part">
-                        \[\begin{aligned}
-                        d_k &= 5,0cm &\pm 0,1cm \\
-                        a &= 20,1cm &\pm 0,3cm
-                        \end{aligned}\]
-                    </div>
-                    <div class="fragment half-part" data-id="abs_mess" data-fragment-index="2" style="display: inline;">
-                        Absolute Messunsicherheit:<br />
-                        \[\begin{aligned}
-                        \frac{|500nm - 470nm|}{2} \Rightarrow \pm \htmlClass{sig}{15}nm
-                        \end{aligned}\]
-                    </div>
-                </section>
-
-                <section data-auto-animate>
-                    <div data-id="abs">
-                        <h3>Minimal-Maximal-Abschaetzung</h3>
-                    </div>
-                    <div>
-                        \[\begin{aligned}
-                        \lambda = \frac{1}{500}mm \cdot \sin\left( \arctan\left( \frac{5,0cm}{20,1cm} \right)
-                        \right) = 498nm
-                        \end{aligned}\]
-                    </div>
-                    <div class="half-part fragment">
-                        Relative Messunsicherheit:
-                        \[\begin{aligned}
-                        \frac{|500nm - 470nm|}{498nm} = \htmlClass{sig}{6,0}\%
-                        \end{aligned}\]
-                    </div>
-                    <div class="half-part" data-id="abs_mess">
-                        Absolute Messunsicherheit:<br />
-                        \[\begin{aligned}
-                        \frac{|500nm - 470nm|}{2} \Rightarrow \pm \htmlClass{sig}{15}nm
-                        \end{aligned}\]
-                    </div>
-                </section>
-                <section data-auto-animate>
-                    <div data-id="abs">
-                        <h3>Minimal-Maximal-Abschaetzung&mdash;Aufgabe</h3>
-                    </div>
-                    <div>
-                        <!-- TODO: add -->
-                    </div>
-                </section>
-
-                <section>
-                    <h2>Relative Fehler</h2>
-                    <aside class="notes" data-markdown>
-                        - eine oder zwei signifikante Stellen
-                    </aside>
-                    <div class="fragment">
-                        \[\begin{aligned}
-                        \frac{|\text{Gemessener Wert} - \text{Literaturwert}|}{\text{Literaturwert}} =
-                        \frac{\text{Differenz}}{\text{Literaturwert}} \\
-                        \end{aligned}\]
-                    </div>
-                    <div class="fragment">
-                        \[\begin{aligned}
-                        \frac{|5 \cdot 10^{-34}Js - 6,62607015 \cdot 10^{-34}Js|}
-                        {6,62607015 \cdot 10^{-34}Js} = \htmlClass{sig}{25}\%
-                        \end{aligned}\]
-                    </div>
-                </section>
-            </section>
-
-            <section>
-                <section>
-                    <aside class="notes" data-markdown>
-                        - nur generell
-                        - $a$ in Interferenz
-                        - (Schallgeschwindigkeit mehrere Wellenberge)
-                    </aside>
-                    <h2>Massnahmen zur Messunsicherheitsverringerung</h2>
-                    <ul>
-                        <li class="fragment">Groessere Laengen</li>
-                        <li class="fragment">Mehrfache Laengen (vom linken 3. Maximum zum rechten 3. statt 1. zum 0.)
-                        </li>
-                        <li class="fragment">Mehrere Messungen (andere Varianten und Bildung des Mittelwerts)</li>
-                    </ul>
                 </section>
             </section>
 
             <!-- neue Formeln -->
             <section>
-                <section data-auto-animate>
+                <section data-auto-animate data-auto-animate-restart>
                     <h2>
-                        <span data-id="1">Theoretiker</span>
+                        <div data-id="1">Theoretiker</div>
                         und
-                        <span data-id="2">Experimentatoren</span>
+                        <div data-id="2">Experimentatoren</div>
                     </h2>
                 </section>
                 <section data-auto-animate>
                     <aside class="notes" data-markdown>
-                        - Probleme mit Gesetzen
+                        - Probleme mit existierenden Gesetzen
                         - Wie koennten neue Gesetze aussehen
                         - Vergleich Ball im Zug, draussen
                         - Einsteins Labor im Kopf
                         - Lichtgeschwindigkeit konstant, nur in anderen Medien um Molekuele Weg finden (Maurice)
+
                         - kein Ether
+                        - Bahnabweichung Merkurs (Newton)
+                        - falsche Erklaerung: Vulkan
+                        - allgemeine Relativitaetstheorie erklaert
 
                         - Beispiele fuer Bestaetigung, kann nie komplett belegt werden
+                        - Relativitaetstheorie falsch Unschaerferelation der Quantenmechanik nicht bedacht
+                        - Beispiele nicht fuer ABI
                     </aside>
                     <div class="half-part">
                         <h3>
-                            <span data-id="1">Theoretiker</span>
+                            <div data-id="1">Theoretiker</div>
                         </h3>
                         <ul>
                             <li class="fragment">Wie koennte die Welt sein?</li>
+                        </ul>
+                    </div>
+                    <div class="half-part">
+                        <h3>
+                            <div data-id="2">Experimentatoren</div>
+                        </h3>
+                        <ul>
+                            <li class="fragment">Welche moegliche Welt ist unsere</li>
+                        </ul>
+                    </div>
+                    <h3 class="fragment">Beispiel</h3>
+                    <div class="half-part">
+                        <ul>
                             <li class="fragment">Maxwell-Gleichungen: Licht feste Geschwindigkeit</li>
                             <li class="fragment">Newton: keine absolute Ruhe<br />
                                 $\rightarrow$ Geschwindigkeit relativ</li>
@@ -390,12 +113,9 @@
                         </ul>
                     </div>
                     <div class="half-part">
-                        <h3>
-                            <span data-id="2">Experimentatoren</span>
-                        </h3>
                         <ul>
-                            <li class="fragment">Welche moegliche Welt ist unsere</li>
                             <li class="fragment">Michelson-Morley Experiment: kein Ether</li>
+                            <li class="fragment">Planet Vulkan zwischen Sonne und Merkur nicht gefunden</li>
                         </ul>
                     </div>
                 </section>
@@ -408,8 +128,8 @@
                     </aside>
                     <h2>Unbekannte Situation wissenschaftlich erfassen</h2>
                     <blockquote>
-                        Machen Sie Messungen!
-                        Von Anfang an mit theoretischen Modellen zu arbeiten ist Alchemie.
+                        "Machen Sie Messungen!
+                        Von Anfang an mit theoretischen Modellen zu arbeiten ist Alchemie."
                         <!-- TODO: better name -->
                         <span style="float: right;">—Unbekannter Professor</span>
                     </blockquote>
@@ -418,23 +138,28 @@
 
                 <section>
                     <aside class="notes" data-markdown>
+                        - Reproduzierbar: gleicher Zusammenhang bei unterschiedlichen Aufbauten / Orten
+                        - unabhaengige Variable: Variable nur von Experimentator beeinflusst
                         - Variante: eine Variable veraendern
                     </aside>
                     <h2>Was ist ein Experiment?</h2>
                     <ul>
-                        <!-- TODO: technical terms required? -->
                         <li class="fragment">Reproduzierbare Situation</li>
                         <li class="fragment">Stoerenden Variablen ausgeschaltet\kompensiert</li>
                         <li class="fragment"><b>Jeweils eine</b> unabhaengige Variable veraendert</li>
                         <li class="fragment">Beobachtung aller abhaengigen Variablen</li>
-                        <li class="fragment">Versuch: alle Messungen fuer eine Variante des Versuchsaufbaus</li>
-                        <li class="fragment">Versuchsreihe: mehrere Versuche, verschiedene Varianten</li>
+                        <!-- <li class="fragment">Versuch: alle Messungen fuer eine Variante des Versuchsaufbaus</li> -->
+                        <!-- <li class="fragment">Versuchsreihe: mehrere Versuche, verschiedene Varianten</li> -->
                     </ul>
                 </section>
             </section>
 
             <section>
                 <section data-auto-animate>
+                    <aside class="notes" data-markdown>
+                        - funktionalen Zusammenhang bestimmen
+                        - Quotientengleichheit
+                    </aside>
                     <h2 data-id="head">Stromwaage</h2>
                     <div class="half-part">
                         <ul class="fragment">
@@ -565,32 +290,355 @@
                 </section>
             </section>
 
+            <!-- Messunsicherheit -->
+            <section>
+                <section data-auto-animate>
+                    <aside class="notes" data-markdown>
+                        - Wo Unterschied?
+                    </aside>
+                    <img src="./corporate_difference_meme.png">
+                </section>
+                <section data-auto-animate>
+                    <img src="./corporate_difference_meme.png" height="500">
+                    <p>Unterschied: Anzahl signifikanter Stellen</p>
+                </section>
+
+                <section data-auto-animate>
+                    <div data-id="title">
+                        <h2>Signifikante Stellen</h2>
+                    </div>
+                    <div data-id="num">$4562,30m$</div>
+                </section>
+                <section data-auto-animate>
+                    <div data-id="title">
+                        <h3>Signifikante Stellen</h3>
+                    </div>
+                    <div class="half-part">
+                        <div data-id="num">
+                            <ul>
+                                <li>
+                                    $\htmlClass{sig}{4562,3\underline{0}}m$
+                                </li>
+
+                                <li class="fragment" data-fragment-index="1">
+                                    $0000\htmlClass{sig}{4562,3\underline{0}}m$
+                                </li>
+                                <li class="fragment" data-fragment-index="2">
+                                    $\htmlClass{sig}{4562,3\underline{0}}\htmlClass{wrong}{0000}$
+                                </li>
+                                <li class="fragment" data-fragment-index="3">
+                                    <!-- vphantom needed to add space around cdot without colouring -->
+                                    $0,00\htmlClass{sig}{45623\underline{0}}\vphantom{}\cdot 10^6m$
+                                </li>
+                                <li class="fragment" data-fragment-index="4">
+                                    $\htmlClass{sig}{4,5623\underline{0}}\vphantom{}\cdot 10^3m$
+                                </li>
+                                <li class="fragment" data-fragment-index="5">
+                                    $\htmlClass{sig}{4,5623\underline{0}}km$
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="half-part">
+                        <ol>
+                            <li>Von erster nicht-Null Stelle zur Rundungsstelle</li>
+                            <li class="fragment" data-fragment-index="1">Fuehrende Nullen irrelevant</li>
+                            <li class="fragment" data-fragment-index="2">Folgende Nullen taeuschen falsche
+                                Genauigkeit
+                                vor<br />
+                                $\rightarrow$ Rundungsstelle ist letzte Stelle!</li>
+                            <li class="fragment" data-fragment-index="3">Zehnerpotens kann angepasst werden <span
+                                    class="fragment" data-fragment-index="4">(zwischen $0,1$ und $1000$ gut)</span>
+                            </li>
+                        </ol>
+                    </div>
+                </section>
+
+                <section data-auto-animate>
+                    <div data-id="title">
+                        <h2>Signifikante Stellen&mdash;Zweck</h2>
+                    </div>
+                    <ul>
+                        <li class="fragment">Impliziert Messunsicherheit</li>
+                        <li class="fragment">$0,0\htmlClass{sig}{69\underline{0}}m$
+                            <span class="fragment">$\Rightarrow 0,0\htmlClass{sig}{69\underline{0}}m \pm
+                                0,0000\htmlClass{sig}{50}m$</span>
+                        </li>
+                        <li class="fragment">$0,0\htmlClass{sig}{69\underline{0}}\htmlClass{wrong}{000}m$
+                            <span class="fragment">$\Rightarrow
+                                0,0\htmlClass{sig}{69\underline{0}}\htmlClass{wrong}{000}m \pm
+                                0,0000\htmlClass{wrong}{000}\htmlClass{sig}{50}m$</span>
+                        </li>
+                        <li class="fragment">Messunsicherheit explizit mit zwei signifikanten Stellen anzugeben</li>
+                    </ul>
+                </section>
+            </section>
+
+            <section>
+                <section data-auto-animate data-auto-animate-restart>
+                    <aside class="notes" data-markdown>
+                        - einfach drei signifikante Nachkommastellen
+                    </aside>
+                    <h2>Wie soll ich denn jetzt runden?</h2>
+
+                    <blockquote>
+                        "Ich runde grundsätzlich auf volle Tausender."
+                        <span class="fragment" style="float: right;">—Frau Struthoff</span>
+                    </blockquote>
+                </section>
+                <section data-auto-animate>
+                    <h2>Wie soll ich denn jetzt runden?</h2>
+
+                    <div class="half-part">
+                        <ul>
+                            <li>Im TI gar nicht!</li>
+                            <li class="fragment">Endergebnisse, um keine zu hohe Genauigkeit vorzutaeuschen</li>
+                            <li class="fragment">Nur korrekte Stellen + 1</li>
+                            <li class="fragment">
+                                Faustregel fuer's ABI:<br />
+                                korrekten Stellen $\leftarrow$ Anzahl signifikanter Stellen der ungenausten
+                                Messgroesse
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="half-part">
+                        <div class="fragment">
+                            <h4>Beispiel</h4>
+                            \[\begin{aligned}
+                            F_l &= \htmlClass{sig}{17,\underline{1}}mN \\
+                            I &= \htmlClass{sig}{5,6\underline{4}}A \\
+                            l &= \htmlClass{sig}{4,\underline{0}}cm \\
+                            B &= \frac{F_l}{I \cdot l} =
+                            \frac{\htmlClass{sig}{17,\underline{1}}mN}
+                            {\htmlClass{sig}{5,6\underline{4}}A \cdot \htmlClass{sig}{4,\underline{0}}cm} \\
+                            &= 0,07579\dots T \\
+                            &\approx
+                            \htmlClass{fragment}{\htmlClass{sig}{75,\underline{8}}mT}
+                            \end{aligned}\]
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <aside class="notes" data-markdown>
+                        - signifikante Stellen nicht anwendbar, keine Messunsicherheit
+                        - Auslassungsstellen runden
+                    </aside>
+                    <h2>Sonderfaelle</h2>
+                    <div class="half-part">
+                        <ul>
+                            <li class="fragment" data-fragment-index="1">
+                                Natuerliche Zahlen
+                                \[\begin{aligned}
+                                k &= 2
+                                \end{aligned}\]
+                            </li>
+                            <li class="fragment" data-fragment-index="3">
+                                Exakt bekannte, unendlicher Menge Nachkommastellen
+                                \[\begin{aligned}
+                                \frac{1}{7} &= 0.1429\dots
+                                \end{aligned}\]
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="half-part">
+                        <ul>
+                            <li class="fragment" data-fragment-index="2">
+                                Exakt bekannte, endlicher Menge Nachkommastellen
+                                \[\begin{aligned}
+                                h &= 6,62607015 \cdot 10^{-34} Js \\
+                                &= 6,6261\dots\vphantom{} \cdot 10^{-34} Js
+                                \end{aligned}\]
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section>
+                    <aside class="notes" data-markdown>
+                        - praktisch 1/4 Skaleneinheit auch vorhanden
+                    </aside>
+                    <h2>Ablesen aus Graphiken</h2>
+                    <ul>
+                        <li class="fragment">Moeglichst genau ablesen</li>
+                        <li class="fragment">Ableseungenauigkeit mit signifikanten Stellen kennzeichnen</li>
+                        <!-- <li class="fragment">Wenn auf Millimeter genau gemessen, nur bis Millimeter angeben</li> -->
+                        <li class="fragment">Faustregel: $\pm$ viertel Skaleneinheit</li>
+                        <li class="fragment">Einteilung von $1\degree$ $\rightarrow$ Unsicherheit von $\pm 0.25\degree$
+                        </li>
+                    </ul>
+                </section>
+            </section>
+
+            <section>
+                <section data-auto-animate>
+                    <h2>Bestimmung der Messunsicherheit</h2>
+                    <blockquote>
+                        "Ermitteln Sie [...] die absolute Messunsicherheit der kurzwelligen Grenze des
+                        Wellenlängenbereichs."
+                        <span style="float: right;">—Abituraufgabe 2021 II</span>
+                    </blockquote>
+                    <div style="clear: both;"></div>
+                    <ul style="margin-top: 50px;">
+                        <li class="fragment">Fehlerfortpflanzungsrechnung</li>
+                        <div data-id="abs">
+                            <li class="fragment">
+                                Minimal-Maximal-Abschaetzung
+                            </li>
+                        </div>
+                    </ul>
+                </section>
+
+                <section data-auto-animate>
+                    <aside class="notes" data-markdown>
+                        - signifikante Stellen irrelevant
+                    </aside>
+                    <div data-id="abs">
+                        <h3>Minimal-Maximal-Abschaetzung</h3>
+                    </div>
+                    <div class="fragment" data-fragment-index="1">
+                        \[\begin{aligned}
+                        \lambda_{min} &= \frac{1}{500}mm \cdot \sin\left( \arctan\left( \frac{5,1cm}{19,8cm} \right)
+                        \right) &= 500nm \\
+                        \lambda_{max} &= \frac{1}{500}mm \cdot \sin\left( \arctan\left( \frac{4,9cm}{20,4cm} \right)
+                        \right) &= 470nm
+                        \end{aligned}\]
+                    </div>
+                    <div class="half-part">
+                        \[\begin{aligned}
+                        d_k &= 5,0cm &\pm 0,1cm \\
+                        a &= 20,1cm &\pm 0,3cm
+                        \end{aligned}\]
+                    </div>
+                    <div class="fragment half-part" data-id="abs_mess" data-fragment-index="2" style="display: inline;">
+                        Absolute Messunsicherheit:<br />
+                        \[\begin{aligned}
+                        \frac{|500nm - 470nm|}{2} \Rightarrow \pm \htmlClass{sig}{15}nm
+                        \end{aligned}\]
+                    </div>
+                </section>
+
+                <section data-auto-animate>
+                    <div data-id="abs">
+                        <h3>Minimal-Maximal-Abschaetzung</h3>
+                    </div>
+                    <div>
+                        \[\begin{aligned}
+                        \lambda = \frac{1}{500}mm \cdot \sin\left( \arctan\left( \frac{5,0cm}{20,1cm} \right)
+                        \right) = 498nm
+                        \end{aligned}\]
+                    </div>
+                    <div class="half-part fragment">
+                        Relative Messunsicherheit:
+                        \[\begin{aligned}
+                        \frac{|500nm - 470nm|}{498nm} = \htmlClass{sig}{6,0}\%
+                        \end{aligned}\]
+                    </div>
+                    <div class="half-part" data-id="abs_mess">
+                        Absolute Messunsicherheit:<br />
+                        \[\begin{aligned}
+                        \frac{|500nm - 470nm|}{2} \Rightarrow \pm \htmlClass{sig}{15}nm
+                        \end{aligned}\]
+                    </div>
+                </section>
+                <section data-auto-animate>
+                    <div data-id="abs">
+                        <h3>Minimal-Maximal-Abschaetzung&mdash;Aufgabe</h3>
+                    </div>
+                    <div>
+                        <!-- TODO: add -->
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Relative Fehler</h2>
+                    <aside class="notes" data-markdown>
+                        - eine oder zwei signifikante Stellen
+                    </aside>
+                    <div class="fragment">
+                        \[\begin{aligned}
+                        \frac{|\text{Gemessener Wert} - \text{Literaturwert}|}{\text{Literaturwert}} =
+                        \frac{\text{Differenz}}{\text{Literaturwert}} \\
+                        \end{aligned}\]
+                    </div>
+                    <div class="fragment">
+                        \[\begin{aligned}
+                        \frac{|5 \cdot 10^{-34}Js - 6,62607015 \cdot 10^{-34}Js|}
+                        {6,62607015 \cdot 10^{-34}Js} = \htmlClass{sig}{25}\%
+                        \end{aligned}\]
+                    </div>
+                </section>
+            </section>
+
+            <section>
+                <section>
+                    <aside class="notes" data-markdown>
+                        - nur generell/Beispiele
+                        - $a$ in Interferenz
+                        - (Schallgeschwindigkeit mehrere Wellenberge)
+                        - mehrere Messungen (optisch, subjektiv)
+                        - Erdmagnetfeld
+                        - LIGO (geringe seismische Aktivitaet)
+                    </aside>
+                    <h2>Massnahmen zur Messunsicherheitsverringerung</h2>
+                    <ul>
+                        <li class="fragment">Genauere Messgeraete</li>
+                        <li class="fragment">Groessere Laengen</li>
+                        <li class="fragment">Mehrfache Laengen (vom linken 3. Maximum zum rechten 3. statt 1. zum 0.)
+                        </li>
+                        <li class="fragment">Mehrere Messungen (andere Varianten und Bildung des Mittelwerts)</li>
+                        <li class="fragment">Bessere Isolierung gegen / Kompensierung von Umwelteinfluessen (Temperatur,
+                            Erschuetterungen)</li>
+                    </ul>
+                </section>
+            </section>
+
             <!-- Schluss -->
             <section>
                 <section>
+                    <h2>Neue Formeln&mdash;Zusammenfassend</h2>
+                    <ul>
+                        <li>Abhaengige, unabhaengige Variablen identifizieren</li>
+                        <li>pro Versuch eine unabhaengige Variable variieren</li>
+                        <li>funktionale Zusammenhaenge aufstellen</li>
+                    </ul>
+                </section>
+
+                <section>
                     <h2>Messunsicherheit&mdash;Zusammenfassend</h2>
                     <ul>
-                        <li class="fragment">Nicht nach Rundungsstelle angeben</li>
-                        <li class="fragment">Eine signifikante Stelle mehr als ungenauste Messgroesse</li>
-                        <li class="fragment">Minimal-Maximal-Abschaetzung fuer explizite Messunsicherheit (zwei
+                        <li>Im TI nicht runden</li>
+                        <li>Nicht nach Rundungsstelle angeben</li>
+                        <li>Eine signifikante Stelle mehr als ungenauste Messgroesse</li>
+                        <li>Ablesen aus Graphik: $\pm$ viertel Skaleneinheit</li>
+                        <li>Minimal-Maximal-Abschaetzung fuer explizite Messunsicherheit (zwei
                             signifikante Stelle angeben)</li>
-                        <li class="fragment">Relative Fehler:
+                        <li>Relative Fehler:
                             $\frac{\text{Differenz}}{\text{Literaturwert}}$</li>
                     </ul>
                 </section>
 
                 <section>
-                    <h2>Neue Formeln&mdash;Zusammenfassend</h2>
+                    <h2>Quellen</h2>
                     <ul>
-                        <li>I like cheese</li>
+                        <li>Niedersachsen KC</li>
+                        <li><a href="https://de.wikipedia.org/wiki/Signifikante_Stellen">Wikipedia/Signifikante
+                                Stellen</a></li>
+                        <li><a
+                                href="https://www.lernhelfer.de/schuelerlexikon/physik/artikel/fehlerbetrachtungen">Lernhelfer/Fehlerbetrachtung</a>
+                        </li>
+                        <li><a
+                                href="https://www.leifiphysik.de/elektrizitaetslehre/stroeme-magnetisches-feld/versuche/kraftmessung-mit-der-stromwaage">Leifiphysik/Stromwaage</a>
+                        </li>
+                        <li><a
+                                href="https://www.ib-klotsche.de/wp-content/uploads/2019/05/LeitfadenNaturwissenschaft-190531.pdf">Leitfaden
+                                Naturwissenschaft&mdash;Michael Klotsche</a></li>
+                        <li>A Brief History of Time&mdash;Stephen Hawking</li>
                     </ul>
                 </section>
 
-                <section>
-                    <h2>Quellen</h2>
-                </section>
-
-                <section>
+                <section data-background-video="./eichhoernchen.mp4" data-background-opacity="0.3">
                     <h1>The End</h1>
                 </section>
             </section>
