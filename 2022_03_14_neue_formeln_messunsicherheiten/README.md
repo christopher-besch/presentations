@@ -46,13 +46,14 @@
 - [generalization (p. 85)](http://static.latexstudio.net/article/2018/0912/neuralnetworksanddeeplearning.pdf)
 - [Induktionsproblem](https://de.wikipedia.org/wiki/Induktionsproblem)
 - [Ockhams Rasiermesser](https://de.wikipedia.org/wiki/Ockhams_Rasiermesser)
-- [Signifikante Stellen](https://de.wikipedia.org/wiki/Signifikante_Stellen)
 - [Messwerte](https://de.wikipedia.org/wiki/Messwert)
-- Niedersachsen KC
 - [Messunsicherheit](https://de.wikipedia.org/wiki/Messunsicherheit)
+- [Kondensatoraufladung](https://www.physik.gym-wst.de/de/qphase/ea/elektrischesfeld/05.aufentladungpk)
+
+- [Signifikante Stellen](https://de.wikipedia.org/wiki/Signifikante_Stellen)
+- Niedersachsen KC
 - [Fehlerbetrachtung](https://www.lernhelfer.de/schuelerlexikon/physik/artikel/fehlerbetrachtungen)
 - [Leitfaden Naturwissenschaft](https://www.ib-klotsche.de/wp-content/uploads/2019/05/LeitfadenNaturwissenschaft-190531.pdf)
-- [Kondensatoraufladung](https://www.physik.gym-wst.de/de/qphase/ea/elektrischesfeld/05.aufentladungpk)
 - [A Brief History of Time p. 11](https://www.fisica.net/relatividade/stephen_hawking_a_brief_history_of_time.pdf)
 - [Stromwaage Leifi](https://www.leifiphysik.de/elektrizitaetslehre/stroeme-magnetisches-feld/versuche/kraftmessung-mit-der-stromwaage)
 
