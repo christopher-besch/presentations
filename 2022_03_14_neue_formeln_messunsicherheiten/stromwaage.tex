@@ -1,0 +1,38 @@
+% to be run with: pdflatex -shell-escape stromwaage.tex && icat stromwaage.png
+\documentclass[convert]{standalone}
+\usepackage{tikz}
+\usepackage[compatibility]{circuitikz}
+
+% from: https://tex.stackexchange.com/questions/123760/draw-crosses-in-tikz
+\usetikzlibrary{shapes.misc}
+\tikzset{cross/.style={cross out, draw=white, minimum size=2*(#1-\pgflinewidth), inner sep=0pt, outer sep=0pt},
+% default radius will be 1pt. 
+cross/.default={1pt}}
+
+\begin{document}
+
+\begin{circuitikz}[color=white]
+    % end of magnetic field
+    \draw (-4,0) to[*short] ++(6,0);
+    % magnetic field direction
+    \draw (-3.5,-0.5) node[cross=4pt] {};
+    \draw (-3.5,-0.5) circle (5pt);
+
+    % power source
+    \draw (-3, 1) coordinate(left) to[*short, -o] ++(0.5, 0) coordinate(minus) node[right]{$-$};
+    \draw (minus) ++(1.5, 0) coordinate(right_pow) to[*short, -o] ++(-0.5, 0) node[left]{$+$};
+    % ampere meter
+    \draw (right_pow) to[*rmeterwa, t=$I$] (1, 1) coordinate(right);
+
+    % circuit
+    \draw (left) to[*short] ++(0, -4) to[*short] (1, -3) to[*short] (right);
+    % lenght l
+    \draw (-3, -4) to[*short=$l$] (1, -4);
+    \draw (-3, -3.9) to[*short] (-3, -4.1);
+    \draw (1, -3.9) to[*short] (1, -4.1);
+
+    % force vector
+    \draw [-stealth](0, -3) -- (0,-3.5) node[right]{$F_l$};
+\end{circuitikz}
+
+\end{document}
