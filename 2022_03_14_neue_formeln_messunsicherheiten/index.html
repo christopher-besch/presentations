@@ -103,8 +103,8 @@
                             <li class="fragment">Welche moegliche Welt ist unsere</li>
                         </ul>
                     </div>
-                    <div class="clear_float"></div>
-                    <h3 class="fragment" style="margin-top: 100px;">Beispiel (nicht fuer ABI)</h3>
+                    <div class="clear-float"></div>
+                    <h3 class="fragment" style="margin-top: 50px;">Beispiel (nicht fuer ABI)</h3>
                     <div class="half-part">
                         <ul>
                             <li class="fragment">Maxwell-Gleichungen: Licht feste Geschwindigkeit</li>
@@ -392,11 +392,9 @@
                         <ul>
                             <li>Im TI gar nicht!</li>
                             <li class="fragment">Endergebnisse, um keine zu hohe Genauigkeit vorzutaeuschen</li>
-                            <li class="fragment">Nur korrekte Stellen + 1</li>
                             <li class="fragment">
                                 Faustregel fuer's ABI:<br />
-                                korrekten Stellen $\leftarrow$ Anzahl signifikanter Stellen der ungenausten
-                                Messgroesse
+                                Anzahl signifikanter Stellen der ungenausten Messgroesse + 1
                             </li>
                         </ul>
                     </div>
@@ -457,15 +455,16 @@
                 <section>
                     <aside class="notes" data-markdown>
                         - praktisch 1/4 Skaleneinheit auch vorhanden
+                        - wenn auf Millimeter genau gemessen, nur bis Millimeter angeben
                     </aside>
                     <h2>Ablesen aus Graphiken</h2>
                     <ul>
                         <li class="fragment">Moeglichst genau ablesen</li>
                         <li class="fragment">Ableseungenauigkeit mit signifikanten Stellen kennzeichnen</li>
-                        <!-- <li class="fragment">Wenn auf Millimeter genau gemessen, nur bis Millimeter angeben</li> -->
                         <li class="fragment">Faustregel: $\pm$ viertel Skaleneinheit</li>
-                        <li class="fragment">Einteilung von $1\degree$ $\rightarrow$ Unsicherheit von $\pm 0.25\degree$
-                        </li>
+                        <li class="fragment">Einteilung von $1\degree$ $\rightarrow$ Unsicherheit von $\pm
+                            0.25\degree$<br />
+                            z.B. $\htmlClass{sig}{\underline{7}}\degree$, da $0.25 > 0.05$</li>
                     </ul>
                 </section>
             </section>
