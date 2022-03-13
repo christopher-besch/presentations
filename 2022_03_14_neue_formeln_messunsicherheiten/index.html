@@ -224,7 +224,7 @@
                     </table>
                     <div class="fragment">
                         \[\begin{aligned}
-                        F_l \propto l
+                        F_l \sim l
                         \end{aligned}\]
                     </div>
                 </section>
@@ -265,23 +265,25 @@
                     </table>
                     <div class="fragment" data-id="res">
                         \[\begin{aligned}
-                        F_l \propto l
+                        F_l \sim l
                         \end{aligned}\]
                     </div>
                 </section>
                 <section data-auto-animate>
                     <h2>Stromwaage</h2>
-                    <div data-id="res">
-                        \[\begin{aligned}
-                        F_l &\propto I \\
-                        F_l &\propto l
-                        \end{aligned}\]
-                    </div>
-                    <div class="fragment">
-                        \[\begin{aligned}
-                        F_l &\propto I \cdot l \\
-                        F_l &= B \cdot I \cdot l
-                        \end{aligned}\]
+                    <div style="display: flex; justify-content: center; flex-direction: column;">
+                        <div data-id="res" style="">
+                            \[\begin{aligned}
+                            F_l &\sim I \\
+                            F_l &\sim l
+                            \end{aligned}\]
+                        </div>
+                        <div class="fragment" style="">
+                            \[\begin{aligned}
+                            F_l &\sim I \cdot l \\
+                            F_l &= B \cdot I \cdot l
+                            \end{aligned}\]
+                        </div>
                     </div>
                     <div class="fragment">
                         $\Rightarrow$ neue Groesse $B$, abhaengig vom Magnetfeld
@@ -371,6 +373,41 @@
                         <li class="fragment">Messunsicherheit explizit mit zwei signifikanten Stellen anzugeben</li>
                     </ul>
                 </section>
+
+                <section>
+                    <aside class="notes" data-markdown>
+                        - signifikante Stellen nicht anwendbar, keine Messunsicherheit
+                        - Auslassungsstellen runden
+                    </aside>
+                    <h2>Sonderfaelle</h2>
+                    <div class="half-part">
+                        <ul>
+                            <li class="fragment" data-fragment-index="1">
+                                Natuerliche Zahlen
+                                \[\begin{aligned}
+                                k &= 2
+                                \end{aligned}\]
+                            </li>
+                            <li class="fragment" data-fragment-index="3">
+                                Exakt bekannte, unendlicher Menge Nachkommastellen
+                                \[\begin{aligned}
+                                \frac{1}{7} &= 0.1429\dots
+                                \end{aligned}\]
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="half-part">
+                        <ul>
+                            <li class="fragment" data-fragment-index="2">
+                                Exakt bekannte, endlicher Menge Nachkommastellen
+                                \[\begin{aligned}
+                                h &= 6,62607015 \cdot 10^{-34} Js \\
+                                &= 6,6261\dots\vphantom{} \cdot 10^{-34} Js
+                                \end{aligned}\]
+                            </li>
+                        </ul>
+                    </div>
+                </section>
             </section>
 
             <section>
@@ -414,41 +451,6 @@
                             \htmlClass{fragment}{\htmlClass{sig}{75,\underline{8}}mT}
                             \end{aligned}\]
                         </div>
-                    </div>
-                </section>
-
-                <section>
-                    <aside class="notes" data-markdown>
-                        - signifikante Stellen nicht anwendbar, keine Messunsicherheit
-                        - Auslassungsstellen runden
-                    </aside>
-                    <h2>Sonderfaelle</h2>
-                    <div class="half-part">
-                        <ul>
-                            <li class="fragment" data-fragment-index="1">
-                                Natuerliche Zahlen
-                                \[\begin{aligned}
-                                k &= 2
-                                \end{aligned}\]
-                            </li>
-                            <li class="fragment" data-fragment-index="3">
-                                Exakt bekannte, unendlicher Menge Nachkommastellen
-                                \[\begin{aligned}
-                                \frac{1}{7} &= 0.1429\dots
-                                \end{aligned}\]
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="half-part">
-                        <ul>
-                            <li class="fragment" data-fragment-index="2">
-                                Exakt bekannte, endlicher Menge Nachkommastellen
-                                \[\begin{aligned}
-                                h &= 6,62607015 \cdot 10^{-34} Js \\
-                                &= 6,6261\dots\vphantom{} \cdot 10^{-34} Js
-                                \end{aligned}\]
-                            </li>
-                        </ul>
                     </div>
                 </section>
 
