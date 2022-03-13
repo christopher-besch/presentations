@@ -78,14 +78,11 @@
                         - Einsteins Labor im Kopf
                         - Lichtgeschwindigkeit konstant, nur in anderen Medien um Moleküle Weg finden (Maurice)
 
-                        - kein Ether
-                        - Bahnabweichung Merkurs (Newton)
-                        - falsche Erklärung: Vulkan
-                        - allgemeine Relativitätstheorie erklärt
-
-                        - Beispiele für Bestätigung, kann nie komplett belegt werden
+                        - Beispiele für Bestätigung, kann nie komplett belegt werden, nur verifiziert
                         - Relativitätstheorie falsch Unschärferelation der Quantenmechanik nicht bedacht
-                        - Beispiele nicht für ABI
+                        - Experimente auch neue Theorien
+
+                        - Bragg De Broglie
                     </aside>
                     <div class="half-part">
                         <h3>
@@ -101,6 +98,7 @@
                         </h3>
                         <ul>
                             <li class="fragment">Welche mögliche Welt ist unsere</li>
+                            <li class="fragment">Können Theorie nie belegen</li>
                         </ul>
                     </div>
                     <div class="clear-float"></div>
@@ -115,8 +113,7 @@
                     </div>
                     <div class="half-part">
                         <ul>
-                            <li class="fragment">Michelson-Morley Experiment: kein Ether</li>
-                            <li class="fragment">Planet Vulkan zwischen Sonne und Merkur nicht gefunden</li>
+                            <li class="fragment">Michelson-Morley Experiment: Lichtgeschwindigkeit konstant</li>
                         </ul>
                     </div>
                 </section>
@@ -125,7 +122,6 @@
                     <aside class="notes" data-markdown>
                         - Reproduzierbar: gleicher Zusammenhang bei unterschiedlichen Aufbauten / Orten
                         - unabhängige Variable: Variable nur von Experimentator beeinflusst
-                        - Variante: eine Variable verändern
                     </aside>
                     <h2>Was ist ein Experiment?</h2>
                     <ul>
@@ -157,21 +153,20 @@
                 <section data-auto-animate>
                     <aside class="notes" data-markdown>
                         - funktionalen Zusammenhang bestimmen
-                        - Quotientengleichheit
                     </aside>
                     <h2 data-id="head">Stromwaage</h2>
                     <div class="half-part">
                         <ul class="fragment">
                             <li data-id="1">Stromstärke $I$</li>
                             <li data-id="2">Leiterlänge $l$</li>
-                            <li data-id="3">Kraft auf Leiter $F_l$</li>
+                            <li data-id="3">Kraft auf Leiter $f_L$</li>
                             <li>Temperatur</li>
                             <li>Windgeschwindigkeit</li>
                             <li>Mondphase</li>
                         </ul>
                     </div>
                     <div class="half-part">
-                        <img src="./stromwaage.png" height="500">
+                        <img src="./stromwaage.png" height="550">
                     </div>
                 </section>
                 <section data-auto-animate>
@@ -186,12 +181,15 @@
                     <div class="half-part">
                         <h5>Abhängige Variablen</h5>
                         <ul>
-                            <li data-id="3">Kraft auf Leiter $F_l$</li>
+                            <li data-id="3">Kraft auf Leiter $f_L$</li>
                         </ul>
                     </div>
                 </section>
 
                 <section data-auto-animate>
+                    <aside class="notes" data-markdown>
+                        - Quotientengleichheit
+                    </aside>
                     <h4 data-id="1">Veränderung der Stromstärke</h4>
                     <div>
                         \[\begin{aligned}
@@ -209,13 +207,13 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <th>$F_l$ in $mN$</th>
+                                <th>$f_L$ in $mN$</th>
                                 <td>$1,9$</td>
                                 <td>$3,8$</td>
                                 <td>$5,8$</td>
                             </tr>
                             <tr class="fragment">
-                                <th>$\frac{F_l}{I}$ in $\frac{mN}{A}$</th>
+                                <th>$\frac{f_L}{I}$ in $\frac{mN}{A}$</th>
                                 <td>$0,38$</td>
                                 <td>$0,38$</td>
                                 <td>$0,39$</td>
@@ -224,7 +222,7 @@
                     </table>
                     <div class="fragment">
                         \[\begin{aligned}
-                        F_l \sim l
+                        f_L \sim I \text{, wenn } l = \text{konst}
                         \end{aligned}\]
                     </div>
                 </section>
@@ -248,14 +246,14 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <th>$F_l$ in $mN$</th>
+                                <th>$f_L$ in $mN$</th>
                                 <td>$0,4$</td>
                                 <td>$0,9$</td>
                                 <td>$2,0$</td>
                                 <td>$3,8$</td>
                             </tr>
                             <tr class="fragment">
-                                <th>$\frac{F_l}{l}$ in $\frac{mN}{cm}$</th>
+                                <th>$\frac{f_L}{l}$ in $\frac{mN}{cm}$</th>
                                 <td>$0,40$</td>
                                 <td>$0,45$</td>
                                 <td>$0,50$</td>
@@ -265,25 +263,28 @@
                     </table>
                     <div class="fragment" data-id="res">
                         \[\begin{aligned}
-                        F_l \sim l
+                        f_L \sim l \text{, wenn } I = \text{konst}
                         \end{aligned}\]
                     </div>
                 </section>
                 <section data-auto-animate>
                     <h2>Stromwaage</h2>
+                    <aside class="notes" data-markdown>
+                        - des weiteren zeigt sich, B nur abhaengig von Feld
+                    </aside>
                     <!-- who doesn't love CSS? -->
                     <div style="display: flex; justify-content: center;">
                         <div style="display: flex; flex-direction: column; align-items: baseline;">
                             <div data-id="res">
                                 \[\begin{aligned}
-                                F_l &\sim I \\
-                                F_l &\sim l
+                                f_L &\sim I \text{, wenn } l = \text{konst} \\
+                                f_L &\sim l \text{, wenn } I = \text{konst}
                                 \end{aligned}\]
                             </div>
                             <div class="fragment" style="margin-top: -42px;">
                                 \[\begin{aligned}
-                                F_l &\sim I \cdot l \\
-                                F_l &= B \cdot I \cdot l
+                                f_L &\sim I \cdot l \\
+                                f_L &= B \cdot I \cdot l
                                 \end{aligned}\]
                             </div>
                         </div>
@@ -415,9 +416,6 @@
 
             <section>
                 <section data-auto-animate data-auto-animate-restart>
-                    <aside class="notes" data-markdown>
-                        - einfach drei signifikante Nachkommastellen
-                    </aside>
                     <h2>Wie soll ich denn jetzt runden?</h2>
 
                     <blockquote>
@@ -426,6 +424,9 @@
                     </blockquote>
                 </section>
                 <section data-auto-animate>
+                    <aside class="notes" data-markdown>
+                        - einfach drei signifikante Nachkommastellen
+                    </aside>
                     <h2>Wie soll ich denn jetzt runden?</h2>
 
                     <div class="half-part">
@@ -443,10 +444,10 @@
                         <div class="fragment">
                             <h4>Beispiel</h4>
                             \[\begin{aligned}
-                            F_l &= \htmlClass{sig}{17,\underline{1}}mN \\
+                            f_L &= \htmlClass{sig}{17,\underline{1}}mN \\
                             I &= \htmlClass{sig}{5,6\underline{4}}A \\
                             l &= \htmlClass{sig}{4,\underline{0}}cm \\
-                            B &= \frac{F_l}{I \cdot l} =
+                            B &= \frac{f_L}{I \cdot l} =
                             \frac{\htmlClass{sig}{17,\underline{1}}mN}
                             {\htmlClass{sig}{5,6\underline{4}}A \cdot \htmlClass{sig}{4,\underline{0}}cm} \\
                             &= 0,07579\dots T \\
@@ -467,9 +468,13 @@
                         <li class="fragment">Möglichst genau ablesen</li>
                         <li class="fragment">Ableseungenauigkeit mit signifikanten Stellen kennzeichnen</li>
                         <li class="fragment">Faustregel: $\pm$ viertel Skaleneinheit</li>
-                        <li class="fragment">Einteilung von $1\degree$ $\rightarrow$ Unsicherheit von $\pm
-                            0.25\degree$<br />
-                            z.B. $\htmlClass{sig}{\underline{7}}\degree$, da $0.25 > 0.05$</li>
+                        <li class="fragment">Einteilung von $1\degree$ $\rightarrow$ Unsicherheit von
+                            $\pm \frac{1}{4}\degree = \pm 0.25\degree$</li>
+                        <li class="fragment">z.B. $\htmlClass{sig}{\underline{7}}\degree$
+                            <ul>
+                                <li>da $0.5 > 0.25 > 0.05$</li>
+                            </ul>
+                        </li>
                     </ul>
                 </section>
             </section>
@@ -574,7 +579,6 @@
                         - (Schallgeschwindigkeit mehrere Wellenberge)
                         - mehrere Messungen (optisch, subjektiv)
                         - Erdmagnetfeld
-                        - LIGO (geringe seismische Aktivität)
                     </aside>
                     <h2>Massnahmen zur Messunsicherheitsverringerung</h2>
                     <ul>
