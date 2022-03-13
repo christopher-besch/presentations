@@ -1,6 +1,5 @@
 from manim import *
 
-
 config.transparent = True
 
 
@@ -9,7 +8,7 @@ class Graphic(Scene):
         ax = Axes(
             x_range=[0, 10, 1],
             y_range=[0, 100, 10],
-            x_length=2,
+            x_length=5,
             x_axis_config={
                 # "numbers_to_include": np.arange(0, 10 + 0.1, 5),
                 "font_size": 24,
