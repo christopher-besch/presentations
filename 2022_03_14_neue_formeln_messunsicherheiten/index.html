@@ -159,7 +159,7 @@
                         <ul class="fragment">
                             <li data-id="1">Stromstärke $I$</li>
                             <li data-id="2">Leiterlänge $l$</li>
-                            <li data-id="3">Kraft auf Leiter $f_L$</li>
+                            <li data-id="3">Kraft auf Leiter $F_L$</li>
                             <li>Temperatur</li>
                             <li>Windgeschwindigkeit</li>
                             <li>Mondphase</li>
@@ -181,7 +181,7 @@
                     <div class="half-part">
                         <h5>Abhängige Variablen</h5>
                         <ul>
-                            <li data-id="3">Kraft auf Leiter $f_L$</li>
+                            <li data-id="3">Kraft auf Leiter $F_L$</li>
                         </ul>
                     </div>
                 </section>
@@ -207,13 +207,13 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <th>$f_L$ in $mN$</th>
+                                <th>$F_L$ in $mN$</th>
                                 <td>$1,9$</td>
                                 <td>$3,8$</td>
                                 <td>$5,8$</td>
                             </tr>
                             <tr class="fragment">
-                                <th>$\frac{f_L}{I}$ in $\frac{mN}{A}$</th>
+                                <th>$\frac{F_L}{I}$ in $\frac{mN}{A}$</th>
                                 <td>$0,38$</td>
                                 <td>$0,38$</td>
                                 <td>$0,39$</td>
@@ -222,7 +222,7 @@
                     </table>
                     <div class="fragment">
                         \[\begin{aligned}
-                        f_L \sim I \text{, wenn } l = \text{konst}
+                        F_L \sim I \text{, wenn } l = \text{konst}
                         \end{aligned}\]
                     </div>
                 </section>
@@ -246,14 +246,14 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <th>$f_L$ in $mN$</th>
+                                <th>$F_L$ in $mN$</th>
                                 <td>$0,4$</td>
                                 <td>$0,9$</td>
                                 <td>$2,0$</td>
                                 <td>$3,8$</td>
                             </tr>
                             <tr class="fragment">
-                                <th>$\frac{f_L}{l}$ in $\frac{mN}{cm}$</th>
+                                <th>$\frac{F_L}{l}$ in $\frac{mN}{cm}$</th>
                                 <td>$0,40$</td>
                                 <td>$0,45$</td>
                                 <td>$0,50$</td>
@@ -263,7 +263,7 @@
                     </table>
                     <div class="fragment" data-id="res">
                         \[\begin{aligned}
-                        f_L \sim l \text{, wenn } I = \text{konst}
+                        F_L \sim l \text{, wenn } I = \text{konst}
                         \end{aligned}\]
                     </div>
                 </section>
@@ -277,14 +277,14 @@
                         <div style="display: flex; flex-direction: column; align-items: baseline;">
                             <div data-id="res">
                                 \[\begin{aligned}
-                                f_L &\sim I \text{, wenn } l = \text{konst} \\
-                                f_L &\sim l \text{, wenn } I = \text{konst}
+                                F_L &\sim I \text{, wenn } l = \text{konst} \\
+                                F_L &\sim l \text{, wenn } I = \text{konst}
                                 \end{aligned}\]
                             </div>
                             <div class="fragment" style="margin-top: -42px;">
                                 \[\begin{aligned}
-                                f_L &\sim I \cdot l \\
-                                f_L &= B \cdot I \cdot l
+                                F_L &\sim I \cdot l \\
+                                F_L &= B \cdot I \cdot l
                                 \end{aligned}\]
                             </div>
                         </div>
@@ -444,10 +444,10 @@
                         <div class="fragment">
                             <h4>Beispiel</h4>
                             \[\begin{aligned}
-                            f_L &= \htmlClass{sig}{17,\underline{1}}mN \\
+                            F_L &= \htmlClass{sig}{17,\underline{1}}mN \\
                             I &= \htmlClass{sig}{5,6\underline{4}}A \\
                             l &= \htmlClass{sig}{4,\underline{0}}cm \\
-                            B &= \frac{f_L}{I \cdot l} =
+                            B &= \frac{F_L}{I \cdot l} =
                             \frac{\htmlClass{sig}{17,\underline{1}}mN}
                             {\htmlClass{sig}{5,6\underline{4}}A \cdot \htmlClass{sig}{4,\underline{0}}cm} \\
                             &= 0,07579\dots T \\
