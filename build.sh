@@ -28,9 +28,11 @@ DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
 cd $DIR
 
 echo "cloning reveal.js..."
+rm -rvf reveal || true
 git clone https://github.com/hakimel/reveal.js reveal || true
+# change directory
 pushd reveal
-git checkout 4.2.1
+git checkout 4.3.1
 
 echo "installing custom themes..."
 cp -v ../theme/source/* ./css/theme/source
@@ -80,8 +82,9 @@ find . -maxdepth 1 -mindepth 1 -type d -not -path "./.*" -not -path "./reveal" -
 echo "creating table of contents page..."
 find . -maxdepth 1 -mindepth 1 -type d -not -path "./.*" -not -path "./reveal" -not -path "./public" -not -path "./theme" -not -path "./vendor" -exec echo "<a href='{}'>{}<a><br />" \; > public/index.html
 
-echo "creating symlinks..."
+echo "creating symlinks for development..."
 ln -svf public/dist dist
 ln -svf public/plugin plugin
 ln -svf public/dwn_vendor dwn_vendor
 ln -svf public/index.html index.html
+
