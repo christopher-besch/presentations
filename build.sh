@@ -37,8 +37,6 @@ git checkout 4.3.1
 echo "installing custom themes..."
 cp -v ../theme/source/* ./css/theme/source
 cp -v ../theme/template/* ./css/theme/template
-mkdir -p ./plugin/other
-cp -v ../theme/other/* ./plugin/other
 
 echo "installing yarn dependencies..."
 rm -v package-lock.json || true
@@ -54,6 +52,9 @@ mkdir -v public
 
 echo "copying reveal output files..."
 cp -rv reveal/{dist,plugin} public
+
+echo "copying static files"
+cp -vr static public/static
 
 # required to not use any CDNs
 echo "copying vendor dependencies..."
@@ -77,10 +78,10 @@ mv dist katex/dist
 popd
 
 echo "copying presentations..."
-find . -maxdepth 1 -mindepth 1 -type d -not -path "./.*" -not -path "./reveal" -not -path "./public" -not -path "./theme" -not -path "./vendor" -exec cp -rv {} public \;
+find . -maxdepth 1 -mindepth 1 -type d -not -path "./.*" -not -path "./reveal" -not -path "./public" -not -path "./static" -not -path "./theme" -not -path "./vendor" -exec cp -rv {} public \;
 
 echo "creating table of contents page..."
-find . -maxdepth 1 -mindepth 1 -type d -not -path "./.*" -not -path "./reveal" -not -path "./public" -not -path "./theme" -not -path "./vendor" -exec echo "<a href='{}'>{}<a><br />" \; > public/index.html
+find . -maxdepth 1 -mindepth 1 -type d -not -path "./.*" -not -path "./reveal" -not -path "./public" -not -path "./static" -not -path "./theme" -not -path "./vendor" -exec echo "<a href='{}'>{}<a><br />" \; > public/index.html
 
 echo "creating symlinks for development..."
 ln -svf public/dist dist
