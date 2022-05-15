@@ -28,7 +28,6 @@ DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
 cd $DIR
 
 echo "cloning reveal.js..."
-rm -rvf reveal || true
 git clone https://github.com/hakimel/reveal.js reveal || true
 # change directory
 pushd reveal
@@ -58,23 +57,21 @@ cp -vr static public/static
 
 # required to not use any CDNs
 echo "copying vendor dependencies..."
-rm -rfv public/vendor
 cp -rv vendor public/vendor
 
-# required because some dependencies are compiled
-echo "downloading other dependencies..."
+echo "downloading precompiled dependencies..."
 rm -rfv public/dwn_vendor
 mkdir public/dwn_vendor
-wget https://github.com/KaTeX/KaTeX/releases/download/v0.15.2/katex.tar.gz -O public/dwn_vendor/katex.tar.gz
+wget https://github.com/KaTeX/KaTeX/releases/download/v0.15.3/katex.tar.gz -O public/dwn_vendor/katex.tar.gz
 
-echo "extracting other dependencies..."
+echo "extracting precompiled dependencies..."
 pushd public/dwn_vendor
 tar xfv katex.tar.gz
 rm -v katex.tar.gz
 # katex needs weird dist directory
-mv katex dist
+mv katex temp
 mkdir katex
-mv dist katex/dist
+mv temp katex/dist
 popd
 
 echo "copying presentations..."

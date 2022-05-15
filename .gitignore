@@ -3,8 +3,8 @@ public/
 dist
 plugin
 dwn_vendor
-media/
 /index.html
+media/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
