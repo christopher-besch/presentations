@@ -32,7 +32,6 @@ git clone https://github.com/hakimel/reveal.js reveal || true
 # change directory
 pushd reveal
 # in case the reveal directory already existed
-git pull
 git checkout 4.3.1
 
 echo "installing custom themes..."

@@ -28,5 +28,13 @@ DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
 cd $DIR
 
 # install with: yarn global add broken-link-checker
-python3 -m http.server > /dev/null 2>&1 & to_kill=$! && sleep 1 && broken-link-checker --filter-leve 3 --input http://localhost:8000 -o -r --user-agent 'Mozilla/5.0 (X11; Linux x86_64; rv:99.0) Gecko/20100101 Firefox/99.0' || true && kill $to_kill
+python3 -m http.server 9329 > /dev/null 2>&1 & \
+    to_kill=$! && \
+    sleep 1 && \
+    broken-link-checker \
+    -or \
+    --filter-level 3 \
+    --input http://localhost:9329 \
+    --user-agent 'Mozilla/5.0 (X11; Linux x86_64; rv:99.0) Gecko/20100101 Firefox/99.0' || true && \
+    kill $to_kill
 
