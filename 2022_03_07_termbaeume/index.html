@@ -212,23 +212,20 @@
             width: 1280,
             height: 720,
 
+            katex: {
+                local: "../dwn_vendor/katex",
+                trust: true,
+                // needed for colouring
+                strict: false,
+            },
             plugins: [
                 // needs to be before highlighting
                 Externalcode,
                 RevealMarkdown,
                 RevealHighlight,
                 RevealNotes,
-                RevealMath.MathJax3,
+                RevealMath.KaTeX,
             ],
-            mathjax3: {
-                mathjax: "../vendor/mathjax/es5/tex-chtml.js",
-                tex: {
-                    inlineMath: [['$', '$'], ['\\(', '\\)']]
-                },
-                options: {
-                    skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
-                },
-            },
         });
     </script>
 </body>
