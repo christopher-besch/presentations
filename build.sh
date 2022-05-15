@@ -31,6 +31,8 @@ echo "cloning reveal.js..."
 git clone https://github.com/hakimel/reveal.js reveal || true
 # change directory
 pushd reveal
+# in case the reveal directory already existed
+git pull
 git checkout 4.3.1
 
 echo "installing custom themes..."
@@ -55,8 +57,7 @@ cp -rv reveal/{dist,plugin} public
 echo "copying static files"
 cp -vr static public/static
 
-# required to not use any CDNs
-echo "copying vendor dependencies..."
+echo "copying vendor dependencies (reveal.js plugins)..."
 cp -rv vendor public/vendor
 
 echo "downloading precompiled dependencies..."
@@ -75,10 +76,14 @@ mv temp katex/dist
 popd
 
 echo "copying presentations..."
-find . -maxdepth 1 -mindepth 1 -type d -not -path "./.*" -not -path "./reveal" -not -path "./public" -not -path "./static" -not -path "./theme" -not -path "./vendor" -exec cp -rv {} public \;
+find . \
+    -regex './[0-9][0-9][0-9][0-9]_[0-9][0-9]_[0-9][0-9]_[^/]+' \
+    -exec cp -rv {} public \;
 
 echo "creating table of contents page..."
-find . -maxdepth 1 -mindepth 1 -type d -not -path "./.*" -not -path "./reveal" -not -path "./public" -not -path "./static" -not -path "./theme" -not -path "./vendor" -exec echo "<a href='{}'>{}<a><br />" \; > public/index.html
+find . \
+    -regex './[0-9][0-9][0-9][0-9]_[0-9][0-9]_[0-9][0-9]_[^/]+' \
+    -exec echo "<a href='{}'>{}<a><br />" \; > public/index.html
 
 echo "creating symlinks for development..."
 ln -svf public/dist dist
