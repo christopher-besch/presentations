@@ -1,6 +1,0 @@
-[submodule "vendor/mathjax"]
-	path = vendor/mathjax
-	url = https://github.com/mathjax/MathJax
-[submodule "vendor/external_code"]
-	path = vendor/external_code
-	url = https://github.com/dafrenchyman/reveal.js-extrernal-code
