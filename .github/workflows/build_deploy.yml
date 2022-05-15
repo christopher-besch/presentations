@@ -1,9 +1,6 @@
-name: reveal.js Build
+name: Deploy Build
 
-on:
-  push:
-    branches:
-      - main
+on: workflow_dispatch
 
 jobs:
   build:
@@ -25,8 +22,9 @@ jobs:
       - name: Build reveal.js Presentations
         run: ./build.sh
 
-      - name: Deploy to GitHub Pages
+      - name: Deploy to netlify
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
-          branch: pages
+          branch: deploy
           folder: public
+
