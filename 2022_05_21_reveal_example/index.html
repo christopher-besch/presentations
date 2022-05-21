@@ -1,0 +1,106 @@
+<!-- MIT License -->
+
+<!-- Copyright (c) 2022 Christopher Besch -->
+
+<!-- Permission is hereby granted, free of charge, to any person obtaining a copy -->
+<!-- of this software and associated documentation files (the "Software"), to deal -->
+<!-- in the Software without restriction, including without limitation the rights -->
+<!-- to use, copy, modify, merge, publish, distribute, sublicense, and/or sell -->
+<!-- copies of the Software, and to permit persons to whom the Software is -->
+<!-- furnished to do so, subject to the following conditions: -->
+
+<!-- The above copyright notice and this permission notice shall be included in all -->
+<!-- copies or substantial portions of the Software. -->
+
+<!-- THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR -->
+<!-- IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, -->
+<!-- FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE -->
+<!-- AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER -->
+<!-- LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, -->
+<!-- OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE -->
+<!-- SOFTWARE. -->
+
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>This is what reveal.js is</title>
+    <meta name="description" content="This is what reaveal.js is">
+    <meta name="author" content="Chris">
+
+    <link rel="stylesheet" href="../dist/reset.css">
+    <link rel="stylesheet" href="../dist/reveal.css">
+    <link rel="stylesheet" href="../dist/theme/custom_black.css">
+
+    <!-- code highlighting theme -->
+    <link rel="stylesheet" href="../static/oceanicnext.css">
+
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="header-left">
+            This is what <b>reveal.js</b> is
+        </div>
+        <div class="header-right">
+            <em>Chris</em> &bullet; 21<sup>th</sup> May 2022
+        </div>
+        <div class="slides">
+            <section data-state="titleslide">
+                <h1>
+                    This is what <b>reaveal.js</b> is
+                </h1>
+            </section>
+        </div>
+    </div>
+
+    <script src="../vendor/external_code/externalcode.js"></script>
+    <script src="../dist/reveal.js"></script>
+    <script src="../plugin/notes/notes.js"></script>
+    <script src="../plugin/markdown/markdown.js"></script>
+    <script src="../plugin/highlight/highlight.js"></script>
+    <script src="../plugin/math/math.js"></script>
+    <script>
+        Reveal.initialize({
+            controls: true,
+            controlsTutorial: false,
+            progress: false,
+            slideNumber: "c/t",
+            hashOneBasedIndex: false,
+            hash: true,
+            navigationMode: "linear",
+            embedded: false,
+            showNotes: false,
+            transition: "slide",
+            transitionSpeed: "default",
+            backgroundTransition: "fade",
+            pdfSeparateFragments: true,
+            autoAnimateDuration: 0.4,
+
+            margin: 0.04,
+            width: 1280,
+            height: 720,
+
+            katex: {
+                local: "../dwn_vendor/katex",
+                trust: true,
+                // needed for colouring
+                strict: false,
+            },
+            plugins: [
+                // needs to be before highlighting
+                Externalcode,
+                RevealMarkdown,
+                RevealHighlight,
+                RevealNotes,
+                RevealMath.KaTeX,
+            ],
+        });
+    </script>
+</body>
+
+</html>
