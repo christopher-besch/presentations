@@ -30,23 +30,27 @@
 .reveal .header-left,
 // for author and name
 .reveal .header-right {
-    font-size: 17px;
-    line-height: 17px;
+    font-size: 15px;
+    line-height: 15px;
 
     position: absolute;
     z-index: 100;
 }
 .reveal .header-right em,
 .reveal .header-left em {
-    font-size: 17px;
+    font-size: 15px;
 }
 .reveal .header-left {
-    left: 1em;
+    left: 2em;
     top: 1em;
+    margin-left: -2vw;
+    margin-top: -2vh;
 }
 .reveal .header-right {
-    right: 1em;
+    right: 2em;
     top: 1em;
+    margin-right: -2vw;
+    margin-top: -2vh;
 }
 .reveal .header-left sup,
 .reveal .header-right sup {
