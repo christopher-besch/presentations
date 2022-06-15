@@ -59,6 +59,8 @@
     line-height: 14.1667px;
 }
 
+
+// fragments //
 // fragments that just faded out and ought to be removed
 .reveal .fragment.fragment-remove.fade-out.visible,
 .reveal .fragment.fragment-remove.fade-in-then-out.visible:not(.current-fragment),
@@ -70,7 +72,8 @@
     font-size: 0px;
 }
 
-// partitioning
+
+// partitioning //
 .half-part {
     width: 50%;
     float: left;
