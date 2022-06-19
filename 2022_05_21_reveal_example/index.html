@@ -51,7 +51,7 @@
                 <em>Chris</em> &bullet; 21<sup>st</sup> May 2022
             </div>
 
-            <!-- Auto-Animate -->
+            <!-- What is reveal.js -->
             <section>
                 <section data-state="titleslide" data-auto-animate>
                     <h1>
@@ -114,6 +114,46 @@
                 </section>
             </section>
 
+            <!-- Horizontal Partitioning -->
+            <section>
+                <section>
+                    <div class="half-part">
+                        <h3>
+                            The Rearing of Stones
+                        </h3>
+                        <ul>
+                            <li>Stones only multiple in specific aqueous environments</li>
+                            <ul>
+                                <li>Aquarium (space to swim)</li>
+                                <li>Oxygen supply (asphyxiation is no fun)</li>
+                                <li>Ambient light, preferably candles (for the right multiplying-mood)</li>
+                            </ul>
+                        </ul>
+                    </div>
+
+                    <div class="half-part">
+                        <img src="./stones.jpg">
+                        <ul>
+                            <li>This is no legal advice</li>
+                        </ul>
+                    </div>
+                </section>
+            </section>
+
+            <!-- LaTeX -->
+            <section>
+                <section>
+                    This $F = m \cdot a$ was an inline equation.
+                    <br /><br />
+
+                    Some bigger equation:
+                    \[\begin{aligned}
+                    E &= m \cdot c^2 \\
+                    h \cdot f &= E
+                    \end{aligned}\]
+                </section>
+            </section>
+
             <!-- Quotes -->
             <section>
                 <section>
@@ -126,7 +166,18 @@
                 </section>
             </section>
 
-            <!-- 4th section -->
+            <!-- Code Blocks -->
+            <section>
+                <section>
+                    A little bit of code
+                    <pre>
+                        <code class="language-cpp" data-code="./code.cpp">
+                        </code>
+                    </pre>
+                </section>
+            </section>
+
+            <!-- Auto-Animate -->
             <section>
                 <!-- transitioning with same content -->
                 <section data-auto-animate>
@@ -179,60 +230,9 @@
                 </section>
 
                 <section>
-                    <h1>
+                    <h3>
                         A normal slide.
-                    </h1>
-                </section>
-            </section>
-
-            <!-- Horizontal Partitioning -->
-            <section>
-                <section>
-                    <div class="half-part">
-                        <h3>
-                            The Rearing of Stones
-                        </h3>
-                        <ul>
-                            <li>Stones only multiple in specific aqueous environments</li>
-                            <ul>
-                                <li>Aquarium (space to swim)</li>
-                                <li>Oxygen supply (asphyxiation is no fun)</li>
-                                <li>Ambient light, preferably candles (for the right multiplying-mood)</li>
-                            </ul>
-                        </ul>
-                    </div>
-
-                    <div class="half-part">
-                        <img src="./stones.jpg">
-                        <ul>
-                            <li>This is no legal advice</li>
-                        </ul>
-                    </div>
-                </section>
-            </section>
-
-            <!-- LaTeX -->
-            <section>
-                <section>
-                    This $F = m \cdot a$ was an inline equation.
-                    <br /><br />
-
-                    Some bigger equation:
-                    \[\begin{aligned}
-                    E &= m \cdot c^2 \\
-                    h \cdot f &= E
-                    \end{aligned}\]
-                </section>
-            </section>
-
-            <!-- Code Blocks -->
-            <section>
-                <section>
-                    A little bit of code
-                    <pre>
-                        <code class="language-cpp" data-code="./code.cpp">
-                        </code>
-                    </pre>
+                    </h3>
                 </section>
             </section>
 
@@ -242,8 +242,8 @@
                     <p id="more_things">There are many things reveal.js can use as backgrounds.</p>
                 </section>
 
-                <section data-background-video="./illusion.mp4" data-background-video-loop data-background-opacity="0.2"
-                    data-auto-animate>
+                <section data-auto-animate data-background-video="./illusion.mp4" data-background-video-loop
+                    data-background-opacity="0.2">
                     <p id="more_things">There are many things reveal.js can use as backgrounds.</p>
                     <p>
                         Like videos showing off what
@@ -252,14 +252,19 @@
                     </p>
                 </section>
 
-                <section data-background-iframe="https://chris-besch.com" data-background-opacity="0.2">
-                    Or an Iframe taking your wherever you please.<br />
-                    (Click on this text to unfocus the Iframe again.)
+                <section data-auto-animate data-background-iframe="https://chris-besch.com"
+                    data-background-opacity="0.2">
+                    <p id="more_things">There are many things reveal.js can use as backgrounds.</p>
+                    <p>Or an Iframe taking you wherever you please.</p>
+                    <p>(Click on this text to unfocus the Iframe again.)</p>
                 </section>
 
-                <section data-background-image="./duck.jpg" data-background-opacity="0.3">
-                    Maybe even the beautiful picture of a duck,<br />
-                    taken by an even more beautiful photographer.
+                <section data-auto-animate data-background-image="./duck.jpg" data-background-opacity="0.3">
+                    <p id="more_things">There are many things reveal.js can use as backgrounds.</p>
+                    <p>
+                        Maybe even the beautiful picture of a duck,<br />
+                        taken by an even more beautiful photographer.
+                    </p>
                 </section>
             </section>
 
@@ -268,6 +273,7 @@
                     If you need more information or want to check out the features that didn't make it into the article,
                     check out the <a href="https://revealjs.com">official reveal.js documentation</a>.
                 </section>
+
                 <section data-background-image="./duck.jpg" data-background-opacity="0.3">
                     This is the end of our little tour.<br />
                     Thanks for sticking around!
