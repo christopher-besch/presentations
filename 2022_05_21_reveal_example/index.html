@@ -51,7 +51,7 @@
                 <em>Chris</em> &bullet; 21<sup>st</sup> May 2022
             </div>
 
-            <!-- 1st section -->
+            <!-- Auto-Animate -->
             <section>
                 <section data-state="titleslide" data-auto-animate>
                     <h1>
@@ -69,14 +69,15 @@
 
                 <section>
                     You're viewing the second slide.<br />
-                    This example presentation accompanies the article.<br />
+                    This example presentation accompanies <a href="https://chris-besch.com/articles/revealjs">the
+                        article</a>.<br />
                     Feel free to take a look; each feature will be explained below.
                 </section>
             </section>
 
-            <!-- 2nd section -->
+            <!-- Slides and Vertical Slides -->
             <section>
-                Hello World!
+                Horizontal Slide
             </section>
 
             <section>
@@ -90,12 +91,12 @@
 
             <section>
                 <section>
-                    Only using a single vertical slide is also fine; this has the same effect as if you'd be using a
-                    plain horizontal slide
+                    Only using a single vertical slide is also fine;<br />
+                    this has the same effect as a plain horizontal slide
                 </section>
             </section>
 
-            <!-- 3rd section -->
+            <!-- Headings and Lists -->
             <section>
                 <section>
                     <h1>This is a heading</h1>
@@ -113,7 +114,7 @@
                 </section>
             </section>
 
-            <!-- 3rd section -->
+            <!-- Quotes -->
             <section>
                 <section>
                     <blockquote>
@@ -150,7 +151,7 @@
                 </section>
             </section>
 
-            <!-- 5th section -->
+            <!-- Fragments -->
             <section>
                 <section>
                     <ul>
@@ -169,7 +170,7 @@
                 </section>
             </section>
 
-            <!-- 6th section -->
+            <!-- Title Page -->
             <section>
                 <section data-state="titleslide">
                     <h1>
@@ -184,7 +185,7 @@
                 </section>
             </section>
 
-            <!-- 7th section -->
+            <!-- Horizontal Partitioning -->
             <section>
                 <section>
                     <div class="half-part">
@@ -210,7 +211,7 @@
                 </section>
             </section>
 
-            <!-- 8th section -->
+            <!-- LaTeX -->
             <section>
                 <section>
                     This $F = m \cdot a$ was an inline equation.
@@ -224,6 +225,7 @@
                 </section>
             </section>
 
+            <!-- Code Blocks -->
             <section>
                 <section>
                     A little bit of code
@@ -231,6 +233,44 @@
                         <code class="language-cpp" data-code="./code.cpp">
                         </code>
                     </pre>
+                </section>
+            </section>
+
+            <!-- Backgrounds -->
+            <section>
+                <section data-auto-animate>
+                    <p id="more_things">There are many things reveal.js can use as backgrounds.</p>
+                </section>
+
+                <section data-background-video="./illusion.mp4" data-background-video-loop data-background-opacity="0.2"
+                    data-auto-animate>
+                    <p id="more_things">There are many things reveal.js can use as backgrounds.</p>
+                    <p>
+                        Like videos showing off what
+                        <a href="https://github.com/Kiran-Raj-Dev">Kiran</a> can do
+                        with <a href="https://www.manim.community">Manim</a>.
+                    </p>
+                </section>
+
+                <section data-background-iframe="https://chris-besch.com" data-background-opacity="0.2">
+                    Or an Iframe taking your wherever you please.<br />
+                    (Click on this text to unfocus the Iframe again.)
+                </section>
+
+                <section data-background-image="./duck.jpg" data-background-opacity="0.3">
+                    Maybe even the beautiful picture of a duck,<br />
+                    taken by an even more beautiful photographer.
+                </section>
+            </section>
+
+            <section>
+                <section data-background-iframe="https://revealjs.com" data-background-opacity="0.2">
+                    If you need more information or want to check out the features that didn't make it into the article,
+                    check out the <a href="https://revealjs.com">official reveal.js documentation</a>.
+                </section>
+                <section data-background-image="./duck.jpg" data-background-opacity="0.3">
+                    This is the end of our little tour.<br />
+                    Thanks for sticking around!
                 </section>
             </section>
         </div>
