@@ -1,0 +1,320 @@
+<!-- MIT License -->
+
+<!-- Copyright (c) 2022 Christopher Besch -->
+
+<!-- Permission is hereby granted, free of charge, to any person obtaining a copy -->
+<!-- of this software and associated documentation files (the "Software"), to deal -->
+<!-- in the Software without restriction, including without limitation the rights -->
+<!-- to use, copy, modify, merge, publish, distribute, sublicense, and/or sell -->
+<!-- copies of the Software, and to permit persons to whom the Software is -->
+<!-- furnished to do so, subject to the following conditions: -->
+
+<!-- The above copyright notice and this permission notice shall be included in all -->
+<!-- copies or substantial portions of the Software. -->
+
+<!-- THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR -->
+<!-- IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, -->
+<!-- FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE -->
+<!-- AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER -->
+<!-- LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, -->
+<!-- OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE -->
+<!-- SOFTWARE. -->
+
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>This is reveal.js</title>
+    <meta name="description" content="This is reaveal.js">
+    <meta name="author" content="Chris">
+
+    <link rel="stylesheet" href="../dist/reset.css">
+    <link rel="stylesheet" href="../dist/reveal.css">
+    <link rel="stylesheet" href="../dist/theme/custom_black.css">
+
+    <!-- code highlighting theme -->
+    <link rel="stylesheet" href="../static/oceanicnext.css">
+
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="reveal">
+        <!-- Title Page -->
+        <div class="slides">
+            <div class="header-left">
+                This is <b>reveal.js</b>
+            </div>
+            <div class="header-right">
+                <em>Chris</em> &bullet; 21<sup>st</sup> May 2022
+            </div>
+
+            <!-- What is reveal.js -->
+            <section>
+                <section data-state="titleslide" data-auto-animate>
+                    <h1>
+                        This is <b>reveal.js</b>
+                    </h1>
+                </section>
+                <section data-state="titleslide" data-auto-animate>
+                    <h1>
+                        This is <b>reveal.js</b>
+                    </h1>
+                    <h4>
+                        More precisely: <b>my</b> way of using it
+                    </h4>
+                </section>
+
+                <section>
+                    You're viewing the second slide.<br />
+                    This example presentation accompanies <a href="https://chris-besch.com/articles/revealjs">the
+                        article</a>.<br />
+                    Feel free to take a look; each feature will be explained below.
+                </section>
+            </section>
+
+            <!-- Slides and Vertical Slides -->
+            <section>
+                Horizontal Slide
+            </section>
+
+            <section>
+                <section>
+                    Vertical Slide 1
+                </section>
+                <section>
+                    Vertical Slide 2
+                </section>
+            </section>
+
+            <section>
+                <section>
+                    Only using a single vertical slide is also fine;<br />
+                    this has the same effect as a plain horizontal slide
+                </section>
+            </section>
+
+            <!-- Headings and Lists -->
+            <section>
+                <section>
+                    <h1>This is a heading</h1>
+                </section>
+
+                <section>
+                    <h2>This is a subheading</h2>
+                </section>
+
+                <section>
+                    <ul>
+                        <li>First Element</li>
+                        <li>Second Element</li>
+                    </ul>
+                </section>
+            </section>
+
+            <!-- Horizontal Partitioning -->
+            <section>
+                <section>
+                    <div class="half-part">
+                        <h3>
+                            The Rearing of Stones
+                        </h3>
+                        <ul>
+                            <li>Stones only multiple in specific aqueous environments</li>
+                            <ul>
+                                <li>Aquarium (space to swim)</li>
+                                <li>Oxygen supply (asphyxiation is no fun)</li>
+                                <li>Ambient light, preferably candles (for the right multiplying-mood)</li>
+                            </ul>
+                        </ul>
+                    </div>
+
+                    <div class="half-part">
+                        <img src="./stones.jpg">
+                        <ul>
+                            <li>This is no legal advice</li>
+                        </ul>
+                    </div>
+                </section>
+            </section>
+
+            <!-- LaTeX -->
+            <section>
+                <section>
+                    <p>
+                        This $F = m \cdot a$ was an inline equation.
+                    </p>
+                    <br />
+
+                    <p>
+                        Some bigger equation:
+                        \[\begin{aligned}
+                        E &= m \cdot c^2 \\
+                        h \cdot f &= E
+                        \end{aligned}\]
+                    </p>
+                </section>
+            </section>
+
+            <!-- Quotes -->
+            <section>
+                <section>
+                    <blockquote>
+                        "Single thread performance [increase] stopped, because we were starting to fry eggs on the chips
+                        [...]."
+                        <br />
+                        <span style="float: right;">—Bjarne Stroustrup</span>
+                    </blockquote>
+                </section>
+            </section>
+
+            <!-- Code Blocks -->
+            <section>
+                <section>
+                    A little bit of code
+                    <pre>
+                        <code class="language-cpp" data-code="./code.cpp">
+                        </code>
+                    </pre>
+                </section>
+            </section>
+
+            <!-- Auto-Animate -->
+            <section>
+                <!-- transitioning with same content -->
+                <section data-auto-animate>
+                    <h1 data-id="hello">Hello</h1>
+                </section>
+                <section data-auto-animate>
+                    <h1 data-id="hello">Hello</h1>
+                    <h1>World</h1>
+                </section>
+
+                <!-- transitioning between different tags -->
+                <!-- -> transitioning between wrappers with different content -->
+                <section data-auto-animate data-auto-animate-restart>
+                    <div data-id="hello_wrapper">
+                        <h1>h1 Heading</h1>
+                    </div>
+                </section>
+                <section data-auto-animate>
+                    <div data-id="hello_wrapper">
+                        <h4>h4 Heading</h4>
+                    </div>
+                </section>
+            </section>
+
+            <!-- Fragments -->
+            <section>
+                <section>
+                    <ul>
+                        <li>I</li>
+                        <li class="fragment">Like</li>
+                        <li class="fragment">Cheese.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <ul>
+                        <li class="fragment" data-fragment-index="1">I</li>
+                        <li class="fragment" data-fragment-index="2">Like</li>
+                        <li>Cheese.</li>
+                    </ul>
+                </section>
+            </section>
+
+            <!-- Backgrounds -->
+            <section>
+                <section data-auto-animate>
+                    <p id="more_things">There are many things reveal.js can use as backgrounds.</p>
+                </section>
+
+                <section data-auto-animate data-background-video="./illusion.mp4" data-background-video-loop
+                    data-background-opacity="0.2">
+                    <p id="more_things">There are many things reveal.js can use as backgrounds.</p>
+                    <p>
+                        Like videos showing off what
+                        <a href="https://github.com/Kiran-Raj-Dev">Kiran</a> can do
+                        with <a href="https://www.manim.community">Manim</a>.
+                    </p>
+                </section>
+
+                <section data-auto-animate data-background-iframe="https://chris-besch.com"
+                    data-background-opacity="0.2">
+                    <p id="more_things">There are many things reveal.js can use as backgrounds.</p>
+                    <p>Or an Iframe taking you wherever you please.</p>
+                    <p>(Click on this text to unfocus the Iframe again.)</p>
+                </section>
+
+                <section data-auto-animate data-background-image="./duck.jpg" data-background-opacity="0.3">
+                    <p id="more_things">There are many things reveal.js can use as backgrounds.</p>
+                    <p>
+                        Maybe even the beautiful picture of a duck,<br />
+                        taken by an even more beautiful photographer.
+                    </p>
+                </section>
+            </section>
+
+            <section>
+                <section data-background-iframe="https://revealjs.com" data-background-opacity="0.2">
+                    If you need more information or want to check out the features that didn't make it into the article,
+                    check out the <a href="https://revealjs.com">official reveal.js documentation</a>.
+                </section>
+
+                <section data-background-image="./duck.jpg" data-background-opacity="0.3">
+                    This is the end of our little tour.<br />
+                    Thanks for sticking around!
+                </section>
+            </section>
+        </div>
+    </div>
+
+    <script src="../vendor/external_code/externalcode.js"></script>
+    <script src="../dist/reveal.js"></script>
+    <script src="../plugin/notes/notes.js"></script>
+    <script src="../plugin/markdown/markdown.js"></script>
+    <script src="../plugin/highlight/highlight.js"></script>
+    <script src="../plugin/math/math.js"></script>
+    <script>
+        Reveal.initialize({
+            controls: true,
+            controlsTutorial: false,
+            progress: false,
+            slideNumber: "c/t",
+            hashOneBasedIndex: false,
+            hash: true,
+            navigationMode: "linear",
+            embedded: false,
+            showNotes: false,
+            transition: "slide",
+            transitionSpeed: "default",
+            backgroundTransition: "fade",
+            pdfSeparateFragments: true,
+            autoAnimateDuration: 0.4,
+
+            margin: 0.04,
+            width: 1280,
+            height: 720,
+
+            katex: {
+                local: "../dwn_vendor/katex",
+                trust: true,
+                // needed for colouring
+                strict: false,
+            },
+            plugins: [
+                // needs to be before highlighting
+                Externalcode,
+                RevealMarkdown,
+                RevealHighlight,
+                RevealNotes,
+                RevealMath.KaTeX,
+            ],
+        });
+    </script>
+</body>
+
+</html>
