@@ -31,8 +31,10 @@ echo "cloning reveal.js..."
 git clone https://github.com/hakimel/reveal.js reveal || true
 # change directory
 pushd reveal
+git stash
+git fetch
 # in case the reveal directory already existed
-git checkout 4.3.1
+git checkout 4.5.0
 
 echo "installing custom themes..."
 cp -v ../theme/source/* ./css/theme/source
