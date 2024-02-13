@@ -1,0 +1,15 @@
+├── build.rs                        ├── mock
+├── src                             │   ├── client
+│   ├── consume_log.rs              │   │   └── src
+│   ├── get_container.rs            │   │       └── main.rs
+│   ├── html_rec.rs                 │   ├── server
+│   ├── html_send.rs                │   │   ├── Dockerfile
+│   ├── logdna_send.rs              │   │   └── src
+│   ├── main.rs                     │   │       └── main.rs
+│   ├── structs.rs                  │   └── src
+│   └── tests                       │       └── lib.rs
+│       ├── consume_log_test.rs     ├── dind_test_driver
+│       ├── get_container_test.rs   │   └── src
+│       ├── html_send_test.rs       │       └── main.rs
+│       └── logdna_send_test.rs     ├── docker-compose.yaml
+├── Dockerfile                      └── test_client_entrypoint.sh

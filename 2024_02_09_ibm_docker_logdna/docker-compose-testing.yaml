@@ -1,0 +1,13 @@
+version: "3"
+services:
+ app:
+  image: hello-world
+  logging:
+   driver: logdna:YOUR_LOGDNA_VERSION # TODO
+   options:
+    logdna_host: logs.private.eu-de.logging.cloud.ibm.com
+    api_key: YOUR_API_KEY # TODO
+    # set this to true when using
+    # the mocking logdna server for testing purposes
+    # disables HTTPS and changes the endpoint
+    for_mock_server: true

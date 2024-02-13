@@ -1,0 +1,14 @@
+services:
+  dind:
+    image: docker:dind
+    privileged: true
+    # [...]
+  test_client:
+    image: docker:latest
+    volumes:
+      - .:/app_origin:ro
+      - ./plugin/config.json:/plugin/config.json:ro
+    entrypoint: ["/app_origin/test_client_entrypoint.sh"]
+    depends_on:
+      - dind
+    # [...]
