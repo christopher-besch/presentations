@@ -1,0 +1,9 @@
+version: "3"
+services:
+ app:
+  image: hello-world
+  logging:
+   driver: logdna:YOUR_LOGDNA_VERSION # TODO
+   options:
+    logdna_host: logs.private.eu-de.logging.cloud.ibm.com
+    api_key: YOUR_API_KEY # TODO

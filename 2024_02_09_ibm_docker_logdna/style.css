@@ -1,0 +1,52 @@
+.heading-left {
+    width: 65%;
+    float: left;
+}
+.heading-right {
+    width: 50%;
+    float: right;
+}
+
+.dark-background .header-right {
+    color: white;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.dark-background .header-left {
+    color: white;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.block-background {
+    padding-left: 20px;
+    /* color: #c0c5ce; */
+    color: white;
+    background-color: #1b2b34;
+}
+
+.block-background h3 {
+    /* color: #c0c5ce; */
+    color: white;
+}
+
+.inline-pre {
+    white-space: pre-line;
+}
+
+.inline-pre div {
+    padding-top: 10px;
+    padding-left: 10px;
+}
+
+.image {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.image img {
+    margin-bottom: 0;
+}
+.image p {
+    font-size: 15pt;
+    margin-top: 5pt;
+}
