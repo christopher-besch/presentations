@@ -1,0 +1,434 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>docker_logdna—deep dive into Docker plugins</title>
+    <meta name="description" content="docker_logdna—deep dive into Docker plugins">
+    <meta name="author" content="Christopher Besch (IBM)">
+
+    <link rel="stylesheet" href="../dist/reset.css">
+    <link rel="stylesheet" href="../dist/reveal.css">
+    <link rel="stylesheet" href="../dist/theme/ibm_white.css">
+
+    <!-- code highlighting theme -->
+    <link rel="stylesheet" href="../static/oceanicnext.css">
+
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <div class="header-left">
+                docker_logdna—deep dive into Docker plugins
+            </div>
+            <div class="header-right">
+                <em>Christopher Besch (IBM)</em> &bullet; 9th February 2024
+            </div>
+
+            <section>
+                <section data-state="titleslide dark-background" data-background-image="./background_01.png"
+                    data-background-opacity="1.0">
+                    <div class="heading-left">
+                        <h1>docker_logdna</h1>
+                        <h3>Deep Dive into Docker Plugins</h3>
+                    </div>
+                </section>
+
+                <section data-auto-animate>
+                    <h3>What we'll talk about</h3>
+                    <ol>
+                        <li>What is the docker_logdna Plugin?</li>
+                        <li>Performance</li>
+                        <li>Testing</li>
+                        <li>Logspout Alternative</li>
+                    </ol>
+                </section>
+            </section>
+
+            <section>
+                <section data-auto-animate>
+                    <h3>What is a Log Aggregator?</h3>
+                    <ul>
+                        <li>Example:</li>
+                        <ul>
+                            <li>Authentication request arrives at proxy -> proxy logs original IP</li>
+                            <li>LDAP only sees proxy's IP -> LDAP logs rejection of request</li>
+                        </ul>
+                        <div class="fragment">
+                            <li>Proxy and LDAP logs need to be combined</li>
+                        </div>
+                        <div class="fragment">
+                            <li>Solution: ELK, Graylog, Fluentd, Logdna, ...</li>
+                        </div>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Why Logdna?</h3>
+                    <div class="fragment">
+                        <ul>
+                            <li>IBM Log Analysis uses it</li>
+                            <li>We don't want to host own aggregator</li>
+                        </ul>
+                        <img src="./logdna_browser.png" width=800>
+                    </div>
+                </section>
+
+                <section data-auto-animate>
+                    <h3>What is a Docker Logging Plugin?</h3>
+                    <img src="./docker_plugin_help.png" width=800>
+
+                    <pre class="fragment"><code class="language-bash">docker run --log-driver fluentd debian</code>
+                    </pre>
+                </section>
+                <section>
+                    <h3>Overview</h3>
+                    <img src="./docker_logdna_overview.png" width=1050>
+                </section>
+                <section>
+                    <h3>What do I have to do</h3>
+                    <ol>
+                        <li>Check installed docker_logdna version with</li>
+                        <pre><code class="language-text">$ docker plugin ls</code></pre>
+                        <div class="fragment">
+                            <li>Add logging section to your docker-compose.yaml</li>
+                            <pre>
+                                <code class="language-yaml" data-code="./docker-compose.yaml" data-line-numbers="5-12">
+                                </code>
+                            </pre>
+                        </div>
+                        <li class="fragment">Documentation on <a
+                                href="https://github.com/ibm/docker_logdna">github.com/IBM/docker_logdna</a>
+                        </li>
+                    </ol>
+                </section>
+                <section>
+                    <img src="./logging_fields.png" width="1000">
+                </section>
+            </section>
+
+            <section>
+                <section>
+                    <h1>Performance</h1>
+                    <div class="half-part">
+                        <div class="image">
+                            <img src="./apollo11.jpg" width="300">
+                            <p>©NASA 1969</p>
+                        </div>
+                    </div>
+                    <div class="half-part" style="padding-top: 60pt;">
+                        <ul>
+                            <div class="fragment">
+                                <li>Never block the application!</li>
+                                <li>Read logs from fifo file ASAP!</li>
+                            </div>
+                            <div class="fragment">
+                                <li>Low resource consumption</li>
+                                <li>No resource consumption when blocked waiting</li>
+                            </div>
+                        </ul>
+                    </div>
+                </section>
+                <section>
+                    <h3>Simple Architecture</h3>
+                    <img src="./docker_logdna_simple_architecture.png" width="1100">
+                </section>
+                <section>
+                    <div class="half-part">
+                        <h3>Problems</h3>
+                        <ol>
+                            <li>Multiple Container can't be handled</li>
+                            <li>Busy waiting wastes CPU time</li>
+                        </ol>
+                    </div>
+                    <div class="half-part">
+                        <div class="fragment">
+                            <h3>Solution: Async</h3>
+                            <ul>
+                                <li>Run tasks concurrently</li>
+                                <li>Not parallel with multithreading</li>
+                                <li>Great for IO-bound tasks</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <h3>Introducing the Future</h3>
+                    <ul>
+                        <li>Code to be executed when the time is right</li>
+                        <li class="fragment">Can await external condition</li>
+                        <li class="fragment">Async runtime schedules polling of futures</li>
+                    </ul>
+                    <pre class="fragment">
+                        <code class="language-rust" data-code="./future.rs">
+                        </code>
+                    </pre>
+                </section>
+                <section data-auto-animate>
+                    <h3 data-id="1">Simple Architecture</h3>
+                    <img data-id="2" src="./docker_logdna_simple_architecture.png" width="1100">
+                </section>
+                <section data-auto-animate>
+                    <h3 data-id="1">Async Architecture</h3>
+                    <img data-id="2" src="./docker_logdna_async_architecture.png" width="1100">
+                </section>
+            </section>
+
+            <section>
+                <section data-state="dark-background" data-background-image="./background_02.png"
+                    data-background-opacity="1.0">
+                    <div class="heading-left">
+                        <h1>Testing</h1>
+                        <div class="fragment">
+                            <h3>Let's get that Green Color!</h3>
+                            <img src="./green_ok.png" width="600">
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <div class="half-part">
+                        <h3>What do we Want?</h3>
+                        <ul>
+                            <li class="fragment" data-fragment-index=1>Handle edge cases</li>
+                            <li class="fragment" data-fragment-index=3>Handle rare conditions (stress, external
+                                environment slow, ...)</li>
+                            <li class="fragment" data-fragment-index=5>Prevent regressions</li><br />
+                            <li class="fragment" data-fragment-index=8>Consistent results</li>
+                            <li class="fragment" data-fragment-index=8>Errors easy to debug</li>
+                        </ul>
+                    </div>
+                    <div class="half-part">
+                        <h3>How do we get there?</h3>
+                        <ul>
+                            <li class="fragment" data-fragment-index=2>Unit tests (white box)</li>
+                            <li class="fragment" data-fragment-index=4>End-to-End tests (black box)</li><br />
+                            <li class="fragment" data-fragment-index=6>Automated at every change</li>
+                            <li class="fragment" data-fragment-index=6>Fast (short turnaround time)</li>
+                            <li class="fragment" data-fragment-index=10>Full control over environment (i.e. tests not
+                                dependant on external
+                                API)</li>
+                        </ul>
+                    </div>
+                </section>
+                <section>
+                    <h2>Is docker_logdna easy to test?</h2><br />
+                    <div class="half-part fragment">
+                        <h5>The Good</h5>
+                        <ul>
+                            <li>Little state</li>
+                            <li>Almost entirely linear pipeline</li>
+                            <li>No UI/UX</li>
+                        </ul>
+                    </div>
+                    <div class="half-part fragment">
+                        <h5>The Bad</h5>
+                        <ul>
+                            <li>IO-heavy code</li>
+                            <li>External input/output difficult to mock</li>
+                        </ul>
+                    </div>
+                </section>
+                <section>
+                    <h3>What to test for</h3>
+                    <div class="half-part fragment">
+                        <h5>Unit Tests</h5>
+                        <ul>
+                            <li>Config parsing</li>
+                            <li>Docker HTTP socket interaction</li>
+                            <li>Application Container protobuf fifo file interaction</li>
+                            <li>Logdna interaction</li>
+                        </ul>
+                    </div>
+                    <div class="half-part fragment">
+                        <h5>End-to-End Tests</h5>
+                        <ul>
+                            <li>Many log lines per second</li>
+                            <li>Long log lines</li>
+                            <li>Many containers</li>
+                            <li>Unresponsive Logdna server</li>
+                        </ul>
+                    </div>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Mocking</h3>
+                    <pre>
+                        <code class="language-yaml" data-code="./docker-compose-testing.yaml" data-line-numbers="10-13">
+                        </code>
+                    </pre>
+                    <ul>
+                        <li>Minimize differences between mock and original</li>
+                    </ul>
+                </section>
+                <section data-auto-animate>
+                    <h3>Unit Tests</h3>
+                    <pre>
+                        <code data-id="1" class="language-rust" data-code="./get_config_no_cfg_test.rs"
+                            data-line-numbers>
+                        </code>
+                    </pre>
+                    <br />
+                    <br />
+                </section>
+                <section data-auto-animate>
+                    <h3>Unit Tests</h3>
+                    <pre>
+                        <code data-id="1" class="language-rust" data-code="./get_config_no_cfg_test.rs"
+                            data-line-numbers="5,12">
+                        </code>
+                    </pre>
+                    <ul>
+                        <li>Test all edge cases</li>
+                        <li>At least one unit test per outcome</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>End-to-End Tests</h3>
+                    <pre>
+                        <code class="language-yaml" data-code="./docker-compose-end-to-end.yaml">
+                        </code>
+                    </pre>
+                    <ul>
+                        <li>Use Docker-in-Docker</li>
+                        <ul>
+                            <li>full control over environment</li>
+                            <li>don't clutter host with 100+ containers</li>
+                        </ul>
+                    </ul>
+                </section>
+                <section>
+                    <h3>End-to-End Tests</h3>
+                    <pre>
+                        <code class="language-rust" data-code="./dind_test_driver.rs">
+                        </code>
+                    </pre>
+                </section>
+                <section>
+                    <h3>Overview</h3>
+                    <pre>
+                        <code style="overflow: clip" class="language-text" data-code="./tree.txt" height="100%">
+                        </code>
+                    </pre>
+                    <ul>
+                        <li class="fragment">~900 lines of code</li>
+                        <li class="fragment">~1600 lines of tests</li>
+                    </ul>
+                </section>
+            </section>
+
+            <section>
+                <section data-state="dark-background" data-background-image="./background_03.png"
+                    data-background-opacity="1.0">
+                    <div>
+                        <h1 class="heading-right" style="color: white;">Comparison to Logspout</h1>
+                    </div>
+                </section>
+
+                <section>
+                    <div class="half-part">
+                        <h5>docker_logdna Plugin</h5>
+                        <ul>
+                            <li class="fragment" data-fragment-index="1">Docker plugin (one per Docker install)</li>
+                            <li class="fragment" data-fragment-index="3">Rust</li>
+                            <li class="fragment" data-fragment-index="5">max. 60.0k lines/sec</li>
+                            <li class="fragment" data-fragment-index="7"><a
+                                    href="https://github.com/ibm/docker_logdna">github.com/IBM/docker_logdna</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="half-part">
+                        <h5>Logdna Logspout</h5>
+                        <ul>
+                            <li class="fragment" data-fragment-index="2">Container with Docker socket access (one per
+                                ingest server)</li>
+                            <li class="fragment" data-fragment-index="4">Golang</li>
+                            <li class="fragment" data-fragment-index="6">max. 41.8k lines/sec</li>
+                            <li class="fragment" data-fragment-index="8"><a
+                                    href="https://github.com/logdna/logspout">github.com/logdna/logspout</a>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+            </section>
+
+            <section>
+                <section data-background-image="./background_04.png" data-background-opacity="1.0"
+                    data-transition="none">
+                    <div class="half-part">
+                        <h3>Coming Soon: IBM Open-Source Approval Talk</h3>
+                        <img src="./open_source_approved.png" width=400>
+                    </div>
+                    <div class="half-part">
+                        <video width=500 muted playsinline>
+                            <source src="./ibm_logo.webm" type="video/webm">
+                        </video>
+                    </div>
+                </section>
+                <section data-background-image="./background_04.png" data-background-opacity="1.0"
+                    data-transition="none">
+                    <div class="half-part">
+                        <h3>Coming Soon: IBM Open-Source Approval Talk</h3>
+                        <img src="./open_source_approved.png" width=400>
+                    </div>
+                    <div class="half-part">
+                        <!-- <section data-transition="none" data-background-video="./ibm_logo.mp4"> -->
+                        <!-- <video data-autoplay src="./ibm_logo.mp4" width=500></video> -->
+                        <video width=500 data-autoplay muted playsinline>
+                            <source src="./ibm_logo.webm" type="video/webm">
+                        </video>
+                    </div>
+                </section>
+            </section>
+        </div>
+    </div>
+
+    <script src="../vendor/external_code/externalcode.js"></script>
+    <script src="../dist/reveal.js"></script>
+    <script src="../plugin/notes/notes.js"></script>
+    <script src="../plugin/markdown/markdown.js"></script>
+    <script src="../plugin/highlight/highlight.js"></script>
+    <script src="../plugin/math/math.js"></script>
+    <script>
+        Reveal.initialize({
+            controls: true,
+            controlsTutorial: false,
+            progress: false,
+            slideNumber: "c/t",
+            hashOneBasedIndex: false,
+            hash: true,
+            navigationMode: "linear",
+            embedded: false,
+            showNotes: false,
+            transition: "slide",
+            transitionSpeed: "default",
+            backgroundTransition: "fade",
+            pdfSeparateFragments: true,
+            autoAnimateDuration: 0.4,
+
+            margin: 0.04,
+            width: 1280,
+            height: 720,
+
+            katex: {
+                local: "../dwn_vendor/katex",
+                trust: true,
+                // needed for colouring
+                strict: false,
+            },
+            plugins: [
+                // needs to be before highlighting
+                Externalcode,
+                RevealMarkdown,
+                RevealHighlight,
+                RevealNotes,
+                RevealMath.KaTeX,
+            ],
+        });
+    </script>
+</body>
+
+</html>
