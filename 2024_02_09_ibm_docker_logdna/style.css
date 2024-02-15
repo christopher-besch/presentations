@@ -1,22 +1,3 @@
-.heading-left {
-    width: 65%;
-    float: left;
-}
-.heading-right {
-    width: 50%;
-    float: right;
-}
-
-.dark-background .header-right {
-    color: white;
-    background-color: rgba(0,0,0,0.5);
-}
-
-.dark-background .header-left {
-    color: white;
-    background-color: rgba(0,0,0,0.5);
-}
-
 .block-background {
     padding-left: 20px;
     /* color: #c0c5ce; */

@@ -58,6 +58,11 @@
     font-size: 14.1447px;
     line-height: 14.1667px;
 }
+// on dark background image
+.dark-background .header-right, .dark-background .header-left {
+    color: white;
+    background-color: rgba(0,0,0,0.5);
+}
 
 
 // fragments //
@@ -84,3 +89,14 @@
 .clearfix {
     overflow: auto;
 }
+
+// heading on left or right side //
+.heading-left {
+    width: 65%;
+    float: left;
+}
+.heading-right {
+    width: 50%;
+    float: right;
+}
+
