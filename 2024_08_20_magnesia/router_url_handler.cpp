@@ -5,6 +5,6 @@ public:
     bool handleURL(const QUrl& url) override;
 
 private:
-    Settings* m_activity {nullptr};
+    Settings* m_activity{nullptr};
 };
 }
