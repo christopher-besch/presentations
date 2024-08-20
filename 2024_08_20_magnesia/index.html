@@ -1,0 +1,409 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Magnesia Extensible OPC UA Client</title>
+    <meta name="description" content="Fraunhofer IOSB PSE Project">
+    <meta name="author" content="Magnesia">
+
+    <link rel="stylesheet" href="../dist/reset.css">
+    <link rel="stylesheet" href="../dist/reveal.css">
+    <link rel="stylesheet" href="../dist/theme/custom_white.css">
+
+    <!-- code highlighting theme -->
+    <link rel="stylesheet" href="../static/oceanicnext.css">
+
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <div class="header-left">
+                Extensible OPC UA Client
+            </div>
+            <div class="header-right">
+                <em>Magnesia</em> &bullet; 20th April 2024
+            </div>
+            <section>
+                <!-- ChrisB -->
+                <section data-state="titleslide" data-background-image="./linux_magnesia.png"
+                    data-background-opacity="0.5">
+                    <h1>Extensible OPC UA Client</h1>
+                </section>
+                <!-- ChrisW -->
+                <section>
+                    <h2>Live Presentation</h2>
+                </section>
+            </section>
+
+            <!-- ChrisW -->
+            <section>
+                <section>
+                    <h2>GUI Overview</h2>
+                    <ul>
+                        <li>Activities as Tabs</li>
+                        <ul>
+                            <li>Add Activity</li>
+                            <li>Settings</li>
+                            <li>DataViewer</li>
+                            <li>About</li>
+                        </ul>
+                        <li>DataViewer uses Panels</li>
+                    </ul>
+                </section>
+                <section>
+                    <img src="./linux_magnesia.png" width=1200>
+                </section>
+                <!-- <section> -->
+                <!--     <img src="./mac_magnesia.png" width=1200> -->
+                <!-- </section> -->
+                <!-- <section> -->
+                <!--     <img src="./windows_magnesia.png" width=1200> -->
+                <!-- </section> -->
+            </section>
+
+            <!-- Marwin -->
+            <section>
+                <h2>Activity Development</h2>
+                <pre>
+                    <code class="language-cpp" data-code="./activity_development.cpp">
+                    </code>
+                </pre>
+            </section>
+
+            <!-- ChrisB -->
+            <section>
+                <section data-background-image="./settings_activity.png" data-background-opacity="0.5">
+                    <h2>Settings Activity</h2>
+                    <ul>
+                        <li>Edit Settings</li>
+                        <li>Manage Certificates and Keys</li>
+                    </ul>
+                </section>
+                <section>
+                    <img src="./settings_activity.png" width=1200>
+                </section>
+            </section>
+
+            <!-- ChrisB -->
+            <section>
+                <section>
+                    <h2>SettingsManager</h2>
+                    <ul>
+                        <li>Settings grouped in Domains</li>
+                        <li>Domains defined by (Activity) developer</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Define new Settings</h3>
+                    <pre>
+                        <code class="language-cpp" data-code="./settings_defining.cpp">
+                        </code>
+                    </pre>
+                </section>
+                <section>
+                    <h3>Update Settings</h3>
+                    <pre>
+                        <code class="language-cpp" data-code="./settings_update.cpp">
+                        </code>
+                    </pre>
+                    <h3>Retrieve Settings</h3>
+                    <pre>
+                        <code class="language-cpp" data-code="./settings_retrieve.cpp">
+                        </code>
+                    </pre>
+                    <h3>Reset Settings</h3>
+                    <pre>
+                        <code class="language-cpp" data-code="./settings_reset.cpp">
+                        </code>
+                    </pre>
+                </section>
+                <section>
+                    <h3>Setting Types</h3>
+                    <div class="half-part">
+                        <ul>
+                            <li>Bool</li>
+                            <li>String</li>
+                            <li>Int</li>
+                            <li>Double</li>
+                            <li>Enum</li>
+                        </ul>
+                    </div>
+                    <div class="half-part">
+                        <ul>
+                            <li>HistoricServerConnection</li>
+                            <li>Certificate</li>
+                            <li>KeySetting</li>
+                            <li>ApplicationCertificate</li>
+                            <li>Layout</li>
+                        </ul>
+                    </div>
+                </section>
+            </section>
+
+            <!-- ChrisB -->
+            <section>
+                <section>
+                    <h2>StorageManager</h2>
+                    <ul>
+                        <li>Declared in StorageManager</li>
+                        <li>Defined in SQLStorageManager</li>
+                        <li>Migrations</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Store Data</h3>
+                    <pre>
+                        <code class="language-cpp" data-code="./storage_store.cpp">
+                        </code>
+                    </pre>
+                    <h3>Retrieve Data</h3>
+                    <pre>
+                        <code class="language-cpp" data-code="./storage_retrieve.cpp">
+                        </code>
+                    </pre>
+                    <h3>Retrieve All</h3>
+                    <pre>
+                        <code class="language-cpp" data-code="./storage_get_all.cpp">
+                        </code>
+                    </pre>
+                </section>
+
+                <section>
+                    <h3>Notice Change</h3>
+                    <pre>
+                        <code class="language-cpp" data-code="./storage_notice_change.cpp">
+                        </code>
+                    </pre>
+                    <ul>
+                        <li>Cascade Deletion</li>
+                        <ul>
+                            <li>e.g. Certificate &rarr; ApplicationCertificate &rarr; HistoricServerConnection &rarr;
+                                HistoricServerConnectionSetting</li>
+                        </ul>
+                    </ul>
+                </section>
+            </section>
+
+            <!-- Jan -->
+            <section>
+                <section data-background-image="./certificate_activity_view.png" data-background-opacity="0.5">
+                    <h2>Certificate Activity</h2>
+                    <ul>
+                        <li>Create/View ApplicationCertificates</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Create</h3>
+                    <img src="./certificate_activity_create.png" width=1200>
+                </section>
+                <section>
+                    <h3>View</h3>
+                    <img src="./certificate_activity_view.png" width=1200>
+                </section>
+            </section>
+
+            <section>
+                <!-- Jan -->
+                <section>
+                    <h2>DataViewer</h2>
+                    <img src="./dataviewer_connect.png" width=1000>
+                </section>
+
+                <!-- Jan -->
+                <section>
+                    <h2>Panel Development</h2>
+                    <pre>
+                        <code class="language-cpp" data-code="./panel_development.cpp">
+                        </code>
+                    </pre>
+                </section>
+
+                <!-- ChrisW -->
+                <section>
+                    <h2>TreeView</h2>
+                    <img src="./treeview.png" width=600>
+                </section>
+
+                <!-- ChrisW -->
+                <section>
+                    <h2>AttributeView</h2>
+                    <img src="./attributeview.png" width=600>
+                </section>
+
+                <!-- ChrisW -->
+                <section>
+                    <h2>NodeView</h2>
+                    <img src="./nodeview.png" width=800>
+                </section>
+
+                <!-- Jan -->
+                <section>
+                    <h2>ReferenceView</h2>
+                    <img src="./referenceview.png" width=600>
+                </section>
+
+                <!-- Jan -->
+                <section>
+                    <h2>LogView</h2>
+                    <img src="./logview.png" width=1200>
+                </section>
+            </section>
+
+            <!-- Marwin -->
+            <section>
+                <section>
+                    <h2>Router</h2>
+                    <ul>
+                        <li>Open Activity without knowing it</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>URL Handler</h3>
+                    <pre>
+                        <code class="language-cpp" data-code="./router_url_handler.cpp">
+                        </code>
+                    </pre>
+                    <h3>Open URL</h3>
+                    <pre>
+                        <code class="language-cpp" data-code="./router_send.cpp">
+                        </code>
+                    </pre>
+                </section>
+            </section>
+
+            <section>
+                <!-- ChrisB -->
+                <section>
+                    <h2>Build and Dependencies</h2>
+                    <ul>
+                        <li>C++20</li>
+                        <li>CMake</li>
+                        <li>Dependencies in all major Linux Distros (including Debian)</li>
+                        <ul>
+                            <li>gcc 12.2.0 / clang 14.0.6 or newer</li>
+                            <li>cmake 3.25.0 or newer</li>
+                            <li>Qt 6.4.2 or newer</li>
+                            <li>open62541pp 0.13.0 (via CMake's FETCHCONTENT)</li>
+                        </ul>
+                        <li>Nix Flake</li>
+                    </ul>
+                </section>
+                <!-- Marwin -->
+                <section>
+                    <div>
+                        <h2>CI</h2>
+                        <ul>
+                            <li>Implemented in Shell Scripts</li>
+                            <ul>
+                                <li>Runs locally</li>
+                                <li>Independent of GitLab</li>
+                            </ul>
+                        </ul>
+                    </div>
+                    <div class="half-part">
+                        <img src="./ci_lint.png" width=400>
+                    </div>
+                    <div class="half-part">
+                        <img src="./ci_build.png" width=400>
+                    </div>
+                </section>
+            </section>
+
+            <!-- Marwin -->
+            <section>
+                <section>
+                    <h2>Development Process</h2>
+                    <div class="half-part">
+                        <ul>
+                            <li>Conventional Commits</li>
+                            <li>Semi-linear History</li>
+                        </ul>
+                    </div>
+                    <div class="half-part">
+                        <img src="./history2.png" width=1000>
+                    </div>
+                </section>
+                <section>
+                    <h2>Reviews</h2>
+                    <div class="half-part">
+                        <ul>
+                            <li>Only push to main via GitLab MRs</li>
+                            <li>Extensive human reviews</li>
+                            <li>CI</li>
+                        </ul>
+                    </div>
+                    <div class="half-part">
+                        <img src="./review.png" width=1000>
+                    </div>
+                </section>
+            </section>
+
+            <section>
+                <!-- Marius -->
+                <section>
+                    <h2>Code Docs</h2>
+                </section>
+
+                <!-- Alex -->
+                <section>
+                    <h2>User Docs</h2>
+                </section>
+            </section>
+
+            <section data-background-image="./linux_magnesia.png" data-background-opacity="0.5">
+                <h1>Magnesia PSE</h1>
+            </section>
+        </div>
+    </div>
+
+    <script src="../vendor/external_code/externalcode.js"></script>
+    <script src="../dist/reveal.js"></script>
+    <script src="../plugin/notes/notes.js"></script>
+    <script src="../plugin/markdown/markdown.js"></script>
+    <script src="../plugin/highlight/highlight.js"></script>
+    <script src="../plugin/math/math.js"></script>
+    <script>
+        Reveal.initialize({
+            controls: true,
+            controlsTutorial: false,
+            progress: false,
+            slideNumber: "c/t",
+            hashOneBasedIndex: false,
+            hash: true,
+            navigationMode: "linear",
+            embedded: false,
+            showNotes: false,
+            transition: "slide",
+            transitionSpeed: "default",
+            backgroundTransition: "fade",
+            pdfSeparateFragments: true,
+            autoAnimateDuration: 0.4,
+
+            margin: 0.04,
+            width: 1280,
+            height: 720,
+
+            katex: {
+                local: "../dwn_vendor/katex",
+                trust: true,
+                // needed for colouring
+                strict: false,
+            },
+            plugins: [
+                // needs to be before highlighting
+                Externalcode,
+                RevealMarkdown,
+                RevealHighlight,
+                RevealNotes,
+                RevealMath.KaTeX,
+            ],
+        });
+    </script>
+</body>
+
+</html>
