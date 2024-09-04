@@ -84,7 +84,7 @@ find . \
 echo "creating table of contents page..."
 find . \
     -regex './[0-9][0-9][0-9][0-9]_[0-9][0-9]_[0-9][0-9]_[^/]+' \
-    -exec echo "<a href='{}'>{}<a><br />" \; | sort > public/index.html
+    -exec echo "<a href='{}'>{}</a><br />" \; | sort > public/index.html
 
 echo "creating symlinks for development..."
 ln -svf public/dist dist
