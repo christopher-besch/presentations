@@ -1,0 +1,600 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Magnesia Extensible OPC UA Client</title>
+    <meta name="description" content="Fraunhofer IOSB PSE Project">
+    <meta name="author"
+        content="Jan Schlachter, Alexander Franjic, Christoph Wolf, Marius Reddig, Christopher Besch, Marwin Glaser">
+
+    <link rel="stylesheet" href="../dist/reset.css">
+    <link rel="stylesheet" href="../dist/reveal.css">
+    <link rel="stylesheet" href="../dist/theme/custom_white.css">
+
+    <!-- code highlighting theme -->
+    <link rel="stylesheet" href="../static/oceanicnext.css">
+
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <div class="header-left">
+                Extensible OPC UA Client
+            </div>
+            <div class="header-right">
+                <em>Jan Schlachter, Alexander Franjic, Christoph Wolf, Marius Reddig, Christopher Besch, Marwin
+                    Glaser</em> &bullet;
+                4th Sep 2024
+            </div>
+            <!-- ChrisB -->
+            <section>
+                <section data-state="titleslide" data-background-image="./linux_magnesia.png"
+                    data-background-opacity="0.3">
+                    <h1><b>Extensible</b> OPC UA Client</h1>
+                    <h3>Working Title: Magnesia</h3>
+                </section>
+            </section>
+
+            <!-- ChrisB -->
+            <section>
+                <!-- <section> -->
+                <!--     <div class="half-part"> -->
+                <!--         <img src="./opc_ua.png" width=300> -->
+                <!--         <ul> -->
+                <!--             <li>Framework to exchange data between industrial machines</li> -->
+                <!--             <li>Implemented in open62541</li> -->
+                <!--         </ul> -->
+                <!--     </div> -->
+                <!--     <div class="half-part"> -->
+                <!--         <h5>Example Use Case</h5> -->
+                <!--         <ul> -->
+                <!--             <li>Monitor Machines with a Client</li> -->
+                <!--             <ul> -->
+                <!--                 <li>e.g. Temperatures, Velocities, Positions, ...</li> -->
+                <!--             </ul> -->
+                <!--         </ul> -->
+                <!--     </div> -->
+                <!-- </section> -->
+                <section>
+                    <h3>Requirements</h3>
+                    <ul>
+                        <li>Graphical OPC UA Client</li>
+                        <li>Extensible / Open Source</li>
+                        <li>Cross-Platform C++</li>
+                    </ul>
+                </section>
+            </section>
+
+            <section>
+                <!-- ChrisW -->
+                <section>
+                    <h2>Live Demo</h2>
+                </section>
+                <!-- ChrisW -->
+                <section data-transition="none">
+                    <h3>Linux</h3>
+                    <img src="./linux_magnesia.png" width=1000>
+                </section>
+                <!-- ChrisW -->
+                <section data-transition="none">
+                    <h3>macOS</h3>
+                    <img src="./macos_magnesia.png" width=1000>
+                </section>
+                <!-- ChrisW -->
+                <section data-transition="none">
+                    <h3>Windows</h3>
+                    <img src="./windows_magnesia.png" width=1000>
+                </section>
+                <!-- ChrisW -->
+                <section>
+                    <h2>GUI Overview</h2>
+                    <ul>
+                        <li>Activities as Tabs</li>
+                        <ul>
+                            <li>AddActivity</li>
+                            <li>Settings</li>
+                            <li>DataViewer</li>
+                            <li>About</li>
+                        </ul>
+                        <li>DataViewer uses Panels</li>
+                    </ul>
+                </section>
+                <!-- Alex -->
+                <section>
+                    <h3>User Docs</h3>
+                    <img src="./user_docs.png" width=800>
+                </section>
+            </section>
+
+            <!-- Marwin -->
+            <section>
+                <h2>Activity Development</h2>
+                <pre>
+                    <code class="language-cpp" data-code="./activity_development.cpp">
+                    </code>
+                </pre>
+            </section>
+
+            <!-- ChrisB -->
+            <section>
+                <section data-background-image="./settings_activity.png" data-background-opacity="0.5">
+                    <h2>Settings Activity</h2>
+                    <ul>
+                        <li>Edit Settings</li>
+                        <li>Manage Certificates and Keys</li>
+                    </ul>
+                </section>
+                <section>
+                    <img src="./settings_activity.png" width=1200>
+                </section>
+            </section>
+
+            <!-- ChrisB -->
+            <section>
+                <section>
+                    <h2>SettingsManager</h2>
+                    <ul>
+                        <li>Settings grouped in Domains</li>
+                        <li>Domains defined by (Activity) developer</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Define new Settings</h3>
+                    <pre>
+                        <code class="language-cpp" data-code="./settings_defining.cpp">
+                        </code>
+                    </pre>
+                </section>
+                <section>
+                    <h3>Update Settings</h3>
+                    <pre>
+                        <code class="language-cpp" data-code="./settings_update.cpp">
+                        </code>
+                    </pre>
+                    <h3>Retrieve Settings</h3>
+                    <pre>
+                        <code class="language-cpp" data-code="./settings_retrieve.cpp">
+                        </code>
+                    </pre>
+                    <h3>Reset Settings</h3>
+                    <pre>
+                        <code class="language-cpp" data-code="./settings_reset.cpp">
+                        </code>
+                    </pre>
+                </section>
+                <section>
+                    <h3>Setting Types</h3>
+                    <div class="half-part">
+                        <ul>
+                            <li>Bool</li>
+                            <li>String</li>
+                            <li>Int</li>
+                            <li>Double</li>
+                            <li>Enum</li>
+                        </ul>
+                    </div>
+                    <div class="half-part">
+                        <ul>
+                            <li>HistoricServerConnection</li>
+                            <li>Certificate</li>
+                            <li>KeySetting</li>
+                            <li>ApplicationCertificate</li>
+                            <li>Layout</li>
+                        </ul>
+                    </div>
+                </section>
+            </section>
+
+            <!-- ChrisB -->
+            <section>
+                <section>
+                    <h2>StorageManager</h2>
+                    <ul>
+                        <li>Declared in StorageManager</li>
+                        <li>Defined in SQLStorageManager</li>
+                        <li>Migrations</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Store Data</h3>
+                    <pre>
+                        <code class="language-cpp" data-code="./storage_store.cpp">
+                        </code>
+                    </pre>
+                    <h3>Retrieve Data</h3>
+                    <pre>
+                        <code class="language-cpp" data-code="./storage_retrieve.cpp">
+                        </code>
+                    </pre>
+                    <h3>Retrieve All</h3>
+                    <pre>
+                        <code class="language-cpp" data-code="./storage_get_all.cpp">
+                        </code>
+                    </pre>
+                </section>
+
+                <section>
+                    <h3>Notice Change</h3>
+                    <pre>
+                        <code class="language-cpp" data-code="./storage_notice_change.cpp">
+                        </code>
+                    </pre>
+                    <ul>
+                        <li>Cascade Deletion</li>
+                        <ul>
+                            <li>e.g. Certificate &rarr; ApplicationCertificate &rarr; HistoricServerConnection &rarr;
+                                HistoricServerConnectionSetting</li>
+                        </ul>
+                    </ul>
+                </section>
+            </section>
+
+            <!-- Jan -->
+            <section>
+                <section data-background-image="./certificate_activity_view.png" data-background-opacity="0.5">
+                    <h2>Certificate Activity</h2>
+                    <ul>
+                        <li>Create/View ApplicationCertificates</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Create</h3>
+                    <img src="./certificate_activity_create.png" width=1200>
+                </section>
+                <section>
+                    <h3>View</h3>
+                    <img src="./certificate_activity_view.png" width=1200>
+                </section>
+            </section>
+
+            <section>
+                <!-- Jan -->
+                <section>
+                    <h2>DataViewer</h2>
+                    <img src="./dataviewer_connect.png" width=1000>
+                </section>
+
+                <!-- Jan -->
+                <section>
+                    <h2>Panel Development</h2>
+                    <pre>
+                        <code class="language-cpp" data-code="./panel_development.cpp">
+                        </code>
+                    </pre>
+                </section>
+
+                <!-- ChrisW -->
+                <section>
+                    <h2>TreeView</h2>
+                    <img src="./treeview.png" width=600>
+                </section>
+
+                <!-- ChrisW -->
+                <section>
+                    <h2>AttributeView</h2>
+                    <img src="./attributeview.png" width=600>
+                </section>
+
+                <!-- ChrisW -->
+                <section>
+                    <h2>NodeView</h2>
+                    <img src="./nodeview.png" width=800>
+                </section>
+
+                <!-- Jan -->
+                <section>
+                    <h2>ReferenceView</h2>
+                    <img src="./referenceview.png" width=600>
+                </section>
+
+                <!-- Jan -->
+                <section>
+                    <h2>LogView</h2>
+                    <img src="./logview.png" width=1200>
+                </section>
+            </section>
+
+            <!-- Marwin -->
+            <section>
+                <section>
+                    <h2>Router</h2>
+                    <ul>
+                        <li>Open Activity without knowing it</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>URL Handler</h3>
+                    <pre>
+                        <code class="language-cpp" data-code="./router_url_handler.cpp">
+                        </code>
+                    </pre>
+                    <h3>Open URL</h3>
+                    <pre>
+                        <code class="language-cpp" data-code="./router_send.cpp">
+                        </code>
+                    </pre>
+                </section>
+            </section>
+
+            <section>
+                <!-- Marwin -->
+                <section>
+                    <h2>Extensibility</h2>
+                    <ul>
+                        <li>Easy to develop/add new</li>
+                        <ul>
+                            <li>Activities</li>
+                            <li>Panels</li>
+                            <li>Settings</li>
+                        </ul>
+                        <li>State of the art CMake build system</li>
+                    </ul>
+                </section>
+                <!-- Marwin -->
+                <section>
+                    <h2>Build and Dependencies</h2>
+                    <ul>
+                        <li>C++20</li>
+                        <li>CMake</li>
+                        <li>Dependencies in all major Linux Distros (including Debian)</li>
+                        <ul>
+                            <li>gcc 12.2.0 / clang 14.0.6 or newer</li>
+                            <li>cmake 3.25.0 or newer</li>
+                            <li>Qt 6.4.2 or newer</li>
+                            <li>open62541pp 0.13.0 (via CMake's FETCHCONTENT)</li>
+                        </ul>
+                        <li>Nix Flake</li>
+                    </ul>
+                </section>
+                <!-- Marwin -->
+                <section>
+                    <div>
+                        <h2>CI</h2>
+                        <ul>
+                            <li>Implemented in Shell Scripts</li>
+                            <ul>
+                                <li>Runs locally</li>
+                                <li>Independent of GitLab</li>
+                            </ul>
+                        </ul>
+                    </div>
+                    <div class="half-part">
+                        <img src="./ci_lint.png" width=300>
+                    </div>
+                    <div class="half-part">
+                        <img src="./ci_build.png" width=300>
+                    </div>
+                </section>
+                <!-- Marius -->
+                <section>
+                    <h3>Code Docs</h3>
+                    <img src="./code_docs.png" width=800>
+                </section>
+            </section>
+
+            <!-- ChrisB -->
+            <section>
+                <section>
+                    <h2>Process / Tooling</h2>
+                    <div class="half-part">
+                        <ul>
+                            <li>Full meetings weekly</li>
+                            <ul>
+                                <li>Where are we?</li>
+                                <li>What needs to happen?</li>
+                            </ul>
+                            <li>Actual work alone / in pairs</li>
+                            <!-- <li>Review in GitLab or in pairs</li> -->
+                        </ul>
+                    </div>
+                    <div class="half-part">
+                        <h5>So much Git!</h5>
+                        <img src="./repos.png" width=600>
+                    </div>
+                </section>
+
+                <section>
+                    <h3>Pflichtenheft Phase</h3>
+                    <div class="half-part">
+                        <ul>
+                            <li>24 pages</li>
+                            <li>LaTeX</li>
+                            <li>Graphics with draw.io</li>
+                            <li>Git</li>
+                            <ul>
+                                <li>59 Merge-Requests (MRs)</li>
+                            </ul>
+                            <li>In German</li>
+                        </ul>
+                    </div>
+                    <div class="half-part">
+                        <img src="./pflichtenheft_approval.png" width=300>
+                    </div>
+                </section>
+
+                <section>
+                    <h3>Design Phase</h3>
+                    <div class="half-part">
+                        <ul>
+                            <li>33 pages</li>
+                            <li>LaTeX</li>
+                            <li>Graphics in TikZ, draw.io, Inkscape, qt-creator</li>
+                            <li>Git</li>
+                            <ul>
+                                <li>51 MRs</li>
+                                <li>Human approval process</li>
+                            </ul>
+                            <li>In English</li>
+                        </ul>
+                    </div>
+                    <div class="half-part">
+                        <img src="./design_approval.png" width=300>
+                    </div>
+                </section>
+
+                <section>
+                    <h3>Implementation / QA Phase</h3>
+                    <div class="half-part">
+                        <ul>
+                            <!-- TODO: update -->
+                            <li>11k lines of code (+5k blank and comments)</li>
+                            <li>Neovim, VSCodium, CLion</li>
+                            <li>Git</li>
+                            <ul>
+                                <!-- TODO: update -->
+                                <li>101 MRs</li>
+                                <li>Human approval process</li>
+                                <li>CI</li>
+                            </ul>
+                            <li>In English</li>
+                        </ul>
+                    </div>
+                    <div class="half-part">
+                        <img src="./implementation_approval.png" width=400>
+                    </div>
+                </section>
+
+                <section>
+                    <h3>Presentation</h3>
+                    <div class="half-part">
+                        <ul>
+                            <!-- TODO: update -->
+                            <li>22 slides</li>
+                            <li>Reveal.js</li>
+                            <li>Git (directly on main)</li>
+                            <li>In English</li>
+                        </ul>
+                    </div>
+                    <div class="half-part">
+                    </div>
+                </section>
+            </section>
+
+            <section>
+                <!-- Alex -->
+                <section>
+                    <h2>Challenges</h2>
+                    <ul>
+                        <li>Different Levels of Skill</li>
+                        <ul>
+                            <li>C++ new for 4/6</li>
+                            <li>Qt new for 5/6</li>
+                            <li>OPC UA new for 6/6</li>
+                        </ul>
+                        <li>Solution: Review Process</li>
+                        <!-- <li>Big Group</li> -->
+                    </ul>
+                </section>
+
+                <!-- ChrisW -->
+                <section>
+                    <h3>Did we make it?</h3>
+                    <div class="half-part">
+                        <ul>
+                            <!-- RM27 Aktualisierung der Einträge im ReferenceView -->
+                            <li>33/34 must-have criteria from Pflichtenheft</li>
+                            <ul>
+                                <li>OPC UA doesn't allow subscribing Node references</li>
+                            </ul>
+
+                            <!-- RW1 Automatisierte Dokumentationsgeneration -->
+                            <!-- RW9 Aktualisierung der Einträge im NodeView -->
+                            <!-- RW12 Nutzerauthentiﬁzierung mit X.509 v3 Zertiﬁkat -->
+                            <!-- RW13 Mehrere Panel der gleichen Art -->
+                            <li>3/13 nice-to-have criteria</li>
+                        </ul>
+                    </div>
+                    <div class="half-part">
+                        <ul>
+                            <li>Implemented according to Design:</li>
+                            <ul>
+                                <li>Storage/Settings</li>
+                                <li>Activity System</li>
+                                <li>Layout System</li>
+                                <li>...</li>
+                            </ul>
+                            <li>Redesigned in implementation phase:</li>
+                            <ul>
+                                <li>OPC UA abstraction</li>
+                            </ul>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Marius -->
+                <section>
+                    <h3>Lessons Learned</h3>
+                    <ul>
+                        <li><b>Git</b>, C++, Qt, OPC UA</li>
+                        <li>Communication</li>
+                        <li>Splitting work with different skill levels</li>
+                        <li>Lift as You Climb</li>
+                    </ul>
+                </section>
+            </section>
+
+            <!-- ChrisB -->
+            <section>
+                <section data-transition="none" data-background-image="./linux_magnesia.png"
+                    data-background-opacity="0.3">
+                    <h1>Magnesia PSE</h1>
+                </section>
+
+                <section data-state="dark-background" data-transition="none" data-background-video="./compile.mp4">
+                    <h1 style="color: white;">Magnesia PSE</h1>
+                </section>
+            </section>
+        </div>
+    </div>
+
+    <script src="../vendor/external_code/externalcode.js"></script>
+    <script src="../dist/reveal.js"></script>
+    <script src="../plugin/notes/notes.js"></script>
+    <script src="../plugin/markdown/markdown.js"></script>
+    <script src="../plugin/highlight/highlight.js"></script>
+    <script src="../plugin/math/math.js"></script>
+    <script>
+        Reveal.initialize({
+            controls: true,
+            controlsTutorial: false,
+            progress: false,
+            slideNumber: "c/t",
+            hashOneBasedIndex: false,
+            hash: true,
+            navigationMode: "linear",
+            embedded: false,
+            showNotes: false,
+            transition: "slide",
+            transitionSpeed: "default",
+            backgroundTransition: "fade",
+            pdfSeparateFragments: true,
+            autoAnimateDuration: 0.4,
+
+            margin: 0.04,
+            width: 1280,
+            height: 720,
+
+            katex: {
+                local: "../dwn_vendor/katex",
+                trust: true,
+                // needed for colouring
+                strict: false,
+            },
+            plugins: [
+                // needs to be before highlighting
+                Externalcode,
+                RevealMarkdown,
+                RevealHighlight,
+                RevealNotes,
+                RevealMath.KaTeX,
+            ],
+        });
+    </script>
+</body>
+
+</html>
