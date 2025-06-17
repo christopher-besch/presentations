@@ -34,7 +34,7 @@ pushd reveal
 git stash
 git fetch
 # in case the reveal directory already existed
-git checkout 4.5.0
+git checkout 5.2.1
 
 echo "installing custom themes..."
 cp -v ../theme/source/* ./css/theme/source
@@ -64,7 +64,7 @@ cp -rv vendor public/vendor
 echo "downloading precompiled dependencies..."
 rm -rfv public/dwn_vendor
 mkdir public/dwn_vendor
-wget https://github.com/KaTeX/KaTeX/releases/download/v0.15.3/katex.tar.gz -O public/dwn_vendor/katex.tar.gz
+wget https://github.com/KaTeX/KaTeX/releases/download/v0.16.22/katex.tar.gz -O public/dwn_vendor/katex.tar.gz
 
 echo "extracting precompiled dependencies..."
 pushd public/dwn_vendor
