@@ -1,0 +1,173 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Magnesia Extensible OPC UA Client</title>
+    <meta name="description" content="Real-Time on Linux">
+    <meta name="author" content="Christopher Besch">
+
+    <link rel="stylesheet" href="../dist/reset.css">
+    <link rel="stylesheet" href="../dist/reveal.css">
+    <link rel="stylesheet" href="../dist/theme/custom_white.css">
+
+    <!-- code highlighting theme -->
+    <link rel="stylesheet" href="../static/oceanicnext.css">
+
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <div class="header-left">
+                Real-Time on Linux
+            </div>
+            <div class="header-right">
+                <em>Christopher Besch</em> &bullet;
+                30th June 2024
+            </div>
+            <section>
+                <section data-state="titleslide" data-background-image="./banner_train.jpg"
+                    data-background-opacity="1.0">
+                    <!-- this is quite the hack, I should have used flexbox... -->
+                    <div class="half-part">
+                        <div style="visibility: hidden;">
+                            .
+                        </div>
+                    </div>
+                    <div class="half-part">
+                        <h1 style="color: white; margin-top: 4vh;">Real-Time on Linux</h1>
+                    </div>
+                </section>
+            </section>
+
+            <section>
+                <section>
+                    <h3>What's Real-Time?</h3>
+                    <div class="half-part">
+                        <div class="image">
+                            <video loop data-autoplay width=700 src="./RST_Thrusters_CP_Shot_1080.mp4"></video>
+                            <p>Nancy Grace Roman Space Telescope's<br />ACS (Attitude Control System)</p>
+                        </div>
+                    </div>
+                    <div class="half-part">
+                        <img src="./delay.png" width=700>
+                    </div>
+                </section>
+
+                <section>
+                    <div class="half-part">
+                        <h3>So Real-Time means really fast...right?</h3>
+                        <ul>
+                            <li>Focus on Through-put</li>
+                            <li>Classic Linux goal</li>
+                        </ul>
+                    </div>
+                    <div class="half-part">
+                        <h3>Actually: determinatively bounded worst case</h3>
+                        <ul>
+                            <li>Focus on worst case Latency</li>
+                            <li>PREEMPT_RT's goal</li>
+                        </ul>
+                    </div>
+                </section>
+            </section>
+
+            <section>
+                <section data-auto-animate data-background-image="./banner_field.jpg">
+                    <div class="half-part">
+                        <!-- <h1>Real-Time on Linux</h1> -->
+                        <h1 style="color: white; margin-top: 160px;">Now on Linux</h1>
+                        <!-- <p>What we'll look at</p> -->
+                        <div>
+                            <h2 style="color: white;">Kernel-space:<br />
+                                <div data-id="preempt_rt">PREEMPT_RT</div>
+                            </h2>
+                        </div>
+                        <div style="margin-top: 40px;">
+                            <h2 style="color: white;">User-space:<br />RT POSIX</h2>
+                        </div>
+                    </div>
+                    <div class="half-part">
+                    </div>
+                </section>
+                <section data-auto-animate>
+                    <h3>
+                        <div data-id="preempt_rt">PREEMPT_RT</div>
+                    </h3>
+                    <ul>
+                        <li>Patch-set merged to v6.12 in Sep 24</li>
+                        <li>Introduces new scheduler preemption model: PREEMPT_RT</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Scheduler Preemption Model</h3>
+                    <div class="half-part">
+                        <ul>
+                            <li><code>CONFIG_PREEMPT_NONE</code></li>
+                            <li><code>CONFIG_PREEMPT_VOLUNTARY</code></li>
+                            <li><code>CONFIG_PREEMPT</code></li>
+                            <li><code>CONFIG_PREEMPT_RT</code></li>
+                        </ul>
+                    </div>
+                    <div class="half-part">
+                        <div class="image">
+                            <img src="./preemption_model_config.png" width=700>
+                            <p>Kernel Config</p>
+                        </div>
+                    </div>
+                </section>
+            </section>
+        </div>
+    </div>
+
+    <script src="../vendor/external_code/externalcode.js"></script>
+    <script src="../dist/reveal.js"></script>
+    <script src="../plugin/notes/notes.js"></script>
+    <script src="../plugin/markdown/markdown.js"></script>
+    <script src="../plugin/highlight/highlight.js"></script>
+    <script src="../plugin/math/math.js"></script>
+    <script>
+        Reveal.initialize({
+            controls: true,
+            controlsTutorial: false,
+            progress: false,
+            slideNumber: "c/t",
+            hashOneBasedIndex: false,
+            hash: true,
+            navigationMode: "linear",
+            embedded: false,
+            showNotes: false,
+            transition: "slide",
+            transitionSpeed: "default",
+            backgroundTransition: "fade",
+            pdfSeparateFragments: true,
+            autoAnimateDuration: 0.4,
+
+            margin: 0.04,
+            width: 1280,
+            height: 720,
+
+            katex: {
+                local: "../dwn_vendor/katex",
+                trust: true,
+                // needed for colouring
+                strict: false,
+            },
+            plugins: [
+                // needs to be before highlighting
+                Externalcode,
+                RevealMarkdown,
+                RevealHighlight,
+                RevealNotes,
+                RevealMath.KaTeX,
+            ],
+            scrollActivationWidth: null,
+        });
+    </script>
+</body>
+
+</html>
