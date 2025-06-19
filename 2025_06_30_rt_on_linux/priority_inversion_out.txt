@@ -1,0 +1,10 @@
+low_prio: started, trying to acq mutex
+low_prio: acquired mutex
+hig_prio: started, trying to acq mutex
+med_prio: started
+med_prio: finished
+low_prio: releasing mutex
+hig_prio: acquired mutex
+hig_prio: releasing mutex
+hig_prio: finished
+low_prio: finished
