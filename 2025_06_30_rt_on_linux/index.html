@@ -54,27 +54,29 @@
                         </div>
                     </div>
                     <div class="half-part">
-                        <img src="./delay.png" width=700>
+                        <ul>
+                            <li>Correct output</li>
+                            <li>Within deadline</li>
+                        </ul>
+                        <img src="./delay.png" width=400>
+                        <p class="fragment">So Real-Time means really fast...right?</p>
                     </div>
                 </section>
 
                 <section>
-                    <h3>So Real-Time means really fast...right?</h3>
-                </section>
-                <section>
-                    <h3>Actually: Deterministically Bounded Worst Case</h3>
+                    <!-- <h3>Actually: Deterministically Bounded Worst Case</h3> -->
                     <div class="half-part">
-                        <h4>Classic Linux Goal</h4>
                         <ul>
-                            <li>Focus on through-put</li>
-                            <li>E.g. <code>SCHED_OTHER</code>, <code>PREEMPT_NONE</code></li>
+                            <li>Classic Linux Goal: through-put</li>
+                            <!-- <li>E.g. <code>SCHED_OTHER</code>, <code>PREEMPT_NONE</code></li> -->
+                            <li>Real-Time Goal: worst case latency</li>
+                            <!-- <li>E.g. <code>SCHED_FIFO</code>, <code>PREEMPT_RT</code></li> -->
                         </ul>
+
                     </div>
                     <div class="half-part">
-                        <h4>Real-Time Goal</h4>
+                        TODO: combination through-put and real-time on Linux
                         <ul>
-                            <li>Focus on worst case latency</li>
-                            <li>E.g. <code>SCHED_FIFO</code>, <code>PREEMPT_RT</code></li>
                         </ul>
                     </div>
                 </section>
@@ -127,7 +129,8 @@
                         </pre>
                     </div>
                     <div class="half-part">
-                        TODO: diagram
+                        TODO: diagram<br />
+                        TODO: nice and RT priority overview
                     </div>
                 </section>
             </section>
@@ -256,9 +259,9 @@
                 <!-- <section> -->
                 <!--     <h2>Comparison to Other RTOSes</h2> -->
                 <!-- </section> -->
-                <section>
-                    <h2>Real-Time on Linux Uses</h2>
-                </section>
+                <!-- <section> -->
+                <!--     <h2>Real-Time on Linux Uses</h2> -->
+                <!-- </section> -->
 
                 <section>
                     <div class="half-part">
@@ -276,6 +279,7 @@
                                     <li>threaded irq handlers</li>
                                 </ul>
                             </li>
+                            <li>Linux Advantage</li>
                         </ul>
                     </div>
                     <div class="half-part">
@@ -283,6 +287,7 @@
                         <ul>
                             <li>User-Space Memory handling</li>
                             <li>Hardware considerations</li>
+                            <li>Linux Limitations: mainly provability</li>
                         </ul>
                     </div>
                 </section>
