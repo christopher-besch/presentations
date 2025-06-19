@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <title>Magnesia Extensible OPC UA Client</title>
+    <title>Real-Time on Linux</title>
     <meta name="description" content="Real-Time on Linux">
     <meta name="author" content="Christopher Besch">
 
@@ -94,14 +94,17 @@
                     <div class="half-part">
                     </div>
                 </section>
-                <section data-auto-animate>
-                    <h3>
-                        <div data-id="preempt_rt">PREEMPT_RT</div>
-                    </h3>
-                    <ul>
-                        <li>Patch-set merged to v6.12 in Sep 24</li>
-                        <li>Introduces new scheduler preemption model: PREEMPT_RT</li>
-                    </ul>
+                <!-- <section data-auto-animate> -->
+                <!--     <h3> -->
+                <!--         <div data-id="preempt_rt">PREEMPT_RT</div> -->
+                <!--     </h3> -->
+                <!--     <ul> -->
+                <!--         <li>Patch-set merged to v6.12 in Sep 24</li> -->
+                <!--         <li>Introduces new scheduler preemption model: PREEMPT_RT</li> -->
+                <!--     </ul> -->
+                <!-- </section> -->
+                <section>
+                    <h3>What's Preemption?</h3>
                 </section>
                 <section>
                     <h3>Scheduler Preemption Model</h3>
@@ -110,7 +113,9 @@
                             <li><code>CONFIG_PREEMPT_NONE</code></li>
                             <li><code>CONFIG_PREEMPT_VOLUNTARY</code></li>
                             <li><code>CONFIG_PREEMPT</code></li>
-                            <li><code>CONFIG_PREEMPT_RT</code></li>
+                            <li><code>CONFIG_PREEMPT_RT</code>
+                                <ul>Goal: fully preemptible kernel</ul>
+                            </li>
                         </ul>
                     </div>
                     <div class="half-part">
@@ -119,6 +124,121 @@
                             <p>Kernel Config</p>
                         </div>
                     </div>
+                </section>
+                <section>
+                    <h3>When is the Kernel not Preemptible?</h3>
+                    <ul>
+                        <li><code>preempt_disable()</code> called (e.g. in spinlocks) — Solution: sleeping locks</li>
+                        <li>atomic (NMI, hardirq, softirq) context — forbidden preemption and blocking — Solution:
+                            threaded
+                            interrupts</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Spinlocks</h3>
+                </section>
+                <section>
+                    <h3>Threaded Interrupts</h3>
+                </section>
+            </section>
+
+            <section>
+                <section data-auto-animate data-background-image="./banner_steel.jpg">
+                    <div class="half-part">
+                        <h1 style="color: white; margin-top: 100px;">Real-Time POSIX</h1>
+                    </div>
+                    <div class="half-part">
+                    </div>
+                </section>
+
+                <section>
+                    <h3>Default: <code>SCHED_OTHER</code></h3>
+                    <pre>
+                        <code class="language-c" data-code="./normal_scheduling.c"
+                            data-line-numbers="20-25,32-39,50-51">
+                        </code>
+                    </pre>
+                </section>
+                <section>
+                    <h3>Output <code>SCHED_OTHER</code></h3>
+                    <div class="half-part">
+                        <pre>
+                            <code class="language-txt" data-code="./normal_scheduling_out.txt">
+                            </code>
+                        </pre>
+                    </div>
+                    <div class="half-part">
+                    </div>
+                </section>
+
+                <section>
+                    <h3>Real-Time: <code>SCHED_OTHER</code></h3>
+                    <pre>
+                        <code class="language-c" data-code="./rt_scheduling.c" data-line-numbers="50-52,54,58">
+                        </code>
+                    </pre>
+                    <ul>Requires root or high enough <code>rtprio</code> in <code>limits.conf</code></ul>
+                </section>
+                <section>
+                    <h3>Output <code>SCHED_FIFO</code></h3>
+                    <div class="half-part">
+                        <pre>
+                            <code class="language-txt" data-code="./rt_scheduling_out.txt">
+                            </code>
+                        </pre>
+                    </div>
+                    <div class="half-part">
+                    </div>
+                </section>
+            </section>
+
+            <section>
+                <section>
+                    <h3>Priority Inversion</h3>
+                    <pre>
+                        <code class="language-c" data-code="./priority_inversion.c"
+                            data-line-numbers="22-34,41-50,57-65">
+                        </code>
+                    </pre>
+                </section>
+                <section>
+                    <h3>Output: Priority Inversion</h3>
+                    <div class="half-part">
+                        <pre>
+                            <code class="language-txt" data-code="./priority_inversion_out.txt">
+                            </code>
+                        </pre>
+                    </div>
+                    <div class="half-part">
+                    </div>
+                </section>
+
+                <section>
+                    <h3>Priority Inheritance</h3>
+                    <pre>
+                        <code class="language-c" data-code="./priority_inheritance.c" data-line-numbers="75">
+                        </code>
+                    </pre>
+                </section>
+                <section>
+                    <h3>Output: Priority Inheritance</h3>
+                    <div class="half-part">
+                        <pre>
+                            <code class="language-txt" data-code="./priority_inheritance_out.txt">
+                            </code>
+                        </pre>
+                    </div>
+                    <div class="half-part">
+                    </div>
+                </section>
+            </section>
+
+            <section>
+                <section>
+                    <h2>Comparison to Other RTOSes</h2>
+                </section>
+                <section>
+                    <h2>Real-Time on Linux Uses</h2>
                 </section>
             </section>
         </div>
