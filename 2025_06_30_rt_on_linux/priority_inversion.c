@@ -35,6 +35,21 @@ void* low_prio_thread(void* arg)
     return NULL;
 }
 
+void* high_prio_thread(void* arg)
+{
+    pin_to_cpu(0);
+    // ensure low prio thread has lock
+    sleep(1);
+    printf("hig_prio: started, trying to acq mutex\n");
+    pthread_mutex_lock(&mutex);
+    printf("hig_prio: acquired mutex\n");
+
+    printf("hig_prio: releasing mutex\n");
+    pthread_mutex_unlock(&mutex);
+    printf("hig_prio: finished\n");
+    return NULL;
+}
+
 void* medium_prio_thread(void* arg)
 {
     pin_to_cpu(0);
@@ -48,21 +63,6 @@ void* medium_prio_thread(void* arg)
         ;
 
     printf("med_prio: finished\n");
-    return NULL;
-}
-
-void* high_prio_thread(void* arg)
-{
-    pin_to_cpu(0);
-    // ensure low prio thread has lock
-    sleep(1);
-    printf("hig_prio: started, trying to acq mutex\n");
-    pthread_mutex_lock(&mutex);
-    printf("hig_prio: acquired mutex\n");
-
-    printf("hig_prio: releasing mutex\n");
-    pthread_mutex_unlock(&mutex);
-    printf("hig_prio: finished\n");
     return NULL;
 }
 

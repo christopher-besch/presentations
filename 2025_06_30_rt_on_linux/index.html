@@ -59,41 +59,149 @@
                 </section>
 
                 <section>
+                    <h3>So Real-Time means really fast...right?</h3>
+                </section>
+                <section>
+                    <h3>Actually: Deterministically Bounded Worst Case</h3>
                     <div class="half-part">
-                        <h3>So Real-Time means really fast...right?</h3>
+                        <h4>Classic Linux Goal</h4>
                         <ul>
-                            <li>Focus on Through-put</li>
-                            <li>Classic Linux goal</li>
+                            <li>Focus on through-put</li>
+                            <li>E.g. <code>SCHED_OTHER</code>, <code>PREEMPT_NONE</code></li>
                         </ul>
                     </div>
                     <div class="half-part">
-                        <h3>Actually: determinatively bounded worst case</h3>
+                        <h4>Real-Time Goal</h4>
                         <ul>
-                            <li>Focus on worst case Latency</li>
-                            <li>PREEMPT_RT's goal</li>
+                            <li>Focus on worst case latency</li>
+                            <li>E.g. <code>SCHED_FIFO</code>, <code>PREEMPT_RT</code></li>
                         </ul>
                     </div>
                 </section>
             </section>
 
             <section>
-                <section data-auto-animate data-background-image="./banner_field.jpg">
+                <section data-auto-animate data-background-image="./banner_steel.jpg">
                     <div class="half-part">
-                        <!-- <h1>Real-Time on Linux</h1> -->
-                        <h1 style="color: white; margin-top: 160px;">Now on Linux</h1>
-                        <!-- <p>What we'll look at</p> -->
-                        <div>
-                            <h2 style="color: white;">Kernel-space:<br />
-                                <div data-id="preempt_rt">PREEMPT_RT</div>
-                            </h2>
-                        </div>
-                        <div style="margin-top: 40px;">
-                            <h2 style="color: white;">User-space:<br />RT POSIX</h2>
-                        </div>
+                        <h1 style="color: white; margin-top: 100px;">User-Space: Real-Time POSIX</h1>
                     </div>
                     <div class="half-part">
                     </div>
                 </section>
+
+                <section>
+                    <h3>Default: <code>SCHED_OTHER</code></h3>
+                    <pre>
+                        <code class="language-c" data-code="./normal_scheduling.c"
+                            data-line-numbers="20-25,32-39,50-51">
+                        </code>
+                    </pre>
+                </section>
+                <section>
+                    <h3>Output: <code>SCHED_OTHER</code></h3>
+                    <div class="half-part">
+                        <pre>
+                            <code class="language-txt" data-code="./normal_scheduling_out.txt">
+                            </code>
+                        </pre>
+                    </div>
+                    <div class="half-part">
+                        TODO: diagram
+                    </div>
+                </section>
+
+                <section>
+                    <h3>Real-Time: <code>SCHED_FIFO</code></h3>
+                    <pre>
+                        <code class="language-c" data-code="./rt_scheduling.c" data-line-numbers="50-52,54,58">
+                        </code>
+                    </pre>
+                    <ul>Requires root or high enough <code>rtprio</code> in <code>limits.conf</code></ul>
+                </section>
+                <section>
+                    <h3>Output: <code>SCHED_FIFO</code></h3>
+                    <div class="half-part">
+                        <pre>
+                            <code class="language-txt" data-code="./rt_scheduling_out.txt">
+                            </code>
+                        </pre>
+                    </div>
+                    <div class="half-part">
+                        TODO: diagram
+                    </div>
+                </section>
+            </section>
+
+            <section>
+                <section>
+                    <h3>Priority Inversion</h3>
+                    <pre>
+                        <code class="language-c" data-code="./priority_inversion.c"
+                            data-line-numbers="22-34,41-49,57-65">
+                        </code>
+                    </pre>
+                </section>
+                <section>
+                    <h3>Output: Priority Inversion</h3>
+                    <div class="half-part">
+                        <pre>
+                            <code class="language-txt" data-code="./priority_inversion_out.txt">
+                            </code>
+                        </pre>
+                    </div>
+                    <div class="half-part">
+                        TODO: diagram
+                    </div>
+                </section>
+
+                <section>
+                    <h3>Priority Inheritance</h3>
+                    <pre>
+                        <code class="language-c" data-code="./priority_inheritance.c" data-line-numbers="75">
+                        </code>
+                    </pre>
+                </section>
+                <section>
+                    <h3>Output: Priority Inheritance</h3>
+                    <div class="half-part">
+                        <pre>
+                            <code class="language-txt" data-code="./priority_inheritance_out.txt">
+                            </code>
+                        </pre>
+                    </div>
+                    <div class="half-part">
+                        TODO: diagram
+                    </div>
+                </section>
+            </section>
+
+
+            <section>
+                <section data-auto-animate data-background-image="./banner_field.jpg">
+                    <div class="half-part">
+                        <h1 style="color: white; margin-top: 120px;">Kernel-Space: PREEMPT_RT</h1>
+                    </div>
+                    <div class="half-part">
+                    </div>
+                </section>
+
+                <!-- <section data-auto-animate data-background-image="./banner_field.jpg"> -->
+                <!--     <div class="half-part"> -->
+                <!--         <h1>Real-Time on Linux</h1> -->
+                <!--         <h1 style="color: white; margin-top: 160px;">Now on Linux</h1> -->
+                <!--         <p>What we'll look at</p> -->
+                <!--         <div> -->
+                <!--             <h2 style="color: white;">Kernel-Space:<br /> -->
+                <!--                 <div data-id="preempt_rt">PREEMPT_RT</div> -->
+                <!--             </h2> -->
+                <!--         </div> -->
+                <!--         <div style="margin-top: 40px;"> -->
+                <!--             <h2 style="color: white;">User-Space:<br />RT POSIX</h2> -->
+                <!--         </div> -->
+                <!--     </div> -->
+                <!--     <div class="half-part"> -->
+                <!--     </div> -->
+                <!-- </section> -->
                 <!-- <section data-auto-animate> -->
                 <!--     <h3> -->
                 <!--         <div data-id="preempt_rt">PREEMPT_RT</div> -->
@@ -103,9 +211,9 @@
                 <!--         <li>Introduces new scheduler preemption model: PREEMPT_RT</li> -->
                 <!--     </ul> -->
                 <!-- </section> -->
-                <section>
-                    <h3>What's Preemption?</h3>
-                </section>
+                <!-- <section> -->
+                <!--     <h3>What's Preemption?</h3> -->
+                <!-- </section> -->
                 <section>
                     <h3>Scheduler Preemption Model</h3>
                     <div class="half-part">
@@ -131,114 +239,52 @@
                         <li><code>preempt_disable()</code> called (e.g. in spinlocks) — Solution: sleeping locks</li>
                         <li>atomic (NMI, hardirq, softirq) context — forbidden preemption and blocking — Solution:
                             threaded
-                            interrupts</li>
+                            irq handlers</li>
                     </ul>
                 </section>
                 <section>
                     <h3>Spinlocks</h3>
+                    TODO
                 </section>
                 <section>
-                    <h3>Threaded Interrupts</h3>
+                    <h3>Threaded Interrupts Request Handlers</h3>
+                    TODO
                 </section>
             </section>
 
             <section>
-                <section data-auto-animate data-background-image="./banner_steel.jpg">
-                    <div class="half-part">
-                        <h1 style="color: white; margin-top: 100px;">Real-Time POSIX</h1>
-                    </div>
-                    <div class="half-part">
-                    </div>
-                </section>
-
-                <section>
-                    <h3>Default: <code>SCHED_OTHER</code></h3>
-                    <pre>
-                        <code class="language-c" data-code="./normal_scheduling.c"
-                            data-line-numbers="20-25,32-39,50-51">
-                        </code>
-                    </pre>
-                </section>
-                <section>
-                    <h3>Output <code>SCHED_OTHER</code></h3>
-                    <div class="half-part">
-                        <pre>
-                            <code class="language-txt" data-code="./normal_scheduling_out.txt">
-                            </code>
-                        </pre>
-                    </div>
-                    <div class="half-part">
-                    </div>
-                </section>
-
-                <section>
-                    <h3>Real-Time: <code>SCHED_OTHER</code></h3>
-                    <pre>
-                        <code class="language-c" data-code="./rt_scheduling.c" data-line-numbers="50-52,54,58">
-                        </code>
-                    </pre>
-                    <ul>Requires root or high enough <code>rtprio</code> in <code>limits.conf</code></ul>
-                </section>
-                <section>
-                    <h3>Output <code>SCHED_FIFO</code></h3>
-                    <div class="half-part">
-                        <pre>
-                            <code class="language-txt" data-code="./rt_scheduling_out.txt">
-                            </code>
-                        </pre>
-                    </div>
-                    <div class="half-part">
-                    </div>
-                </section>
-            </section>
-
-            <section>
-                <section>
-                    <h3>Priority Inversion</h3>
-                    <pre>
-                        <code class="language-c" data-code="./priority_inversion.c"
-                            data-line-numbers="22-34,41-50,57-65">
-                        </code>
-                    </pre>
-                </section>
-                <section>
-                    <h3>Output: Priority Inversion</h3>
-                    <div class="half-part">
-                        <pre>
-                            <code class="language-txt" data-code="./priority_inversion_out.txt">
-                            </code>
-                        </pre>
-                    </div>
-                    <div class="half-part">
-                    </div>
-                </section>
-
-                <section>
-                    <h3>Priority Inheritance</h3>
-                    <pre>
-                        <code class="language-c" data-code="./priority_inheritance.c" data-line-numbers="75">
-                        </code>
-                    </pre>
-                </section>
-                <section>
-                    <h3>Output: Priority Inheritance</h3>
-                    <div class="half-part">
-                        <pre>
-                            <code class="language-txt" data-code="./priority_inheritance_out.txt">
-                            </code>
-                        </pre>
-                    </div>
-                    <div class="half-part">
-                    </div>
-                </section>
-            </section>
-
-            <section>
-                <section>
-                    <h2>Comparison to Other RTOSes</h2>
-                </section>
+                <!-- <section> -->
+                <!--     <h2>Comparison to Other RTOSes</h2> -->
+                <!-- </section> -->
                 <section>
                     <h2>Real-Time on Linux Uses</h2>
+                </section>
+
+                <section>
+                    <div class="half-part">
+                        <h3>What we've Covered</h3>
+                        <ul>
+                            <li>User-Space
+                                <ul>
+                                    <li><code>SCHED_FIFO</code>/<code>SCHED_RR</code></li>
+                                    <li><code>PTHREAD_PRIO_INHERIT</code></li>
+                                </ul>
+                            </li>
+                            <li>Kernel-Space: <code>PREEMPT_RT</code>
+                                <ul>
+                                    <li>sleep-locks instead of spinlocks</li>
+                                    <li>threaded irq handlers</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="half-part">
+                        <h3>What we've Left Out</h3>
+                        <ul>
+                            <li>User-Space Memory handling</li>
+                            <li>Hardware considerations</li>
+                        </ul>
+                    </div>
                 </section>
             </section>
         </div>
