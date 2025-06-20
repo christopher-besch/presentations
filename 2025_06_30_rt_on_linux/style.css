@@ -4,7 +4,7 @@
     align-items: center;
 }
 
-.image img {
+.image :first-child {
     margin-bottom: 0;
 }
 
