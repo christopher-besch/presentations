@@ -12,3 +12,9 @@
     font-size: 15pt;
     margin-top: 5pt;
 }
+
+.rainbow-text {
+    background-image: linear-gradient(to right, violet, indigo, blue, green, yellow, orange, red);
+    color: transparent;
+    background-clip: text;
+}
