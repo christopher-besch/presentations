@@ -66,17 +66,32 @@
                 <section>
                     <!-- <h3>Actually: Deterministically Bounded Worst Case</h3> -->
                     <div class="half-part">
+                        <h3>fast != deterministic</h3>
                         <ul>
-                            <li>Classic Linux Goal: through-put</li>
+                            <li>Classic Linux goal:<br />through-put, efficiency</li>
                             <!-- <li>E.g. <code>SCHED_OTHER</code>, <code>PREEMPT_NONE</code></li> -->
-                            <li>Real-Time Goal: worst case latency</li>
+                            <li>Real-Time OS:<br />deterministically bounded worst case latency</li>
                             <!-- <li>E.g. <code>SCHED_FIFO</code>, <code>PREEMPT_RT</code></li> -->
                         </ul>
 
                     </div>
-                    <div class="half-part">
-                        TODO: combination through-put and real-time on Linux
+                    <div class="half-part fragment" data-fragment-index="1">
+                        <h3>Let's Build a Spaceprobe!</h3>
                         <ul>
+                            <li>Requirements:
+                                <ul>
+                                    <li>ACS: Real-Time</li>
+                                    <li class="fragment" data-fragment-index="2">Marketing wants <span
+                                            class="rainbow-text">AI</span>: LLM needs throughput</li>
+                                </ul>
+                            </li>
+                            <li class="fragment" data-fragment-index="2">Options:
+                                <ol>
+                                    <li>Multiple Computers:<br />one GPOS, one Real-Time OS</li>
+                                    <li>Linux with <code>PREEMPT_RT</code></li>
+                                    <li>...</li>
+                                </ol>
+                            </li>
                         </ul>
                     </div>
                 </section>
@@ -110,15 +125,19 @@
                     <div class="half-part">
                         <img src="./sched_other.png" width=700>
                     </div>
+                    <ul>
+                        <li>Waste time on low prio task</li>
+                    </ul>
                 </section>
-
+            </section>
+            <section>
                 <section>
                     <h3>Real-Time: <code>SCHED_FIFO</code></h3>
                     <pre>
                         <code class="language-c" data-code="./rt_scheduling.c" data-line-numbers="50-52,54,58">
                         </code>
                     </pre>
-                    <ul>Requires root or high enough <code>rtprio</code> in <code>limits.conf</code></ul>
+                    <p>Requires root or high enough <code>rtprio</code> in <code>limits.conf</code></p>
                 </section>
                 <section>
                     <h3>Output: <code>SCHED_FIFO</code></h3>
@@ -131,7 +150,21 @@
                     <div class="half-part">
                         <img src="./sched_fifo.png" width=700>
                     </div>
-                    <img class="fragment" src="./prios.png" width=500>
+                    <div class="fragment">
+                        <div class="half-part">
+                            <img src="./prios.png" width=500>
+                        </div>
+                        <div class="half-part">
+                            <ul>
+                                <li>Focus on high prio task</li>
+                                <li>Danger: lock up CPU with high prio task
+                                    <ul>
+                                        <li>Consider RT throttling</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </section>
             </section>
 
@@ -154,9 +187,14 @@
                     </div>
                     <div class="half-part">
                         <img src="./priority_inversion.png" width=700>
+                        <ul>
+                            <li>Medium prio task could run <b>very</b> long</li>
+                            <li>E.g. Mars Pathfinder</li>
+                        </ul>
                     </div>
                 </section>
-
+            </section>
+            <section>
                 <section>
                     <h3>Priority Inheritance</h3>
                     <pre>
@@ -236,15 +274,17 @@
                         </div>
                     </div>
                 </section>
-                <section>
-                    <h3>When is the Kernel not Preemptible?</h3>
-                    <ul>
-                        <li><code>preempt_disable()</code> called (e.g. in spinlocks) — Solution: sleeping locks</li>
-                        <li>atomic (NMI, hardirq, softirq) context — forbidden preemption and blocking — Solution:
-                            threaded
-                            irq handlers</li>
-                    </ul>
-                </section>
+                <!-- <section> -->
+                <!--     <h3>When is the Kernel not Preemptible?</h3> -->
+                <!--     <ul> -->
+                <!--         <li><code>preempt_disable()</code> called (e.g. in spinlocks) — Solution: sleeping locks</li> -->
+                <!--         <li>atomic (NMI, hardirq, softirq) context — forbidden preemption and blocking — Solution: -->
+                <!--             threaded -->
+                <!--             irq handlers</li> -->
+                <!--     </ul> -->
+                <!-- </section> -->
+            </section>
+            <section>
                 <section>
                     <h3><code>raw_spinlock_t</code></h3>
                     <!-- <ul> -->
@@ -268,13 +308,41 @@
                 </section>
                 <section>
                     <div class="half-part">
-                        <h4>Interrupts Request Handler (IRQ)</h4>
+                        <h3>Why disable preemption?</h3>
+                        <div class="image">
+                            <img src="./raw_spinlock.png" width=600>
+                            <p><code>raw_spinlock_t</code></p>
+                        </div>
+                        <div class="image fragment">
+                            <img src="./spinlock_with_preempt.png" width=600>
+                            <p><code>raw_spinlock_t</code> without <code>preempt_disable</code></p>
+                        </div>
+                    </div>
+                    <div class="half-part fragment">
+                        <h3>PREEMPT_RT Solution</h3>
+                        <div class="image" style="margin-left: 50px;">
+                            <img src="./rt_mutex.png" width=600>
+                            <p><code>rt_mutex</code></p>
+                        </div>
+                        <ul>
+                            <li>Higher overhead: many context switches</li>
+                        </ul>
+                    </div>
+                </section>
+            </section>
+            <section>
+                <section>
+                    <div class="half-part">
+                        <h3>Interrupts Request Handler (IRQ)</h3>
                         <img src="./irq.png" width=500>
                     </div>
                     <div class="half-part fragment">
-                        <h4>Threaded IRQ</h4>
+                        <h3>Threaded IRQ</h3>
                         <img src="./threaded_irq.png" width=500>
                     </div>
+                    <ul>
+                        <li>No preemption in NMI, hardirq, softirq context</li>
+                    </ul>
                 </section>
             </section>
 
@@ -290,7 +358,8 @@
                     <div class="half-part">
                         <h3>What we've Covered</h3>
                         <ul>
-                            <li>User-Space
+                            <li>Linux Advantage</li>
+                            <li>User-Space:
                                 <ul>
                                     <li><code>SCHED_FIFO</code>/<code>SCHED_RR</code></li>
                                     <li><code>PTHREAD_PRIO_INHERIT</code></li>
@@ -298,19 +367,20 @@
                             </li>
                             <li>Kernel-Space: <code>PREEMPT_RT</code>
                                 <ul>
-                                    <li>sleep-locks instead of spinlocks</li>
-                                    <li>threaded irq handlers</li>
+                                    <li><code>rt_mutex</code> instead of <code>raw_spinlock_t</code></li>
+                                    <li>Threaded irq handlers</li>
                                 </ul>
                             </li>
-                            <li>Linux Advantage</li>
                         </ul>
                     </div>
                     <div class="half-part">
                         <h3>What we've Left Out</h3>
                         <ul>
                             <li>User-Space Memory handling</li>
-                            <li>Hardware considerations</li>
+                            <li>Hardware considerations: e.g. SMI, ARM Cortex-R</li>
+                            <li>Benchmarking: e.g. Cyclictest</li>
                             <li>Linux Limitations: mainly provability</li>
+                            <li>Linux/PREEMPT_RT alternatives</li>
                         </ul>
                     </div>
                 </section>
