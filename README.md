@@ -15,3 +15,7 @@ Personal Presentations for [My Homepage](https://chris-besch.com).
 
 - Benjamin Hackl:
     - [Uppsala University CI/CD reveal.js theme](https://benjamin-hackl.at/downloads/talks/2021-10-07-manimworkshop/dist/behackl-manim.css)
+
+```bash
+sudo docker run --net host --rm -t -v `pwd`:/slides ghcr.io/astefanutti/decktape http://127.0.0.1:8080/2025_06_30_rt_on_linux 2025_06_30_rt_on_linux.pdf
+```
