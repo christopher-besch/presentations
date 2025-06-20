@@ -325,6 +325,8 @@
                             <p><code>rt_mutex</code></p>
                         </div>
                         <ul>
+                            <li>In <code>PREEMPT_RT</code> <code>spinlock_t</code> and <code>rwlock_t</code> are
+                                sleeping locks</li>
                             <li>Higher overhead: many context switches</li>
                         </ul>
                     </div>
