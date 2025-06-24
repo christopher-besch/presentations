@@ -69,9 +69,9 @@
                         <h3>fast != deterministic</h3>
                         <ul>
                             <li>Classic Linux goal:<br />through-put, efficiency</li>
-                            <!-- <li>E.g. <code>SCHED_OTHER</code>, <code>PREEMPT_NONE</code></li> -->
+                            <!-- <li>E.g., <code>SCHED_OTHER</code>, <code>PREEMPT_NONE</code></li> -->
                             <li>Real-Time OS:<br />deterministically bounded worst case latency</li>
-                            <!-- <li>E.g. <code>SCHED_FIFO</code>, <code>PREEMPT_RT</code></li> -->
+                            <!-- <li>E.g., <code>SCHED_FIFO</code>, <code>PREEMPT_RT</code></li> -->
                         </ul>
 
                     </div>
@@ -189,7 +189,7 @@
                         <img src="./priority_inversion.png" width=700>
                         <ul>
                             <li>Medium prio task could run <b>very</b> long</li>
-                            <li>E.g. Mars Pathfinder</li>
+                            <li>E.g., Mars Pathfinder</li>
                         </ul>
                     </div>
                 </section>
@@ -198,7 +198,7 @@
                 <section>
                     <h3>Priority Inheritance</h3>
                     <pre>
-                        <code class="language-c" data-code="./priority_inheritance.c" data-line-numbers="75">
+                        <code class="language-c" data-code="./priority_inheritance.c" data-line-numbers="75,86-96">
                         </code>
                     </pre>
                 </section>
@@ -259,11 +259,17 @@
                     <h3>Scheduler Preemption Model</h3>
                     <div class="half-part">
                         <ul>
-                            <li><code>CONFIG_PREEMPT_NONE</code></li>
-                            <li><code>CONFIG_PREEMPT_VOLUNTARY</code></li>
-                            <li><code>CONFIG_PREEMPT</code></li>
-                            <li><code>CONFIG_PREEMPT_RT</code>
-                                <ul>Goal: fully preemptible kernel</ul>
+                            <li><code>CONFIG_PREEMPT_NONE</code><br />
+                                TODO
+                            </li>
+                            <li><code>CONFIG_PREEMPT_VOLUNTARY</code><br />
+                                TODO
+                            </li>
+                            <li><code>CONFIG_PREEMPT</code><br />
+                                TODO
+                            </li>
+                            <li><code>CONFIG_PREEMPT_RT</code><br />
+                                Goal: fully preemptible kernel
                             </li>
                         </ul>
                     </div>
@@ -277,7 +283,7 @@
                 <!-- <section> -->
                 <!--     <h3>When is the Kernel not Preemptible?</h3> -->
                 <!--     <ul> -->
-                <!--         <li><code>preempt_disable()</code> called (e.g. in spinlocks) — Solution: sleeping locks</li> -->
+                <!--         <li><code>preempt_disable()</code> called (e.g., in spinlocks) — Solution: sleeping locks</li> -->
                 <!--         <li>atomic (NMI, hardirq, softirq) context — forbidden preemption and blocking — Solution: -->
                 <!--             threaded -->
                 <!--             irq handlers</li> -->
@@ -287,6 +293,8 @@
             <section>
                 <section>
                     <h3><code>raw_spinlock_t</code></h3>
+                    (without <code>PREEMPT_RT</code>: used by <code>spinlock_t</code>)
+                    </h3>
                     <!-- <ul> -->
                     <!--     <li><code>spinlock_t</code></li> -->
                     <!--     <li><code>rwlock_t</code></li> -->
@@ -325,8 +333,8 @@
                             <p><code>rt_mutex</code></p>
                         </div>
                         <ul>
-                            <li>In <code>PREEMPT_RT</code> <code>spinlock_t</code> and <code>rwlock_t</code> are
-                                sleeping locks</li>
+                            <li><code>PREEMPT_RT</code> implements <code>spinlock_t</code> with <code>rt_mutex</code>
+                            </li>
                             <li>Higher overhead: many context switches</li>
                         </ul>
                     </div>
@@ -379,8 +387,8 @@
                         <h3>What we've Left Out</h3>
                         <ul>
                             <li>User-Space Memory handling</li>
-                            <li>Hardware considerations: e.g. SMI, ARM Cortex-R</li>
-                            <li>Benchmarking: e.g. Cyclictest</li>
+                            <li>Hardware considerations: e.g., SMI, ARM Cortex-R</li>
+                            <li>Benchmarking: e.g., Cyclictest</li>
                             <li>Linux Limitations: mainly provability</li>
                             <li>Linux/PREEMPT_RT alternatives</li>
                         </ul>
