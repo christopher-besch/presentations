@@ -68,8 +68,7 @@
                     <div class="half-part">
                         <h3>fast != deterministic</h3>
                         <ul>
-                            <!-- TODO: source https://shuhaowu.com/blog/2022/03-linux-rt-appdev-part3.html -->
-                            <li>Classic Linux goal:<br />through-put, efficiency</li>
+                            <li>Classic Linux goal:<br />through-put, efficiency [1]</li>
                             <!-- <li>E.g., <code>SCHED_OTHER</code>, <code>PREEMPT_NONE</code></li> -->
                             <li>Real-Time OS:<br />deterministically bounded worst case latency</li>
                             <!-- <li>E.g., <code>SCHED_FIFO</code>, <code>PREEMPT_RT</code></li> -->
@@ -101,8 +100,7 @@
             <section>
                 <section data-auto-animate data-background-image="./banner_steel.jpg">
                     <div class="half-part">
-                        <h1 style="color: white; margin-top: 100px;">User-Space: Real-Time POSIX.4</h1>
-                        <!-- TODO: sources: https://www.cs.unc.edu/~anderson/teach/comp790/papers/posix-rt.pdf -->
+                        <h1 style="color: white; margin-top: 100px;">User-Space: Real-Time POSIX.4 [2]</h1>
                     </div>
                     <div class="half-part">
                     </div>
@@ -139,8 +137,7 @@
                         <code class="language-c" data-code="./rt_scheduling.c" data-line-numbers="50-52,54,58">
                         </code>
                     </pre>
-                    <!-- TODO Source: https://www.man7.org/linux/man-pages/man7/sched.7.html -->
-                    <p>Requires root or high enough <code>rtprio</code> in <code>limits.conf</code></p>
+                    <p>Requires root or high enough <code>rtprio</code> in <code>limits.conf</code> [3]</p>
                 </section>
                 <section>
                     <h3>Output: <code>SCHED_FIFO</code>/<code>SCHED_RR</code></h3>
@@ -168,7 +165,7 @@
                             </ul>
                         </div>
                     </div>
-                    <!-- TODO Source: https://www.man7.org/linux/man-pages/man7/sched.7.html -->
+                    [3]
                 </section>
             </section>
 
@@ -182,8 +179,7 @@
                     </pre>
                 </section>
                 <section>
-                    <h3>Output: Priority Inversion</h3>
-                    <!-- TODO Source: https://linux.die.net/man/3/pthread_mutexattr_setprotocol -->
+                    <h3>Output: Priority Inversion [4]</h3>
                     <div class="half-part">
                         <pre>
                             <code class="language-txt" data-code="./priority_inversion_out.txt">
@@ -193,10 +189,8 @@
                     <div class="half-part">
                         <img src="./priority_inversion.png" width=700>
                         <ul>
-                            <!-- TODO Source: https://www.man7.org/linux/man-pages/man7/sched.7.html -->
-                            <li>Medium prio task could run <b>very</b> long</li>
-                            <!-- TODO: Source: https://www.cs.cornell.edu/courses/cs614/1999sp/papers/pathfinder.html -->
-                            <li>E.g., Mars Pathfinder</li>
+                            <li>Medium prio task could run <b>very</b> long [3]</li>
+                            <li>E.g., Mars Pathfinder [5]</li>
                         </ul>
                     </div>
                 </section>
@@ -210,8 +204,7 @@
                     </pre>
                 </section>
                 <section>
-                    <h3>Output: Priority Inheritance</h3>
-                    <!-- TODO Source: https://linux.die.net/man/3/pthread_mutexattr_setprotocol -->
+                    <h3>Output: Priority Inheritance [4]</h3>
                     <div class="half-part">
                         <pre>
                             <code class="language-txt" data-code="./priority_inheritance_out.txt">
@@ -221,8 +214,7 @@
                     <div class="half-part">
                         <img src="./priority_inheritance.png" width=700>
                         <ul>
-                            <!-- TODO source: https://www.kernel.org/doc/html/v6.13-rc5/locking/rt-mutex.html -->
-                            <li>Implemented with <code>rt_mutex</code></li>
+                            <li>Implemented with <code>rt_mutex</code> [6]</li>
                         </ul>
                     </div>
                 </section>
@@ -275,8 +267,7 @@
                     </div>
                 </section>
                 <section>
-                    <h3>Scheduler Preemption Model</h3>
-                    <!-- TODO Source: http://events17.linuxfoundation.org/sites/events/files/slides/ELC2017-%20Effectively%20Measure%20and%20Reduce%20Kernel%20Latencies%20for%20Real-time%20Constraints%20%281%29.pdf -->
+                    <h3>Scheduler Preemption Model [7]</h3>
                     <ul>
                         <li><code>CONFIG_PREEMPT_NONE</code>
                             <ul>
@@ -431,10 +422,8 @@
                         <img src="./threaded_irq.png" width=500>
                     </div>
                     <ul>
-                        <!-- TODO: source: https://bootlin.com/doc/training/preempt-rt/preempt-rt-slides.pdf -->
-                        <li>No preemption in NMI, hardirq, softirq context</li>
-                        <!-- TODO: source: http://events17.linuxfoundation.org/sites/events/files/slides/ELC2017-%20Effectively%20Measure%20and%20Reduce%20Kernel%20Latencies%20for%20Real-time%20Constraints%20%281%29.pdf -->
-                        <li>Threaded IRQ have RT prio 50 by default</li>
+                        <li>No preemption in NMI, hardirq, softirq context [8]</li>
+                        <li>Threaded IRQ have RT prio 50 by default [7]</li>
                     </ul>
                 </section>
             </section>
@@ -448,11 +437,10 @@
                 <!-- </section> -->
                 <section>
                     <h3>Hardware Considerations</h3>
-                    <!-- TODO: sources: https://shuhaowu.com/blog/2022/02-linux-rt-appdev-part2.html -->
                     <ul>
-                        <li>Simultaneous multithreading (SMT)</li>
-                        <li>Dynamic frequency scaling</li>
-                        <li>System management interrupts (SMI)</li>
+                        <li>Simultaneous multithreading (SMT) [1]</li>
+                        <li>Dynamic frequency scaling [1]</li>
+                        <li>System management interrupts (SMI) [1]</li>
                         <li>Much more...<br />e.g., ARM Cortex-R</li>
                     </ul>
                     <!-- https://shuhaowu.com/blog/2022/02-linux-rt-appdev-part2.html -->
@@ -490,7 +478,30 @@
                 <section>
                     <h3>Sources</h3>
                     <ul>
-                        <li></li>
+                        <li>[1] <a
+                                href="https://shuhaowu.com/blog/2022/03-linux-rt-appdev-part3.html">https://shuhaowu.com/blog/2022/03-linux-rt-appdev-part3.html</a>
+                        </li>
+                        <li>[2] <a
+                                href="https://www.cs.unc.edu/~anderson/teach/comp790/papers/posix-rt.pdf">https://www.cs.unc.edu/~anderson/teach/comp790/papers/posix-rt.pdf</a>
+                        </li>
+                        <li>[3] <a
+                                href="https://www.man7.org/linux/man-pages/man7/sched.7.html">https://www.man7.org/linux/man-pages/man7/sched.7.html</a>
+                        </li>
+                        <li>[4] <a
+                                href="https://linux.die.net/man/3/pthread_mutexattr_setprotocol">https://linux.die.net/man/3/pthread_mutexattr_setprotocol</a>
+                        </li>
+                        <li>[5] <a
+                                href="https://www.cs.cornell.edu/courses/cs614/1999sp/papers/pathfinder.html">https://www.cs.cornell.edu/courses/cs614/1999sp/papers/pathfinder.html</a>
+                        </li>
+                        <li>[6] <a
+                                href="https://www.kernel.org/doc/html/v6.13-rc5/locking/rt-mutex.html">https://www.kernel.org/doc/html/v6.13-rc5/locking/rt-mutex.html</a>
+                        </li>
+                        <li>[7] <a
+                                href="http://events17.linuxfoundation.org/sites/events/files/slides/ELC2017-%20Effectively%20Measure%20and%20Reduce%20Kernel%20Latencies%20for%20Real-time%20Constraints%20%281%29.pdf">http://events17.linuxfoundation.org/sites/events/files/slides/ELC2017-%20Effectively%20Measure%20and%20Reduce%20Kernel%20Latencies%20for%20Real-time%20Constraints%20%281%29.pdf</a>
+                        </li>
+                        <li>[8] <a
+                                href="https://bootlin.com/doc/training/preempt-rt/preempt-rt-slides.pdf">https://bootlin.com/doc/training/preempt-rt/preempt-rt-slides.pdf</a>
+                        </li>
                     </ul>
                 </section>
             </section>
