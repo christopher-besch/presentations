@@ -132,15 +132,16 @@
             </section>
             <section>
                 <section>
-                    <h3>Real-Time: <code>SCHED_FIFO</code></h3>
+                    <h3>Real-Time: <code>SCHED_FIFO</code>/<code>SCHED_RR</code></h3>
                     <pre>
                         <code class="language-c" data-code="./rt_scheduling.c" data-line-numbers="50-52,54,58">
                         </code>
                     </pre>
+                    <!-- TODO Source: https://www.man7.org/linux/man-pages/man7/sched.7.html -->
                     <p>Requires root or high enough <code>rtprio</code> in <code>limits.conf</code></p>
                 </section>
                 <section>
-                    <h3>Output: <code>SCHED_FIFO</code></h3>
+                    <h3>Output: <code>SCHED_FIFO</code>/<code>SCHED_RR</code></h3>
                     <div class="half-part">
                         <pre>
                             <code class="language-txt" data-code="./rt_scheduling_out.txt">
@@ -152,7 +153,7 @@
                     </div>
                     <div class="fragment">
                         <div class="half-part">
-                            <img src="./prios.png" width=500>
+                            <img src="./prios.png" width=600>
                         </div>
                         <div class="half-part">
                             <ul>
@@ -165,6 +166,7 @@
                             </ul>
                         </div>
                     </div>
+                    <!-- TODO Source: https://www.man7.org/linux/man-pages/man7/sched.7.html -->
                 </section>
             </section>
 
@@ -179,6 +181,7 @@
                 </section>
                 <section>
                     <h3>Output: Priority Inversion</h3>
+                    <!-- TODO Source: https://linux.die.net/man/3/pthread_mutexattr_setprotocol -->
                     <div class="half-part">
                         <pre>
                             <code class="language-txt" data-code="./priority_inversion_out.txt">
@@ -188,7 +191,9 @@
                     <div class="half-part">
                         <img src="./priority_inversion.png" width=700>
                         <ul>
+                            <!-- TODO Source: https://www.man7.org/linux/man-pages/man7/sched.7.html -->
                             <li>Medium prio task could run <b>very</b> long</li>
+                            <!-- TODO: Source: https://www.cs.cornell.edu/courses/cs614/1999sp/papers/pathfinder.html -->
                             <li>E.g., Mars Pathfinder</li>
                         </ul>
                     </div>
@@ -204,6 +209,7 @@
                 </section>
                 <section>
                     <h3>Output: Priority Inheritance</h3>
+                    <!-- TODO Source: https://linux.die.net/man/3/pthread_mutexattr_setprotocol -->
                     <div class="half-part">
                         <pre>
                             <code class="language-txt" data-code="./priority_inheritance_out.txt">
@@ -232,12 +238,12 @@
                 <!--         <h1 style="color: white; margin-top: 160px;">Now on Linux</h1> -->
                 <!--         <p>What we'll look at</p> -->
                 <!--         <div> -->
-                <!--             <h2 style="color: white;">Kernel-Space:<br /> -->
+                <!--             <h3 style="color: white;">Kernel-Space:<br /> -->
                 <!--                 <div data-id="preempt_rt">PREEMPT_RT</div> -->
-                <!--             </h2> -->
+                <!--             </h3> -->
                 <!--         </div> -->
                 <!--         <div style="margin-top: 40px;"> -->
-                <!--             <h2 style="color: white;">User-Space:<br />RT POSIX</h2> -->
+                <!--             <h3 style="color: white;">User-Space:<br />RT POSIX</h3> -->
                 <!--         </div> -->
                 <!--     </div> -->
                 <!--     <div class="half-part"> -->
@@ -257,27 +263,35 @@
                 <!-- </section> -->
                 <section>
                     <h3>Scheduler Preemption Model</h3>
-                    <div class="half-part">
-                        <ul>
-                            <li><code>CONFIG_PREEMPT_NONE</code><br />
-                                TODO
-                            </li>
-                            <li><code>CONFIG_PREEMPT_VOLUNTARY</code><br />
-                                TODO
-                            </li>
-                            <li><code>CONFIG_PREEMPT</code><br />
-                                TODO
-                            </li>
-                            <li><code>CONFIG_PREEMPT_RT</code><br />
-                                Goal: fully preemptible kernel
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="half-part">
-                        <div class="image">
-                            <img src="./preemption_model_config.png" width=700>
-                            <p>Kernel Config</p>
-                        </div>
+                    <!-- TODO Source: http://events17.linuxfoundation.org/sites/events/files/slides/ELC2017-%20Effectively%20Measure%20and%20Reduce%20Kernel%20Latencies%20for%20Real-time%20Constraints%20%281%29.pdf -->
+                    <ul>
+                        <li><code>CONFIG_PREEMPT_NONE</code>
+                            <ul>
+                                <li>No preemption in kernel (except entering userspace)</li>
+                            </ul>
+                        </li>
+                        <li><code>CONFIG_PREEMPT_VOLUNTARY</code>
+                            <ul>
+                                <li><code>might_sleep</code> in kernel</li>
+                            </ul>
+                        </li>
+                        <li><code>CONFIG_PREEMPT</code>
+                            <ul>
+                                <li>kernel preemptible unless preemption disabled</li>
+                            </ul>
+                        </li>
+                        <li><code>CONFIG_PREEMPT_RT</code>
+                            <ul>
+                                <li>fully preemptible unless in <code>raw_spinlock_t</code> or IRQ</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Scheduler Preemption Model</h3>
+                    <div class="image">
+                        <img src="./preemption_model_config.png" width=700>
+                        <p>Kernel Config</p>
                     </div>
                 </section>
                 <!-- <section> -->
@@ -293,8 +307,7 @@
             <section>
                 <section>
                     <h3><code>raw_spinlock_t</code></h3>
-                    (without <code>PREEMPT_RT</code>: used by <code>spinlock_t</code>)
-                    </h3>
+                    <!-- (without <code>PREEMPT_RT</code>: used by <code>spinlock_t</code>) -->
                     <!-- <ul> -->
                     <!--     <li><code>spinlock_t</code></li> -->
                     <!--     <li><code>rwlock_t</code></li> -->
@@ -316,6 +329,7 @@
                 </section>
                 <section>
                     <div class="half-part">
+                        <!-- TODO: sources -->
                         <h3>Why disable preemption?</h3>
                         <div class="image">
                             <img src="./raw_spinlock.png" width=600>
@@ -333,11 +347,41 @@
                             <p><code>rt_mutex</code></p>
                         </div>
                         <ul>
-                            <li><code>PREEMPT_RT</code> implements <code>spinlock_t</code> with <code>rt_mutex</code>
-                            </li>
+                            <!-- <li><code>PREEMPT_RT</code> implements <code>spinlock_t</code> with -->
+                            <!--     <code>rt_mutex_base</code> -->
+                            <!-- </li> -->
                             <li>Higher overhead: many context switches</li>
                         </ul>
                     </div>
+                </section>
+                <section>
+                    <h3>When <code>spinlock_t</code> doesn't spin</h3>
+                    <div class="image">
+                        <pre>
+                            <code class="language-c" data-code="./spinlock_t.c" data-line-numbers="2,4-7,9-10"
+                                data-ln-start-from="303">
+                            </code>
+                        </pre>
+                        <p><a
+                                href="https://elixir.bootlin.com/linux/v6.15.3/source/include/linux/spinlock.h#L303">include/linux/spinlock.h</a>
+                        </p>
+                    </div>
+                    <div class="image">
+                        <pre>
+                            <code class="language-c" data-code="./spinlock_rt.h" data-line-numbers="1-4"
+                                data-ln-start-from="42">
+                            </code>
+                        </pre>
+                        <p><a
+                                href="https://elixir.bootlin.com/linux/v6.15.3/source/include/linux/spinlock_rt.h#L42">include/linux/spinlock_rt.h</a>
+                        </p>
+                    </div>
+
+                    <!-- https://elixir.bootlin.com/linux/v6.15.3/source/include/linux/spinlock_types.h#L16 -->
+
+                    <!-- https://elixir.bootlin.com/linux/v6.15.3/source/include/linux/spinlock.h#L349 -->
+                    <!-- https://elixir.bootlin.com/linux/v6.15.3/source/include/linux/spinlock.h#L454 -->
+                    <!-- https://elixir.bootlin.com/linux/v6.15.3/source/include/linux/spinlock_rt.h#L42 -->
                 </section>
             </section>
             <section>
@@ -351,18 +395,32 @@
                         <img src="./threaded_irq.png" width=500>
                     </div>
                     <ul>
+                        <!-- TODO: source: https://bootlin.com/doc/training/preempt-rt/preempt-rt-slides.pdf -->
                         <li>No preemption in NMI, hardirq, softirq context</li>
+                        <!-- TODO: source: http://events17.linuxfoundation.org/sites/events/files/slides/ELC2017-%20Effectively%20Measure%20and%20Reduce%20Kernel%20Latencies%20for%20Real-time%20Constraints%20%281%29.pdf -->
+                        <li>Threaded IRQ have RT prio 50 by default</li>
                     </ul>
                 </section>
             </section>
 
             <section>
                 <!-- <section> -->
-                <!--     <h2>Comparison to Other RTOSes</h2> -->
+                <!--     <h3>Comparison to Other RTOSes</h3> -->
                 <!-- </section> -->
                 <!-- <section> -->
-                <!--     <h2>Real-Time on Linux Uses</h2> -->
+                <!--     <h3>Real-Time on Linux Uses</h3> -->
                 <!-- </section> -->
+                <section>
+                    <h3>Hardware Considerations</h3>
+                    <!-- TODO: sources: https://shuhaowu.com/blog/2022/02-linux-rt-appdev-part2.html -->
+                    <ul>
+                        <li>Simultaneous multithreading (SMT)</li>
+                        <li>Dynamic frequency scaling</li>
+                        <li>System management interrupts (SMI)</li>
+                        <li>Much more...<br />e.g., ARM Cortex-R</li>
+                    </ul>
+                    <!-- https://shuhaowu.com/blog/2022/02-linux-rt-appdev-part2.html -->
+                </section>
 
                 <section>
                     <div class="half-part">
@@ -387,12 +445,17 @@
                         <h3>What we've Left Out</h3>
                         <ul>
                             <li>User-Space Memory handling</li>
-                            <li>Hardware considerations: e.g., SMI, ARM Cortex-R</li>
                             <li>Benchmarking: e.g., Cyclictest</li>
                             <li>Linux Limitations: mainly provability</li>
-                            <li>Linux/PREEMPT_RT alternatives</li>
+                            <li>Linux/PREEMPT_RT alternatives<br />e.g., VxWorks</li>
                         </ul>
                     </div>
+                </section>
+                <section>
+                    <h3>Sources</h3>
+                    <ul>
+                        <li></li>
+                    </ul>
                 </section>
             </section>
         </div>
