@@ -68,7 +68,10 @@
                     <div class="half-part">
                         <h3>fast != deterministic</h3>
                         <ul>
-                            <li>Classic Linux goal:<br />through-put, efficiency [1]</li>
+                            <li>Classic Linux goal:<br />
+                                through-put, efficiency [1]<br />
+                                possibly unbounded latency [3]
+                            </li>
                             <!-- <li>E.g., <code>SCHED_OTHER</code>, <code>PREEMPT_NONE</code></li> -->
                             <li>Real-Time OS:<br />deterministically bounded worst case latency</li>
                             <!-- <li>E.g., <code>SCHED_FIFO</code>, <code>PREEMPT_RT</code></li> -->
@@ -85,7 +88,7 @@
                                 <ul>
                                     <li>High prio: bus management</li>
                                     <li>Medium prio: long-running communications</li>
-                                    <li>Low prio: meteorological data gathering</li>
+                                    <li>Low prio: meteorological data gathering (needs bus)</li>
                                 </ul>
                             </li>
                             <li class="fragment" data-fragment-index="2">Marketing wants <span
@@ -147,7 +150,7 @@
                     <p>Requires root or high enough <code>rtprio</code> in <code>limits.conf</code> [3]</p>
                 </section>
                 <section>
-                    <h3>Output: <code>SCHED_FIFO</code>/<code>SCHED_RR</code></h3>
+                    <h3>Output: <code>SCHED_FIFO</code>/<code>SCHED_RR</code> [3]</h3>
                     <div class="half-part">
                         <pre>
                             <code class="language-txt" data-code="./rt_scheduling_out.txt">
@@ -172,7 +175,6 @@
                             </ul>
                         </div>
                     </div>
-                    [3]
                 </section>
             </section>
 
@@ -345,7 +347,7 @@
                         </div>
                     </div>
                     <div class="half-part fragment">
-                        <h3>PREEMPT_RT Solution</h3>
+                        <h3>PREEMPT_RT Solution [6]</h3>
                         <div class="image" style="margin-left: 50px;">
                             <img src="./rt_mutex.png" width=600>
                             <p><code>rt_mutex</code></p>
@@ -354,7 +356,7 @@
                             <!-- <li><code>PREEMPT_RT</code> implements <code>spinlock_t</code> with -->
                             <!--     <code>rt_mutex_base</code> -->
                             <!-- </li> -->
-                            <li>Higher overhead:
+                            <li>Lower throughput:
                                 <ul>
                                     <li>many context switches</li>
                                     <li>mutex slow for short critical sections</li>
@@ -424,7 +426,7 @@
                         <h3>Interrupts Request Handler (IRQ)</h3>
                         <img src="./irq.png" width=500>
                     </div>
-                    <div class="half-part fragment">
+                    <div class="half-part">
                         <h3>Threaded IRQ</h3>
                         <img src="./threaded_irq.png" width=500>
                     </div>
@@ -445,9 +447,9 @@
                 <section>
                     <h3>Hardware Considerations</h3>
                     <ul>
+                        <li>System management interrupts (SMI) [1]</li>
                         <li>Simultaneous multithreading (SMT) [1]</li>
                         <li>Dynamic frequency scaling [1]</li>
-                        <li>System management interrupts (SMI) [1]</li>
                         <li>Much more...<br />e.g., ARM Cortex-R</li>
                     </ul>
                     <!-- https://shuhaowu.com/blog/2022/02-linux-rt-appdev-part2.html -->
@@ -482,31 +484,62 @@
                         </ul>
                     </div>
                 </section>
+            </section>
+
+            <section>
                 <section>
                     <h3>Sources</h3>
                     <ul>
-                        <li>[1] <a
+                        <li>[1] S. Wu, Real-time programming with Linux.
+                            [Online]. Available
+                            <a
                                 href="https://shuhaowu.com/blog/2022/03-linux-rt-appdev-part3.html">https://shuhaowu.com/blog/2022/03-linux-rt-appdev-part3.html</a>
                         </li>
-                        <li>[2] <a
+                        <li>[2] M. G. Harbour, REAL-TIME POSIX: AN OVERVIEW.
+                            [Online]. Available
+                            <a
                                 href="https://www.cs.unc.edu/~anderson/teach/comp790/papers/posix-rt.pdf">https://www.cs.unc.edu/~anderson/teach/comp790/papers/posix-rt.pdf</a>
                         </li>
-                        <li>[3] <a
+                        <li>[3] sched(7) - overview of CPU scheduling.
+                            [man page]. Available
+                            <a
                                 href="https://www.man7.org/linux/man-pages/man7/sched.7.html">https://www.man7.org/linux/man-pages/man7/sched.7.html</a>
                         </li>
-                        <li>[4] <a
+                        <li>[4] pthread_mutexattr_setprotocol(3).
+                            [man page]. Available
+                            <a
                                 href="https://linux.die.net/man/3/pthread_mutexattr_setprotocol">https://linux.die.net/man/3/pthread_mutexattr_setprotocol</a>
                         </li>
-                        <li>[5] <a
+                    </ul>
+                </section>
+                <section>
+                    <h3>Sources</h3>
+                    <ul>
+                        <li>[5] M. Jones, What really happened on Mars Rover Pathfinder.
+                            [Online]. Available
+                            <a
                                 href="https://www.cs.cornell.edu/courses/cs614/1999sp/papers/pathfinder.html">https://www.cs.cornell.edu/courses/cs614/1999sp/papers/pathfinder.html</a>
                         </li>
-                        <li>[6] <a
+                        <li>[6] kernel development community, RT-mutex subsystem with PI support.
+                            [Online]. Available
+                            <a
                                 href="https://www.kernel.org/doc/html/v6.13-rc5/locking/rt-mutex.html">https://www.kernel.org/doc/html/v6.13-rc5/locking/rt-mutex.html</a>
                         </li>
-                        <li>[7] <a
+                        <li>[7] J. Huang, C. Yang, Effectively Measure and Reduce Kernel Latencies for Real-time
+                            Constraints.
+                            [Embedded Linux Conference 2017]. Available
+                            <a
                                 href="http://events17.linuxfoundation.org/sites/events/files/slides/ELC2017-%20Effectively%20Measure%20and%20Reduce%20Kernel%20Latencies%20for%20Real-time%20Constraints%20%281%29.pdf">http://events17.linuxfoundation.org/sites/events/files/slides/ELC2017-%20Effectively%20Measure%20and%20Reduce%20Kernel%20Latencies%20for%20Real-time%20Constraints%20%281%29.pdf</a>
                         </li>
-                        <li>[8] <a
+                    </ul>
+                </section>
+                <section>
+                    <h3>Sources</h3>
+                    <ul>
+                        <li>[8] Bootlin, Understanding Linux real-time with PREEMPT_RT training.
+                            Constraints.
+                            [Online]. Available
+                            <a
                                 href="https://bootlin.com/doc/training/preempt-rt/preempt-rt-slides.pdf">https://bootlin.com/doc/training/preempt-rt/preempt-rt-slides.pdf</a>
                         </li>
                     </ul>
