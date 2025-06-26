@@ -72,27 +72,34 @@
                             <!-- <li>E.g., <code>SCHED_OTHER</code>, <code>PREEMPT_NONE</code></li> -->
                             <li>Real-Time OS:<br />deterministically bounded worst case latency</li>
                             <!-- <li>E.g., <code>SCHED_FIFO</code>, <code>PREEMPT_RT</code></li> -->
+                            <li>Linux with <code>PREEMPT_RT</code>:<br />support real-time tasks,<br />not terrible
+                                throughput for
+                                everything else</li>
                         </ul>
 
                     </div>
                     <div class="half-part fragment" data-fragment-index="1">
-                        <h3>Let's Build a Spaceprobe!</h3>
+                        <h3>Let's Build a Spacecraft!</h3>
                         <ul>
-                            <li>Requirements:
+                            <li>Real-Time Tasks:
                                 <ul>
-                                    <li>ACS: Real-Time</li>
-                                    <li class="fragment" data-fragment-index="2">Marketing wants <span
-                                            class="rainbow-text">AI</span>: LLM needs throughput</li>
+                                    <li>High prio: bus management</li>
+                                    <li>Medium prio: long-running communications</li>
+                                    <li>Low prio: meteorological data gathering</li>
                                 </ul>
                             </li>
-                            <li class="fragment" data-fragment-index="2">Options:
-                                <ol>
-                                    <li>Multiple Computers:<br />one GPOS, one Real-Time OS</li>
-                                    <li>Linux with <code>PREEMPT_RT</code></li>
-                                    <li>...</li>
-                                </ol>
-                            </li>
+                            <li class="fragment" data-fragment-index="2">Marketing wants <span
+                                    class="rainbow-text">AI</span>: LLM needs throughput</li>
+                            <!-- <li class="fragment" data-fragment-index="2">Call it "Mars Pathfinder" -->
+                            <!-- </li> -->
                         </ul>
+                        <!-- <li class="fragment" data-fragment-index="2">Options: -->
+                        <!--     <ol> -->
+                        <!--         <li>Multiple Computers:<br />one GPOS, one Real-Time OS</li> -->
+                        <!--         <li>Linux with <code>PREEMPT_RT</code></li> -->
+                        <!--         <li>...</li> -->
+                        <!--     </ol> -->
+                        <!-- </li> -->
                     </div>
                 </section>
             </section>
@@ -450,7 +457,7 @@
                     <div class="half-part">
                         <h3>What we've Covered</h3>
                         <ul>
-                            <li>Linux Advantage</li>
+                            <!-- <li>Linux Advantage</li> -->
                             <li>User-Space:
                                 <ul>
                                     <li><code>SCHED_FIFO</code>/<code>SCHED_RR</code></li>
