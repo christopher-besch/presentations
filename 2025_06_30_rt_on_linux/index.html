@@ -1,0 +1,598 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Real-Time on Linux</title>
+    <meta name="description" content="Real-Time on Linux">
+    <meta name="author" content="Christopher Besch">
+
+    <link rel="stylesheet" href="../dist/reset.css">
+    <link rel="stylesheet" href="../dist/reveal.css">
+    <link rel="stylesheet" href="../dist/theme/custom_white.css">
+
+    <!-- code highlighting theme -->
+    <link rel="stylesheet" href="../static/oceanicnext.css">
+
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <div class="header-left">
+                Real-Time on Linux
+            </div>
+            <div class="header-right">
+                <em>Christopher Besch</em> &bullet;
+                30th June 2024
+            </div>
+            <section>
+                <section data-state="titleslide" data-background-image="./banner_train.jpg"
+                    data-background-opacity="1.0">
+                    <!-- this is quite the hack, I should have used flexbox... -->
+                    <div class="half-part">
+                        <div style="visibility: hidden;">
+                            .
+                        </div>
+                    </div>
+                    <div class="half-part">
+                        <h1 style="color: white; margin-top: 4vh;">Real-Time on Linux</h1>
+                    </div>
+                </section>
+            </section>
+
+            <section>
+                <section>
+                    <h3>What's Real-Time?</h3>
+                    <div class="half-part">
+                        <div class="image">
+                            <video loop data-autoplay width=700 src="./RST_Thrusters_CP_Shot_1080.mp4"></video>
+                            <p>Nancy Grace Roman Space Telescope's<br />ACS (Attitude Control System)</p>
+                        </div>
+                    </div>
+                    <div class="half-part">
+                        <ul>
+                            <li>Correct output</li>
+                            <li>Within deadline</li>
+                        </ul>
+                        <img src="./delay.png" width=400>
+                        <p class="fragment">So Real-Time means really fast...right?</p>
+                    </div>
+                </section>
+
+                <section>
+                    <!-- <h3>Actually: Deterministically Bounded Worst Case</h3> -->
+                    <div class="half-part">
+                        <h3>fast != deterministic</h3>
+                        <ul>
+                            <li>Classic Linux goal:<br />
+                                through-put, efficiency [1]<br />
+                                possibly unbounded latency [3]
+                            </li>
+                            <!-- <li>E.g., <code>SCHED_OTHER</code>, <code>PREEMPT_NONE</code></li> -->
+                            <li>Real-Time OS:<br />deterministically bounded worst case latency</li>
+                            <!-- <li>E.g., <code>SCHED_FIFO</code>, <code>PREEMPT_RT</code></li> -->
+                            <li>Linux with <code>PREEMPT_RT</code>:<br />support real-time tasks,<br />not terrible
+                                throughput for
+                                everything else</li>
+                        </ul>
+
+                    </div>
+                    <div class="half-part fragment" data-fragment-index="1">
+                        <h3>Example Application:<br />Mars Pathfinder</h3>
+                        <ul>
+                            <li>Real-Time Tasks:
+                                <ul>
+                                    <li>High prio: bus management</li>
+                                    <li>Medium prio: long-running communications</li>
+                                    <li>Low prio: meteorological data gathering (needs bus)</li>
+                                </ul>
+                            </li>
+                            <!-- <li class="fragment" data-fragment-index="2">Marketing wants <span -->
+                            <!--         class="rainbow-text">AI</span>: LLM needs throughput</li> -->
+                            <!-- <li class="fragment" data-fragment-index="2">Call it "Mars Pathfinder" -->
+                            <!-- </li> -->
+                        </ul>
+                        <!-- <li class="fragment" data-fragment-index="2">Options: -->
+                        <!--     <ol> -->
+                        <!--         <li>Multiple Computers:<br />one GPOS, one Real-Time OS</li> -->
+                        <!--         <li>Linux with <code>PREEMPT_RT</code></li> -->
+                        <!--         <li>...</li> -->
+                        <!--     </ol> -->
+                        <!-- </li> -->
+                    </div>
+                </section>
+            </section>
+
+            <section>
+                <section data-auto-animate data-background-image="./banner_steel.jpg">
+                    <div class="half-part">
+                        <h1 style="color: white; margin-top: 100px;">User-Space: Real-Time POSIX.4 [2]</h1>
+                    </div>
+                    <div class="half-part">
+                    </div>
+                </section>
+
+                <section>
+                    <h3>Default: <code>SCHED_OTHER</code></h3>
+                    <pre>
+                        <code class="language-c" data-code="./normal_scheduling.c"
+                            data-line-numbers="20-25,32-39,50-51">
+                        </code>
+                    </pre>
+                </section>
+                <section>
+                    <h3>Output: <code>SCHED_OTHER</code></h3>
+                    <div class="half-part">
+                        <pre>
+                            <code class="language-txt" data-code="./normal_scheduling_out.txt">
+                            </code>
+                        </pre>
+                    </div>
+                    <div class="half-part">
+                        <img src="./sched_other.png" width=700>
+                    </div>
+                    <ul>
+                        <li>Waste time on "low" prio task</li>
+                    </ul>
+                </section>
+            </section>
+            <section>
+                <section>
+                    <h3>Real-Time: <code>SCHED_FIFO</code>/<code>SCHED_RR</code></h3>
+                    <pre>
+                        <code class="language-c" data-code="./rt_scheduling.c" data-line-numbers="50-52,54,58">
+                        </code>
+                    </pre>
+                    <p>Requires root or high enough <code>rtprio</code> in <code>limits.conf</code> [3]</p>
+                </section>
+                <section>
+                    <h3>Output: <code>SCHED_FIFO</code>/<code>SCHED_RR</code> [3]</h3>
+                    <div class="half-part">
+                        <pre>
+                            <code class="language-txt" data-code="./rt_scheduling_out.txt">
+                            </code>
+                        </pre>
+                    </div>
+                    <div class="half-part">
+                        <img src="./sched_fifo.png" width=700>
+                    </div>
+                    <div class="fragment">
+                        <div class="half-part">
+                            <img src="./prios.png" width=600>
+                        </div>
+                        <div class="half-part">
+                            <ul>
+                                <li>Focus on high prio task</li>
+                                <li>Danger: lock up CPU with high prio task
+                                    <ul>
+                                        <li>Consider RT throttling</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+            </section>
+
+            <section>
+                <section>
+                    <h3>Priority Inversion</h3>
+                    <pre>
+                        <code class="language-c" data-code="./priority_inversion.c"
+                            data-line-numbers="22-34,41-49,57-65,84-94">
+                        </code>
+                    </pre>
+                </section>
+                <section>
+                    <h3>Output: Priority Inversion [4]</h3>
+                    <div class="half-part">
+                        <pre>
+                            <code class="language-txt" data-code="./priority_inversion_out.txt">
+                            </code>
+                        </pre>
+                    </div>
+                    <div class="half-part">
+                        <img src="./priority_inversion.png" width=700>
+                        <ul>
+                            <li>Medium prio task could run <b>very</b> long [3]</li>
+                            <li>Real problem for Mars Pathfinder [5]</li>
+                        </ul>
+                    </div>
+                </section>
+            </section>
+            <section>
+                <section>
+                    <h3>Priority Inheritance</h3>
+                    <pre>
+                        <code class="language-c" data-code="./priority_inheritance.c" data-line-numbers="75">
+                        </code>
+                    </pre>
+                </section>
+                <section>
+                    <h3>Output: Priority Inheritance [4]</h3>
+                    <div class="half-part">
+                        <pre>
+                            <code class="language-txt" data-code="./priority_inheritance_out.txt">
+                            </code>
+                        </pre>
+                    </div>
+                    <div class="half-part">
+                        <img src="./priority_inheritance.png" width=700>
+                        <ul>
+                            <li>Implemented with <code>rt_mutex</code> [6]</li>
+                        </ul>
+                    </div>
+                </section>
+            </section>
+
+
+            <section>
+                <section data-auto-animate data-background-image="./banner_field.jpg">
+                    <div class="half-part">
+                        <h1 style="color: white; margin-top: 120px;">Kernel-Space: PREEMPT_RT</h1>
+                    </div>
+                    <div class="half-part">
+                    </div>
+                </section>
+
+                <!-- <section data-auto-animate data-background-image="./banner_field.jpg"> -->
+                <!--     <div class="half-part"> -->
+                <!--         <h1>Real-Time on Linux</h1> -->
+                <!--         <h1 style="color: white; margin-top: 160px;">Now on Linux</h1> -->
+                <!--         <p>What we'll look at</p> -->
+                <!--         <div> -->
+                <!--             <h3 style="color: white;">Kernel-Space:<br /> -->
+                <!--                 <div data-id="preempt_rt">PREEMPT_RT</div> -->
+                <!--             </h3> -->
+                <!--         </div> -->
+                <!--         <div style="margin-top: 40px;"> -->
+                <!--             <h3 style="color: white;">User-Space:<br />RT POSIX</h3> -->
+                <!--         </div> -->
+                <!--     </div> -->
+                <!--     <div class="half-part"> -->
+                <!--     </div> -->
+                <!-- </section> -->
+                <!-- <section data-auto-animate> -->
+                <!--     <h3> -->
+                <!--         <div data-id="preempt_rt">PREEMPT_RT</div> -->
+                <!--     </h3> -->
+                <!--     <ul> -->
+                <!--         <li>Patch-set merged to v6.12 in Sep 24</li> -->
+                <!--         <li>Introduces new scheduler preemption model: PREEMPT_RT</li> -->
+                <!--     </ul> -->
+                <!-- </section> -->
+                <!-- <section> -->
+                <!--     <h3>What's Preemption?</h3> -->
+                <!-- </section> -->
+                <section>
+                    <h3>Scheduler Preemption Model</h3>
+                    <div class="image">
+                        <img src="./preemption_model_config.png" width=700>
+                        <p>Kernel Config</p>
+                    </div>
+                </section>
+                <section>
+                    <h3>Scheduler Preemption Model [7]</h3>
+                    <ul>
+                        <li><code>CONFIG_PREEMPT_NONE</code>
+                            <ul>
+                                <li>No preemption in kernel (except entering userspace)</li>
+                            </ul>
+                        </li>
+                        <li><code>CONFIG_PREEMPT_VOLUNTARY</code>
+                            <ul>
+                                <li><code>might_sleep</code> in kernel</li>
+                            </ul>
+                        </li>
+                        <li><code>CONFIG_PREEMPT</code>
+                            <ul>
+                                <li>kernel preemptible unless preemption disabled</li>
+                            </ul>
+                        </li>
+                        <li><code>CONFIG_PREEMPT_RT</code>
+                            <ul>
+                                <li>fully preemptible unless in <code>raw_spinlock_t</code> or IRQ</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </section>
+                <!-- <section> -->
+                <!--     <h3>When is the Kernel not Preemptible?</h3> -->
+                <!--     <ul> -->
+                <!--         <li><code>preempt_disable()</code> called (e.g., in spinlocks) — Solution: sleeping locks</li> -->
+                <!--         <li>atomic (NMI, hardirq, softirq) context — forbidden preemption and blocking — Solution: -->
+                <!--             threaded -->
+                <!--             irq handlers</li> -->
+                <!--     </ul> -->
+                <!-- </section> -->
+            </section>
+            <section>
+                <section>
+                    <h3><code>raw_spinlock_t</code></h3>
+                    <!-- (without <code>PREEMPT_RT</code>: used by <code>spinlock_t</code>) -->
+                    <!-- <ul> -->
+                    <!--     <li><code>spinlock_t</code></li> -->
+                    <!--     <li><code>rwlock_t</code></li> -->
+                    <!--     <li><code>raw_spinlock_t</code></li> -->
+                    <!-- </ul> -->
+
+
+                    <div class="image">
+                        <pre>
+                            <code class="language-c" data-code="./raw_spinlock.c" data-line-numbers="1,3,10,14"
+                                data-ln-start-from="130">
+                            </code>
+                        </pre>
+                        <p><a
+                                href="https://elixir.bootlin.com/linux/v6.15.2/source/include/linux/spinlock_api_smp.h#L130">include/linux/spinlock_api_smp.h</a>
+                        </p>
+                    </div>
+
+                </section>
+                <section>
+                    <div class="half-part">
+                        <!-- TODO: sources -->
+                        <h3>Why disable preemption?</h3>
+                        <div class="image">
+                            <img src="./raw_spinlock.png" width=600>
+                            <p><code>raw_spinlock_t</code></p>
+                        </div>
+                        <div class="image fragment">
+                            <img src="./spinlock_with_preempt.png" width=600>
+                            <p><code>raw_spinlock_t</code> without <code>preempt_disable</code></p>
+                        </div>
+                    </div>
+                    <div class="half-part fragment">
+                        <h3>PREEMPT_RT Solution [6]</h3>
+                        <div class="image" style="margin-left: 50px;">
+                            <img src="./rt_mutex.png" width=600>
+                            <p><code>rt_mutex</code></p>
+                        </div>
+                        <ul>
+                            <!-- <li><code>PREEMPT_RT</code> implements <code>spinlock_t</code> with -->
+                            <!--     <code>rt_mutex_base</code> -->
+                            <!-- </li> -->
+                            <li>Lower throughput:
+                                <ul>
+                                    <li>many context switches</li>
+                                    <li>mutex slow for short critical sections</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+                <section>
+                    <h3>When <code>spinlock_t</code> doesn't spin</h3>
+                    <!-- <div class="image"> -->
+                    <!--     <pre> -->
+                    <!--         <code class="language-c" data-code="./spinlock_t.c" data-line-numbers="2,4-7,9-10" -->
+                    <!--             data-ln-start-from="303"> -->
+                    <!--         </code> -->
+                    <!--     </pre> -->
+                    <!--     <p><a -->
+                    <!--             href="https://elixir.bootlin.com/linux/v6.15.3/source/include/linux/spinlock.h#L303">include/linux/spinlock.h</a> -->
+                    <!--     </p> -->
+                    <!-- </div> -->
+                    <!-- <div class="image"> -->
+                    <!--     <pre> -->
+                    <!--         <code class="language-c" data-code="./spinlock_rt.h" data-line-numbers="1-4" -->
+                    <!--             data-ln-start-from="42"> -->
+                    <!--         </code> -->
+                    <!--     </pre> -->
+                    <!--     <p><a -->
+                    <!--             href="https://elixir.bootlin.com/linux/v6.15.3/source/include/linux/spinlock_rt.h#L42">include/linux/spinlock_rt.h</a> -->
+                    <!--     </p> -->
+                    <!-- </div> -->
+
+                    <div class="half-part">
+                        <div class="image">
+                            <pre>
+                                <code class="language-c" data-code="./spinlock_types.h" data-line-numbers="3-9,14-17"
+                                    style="" data-ln-start-from="14">
+                                </code>
+                            </pre>
+                            <p><a
+                                    href="https://elixir.bootlin.com/linux/v6.15.3/source/include/linux/spinlock_types.h#L14">include/linux/spinlock_types.h</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="half-part">
+                        <div class="image">
+                            <pre>
+                                <code class="language-c" data-code="./rtmutex.h" data-line-numbers="1-5,8-11" style=""
+                                    data-ln-start-from="23">
+                                </code>
+                            </pre>
+                            <p><a
+                                    href="https://elixir.bootlin.com/linux/v6.15.3/source/include/linux/rtmutex.h#L23">include/linux/rtmutex.h</a>
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- https://elixir.bootlin.com/linux/v6.15.3/source/include/linux/spinlock_types.h#L16 -->
+
+                    <!-- https://elixir.bootlin.com/linux/v6.15.3/source/include/linux/spinlock.h#L349 -->
+                    <!-- https://elixir.bootlin.com/linux/v6.15.3/source/include/linux/spinlock.h#L454 -->
+                    <!-- https://elixir.bootlin.com/linux/v6.15.3/source/include/linux/spinlock_rt.h#L42 -->
+                </section>
+            </section>
+            <section>
+                <section>
+                    <div class="half-part">
+                        <h3>Interrupts Request Handler (IRQ)</h3>
+                        <img src="./irq.png" width=500>
+                    </div>
+                    <div class="half-part">
+                        <h3>Threaded IRQ</h3>
+                        <img src="./threaded_irq.png" width=500>
+                    </div>
+                    <ul>
+                        <li>No preemption in NMI, hardirq, softirq context [8]</li>
+                        <li>Threaded IRQ have RT prio 50 by default [7]</li>
+                    </ul>
+                </section>
+            </section>
+
+            <section>
+                <!-- <section> -->
+                <!--     <h3>Comparison to Other RTOSes</h3> -->
+                <!-- </section> -->
+                <!-- <section> -->
+                <!--     <h3>Real-Time on Linux Uses</h3> -->
+                <!-- </section> -->
+                <section>
+                    <h3>Hardware Considerations</h3>
+                    <ul>
+                        <li>System management interrupts (SMI) [1]</li>
+                        <li>Simultaneous multithreading (SMT) [1]</li>
+                        <li>Dynamic frequency scaling [1]</li>
+                        <li>Much more...<br />e.g., ARM Cortex-R</li>
+                    </ul>
+                    <!-- https://shuhaowu.com/blog/2022/02-linux-rt-appdev-part2.html -->
+                </section>
+
+                <section>
+                    <div class="half-part">
+                        <h3>What we've Covered</h3>
+                        <ul>
+                            <!-- <li>Linux Advantage</li> -->
+                            <li>User-Space:
+                                <ul>
+                                    <li><code>SCHED_FIFO</code>/<code>SCHED_RR</code></li>
+                                    <li><code>PTHREAD_PRIO_INHERIT</code></li>
+                                </ul>
+                            </li>
+                            <li>Kernel-Space: <code>PREEMPT_RT</code>
+                                <ul>
+                                    <li><code>rt_mutex</code> instead of <code>raw_spinlock_t</code></li>
+                                    <li>Threaded irq handlers</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="half-part">
+                        <h3>What we've Left Out</h3>
+                        <ul>
+                            <li>User-Space Memory handling</li>
+                            <li>Benchmarking: e.g., Cyclictest</li>
+                            <li>Linux Limitations: mainly provability</li>
+                            <li>Linux/PREEMPT_RT alternatives<br />e.g., VxWorks (actually used by Mars Pathfinder [5])
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+            </section>
+
+            <section>
+                <section>
+                    <h3>Sources</h3>
+                    <ul>
+                        <li>[1] S. Wu, Real-time programming with Linux.
+                            [Online]. Available
+                            <a
+                                href="https://shuhaowu.com/blog/2022/03-linux-rt-appdev-part3.html">https://shuhaowu.com/blog/2022/03-linux-rt-appdev-part3.html</a>
+                        </li>
+                        <li>[2] M. G. Harbour, REAL-TIME POSIX: AN OVERVIEW.
+                            [Online]. Available
+                            <a
+                                href="https://www.cs.unc.edu/~anderson/teach/comp790/papers/posix-rt.pdf">https://www.cs.unc.edu/~anderson/teach/comp790/papers/posix-rt.pdf</a>
+                        </li>
+                        <li>[3] sched(7) - overview of CPU scheduling.
+                            [man page]. Available
+                            <a
+                                href="https://www.man7.org/linux/man-pages/man7/sched.7.html">https://www.man7.org/linux/man-pages/man7/sched.7.html</a>
+                        </li>
+                        <li>[4] pthread_mutexattr_setprotocol(3).
+                            [man page]. Available
+                            <a
+                                href="https://linux.die.net/man/3/pthread_mutexattr_setprotocol">https://linux.die.net/man/3/pthread_mutexattr_setprotocol</a>
+                        </li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Sources</h3>
+                    <ul>
+                        <li>[5] M. Jones, What really happened on Mars Rover Pathfinder.
+                            [Online]. Available
+                            <a
+                                href="https://www.cs.cornell.edu/courses/cs614/1999sp/papers/pathfinder.html">https://www.cs.cornell.edu/courses/cs614/1999sp/papers/pathfinder.html</a>
+                        </li>
+                        <li>[6] kernel development community, RT-mutex subsystem with PI support.
+                            [Online]. Available
+                            <a
+                                href="https://www.kernel.org/doc/html/v6.13-rc5/locking/rt-mutex.html">https://www.kernel.org/doc/html/v6.13-rc5/locking/rt-mutex.html</a>
+                        </li>
+                        <li>[7] J. Huang, C. Yang, Effectively Measure and Reduce Kernel Latencies for Real-time
+                            Constraints.
+                            [Embedded Linux Conference 2017]. Available
+                            <a
+                                href="http://events17.linuxfoundation.org/sites/events/files/slides/ELC2017-%20Effectively%20Measure%20and%20Reduce%20Kernel%20Latencies%20for%20Real-time%20Constraints%20%281%29.pdf">http://events17.linuxfoundation.org/sites/events/files/slides/ELC2017-%20Effectively%20Measure%20and%20Reduce%20Kernel%20Latencies%20for%20Real-time%20Constraints%20%281%29.pdf</a>
+                        </li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Sources</h3>
+                    <ul>
+                        <li>[8] Bootlin, Understanding Linux real-time with PREEMPT_RT training.
+                            Constraints.
+                            [Online]. Available
+                            <a
+                                href="https://bootlin.com/doc/training/preempt-rt/preempt-rt-slides.pdf">https://bootlin.com/doc/training/preempt-rt/preempt-rt-slides.pdf</a>
+                        </li>
+                    </ul>
+                </section>
+            </section>
+        </div>
+    </div>
+
+    <script src="../vendor/external_code/externalcode.js"></script>
+    <script src="../dist/reveal.js"></script>
+    <script src="../plugin/notes/notes.js"></script>
+    <script src="../plugin/markdown/markdown.js"></script>
+    <script src="../plugin/highlight/highlight.js"></script>
+    <script src="../plugin/math/math.js"></script>
+    <script>
+        Reveal.initialize({
+            controls: true,
+            controlsTutorial: false,
+            progress: false,
+            slideNumber: "c/t",
+            hashOneBasedIndex: false,
+            hash: true,
+            navigationMode: "linear",
+            embedded: false,
+            showNotes: false,
+            transition: "slide",
+            transitionSpeed: "default",
+            backgroundTransition: "fade",
+            pdfSeparateFragments: true,
+            autoAnimateDuration: 0.4,
+
+            margin: 0.04,
+            width: 1280,
+            height: 720,
+
+            katex: {
+                local: "../dwn_vendor/katex",
+                trust: true,
+                // needed for colouring
+                strict: false,
+            },
+            plugins: [
+                // needs to be before highlighting
+                Externalcode,
+                RevealMarkdown,
+                RevealHighlight,
+                RevealNotes,
+                RevealMath.KaTeX,
+            ],
+            scrollActivationWidth: null,
+        });
+    </script>
+</body>
+
+</html>
