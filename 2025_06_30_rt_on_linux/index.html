@@ -58,7 +58,7 @@
                             <li>Correct output</li>
                             <li>Within deadline</li>
                         </ul>
-                        <img src="./delay.png" width=400>
+                        <img src="./delay.png" width=600>
                         <p class="fragment">So Real-Time means really fast...right?</p>
                     </div>
                 </section>
@@ -75,6 +75,7 @@
                             <!-- <li>E.g., <code>SCHED_OTHER</code>, <code>PREEMPT_NONE</code></li> -->
                             <li>Real-Time OS:<br />deterministically bounded worst case latency</li>
                             <!-- <li>E.g., <code>SCHED_FIFO</code>, <code>PREEMPT_RT</code></li> -->
+                            <!-- TODO: is this true? is this false for rt? -->
                             <li>Linux with <code>PREEMPT_RT</code>:<br />support real-time tasks,<br />not terrible
                                 throughput for
                                 everything else</li>
@@ -391,7 +392,7 @@
                     <div class="half-part">
                         <div class="image">
                             <pre>
-                                <code class="language-c" data-code="./spinlock_types.h" data-line-numbers="3-9,14-17"
+                                <code class="language-c" data-code="./spinlock_types.h" data-line-numbers="3-9,13-16"
                                     style="" data-ln-start-from="14">
                                 </code>
                             </pre>
@@ -526,17 +527,17 @@
                             <a
                                 href="https://www.kernel.org/doc/html/v6.13-rc5/locking/rt-mutex.html">https://www.kernel.org/doc/html/v6.13-rc5/locking/rt-mutex.html</a>
                         </li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Sources</h3>
+                    <ul>
                         <li>[7] J. Huang, C. Yang, Effectively Measure and Reduce Kernel Latencies for Real-time
                             Constraints.
                             [Embedded Linux Conference 2017]. Available
                             <a
                                 href="http://events17.linuxfoundation.org/sites/events/files/slides/ELC2017-%20Effectively%20Measure%20and%20Reduce%20Kernel%20Latencies%20for%20Real-time%20Constraints%20%281%29.pdf">http://events17.linuxfoundation.org/sites/events/files/slides/ELC2017-%20Effectively%20Measure%20and%20Reduce%20Kernel%20Latencies%20for%20Real-time%20Constraints%20%281%29.pdf</a>
                         </li>
-                    </ul>
-                </section>
-                <section>
-                    <h3>Sources</h3>
-                    <ul>
                         <li>[8] Bootlin, Understanding Linux real-time with PREEMPT_RT training.
                             Constraints.
                             [Online]. Available
