@@ -75,15 +75,13 @@
                             <!-- <li>E.g., <code>SCHED_OTHER</code>, <code>PREEMPT_NONE</code></li> -->
                             <li>Real-Time OS:<br />deterministically bounded worst case latency</li>
                             <!-- <li>E.g., <code>SCHED_FIFO</code>, <code>PREEMPT_RT</code></li> -->
-                            <!-- TODO: is this true? is this false for rt? -->
-                            <li>Linux with <code>PREEMPT_RT</code>:<br />support real-time tasks,<br />not terrible
-                                throughput for
-                                everything else</li>
+                            <li>Linux with <code>PREEMPT_RT</code>:<br />no unbounded latency [8],<br />some throughput
+                                degradation [9]</li>
                         </ul>
 
                     </div>
                     <div class="half-part fragment" data-fragment-index="1">
-                        <h3>Example Application:<br />Mars Pathfinder</h3>
+                        <h3>Example Application:<br />Mars Pathfinder [5]</h3>
                         <ul>
                             <li>Real-Time Tasks:
                                 <ul>
@@ -336,7 +334,6 @@
                 </section>
                 <section>
                     <div class="half-part">
-                        <!-- TODO: sources -->
                         <h3>Why disable preemption?</h3>
                         <div class="image">
                             <img src="./raw_spinlock.png" width=600>
@@ -479,6 +476,9 @@
                         <h3>What we've Left Out</h3>
                         <ul>
                             <li>User-Space Memory handling</li>
+                            <li>Setting up PREEMPT_RT<br />See: <a
+                                    href="https://chris-besch.com/articles/riscv_rt">chris-besch.com/articles/riscv_rt</a>
+                            </li>
                             <li>Benchmarking: e.g., Cyclictest</li>
                             <li>Linux Limitations: mainly provability</li>
                             <li>Linux/PREEMPT_RT alternatives<br />e.g., VxWorks (actually used by Mars Pathfinder [5])
@@ -543,6 +543,19 @@
                             [Online]. Available
                             <a
                                 href="https://bootlin.com/doc/training/preempt-rt/preempt-rt-slides.pdf">https://bootlin.com/doc/training/preempt-rt/preempt-rt-slides.pdf</a>
+                        </li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Sources</h3>
+                    <ul>
+                        <li>[9] N. Litayem, S. B. Saoud, Impact of the Linux Real-time Enhancements on the System
+                            Performances for Multi-core
+                            Intel Architectures
+                            Constraints.
+                            [International Journal of Computer Applications]. Available
+                            <a
+                                href="https://www.researchgate.net/profile/Nabil-Litayem/publication/252243132_Impact_of_the_Linux_Real-time_Enhancements_on_the_System_Performances_for_Multi-core_Intel_Architectures/links/54cb35ca0cf2517b756151dd/Impact-of-the-Linux-Real-time-Enhancements-on-the-System-Performances-for-Multi-core-Intel-Architectures.pdf">https://www.researchgate.net/profile/Nabil-Litayem/publication/252243132_Impact_of_the_Linux_Real-time_Enhancements_on_the_System_Performances_for_Multi-core_Intel_Architectures/links/54cb35ca0cf2517b756151dd/Impact-of-the-Linux-Real-time-Enhancements-on-the-System-Performances-for-Multi-core-Intel-Architectures.pdf</a>
                         </li>
                     </ul>
                 </section>
