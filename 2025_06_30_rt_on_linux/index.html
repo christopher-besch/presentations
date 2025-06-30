@@ -59,50 +59,62 @@
                             <li>Within deadline</li>
                         </ul>
                         <img src="./delay.png" width=600>
-                        <p class="fragment">So Real-Time means really fast...right?</p>
                     </div>
                 </section>
 
                 <section>
-                    <!-- <h3>Actually: Deterministically Bounded Worst Case</h3> -->
                     <div class="half-part">
+                        <p style="margin-top: 300px;">So Real-Time means really fast...right?</p>
+                    </div>
+                    <!-- <h3>Actually: Deterministically Bounded Worst Case</h3> -->
+                    <div class="half-part fragment">
                         <h3>fast != deterministic</h3>
                         <ul>
-                            <li>Classic Linux goal:<br />
-                                through-put, efficiency [1]<br />
-                                possibly unbounded latency [3]
-                            </li>
-                            <!-- <li>E.g., <code>SCHED_OTHER</code>, <code>PREEMPT_NONE</code></li> -->
-                            <li>Real-Time OS:<br />deterministically bounded worst case latency</li>
-                            <!-- <li>E.g., <code>SCHED_FIFO</code>, <code>PREEMPT_RT</code></li> -->
-                            <li>Linux with <code>PREEMPT_RT</code>:<br />no unbounded latency [8],<br />some throughput
-                                degradation [9]</li>
-                        </ul>
-
-                    </div>
-                    <div class="half-part fragment" data-fragment-index="1">
-                        <h3>Example Application:<br />Mars Pathfinder [5]</h3>
-                        <ul>
-                            <li>Real-Time Tasks:
+                            <li>Classic Linux goal:
                                 <ul>
-                                    <li>High prio: bus management</li>
-                                    <li>Medium prio: long-running communications</li>
-                                    <li>Low prio: meteorological data gathering (needs bus)</li>
+                                    <li>through-put, efficiency [1]</li>
+                                    <li>possibly unbounded latency [3]</li>
                                 </ul>
                             </li>
-                            <!-- <li class="fragment" data-fragment-index="2">Marketing wants <span -->
-                            <!--         class="rainbow-text">AI</span>: LLM needs throughput</li> -->
-                            <!-- <li class="fragment" data-fragment-index="2">Call it "Mars Pathfinder" -->
-                            <!-- </li> -->
+                            <!-- <li>E.g., <code>SCHED_OTHER</code>, <code>PREEMPT_NONE</code></li> -->
+                            <li>Real-Time OS:
+                                <ul>
+                                    <li>deterministically bounded worst case latency</li>
+                                </ul>
+                            </li>
+                            <!-- <li>E.g., <code>SCHED_FIFO</code>, <code>PREEMPT_RT</code></li> -->
+                            <li>Linux with <code>PREEMPT_RT</code>:
+                                <ul>
+                                    <li>no unbounded latency [8]</li>
+                                    <li>some throughput degradation [9]</li>
+                                </ul>
+                            </li>
                         </ul>
-                        <!-- <li class="fragment" data-fragment-index="2">Options: -->
-                        <!--     <ol> -->
-                        <!--         <li>Multiple Computers:<br />one GPOS, one Real-Time OS</li> -->
-                        <!--         <li>Linux with <code>PREEMPT_RT</code></li> -->
-                        <!--         <li>...</li> -->
-                        <!--     </ol> -->
-                        <!-- </li> -->
                     </div>
+
+                    <!-- <div class="half-part fragment" data-fragment-index="1"> -->
+                    <!--     <h3>Example Application:<br />Mars Pathfinder [5]</h3> -->
+                    <!--     <ul> -->
+                    <!--         <li>Real-Time Tasks: -->
+                    <!--             <ul> -->
+                    <!--                 <li>High prio: bus management</li> -->
+                    <!--                 <li>Medium prio: long-running communications</li> -->
+                    <!--                 <li>Low prio: meteorological data gathering (needs bus)</li> -->
+                    <!--             </ul> -->
+                    <!--         </li> -->
+                    <!-- <li class="fragment" data-fragment-index="2">Marketing wants <span -->
+                    <!--         class="rainbow-text">AI</span>: LLM needs throughput</li> -->
+                    <!-- <li class="fragment" data-fragment-index="2">Call it "Mars Pathfinder" -->
+                    <!-- </li> -->
+                    <!-- </ul> -->
+                    <!-- <li class="fragment" data-fragment-index="2">Options: -->
+                    <!--     <ol> -->
+                    <!--         <li>Multiple Computers:<br />one GPOS, one Real-Time OS</li> -->
+                    <!--         <li>Linux with <code>PREEMPT_RT</code></li> -->
+                    <!--         <li>...</li> -->
+                    <!--     </ol> -->
+                    <!-- </li> -->
+                    <!-- </div> -->
                 </section>
             </section>
 
