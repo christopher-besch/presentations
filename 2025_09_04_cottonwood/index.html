@@ -1,0 +1,193 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Real-Time on Linux</title>
+    <meta name="description" content="Real-Time on Linux">
+    <meta name="author" content="Christopher Besch">
+
+    <link rel="stylesheet" href="../dist/reset.css">
+    <link rel="stylesheet" href="../dist/reveal.css">
+    <link rel="stylesheet" href="../dist/theme/custom_white.css">
+
+    <!-- code highlighting theme -->
+    <link rel="stylesheet" href="../static/oceanicnext.css">
+
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <div class="header-left">
+                Real-Time on Linux
+            </div>
+            <div class="header-right">
+                <em>Christopher Besch</em> &bullet;
+                30th June 2024
+            </div>
+            <section>
+                <section data-state="titleslide" data-background-image="./banner_train.jpg"
+                    data-background-opacity="1.0">
+                    <!-- this is quite the hack, I should have used flexbox... -->
+                    <div class="half-part">
+                        <div style="visibility: hidden;">
+                            .
+                        </div>
+                    </div>
+                    <!-- Chris -->
+                    <div class="half-part">
+                        <h1 style="color: white; margin-top: 4vh;">Cottonwood</h1>
+                    </div>
+                </section>
+            </section>
+
+            <section>
+                <!-- 3min -->
+                <section>
+                    <!-- 1.5min -->
+                    <!-- Chris -->
+                    <h1>Methodologies</h1>
+                    <ul>
+                        <li>everything safe</li>
+                        <li>many, many tests; debug_asserts</li>
+                        <li>choose efficient data structure and architecture before implementation</li>
+                        <li>fulfil tests as soon as possible</li>
+                        <li>leave other optimizations for later</li>
+                    </ul>
+                </section>
+                <section>
+                    <!-- 1min -->
+                    <!-- Fabian -->
+                    <h1>Architecture Structure</h1>
+                    <!-- DrawIO or something else -->
+                </section>
+                <section>
+                    <!-- 0.5min -->
+                    <!-- Thomas -->
+                    <h1>General Optimization Goals</h1>
+                    <ul>
+                        <li>no special optimizations; everything general</li>
+                        <li>no hardware optimizations; no time; other things more important</li>
+                    </ul>
+                </section>
+            </section>
+
+            <section>
+                <!-- 5min -->
+                <section>
+                    <!-- 1min -->
+                    <!-- Chris -->
+                    <h1>DFA</h1>
+                    <ul>
+                        <li>debug_asserts are for...</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <!-- 1.5min -->
+                    <!-- Chris -->
+                    <h1>Heuristic & Start Everwhere</h1>
+                    <!-- - examples -->
+                    <!-- - specific benchmarks -->
+                    <!-- - difficulties -->
+                </section>
+                <section>
+                    <!-- 1.5min -->
+                    <!-- Thomas -->
+                    <h1>DFA Squashing</h1>
+                    <!-- - examples -->
+                    <!-- - specific benchmarks -->
+                    <!-- - difficulties -->
+                </section>
+                <section>
+                    <!-- 1min -->
+                    <!-- Fabian  -->
+                    <h1>BFS</h1>
+                    <!-- - examples -->
+                    <!-- - specific benchmarks -->
+                    <!-- - difficulties -->
+                </section>
+            </section>
+
+            <section>
+                <!-- 2min -->
+                <!-- Leon -->
+                <section>
+                    <h1>Results</h1>
+                    <ul>
+                        <!-- compile time flags to disable squashing, bfs, heuristic -->
+                        <li>their benchmarks results</li>
+                        <li>memplus with <pre><code>()--></code></pre> benchmarks results</li>
+                        <li>custom benchmark results</li>
+                        <li></li>
+                    </ul>
+                </section>
+                <section>
+                    <h1>Lessons learned</h1>
+                    <ul>
+                        <li>Heuristics are hard</li>
+                        <li>Test-driven development sometimes (not always) very fast</li>
+                        <li>Rust difficult but
+                            <ul>
+                                <li>great tooling</li>
+                                <li>iterators cool</li>
+                                <li>no UB; easier debugging</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </section>
+            </section>
+        </div>
+    </div>
+
+    <script src="../vendor/external_code/externalcode.js"></script>
+    <script src="../dist/reveal.js"></script>
+    <script src="../plugin/notes/notes.js"></script>
+    <script src="../plugin/markdown/markdown.js"></script>
+    <script src="../plugin/highlight/highlight.js"></script>
+    <script src="../plugin/math/math.js"></script>
+    <script>
+        Reveal.initialize({
+            controls: true,
+            controlsTutorial: false,
+            progress: false,
+            slideNumber: "c/t",
+            hashOneBasedIndex: false,
+            hash: true,
+            navigationMode: "linear",
+            embedded: false,
+            showNotes: false,
+            transition: "slide",
+            transitionSpeed: "default",
+            backgroundTransition: "fade",
+            pdfSeparateFragments: true,
+            autoAnimateDuration: 0.4,
+
+            margin: 0.04,
+            width: 1280,
+            height: 720,
+
+            katex: {
+                local: "../dwn_vendor/katex",
+                trust: true,
+                // needed for colouring
+                strict: false,
+            },
+            plugins: [
+                // needs to be before highlighting
+                Externalcode,
+                RevealMarkdown,
+                RevealHighlight,
+                RevealNotes,
+                RevealMath.KaTeX,
+            ],
+            scrollActivationWidth: null,
+        });
+    </script>
+</body>
+
+</html>
