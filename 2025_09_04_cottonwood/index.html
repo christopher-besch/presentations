@@ -1,13 +1,13 @@
 <!doctype html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <title>Real-Time on Linux</title>
-    <meta name="description" content="Real-Time on Linux">
-    <meta name="author" content="Christopher Besch">
+    <title> Cottonwood Graph Query Engine</title>
+    <meta name="description" content=" Cottonwood Graph Query Engine">
+    <meta name="author" content="Christopher Besch, Fabian Tolksdorf, Leon Bruns, Thomas Hädicke">
 
     <link rel="stylesheet" href="../dist/reset.css">
     <link rel="stylesheet" href="../dist/reveal.css">
@@ -17,17 +17,21 @@
     <link rel="stylesheet" href="../static/oceanicnext.css">
 
     <link rel="stylesheet" href="./style.css">
+
+    <script src="libs/chartJS/chart.js"></script>
+    <script src="libs/chartjs-plugin-annotation/chartjs-plugin-annotation.min.js"></script>
+    <script src="benchCharts.js" type="module" ></script>
 </head>
 
 <body>
     <div class="reveal">
         <div class="slides">
             <div class="header-left">
-                Real-Time on Linux
+                Cottonwood Graph Query Engine
             </div>
             <div class="header-right">
-                <em>Christopher Besch</em> &bullet;
-                30th June 2024
+               <em>Christopher Besch, Fabian Tolksdorf, Leon Bruns, Thomas Hädicke</em>  &bullet;
+                4th September 2025
             </div>
             <section>
                 <section data-state="titleslide" data-background-image="./banner_train.jpg"
@@ -118,27 +122,40 @@
                 <!-- Leon -->
                 <section>
                     <h1>Results</h1>
-                    <ul>
-                        <!-- compile time flags to disable squashing, bfs, heuristic -->
-                        <li>their benchmarks results</li>
-                        <li>memplus with <pre><code>()--></code></pre> benchmarks results</li>
-                        <li>custom benchmark results</li>
-                        <li></li>
-                    </ul>
+                </section>
+                <section>
+                    Optimization Benchmarks
+                    <canvas id="optimizationsBench"></canvas>
+                    <aside class="notes">
+                        All optimizations are enabled by default.
+                    </aside>
+                </section>
+                <section>
+                    Custom Memeplus Benchmark
+                  <canvas id="customMemeplusBench"></canvas>  <!--ToDo-->
+                    <aside class="notes">
+                        memplus with added <pre><code>()--></code></pre>
+                    </aside>
                 </section>
                 <section>
                     <h1>Lessons learned</h1>
                     <ul>
-                        <li>Heuristics are hard</li>
-                        <li>Test-driven development sometimes (not always) very fast</li>
-                        <li>Rust difficult but
+                        <li class="fragment">designing accurate Heuristics is hard</li>
+                        <li class="fragment">Test-driven development can be fast</li>
+                        <li class="fragment">Rust Ownership is challenging but
                             <ul>
-                                <li>great tooling</li>
-                                <li>iterators cool</li>
-                                <li>no UB; easier debugging</li>
+                                <li class="fragment">Rust has great tooling</li>
+                                <li class="fragment">Iterators are cool</li>
+                                <li class="fragment">no UB; easier debugging</li>
                             </ul>
                         </li>
                     </ul>
+                    <aside class="notes">
+                        <ul>
+                            <li>Great tooling: Compiler Error Messages, Clippy, Rustfmt</li>
+                            <li>UB: Undefined Behavior, compared with C/C++</li>
+                        </ul>
+                    </aside>
                 </section>
             </section>
         </div>
@@ -182,7 +199,7 @@
                 Externalcode,
                 RevealMarkdown,
                 RevealHighlight,
-                RevealNotes,
+                RevealNotes,    //press S for speaker view
                 RevealMath.KaTeX,
             ],
             scrollActivationWidth: null,
