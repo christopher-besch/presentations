@@ -1,0 +1,89 @@
+@startuml architecture
+!theme mars
+skinparam ClassAttributeIconSize 0
+hide empty members
+
+package graph{
+	interface Graph
+	interface GraphBuilder{
+'		+ {abstract} build(): G
+	}
+
+	GraphBuilder -r-> Graph: creates >
+
+	class DefaultGraph implements Graph
+
+	class DefaultGraphBuilder implements GraphBuilder{
+'		+ build(): DefaultGraph
+	}
+
+	DefaultGraphBuilder -r-> DefaultGraph: creates >
+
+
+
+
+	class QueryHandler<G: Graph, BS: BitSet>
+
+	class BfsSolver<G: Graph, BS: BitSet>
+
+	class DfsSolver<G: Graph, BS: BitSet>
+
+	class SingleNodeQuerySolver<G: Graph>
+
+	QueryHandler --> Graph: works on >
+	BfsSolver --> Graph: works on >
+	DfsSolver --> Graph: works on >
+	SingleNodeQuerySolver --> Graph: works on >
+
+	QueryHandler --> BfsSolver: calls >
+	QueryHandler --> DfsSolver: calls >
+	QueryHandler --> SingleNodeQuerySolver: calls >
+}
+
+package input_output_engine{
+	interface InputOutputEngine
+
+	interface Tokenizer
+
+	class DefaultInputOutputEngine implements InputOutputEngine
+
+	class DefaultTokenizer implements Tokenizer
+
+	class QueryTokenizerIterator
+
+	class QueryRequestIterator
+
+	DefaultTokenizer --> QueryTokenizerIterator: returns >
+	DefaultInputOutputEngine --> QueryRequestIterator: returns >
+
+	DefaultInputOutputEngine -l-> DefaultTokenizer: relies on > 
+}
+
+package query_path{
+	class QueryPathDFA
+	class QueryPathDFABuilder{
+'		+ build(): QueryPathDFA
+	}
+
+	QueryPathDFABuilder -l-> QueryPathDFA: creates >
+}
+
+package types{
+	interface BitSet{
+		
+	}
+}
+
+class lib
+
+lib -u-> DefaultInputOutputEngine: fetches parsed queries >
+lib -d-> QueryHandler: relays the queries for execution >
+lib -u-> DefaultInputOutputEngine: ask to print results >
+
+QueryHandler -u-> BitSet: uses >
+BfsSolver -u-> BitSet: uses >
+DfsSolver -u-> BitSet: uses >
+
+DefaultInputOutputEngine -r-> QueryPathDFA: use per query > 	
+
+@enduml
