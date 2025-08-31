@@ -23,3 +23,8 @@
 ul {
     max-width: calc(100% - 42px);
 }
+
+.query{
+    font-family: 'Droid Sans Mono', 'monospace', monospace;
+    background-color: lightgray;
+}
