@@ -134,22 +134,36 @@
                     <!-- Thomas -->
                     <h1>DFA</h1>
                     <ul>
-                        <li>debug_asserts are for...</li>
+                        <code class="query">(A) [-B-&gt; (C)]{2,-} (C)</code>
+                        <img src="diagrams/dfa_short.png">
                     </ul>
+                </section>
+
+                <section>
+                    <!-- 1.5min -->
+                    <!-- Thomas -->
+                    <h1>DFA Squashing</h1>
+                        <code class="query">(A) [-B-&gt; (C)]{1,-} (C) [-B-&gt; (C)]{1,-} (C)</code>
+                        <img src="diagrams/dfa_long.png">
+                    <!-- - examples -->
+                    <!-- - specific benchmarks -->
+                    <!-- - difficulties -->
                 </section>
 
                 <section>
                     <!-- 1min -->
                     <!-- Thomas -->
                     <h1>Heuristic & Start Everwhere</h1>
-                    <!-- - examples -->
-                    <!-- - specific benchmarks -->
-                    <!-- - difficulties -->
-                </section>
-                <section>
-                    <!-- 1.5min -->
-                    <!-- Thomas -->
-                    <h1>DFA Squashing</h1>
+                        <code class="query">() --&gt;{1,-} () --&gt; <code class="fragment highlight-red">(A)</code> -B-&gt;{1,-} ()</code>
+                    <ul>
+                        <li class="fragment">Insight: Not all start positions equal</li>
+                        <ul>
+                            <li class="fragment">Idea: many restrictions at start</li>
+                            <li class="fragment">Approach: use request and labels</li>
+                            <li class="fragment">Restrictions: graph structure unkown</li>
+                        </ul>
+                        <li class="fragment">DFS uses startposition and turns arround</li>
+                    </ul>
                     <!-- - examples -->
                     <!-- - specific benchmarks -->
                     <!-- - difficulties -->
