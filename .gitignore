@@ -184,3 +184,5 @@ cottonwood_presentation.iml
 *.mtc1
 *.out
 *.synctex.gz
+
+*.autosave.xopp
