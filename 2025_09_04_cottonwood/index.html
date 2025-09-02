@@ -111,17 +111,15 @@
                 <section>
                     <!-- 1min -->
                     <!-- Fabian  -->
-                    <h1>BFS</h1>
+                    <h1>BFS <span class="fragment">– and when to use it</span></h1>
                     <!-- - examples -->
                     <!-- - specific benchmarks -->
                     <!-- - difficulties -->
-                    plain old BFS <span class="fragment">(more or less)</span>
-                    <h2>when to use</h2>
                     <ul>
                         <li class="fragment fade-in-then-semi-out"><code class="query">(A) -B-&gt; (C)</code></li>
+                        <li class="fragment"><code class="query">(A) -B-&gt;{1,7} (C)</code></li>
                         <li class="fragment"><code class="query">(A) -B-&gt;{1,-} (C)</code></li>
                         <li class="fragment"><code class="query">(A) [-B-&gt; (M)]{1,-} (C)</code></li>
-                        <li class="fragment"><code class="query">(A) [-B-&gt; (M)]{1,7} (C)</code></li>
                         <li class="fragment"><code class="query">... --&gt; (A) [-B-&gt; (M)]{1,-} (C)</code></li>
                         <li class="fragment">not: <code class="query">(A) -B-&gt;{3,-} (C)</code></li>
                     </ul>
