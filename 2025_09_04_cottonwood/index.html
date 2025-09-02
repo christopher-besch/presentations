@@ -34,17 +34,11 @@
                 4th September 2025
             </div>
             <section>
-                <section data-state="titleslide" data-background-image="./banner_train.jpg"
+                <section data-state="titleslide dark-background" data-background-image="./banner_water.jpg"
                     data-background-opacity="1.0">
-                    <!-- this is quite the hack, I should have used flexbox... -->
-                    <div class="half-part">
-                        <div style="visibility: hidden;">
-                            .
-                        </div>
-                    </div>
                     <!-- Chris -->
                     <div class="half-part">
-                        <h1 style="color: white; margin-top: 4vh;">Cottonwood</h1>
+                        <h1 style="color: white; margin-bottom: 7vh;">Cottonwood</h1>
                     </div>
                 </section>
             </section>
@@ -54,50 +48,82 @@
                 <section>
                     <!-- 1min -->
                     <!-- Chris -->
-                    <h1>Approach</h1>
+                    <h2>Management</h2>
                     <div class="half-part">
+                        <!-- <h4>Goals</h4> -->
                         <ul>
-                            <li>Working version in week 1</li>
-                            <li>Architecture to optimize on</li>
-                            <li>Get people to work ASAP</li>
+                            <!-- <li>Get people to work ASAP</li> -->
+                            <li>Week 1:
+                                <ol>
+                                    <li>Design application architecture</li>
+                                    <li>Define <span style="color: orange;">inter-team interfaces</span>
+                                        <!-- <ul> -->
+                                        <!--     <li>Work in team possible</li> -->
+                                        <!-- </ul> -->
+                                    </li>
+                                    <!-- </ol> -->
+                                    <!-- <h4>In Teams of 2</h4> -->
+                                    <!-- <ol> -->
+                                    <li>Define <span style="color: yellow;">intra-team interfaces</span>
+                                        <!-- <ul> -->
+                                        <!--     <li>Work alone possible</li> -->
+                                        <!-- </ul> -->
+                                    </li>
+                                    <li>Implement correctly</li>
+                                    <!-- <li>Interfaces first: quick divide and conquer</li> -->
+                                    <!-- <li>Separate build, use structs</li> -->
+                                </ol>
+                            </li>
+                            <li>Week 2-4: Optimize</li>
                         </ul>
                         <!-- <h4>All 4</h4> -->
-                        <ol>
-                            <li>Application Architecture</li>
-                            <li>Two teams of 2: IO and Algo</li>
-                            <li>Define orange interfaces between</li>
-                            <!-- </ol> -->
-                            <!-- <h4>In Teams of 2</h4> -->
-                            <!-- <ol> -->
-                            <li>Define yellow interfaces</li>
-                            <!-- <li>Interfaces first: quick divide and conquer</li> -->
-                            <!-- <li>Separate build, use structs</li> -->
-                        </ol>
+                        <!-- <h4>First Meeting</h4> -->
                     </div>
                     <div class="half-part">
+                        <!-- <h4>Two teams</h4> -->
                         <img src="diagrams/architecture_overview.png">
                     </div>
                 </section>
                 <section>
                     <!-- 1min -->
+                    <!-- Chris -->
+                    <h2>General Implementation Approach</h2>
+                    <div class="half-part">
+                        <ul>
+                            <li>Strong, simple, fix interfaces
+                                <ul>
+                                    <li>Independent development</li>
+                                    <li>Free to optimize implementation</li>
+                                </ul>
+                            </li>
+                            <!-- &#x2192; don't change -->
+                            <li>Tests, tests, tests!!!
+                                <ul>
+                                    <li>Rapid iteration</li>
+                                    <!-- <li>68 total tests</li> -->
+                                </ul>
+                            </li>
+                            <li><code>debug_assert</code>s invariances
+                                <ul>
+                                    <li>Bugs easier to find</li>
+                                </ul>
+                            </li>
+                            <li>No unsafe</li>
+                        </ul>
+                    </div>
+                    <div class="half-part">
+                        <ul>
+                            <li>Focus on general optimizations (not edge cases)</li>
+                            <li>No hardware-specific optimizations</li>
+                        </ul>
+                    </div>
+                </section>
+                <section>
+                    <!-- 1.5min -->
                     <!-- Fabian -->
                     <h1>Architecture Structure</h1>
                     <!-- DrawIO or something else -->
                     <img class="fragment" src="diagrams/architecture.svg" style="max-height: 50vh; max-width: 100vw;">
-                </section>
-                <section>
-                    <!-- 1.5min -->
-                    <!-- Chris -->
-                    <h1>General Optimization Goals</h1>
-                    <ul>
-                        <li>no special optimizations; everything general</li>
-                        <li>no hardware optimizations; no time; other things more important</li>
-                        <li>everything safe</li>
-                        <li>many, many tests; debug_asserts</li>
-                        <li>choose efficient data structure and architecture before implementation</li>
-                        <li>fulfil tests as soon as possible</li>
-                        <li>leave other optimizations for later</li>
-                    </ul>
                 </section>
             </section>
 
