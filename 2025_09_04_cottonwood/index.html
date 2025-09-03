@@ -97,18 +97,12 @@
                                 </ul>
                             </li>
                             <!-- &#x2192; don't change -->
-                            <li class="fragment" data-fragment-index="1">Tests, tests, tests!!!
+                            <li class="fragment" data-fragment-index="1">Tests, <code>debug_assert</code>s,<br />no unsafe
                                 <ul>
                                     <li>Rapid iteration</li>
-                                    <!-- <li>68 total tests</li> -->
-                                </ul>
-                            </li>
-                            <li class="fragment" data-fragment-index="1"><code>debug_assert</code>s invariances
-                                <ul>
                                     <li>Bugs easier to find</li>
                                 </ul>
                             </li>
-                            <li class="fragment" data-fragment-index="1">No unsafe</li>
                         </ul>
                     </div>
                     <div class="half-part">
@@ -118,12 +112,21 @@
                         </ul>
                     </div>
                 </section>
-                <section>
+                <section data-auto-animate data-auto-animate-restart>
                     <!-- 1.5min -->
                     <!-- Fabian -->
                     <h1>Architecture Structure</h1>
-                    <!-- DrawIO or something else -->
-                    <img class="fragment" src="diagrams/architecture.svg" style="max-height: 50vh; max-width: 100vw;">
+                    <div data-id="architecture_wrapper">
+                        <img src="diagrams/architecture.svg" style="max-height: 50vh; max-width: 100vw;">
+                    </div>
+                </section>
+                <section data-auto-animate>
+                    <!-- 1.5min -->
+                    <!-- Fabian -->
+                    <h1>Architecture Structure</h1>
+                    <div data-id="architecture_wrapper">
+                        <img src="diagrams/architectureSmall.svg" style="max-height: 50vh; max-width: 100vw;">
+                    </div>
                 </section>
             </section>
 
@@ -135,38 +138,56 @@
                     <h1>DFA</h1>
                     <code class="query">(A) [-B-&gt; (C)]{2,-} (D)</code><br>
                     <img src="diagrams/dfa_short_no_color.svg" style="width: 40vw; min-width: 1px;">
+                    <aside class="notes">
+                        Wie läuft DFS<br>
+                        Schwierigkeiten DFS<br>
+                        3 größten Optimierungen
+                    </aside>
                 </section>
 
                 <section data-transition="none">
                     <!-- 1.5min -->
                     <!-- Thomas -->
                     <h1>DFA Squashing</h1>
-                    <code class="query"> <span class="dfa1">(A)</span><span class="dfa2"> [-B-&gt; (C)]{1,-} (C) [-B-&gt; (C)]{1,-}</span> <span class="dfa3">(D)</span></code><br>
-                    <div class="fragment" data-fragment-index="1"><code class="query"><span class="dfa1">(A)</span><span class="dfa2"> [-B-&gt; (C)]{2,-} </span><span class="dfa3">(D)</span></code><br></div>
+                    <code
+                        class="query"> <span class="dfa1">(A)</span><span class="dfa2"> [-B-&gt; (C)]{1,-} (C) [-B-&gt; (C)]{1,-}</span> <span class="dfa3">(D)</span></code><br>
+                    <div class="fragment" data-fragment-index="1"><code
+                            class="query"><span class="dfa1">(A)</span><span class="dfa2"> [-B-&gt; (C)]{2,-} </span><span class="dfa3">(D)</span></code><br>
+                    </div>
                     <div class="r-stack">
                         <img class="fragment fade-out" data-fragment-index="1" src="diagrams/dfa_long.svg" style="width: 40vw; min-width: 1px;">
                         <img class="fragment" data-fragment-index="1" src="diagrams/dfa_short.svg" style="width: 40vw; min-width: 1px;">
-
                     </div>
+                    <aside class="notes">
+                        Squashing vor Solver<br>
+                        lineare Laufzeit<br>
+                    </aside>
                 </section>
                 <section>
                     <!-- Thomas -->
-                    <h1>DFA Squashing</h1>
-                    <code class="query"> <span class="dfa1">()</span><span class="dfa2"> [--&gt; (A)]{4,-} (A) --&gt; (A) [--&gt; (A)]{1,3} </span><span class="dfa3">()</span></code><br>
-                    <code class="query"> <span class="dfa1">()</span><span class="dfa2"> [--&gt; (A)]{6,-} </span><span class="dfa3">()</span></code><br>
-                    <br>
-                    <code class="query"> <span class="dfa1">()</span><span class="dfa2"> [--&gt; (A)]{1,3} (A) --&gt; (A) [--&gt; (A)]{4,-} </span><span class="dfa3">()</span></code><br>
-                    <code class="query"> <span class="dfa1">()</span><span class="dfa2"> [--&gt; (A)]{6,-} </span><span class="dfa3">()</span></code><br>
-                    <br>
-                    <code class="query"> <span class="dfa1">()</span><span class="dfa2"> [--&gt; ()]{4,-} () --&gt; () [--&gt; (A)]{1,3} </span><span class="dfa3">()</span></code><br>
-                    <code class="query"> <span class="dfa1">()</span><span class="dfa2"> [--&gt; ()]{6,-} </span><span class="dfa3">()</span></code><br>
+                    <!-- <h1>DFA Squashing</h1> -->
+                    <!-- <code class="query"> <span class="dfa1">()</span><span class="dfa2"> [--&gt; (A)]{4,-} (A) --&gt; (A) [--&gt; (A)]{1,3} </span><span class="dfa3">()</span></code><br> -->
+                    <!-- <code class="query"> <span class="dfa1">()</span><span class="dfa2"> [--&gt; (A)]{6,-} </span><span class="dfa3">()</span></code><br> -->
+                    <!-- <br> -->
+                    <!-- <code class="query"> <span class="dfa1">()</span><span class="dfa2"> [--&gt; (A)]{1,3} (A) --&gt; (A) [--&gt; (A)]{4,-} </span><span class="dfa3">()</span></code><br> -->
+                    <!-- <code class="query"> <span class="dfa1">()</span><span class="dfa2"> [--&gt; (A)]{6,-} </span><span class="dfa3">()</span></code><br> -->
+                    <!-- <br> -->
+                    <!-- <code class="query"> <span class="dfa1">()</span><span class="dfa2"> [--&gt; ()]{4,-} () --&gt; () [--&gt; (A)]{1,3} </span><span class="dfa3">()</span></code><br> -->
+                    <!-- <code class="query"> <span class="dfa1">()</span><span class="dfa2"> [--&gt; ()]{6,-} </span><span class="dfa3">()</span></code><br> -->
+
+                    <pre>
+                        <code class="language-rust" data-code="./cases.rs">
+                        </code>
+                    </pre>
                 </section>
 
                 <section>
                     <!-- 1min -->
                     <!-- Thomas -->
                     <h1>Heuristic & Start Everwhere</h1>
-                        <code class="query">() --&gt;{1,-} () --&gt; <code class="fragment highlight-red" data-fragment-index="1">(A)</code> -B-&gt;{1,-} ()</code>
+                    <code
+                        class="query">() --&gt;{1,-} () --&gt; <code class="fragment highlight-red" data-fragment-index="1">(A)</code>
+                    -B-&gt;{1,-} ()</code>
                     <ul>
                         <li class="fragment" data-fragment-index="1">Insight: Not all start positions equal</li>
                         <li class="fragment" data-fragment-index="1">Heuristic</li>
@@ -177,9 +198,10 @@
                         </ul>
                         <li class="fragment" data-fragment-index="5">DFS uses startposition and turns arround</li>
                     </ul>
-                    <!-- - examples -->
-                    <!-- - specific benchmarks -->
-                    <!-- - difficulties -->
+                    <aside class="notes">
+                        Warum wollen wir in der Mitte starten<br>
+                        Wir brauchen: Heuristic und DFS Implementation<br>
+                    </aside>
                 </section>
                 <section>
                     <!-- 1min -->

@@ -1,0 +1,41 @@
+@startuml architectureSmall
+!theme mars
+skinparam ClassAttributeIconSize 0
+hide empty members
+
+package input_output_engine{
+	interface InputOutputEngine
+
+	interface Tokenizer
+
+	class DefaultInputOutputEngine implements InputOutputEngine
+
+	class DefaultTokenizer implements Tokenizer
+
+	class QueryTokenizerIterator
+
+	class QueryRequestIterator
+
+	DefaultTokenizer --> QueryTokenizerIterator: returns >
+	DefaultInputOutputEngine --> QueryRequestIterator: returns >
+
+	DefaultInputOutputEngine -l-> DefaultTokenizer: relies on > 
+}
+
+package query_path{
+	class QueryPathDFA
+	class QueryPathDFABuilder{
+'		+ build(): QueryPathDFA
+	}
+
+	QueryPathDFABuilder -l-> QueryPathDFA: creates >
+}
+
+DefaultInputOutputEngine -r-> QueryPathDFA: use per query >
+DefaultInputOutputEngine -r-> QueryPathDFABuilder: setup per query >
+
+note as n1
+left out quite a lot of helper structs and traits
+end note
+
+@enduml
