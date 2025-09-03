@@ -125,6 +125,12 @@
                     <div data-id="architecture_wrapper">
                         <img src="diagrams/architectureSmall.svg" style="max-height: 50vh; max-width: 100vw;">
                     </div>
+                    <aside class="notes">
+                        <ul>
+                            <li>struct vs builder</li>
+                            <li>iterators for efficiency</li>
+                        </ul>
+                    </aside>
                 </section>
             </section>
 
@@ -214,14 +220,19 @@
                     <div class="larger-right-part">
                         <ul>
                             <li class="fragment" data-fragment-index="1"><code class="query">() --&gt;{1,-} ()</code></li>
-                            <li class="fragment">not: <code class="query">(A) -B-&gt;{3,-} (C)</code></li>
                             <li class="fragment"><code class="query">(A) -B-&gt;{1,-} (C)</code></li>
                             <li class="fragment"><code class="query">(A) -B-&gt;{1,7} (C)</code></li>
                             <li class="fragment"><code class="query">(A) [-B-&gt; (M)]{1,-} (C)</code></li>
                             <li class="fragment"><code class="query"><span style="color: darkcyan;">... --&gt;</span> (A) [-B-&gt; (M)]{1,-} (C)</code></li>
+                            <li class="fragment">not: <code class="query">(A) -B-&gt;{3,-} (C)</code></li>
                         </ul>
                     </div>
-                    
+                    <aside class="notes">
+                        <ul>
+                            <li>w/ distance: not all paths with dfs -&gt; maybe missed a shortest path</li>
+                            <li>nach backtracking nicht mehr bekannt, welche Knoten schonmal angeschaut wurden</li>
+                        </ul>
+                    </aside>
                 </section>
             </section>
 
