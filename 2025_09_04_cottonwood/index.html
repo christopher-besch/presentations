@@ -138,15 +138,20 @@
 
             <section>
                 <!-- 4.5min -->
-                <section>
+                <section data-transition="none">
                     <!-- 1min -->
                     <!-- Thomas -->
                     <h1>DFA</h1>
                     <code class="query">(A) [-B-&gt; (C)]{2,-} (D)</code><br>
                     <img src="diagrams/dfa_short_no_color.svg" style="width: 40vw; min-width: 1px;">
+                    <aside class="notes">
+                        Wie läuft DFS<br>
+                        Schwierigkeiten DFS<br>
+                        3 größten Optimierungen
+                    </aside>
                 </section>
 
-                <section>
+                <section data-transition="none">
                     <!-- 1.5min -->
                     <!-- Thomas -->
                     <h1>DFA Squashing</h1>
@@ -156,30 +161,30 @@
                             class="query"><span class="dfa1">(A)</span><span class="dfa2"> [-B-&gt; (C)]{2,-} </span><span class="dfa3">(D)</span></code><br>
                     </div>
                     <div class="r-stack">
-                        <img class="fragment fade-out" data-fragment-index="1" src="diagrams/dfa_long.svg"
-                            style="width: 40vw; min-width: 1px;">
-   src                         style="width: 40vw; min-width: 1px;">
-                        <img class="fragment" data-fragment-index="1" ="diagrams/dfa_short.svg"
-
+                        <img class="fragment fade-out" data-fragment-index="1" src="diagrams/dfa_long.svg" style="width: 40vw; min-width: 1px;">
+                        <img class="fragment" data-fragment-index="1" src="diagrams/dfa_short.svg" style="width: 40vw; min-width: 1px;">
                     </div>
+                    <aside class="notes">
+                        Squashing vor Solver<br>
+                        lineare Laufzeit<br>
+                    </aside>
                 </section>
                 <section>
                     <!-- Thomas -->
-                    <h1>DFA Squashing</h1>
-                    <code
-                        class="query"> <span class="dfa1">()</span><span code
-                        class="dfa2"> [--&gt; (A)]{4,-} (A) --&gt; (A) [--&gt; (A)]{1,3} </span><span class="dfa3">()</span></code><br>
-                    <class="query"> <span class="dfa1">()</span><span class="dfa2"> [--&gt; (A)]{6,-} </span><span class="dfa3">()</span></code><br>
-                    <br>
-                    <code
-                        class="query"> <span class="dfa1">()</span><span class="dfa2"> [--&gt; (A)]{1,3} (A) --&gt; (A) [--&gt; (A)]{4,-} </span><span class="dfa3">()</span></code><br>
-                    <code
-                        class="query"> <span class="dfa1">()</span><span class="dfa2"> [--&gt; (A)]{6,-} </span><span class="dfa3">()</span></code><br>
-                    <br>
-                    <code
-                        class="query"> <span class="dfa1">()</span><span class="dfa2"> [--&gt; ()]{4,-} () --&gt; () [--&gt; (A)]{1,3} </span><span class="dfa3">()</span></code><br>
-                    <code
-                        class="query"> <span class="dfa1">()</span><span class="dfa2"> [--&gt; ()]{6,-} </span><span class="dfa3">()</span></code><br>
+                    <!-- <h1>DFA Squashing</h1> -->
+                    <!-- <code class="query"> <span class="dfa1">()</span><span class="dfa2"> [--&gt; (A)]{4,-} (A) --&gt; (A) [--&gt; (A)]{1,3} </span><span class="dfa3">()</span></code><br> -->
+                    <!-- <code class="query"> <span class="dfa1">()</span><span class="dfa2"> [--&gt; (A)]{6,-} </span><span class="dfa3">()</span></code><br> -->
+                    <!-- <br> -->
+                    <!-- <code class="query"> <span class="dfa1">()</span><span class="dfa2"> [--&gt; (A)]{1,3} (A) --&gt; (A) [--&gt; (A)]{4,-} </span><span class="dfa3">()</span></code><br> -->
+                    <!-- <code class="query"> <span class="dfa1">()</span><span class="dfa2"> [--&gt; (A)]{6,-} </span><span class="dfa3">()</span></code><br> -->
+                    <!-- <br> -->
+                    <!-- <code class="query"> <span class="dfa1">()</span><span class="dfa2"> [--&gt; ()]{4,-} () --&gt; () [--&gt; (A)]{1,3} </span><span class="dfa3">()</span></code><br> -->
+                    <!-- <code class="query"> <span class="dfa1">()</span><span class="dfa2"> [--&gt; ()]{6,-} </span><span class="dfa3">()</span></code><br> -->
+
+                    <pre>
+                        <code class="language-rust" data-code="./cases.rs">
+                        </code>
+                    </pre>
                 </section>
 
                 <section>
@@ -199,9 +204,10 @@
                         </ul>
                         <li class="fragment" data-fragment-index="5">DFS uses startposition and turns arround</li>
                     </ul>
-                    <!-- - examples -->
-                    <!-- - specific benchmarks -->
-                    <!-- - difficulties -->
+                    <aside class="notes">
+                        Warum wollen wir in der Mitte starten<br>
+                        Wir brauchen: Heuristic und DFS Implementation<br>
+                    </aside>
                 </section>
                 <section>
                     <!-- 1min -->
@@ -236,40 +242,38 @@
                         300 s timeout
                     </aside>
                 </section>
-            </section>
-            <section>
-                Custom Memeplus Benchmark
-                <canvas id="customMemeplusBench"></canvas>
-                <aside class="notes">
-                    memplus graph with query:
-                    <pre><code>PAIRS ()-->  ()-->()-->()-->(Champion)-->(Communicator) [-->(Student)-->(Helper)-->()]{1,2} (Explorer)-->() -FEEDS->{4,6} ()-->() [-FEEDS->()-->(Entrepreneur)]{4,-} ()</code></pre>
-                    <br>
-                    memplus: good to start at front, this query: added randomness to front → shows heuristic is good<br>
-                    other optimizations don't work with this query
-                </aside>
-            </section>
-            <section>
-                <h1>Lessons learned</h1>
-                <ul>
-                    <li class="fragment">Getting work done in parallel is key</li>
-                    <li class="fragment">Great interfaces are great</li>
-                    <li class="fragment">designing accurate Heuristics is hard</li>
-                    <li class="fragment">Test-driven development can be fast</li>
-                    <li class="fragment">Rust Ownership is challenging but
-                        <ul>
-                            <li class="fragment">Rust has great tooling</li>
-                            <li class="fragment">Iterators are cool</li>
-                            <li class="fragment">no UB; easier debugging</li>
-                        </ul>
-                    </li>
-                </ul>
-                <aside class="notes">
+                </section>
+                <section>
+                    Custom Memplus Benchmark
+                  <canvas id="customMemeplusBench"></canvas>
+                    <aside class="notes">
+                        memplus graph with query: <pre><code>PAIRS ()-->  ()-->()-->()-->(Champion)-->(Communicator) [-->(Student)-->(Helper)-->()]{1,2} (Explorer)-->() -FEEDS->{4,6} ()-->() [-FEEDS->()-->(Entrepreneur)]{4,-} ()</code></pre><br>
+                        memplus: good to start at front, this query: added randomness to front → shows heuristic is good<br>
+                        other optimizations don't work with this query
+                    </aside>
+                </section>
+                <section>
+                    <h1>Lessons learned</h1>
                     <ul>
-                        <li>Great tooling: Compiler Error Messages, Clippy, Rustfmt</li>
-                        <li>UB: Undefined Behavior, compared with C/C++</li>
+                        <li class="fragment">Getting work done in parallel is key</li>
+                        <li class="fragment">Great interfaces are great</li>
+                        <li class="fragment">designing accurate Heuristics is hard</li>
+                        <li class="fragment">Test-driven development can be fast</li>
+                        <li class="fragment">Rust Ownership is challenging but
+                            <ul>
+                                <li class="fragment">Rust has great tooling</li>
+                                <li class="fragment">Iterators are cool</li>
+                                <li class="fragment">no UB; easier debugging</li>
+                            </ul>
+                        </li>
                     </ul>
-                </aside>
-            </section>
+                    <aside class="notes">
+                        <ul>
+                            <li>Great tooling: Compiler Error Messages, Clippy, Rustfmt</li>
+                            <li>UB: Undefined Behavior, compared with C/C++</li>
+                        </ul>
+                    </aside>
+                </section>
             </section>
         </div>
     </div>
