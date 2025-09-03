@@ -50,3 +50,13 @@ ul {
     width: 68%;
     float: left;
 }
+
+#customMemeplusBench {
+    width: 100% !important;
+    /*max-width: 800px;*/
+    height: 550px !important;
+    /*height: 60%;*/
+    display: block;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
