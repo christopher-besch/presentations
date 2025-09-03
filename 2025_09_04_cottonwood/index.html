@@ -133,36 +133,49 @@
                     <!-- 1min -->
                     <!-- Thomas -->
                     <h1>DFA</h1>
-                    <ul>
-                        <code class="query">(A) [-B-&gt; (C)]{2,-} (C)</code>
-                        <img src="diagrams/dfa_short.png">
-                    </ul>
+                    <code class="query">(A) [-B-&gt; (C)]{2,-} (D)</code><br>
+                    <img src="diagrams/dfa_short.svg" style="width: 40vw; min-width: 1px;">
                 </section>
 
                 <section>
                     <!-- 1.5min -->
                     <!-- Thomas -->
                     <h1>DFA Squashing</h1>
-                        <code class="query">(A) [-B-&gt; (C)]{1,-} (C) [-B-&gt; (C)]{1,-} (C)</code>
-                        <img src="diagrams/dfa_long.png">
-                    <!-- - examples -->
-                    <!-- - specific benchmarks -->
-                    <!-- - difficulties -->
+                    <code class="query"> (A) [-B-&gt; (C)]{1,-} (C) [-B-&gt; (C)]{1,-} (D)</code><br>
+                    <div class="fragment" data-fragment-index="1"><code class="query">(A) [-B-&gt; (C)]{2,-} (D)</code><br></div>
+                    <div class="r-stack">
+                        <img class="fragment fade-out" data-fragment-index="1" src="diagrams/dfa_long.svg" style="width: 40vw; min-width: 1px;">
+                        <img class="fragment" data-fragment-index="1" src="diagrams/dfa_short.svg" style="width: 40vw; min-width: 1px;">
+
+                    </div>
+                </section>
+                <section>
+                    <!-- Thomas -->
+                    <h1>DFA Squashing</h1>
+                    <code class="query"> () [--&gt; (A)]{4,-} (A) --&gt; (A) [--&gt; (A)]{1,3} ()</code><br>
+                    <code class="query">() [--&gt; (A)]{6,-} ()</code><br>
+                    <br>
+                    <code class="query"> () [-A-&gt; ()]{4,-} () -A-&gt; () [-A-&gt; ()]{1,3} ()</code><br>
+                    <code class="query">() [-A-&gt; ()]{6,-} ()</code><br>
+                    <br>
+                    <code class="query"> () [--&gt; ()]{4,-} () --&gt; () [--&gt; (A)]{1,3} ()</code><br>
+                    <code class="query">() [--&gt; ()]{6,-} ()</code><br>
                 </section>
 
                 <section>
                     <!-- 1min -->
                     <!-- Thomas -->
                     <h1>Heuristic & Start Everwhere</h1>
-                        <code class="query">() --&gt;{1,-} () --&gt; <code class="fragment highlight-red">(A)</code> -B-&gt;{1,-} ()</code>
+                        <code class="query">() --&gt;{1,-} () --&gt; <code class="fragment highlight-red" data-fragment-index="1">(A)</code> -B-&gt;{1,-} ()</code>
                     <ul>
-                        <li class="fragment">Insight: Not all start positions equal</li>
+                        <li class="fragment" data-fragment-index="1">Insight: Not all start positions equal</li>
+                        <li class="fragment" data-fragment-index="1">Heuristic</li>
                         <ul>
-                            <li class="fragment">Idea: many restrictions at start</li>
-                            <li class="fragment">Approach: use request and labels</li>
-                            <li class="fragment">Restrictions: graph structure unkown</li>
+                            <li class="fragment" data-fragment-index="2">Idea: many restrictions at start</li>
+                            <li class="fragment" data-fragment-index="3">Approach: use DFA and rarity of labels</li>
+                            <li class="fragment" data-fragment-index="4">Restrictions: graph structure unkown</li>
                         </ul>
-                        <li class="fragment">DFS uses startposition and turns arround</li>
+                        <li class="fragment" data-fragment-index="5">DFS uses startposition and turns arround</li>
                     </ul>
                     <!-- - examples -->
                     <!-- - specific benchmarks -->
