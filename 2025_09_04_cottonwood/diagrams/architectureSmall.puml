@@ -34,8 +34,4 @@ package query_path{
 DefaultInputOutputEngine -r-> QueryPathDFA: use per query >
 DefaultInputOutputEngine -r-> QueryPathDFABuilder: setup per query >
 
-note as n1
-left out quite a lot of helper structs and traits
-end note
-
 @enduml
