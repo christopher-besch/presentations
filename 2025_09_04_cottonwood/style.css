@@ -28,3 +28,13 @@ ul {
     font-family: 'Droid Sans Mono', 'monospace', monospace;
     background-color: lightgray;
 }
+
+.dfa1 {
+    color: rgb(158, 35, 35);
+}
+.dfa2 {
+    color: rgb(38, 38, 155);
+}
+.dfa3 {
+    color: rgb(21, 101, 21);
+}
