@@ -1,11 +1,10 @@
-//Chart.plugins.register([ChartAnnotation]); // Global
 
 //n=10, used the bench script, 300 s means timeout
 let benchData = [
-    { label: "all", alltoall: 46.908, largeRGG: 7.441, memPlus: 18.470, smallRgg: 0.202, uk: 0.547},
-    { label: "no squashing", largeRGG: 7.476, memPlus: 17.906, smallRgg: 0.207, uk: 0.537 },
-    { label: "no heuristic", alltoall: 59.906, largeRGG: 8.618, memPlus: 18.278, smallRgg: 0.223, uk: 0.584 },  //ToDo: redo bench
-    { label: "no bfs", alltoall: 67.724, largeRGG: 7.539, memPlus: 17.769, smallRgg: 0.201, uk: 0.542 },
+    { label: "all", alltoall: 42.913, largeRGG: 7.788, memPlus: 18.023, smallRgg: 0.201, uk: 0.537},
+    { label: "no squashing", largeRGG: 7.959, memPlus: 17.904, smallRgg: 0.199, uk: 0.537 },
+    { label: "no heuristic", alltoall: 58.712, largeRGG: 8.848, memPlus: 18.083, smallRgg: 0.213, uk: 0.591 },
+    { label: "no bfs", alltoall: 66.383, largeRGG: 7.582, memPlus: 17.676, smallRgg: 0.202, uk: 0.530 },
 ];
 
 async function displayBenches() {
@@ -64,37 +63,30 @@ new Chart(
                     beginAtZero: true
                 }
             },
-            annotation: {
-                annotations: [{
-                    type: 'line',
-                    mode: 'horizontal',
-                    scaleID: 'y-axis-0',
-                    value: 5,
-                    borderColor: 'rgb(75, 192, 192)',
-                    borderWidth: 4,
-                    label: {
-                        enabled: true,
-                        content: 'Test label'
-                    }
-                }]
-            }
         },
     }
 );
 }
 displayBenches();
 
+//n=4, used the benchMemplus script, 300 s means timeout
+let memplusBenchData = [    //ToDo: Redo with 10 runs
+    { label: "all", memPlus: 0.581},
+    { label: "no squashing", memPlus: 0.436},
+    { label: "no heuristic", memPlus: 6.615},
+    { label: "no bfs", memPlus: 0.435},
+];
 async function displayMemeplusBench() {
     new Chart(
         document.getElementById('customMemeplusBench'),
         {
             type: 'bar',
             data: {
-                labels: benchData.map(row => row.label),
+                labels: memplusBenchData.map(row => row.label),
                 datasets: [
                     {
                         label: 'memPlus',
-                        data: benchData.map(row => row.memPlus),
+                        data: memplusBenchData.map(row => row.memPlus),
                         backgroundColor: 'rgba(255, 206, 86, 0.8)',
                     },
                 ]
@@ -120,20 +112,6 @@ async function displayMemeplusBench() {
                         beginAtZero: true
                     }
                 },
-                annotation: {
-                    annotations: [{
-                        type: 'line',
-                        mode: 'horizontal',
-                        scaleID: 'y-axis-0',
-                        value: 5,
-                        borderColor: 'rgb(75, 192, 192)',
-                        borderWidth: 4,
-                        label: {
-                            enabled: true,
-                            content: 'Test label'
-                        }
-                    }]
-                }
             },
         }
     );
