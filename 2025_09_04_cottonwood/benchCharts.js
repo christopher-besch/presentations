@@ -142,11 +142,11 @@ async function displayBenches2() {
 displayBenches2();
 
 //n=4, used the benchMemplus script, 300 s means timeout
-let memplusBenchData = [    //ToDo: Redo with 10 runs
-    { label: "all", memPlus: 0.581},
-    { label: "no squashing", memPlus: 0.436},
-    { label: "no heuristic", memPlus: 6.615},
-    { label: "no bfs", memPlus: 0.435},
+let memplusBenchData = [
+    { label: "all", memPlus: 0.444},
+    { label: "no squashing", memPlus: 0.433},
+    { label: "no heuristic", memPlus: 6.757},
+    { label: "no bfs", memPlus: 0.440},
 ];
 async function displayMemeplusBench() {
     new Chart(
