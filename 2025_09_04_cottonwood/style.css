@@ -38,3 +38,15 @@ ul {
 .dfa3 {
     color: rgb(21, 101, 21);
 }
+
+.smaller-left-part{
+    position: relative;
+    width: 30%;
+    float: left;
+}
+
+.larger-right-part{
+    position: relative;
+    width: 68%;
+    float: left;
+}
