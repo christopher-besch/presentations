@@ -74,6 +74,73 @@ new Chart(
 }
 displayBenches();
 
+async function displayBenches2() {
+    new Chart(
+        document.getElementById('optimizationsBench2'),
+        {
+            type: 'bar',
+            data: {
+                labels: benchData.map(row => row.label),
+                datasets: [
+                    {
+                        label: 'alltoall',
+                        data: benchData.map(row => row.alltoall),
+                        backgroundColor: 'rgba(255, 99, 132, 0.8)',
+                        hidden: true,
+                    },
+                    {
+                        label: 'largeRGG',
+                        data: benchData.map(row => row.largeRGG),
+                        backgroundColor: 'rgba(54, 162, 235, 0.8)',
+                        hidden: true,
+                    },
+                    {
+                        label: 'memPlus',
+                        data: benchData.map(row => row.memPlus),
+                        backgroundColor: 'rgba(255, 206, 86, 0.8)',
+                        hidden: false,
+                    },
+                    {
+                        label: 'smallRgg',
+                        data: benchData.map(row => row.smallRgg),
+                        backgroundColor: 'rgba(0,238,153,0.73)',
+                        hidden: true,
+                    },
+                    {
+                        label: 'uk',
+                        data: benchData.map(row => row.uk),
+                        backgroundColor: 'rgba(19,63,238,0.8)',
+                        hidden: true,
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: false,
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Time (s)'
+                        },
+                        beginAtZero: true
+                    }
+                },
+            },
+        }
+    );
+}
+displayBenches2();
+
 //n=4, used the benchMemplus script, 300 s means timeout
 let memplusBenchData = [    //ToDo: Redo with 10 runs
     { label: "all", memPlus: 0.581},
