@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title> Cottonwood Graph Query Engine</title>
+    <meta name="description" content="Cottonwood Graph Query Engine">
+    <meta name="author" content="Christopher Besch, Fabian Tolksdorf, Leon Bruns, Thomas Hädicke">
+
+    <link rel="stylesheet" href="../dist/reset.css">
+    <link rel="stylesheet" href="../dist/reveal.css">
+    <link rel="stylesheet" href="../dist/theme/custom_white.css">
+
+    <!-- code highlighting theme -->
+    <link rel="stylesheet" href="../static/oceanicnext.css">
+
+    <link rel="stylesheet" href="./style.css">
+
+    <script src="libs/chartJS/chart.js"></script>
+    <script src="libs/chartJS/chartjs-plugin-annotation.min.js"></script>
+    <script src="benchCharts.js" type="module"></script>
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <div class="header-left">
+                Cottonwood Graph Query Engine
+            </div>
+            <div class="header-right">
+                <em>Christopher Besch, Fabian Tolksdorf, Leon Bruns, Thomas Hädicke</em> &bullet;
+                4th September 2025
+            </div>
+            <section>
+                <section data-state="titleslide dark-background" data-background-image="./banner_water.jpg"
+                    data-background-opacity="1.0">
+                    <!-- Chris -->
+                    <div class="half-part">
+                        <h1 style="color: white; margin-bottom: 7vh;">Cottonwood</h1>
+                    </div>
+                </section>
+            </section>
+
+            <section>
+                <!-- 3.5min -->
+                <section>
+                    <!-- 1min -->
+                    <!-- Chris -->
+                    <h2>Management</h2>
+                    <div class="half-part">
+                        <!-- <h4>Goals</h4> -->
+                        <ul>
+                            <!-- <li>Get people to work ASAP</li> -->
+                            <li>Week 1:
+                                <ol>
+                                    <li>Design application architecture</li>
+                                    <li>Define <span style="color: orange;">inter-team interfaces</span>
+                                        <!-- <ul> -->
+                                        <!--     <li>Work in team possible</li> -->
+                                        <!-- </ul> -->
+                                    </li>
+                                    <!-- </ol> -->
+                                    <!-- <h4>In Teams of 2</h4> -->
+                                    <!-- <ol> -->
+                                    <li>Define <span style="color: green;">intra-team interfaces</span>
+                                        <!-- <ul> -->
+                                        <!--     <li>Work alone possible</li> -->
+                                        <!-- </ul> -->
+                                    </li>
+                                    <li>Implement correctly</li>
+                                    <!-- <li>Interfaces first: quick divide and conquer</li> -->
+                                    <!-- <li>Separate build, use structs</li> -->
+                                </ol>
+                            </li>
+                            <li>Week 2-4: Optimize</li>
+                        </ul>
+                        <!-- <h4>All 4</h4> -->
+                        <!-- <h4>First Meeting</h4> -->
+                    </div>
+                    <div class="half-part">
+                        <!-- <h4>Two teams</h4> -->
+                        <img src="diagrams/architecture_overview.png">
+                    </div>
+                </section>
+                <section>
+                    <!-- 1min -->
+                    <!-- Chris -->
+                    <h2>General Implementation Approach</h2>
+                    <div class="half-part">
+                        <ul>
+                            <li>Simple, fix interfaces
+                                <ul>
+                                    <li>Independent development</li>
+                                    <li>Free to optimize implementation</li>
+                                </ul>
+                            </li>
+                            <!-- &#x2192; don't change -->
+                            <li class="fragment" data-fragment-index="1">Tests, <code>debug_assert</code>s,<br />no unsafe
+                                <ul>
+                                    <li>Rapid iteration</li>
+                                    <li>Bugs easier to find</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="half-part">
+                        <ul class="fragment">
+                            <li>Focus on correctness</li>
+                            <li>Focus on general optimizations (not edge cases)</li>
+                        </ul>
+                    </div>
+                </section>
+                <section data-auto-animate data-auto-animate-restart>
+                    <!-- 1.5min -->
+                    <!-- Fabian -->
+                    <h2>Architecture Structure</h2>
+                    <div data-id="architecture_wrapper">
+                        <img src="diagrams/architecture.svg" style="max-height: 50vh; max-width: 100vw;">
+                    </div>
+                </section>
+                <section data-auto-animate>
+                    <h2>Architecture Structure</h2>
+                    <div data-id="architecture_wrapper">
+                        <img src="diagrams/architectureSmall.svg" style="max-height: 50vh; max-width: 100vw;">
+                    </div>
+                    <aside class="notes">
+                        <ul>
+                            <li>struct vs builder</li>
+                            <li>iterators for efficiency</li>
+                        </ul>
+                    </aside>
+                </section>
+            </section>
+
+            <section>
+                <!-- 4.5min -->
+                <section data-transition="none">
+                    <!-- 1min -->
+                    <!-- Thomas -->
+                    <h2>DFA</h2>
+                    <code class="query">(A) [-B-&gt; (C)]{2,-} (D)</code><br>
+                    <img src="diagrams/dfa_short_no_color.svg" style="width: 40vw; min-width: 1px;">
+                    <aside class="notes">
+                        Wie läuft DFS<br>
+                        Schwierigkeiten DFS<br>
+                        3 größten Optimierungen
+                    </aside>
+                </section>
+
+                <section data-transition="none">
+                    <!-- 1.5min -->
+                    <!-- Thomas -->
+                    <h2>DFA Squashing</h2>
+                    <code
+                        class="query"> <span class="dfa1">(A)</span><span class="dfa2"> [-B-&gt; (C)]{1,-} (C) [-B-&gt; (C)]{1,-}</span> <span class="dfa3">(D)</span></code><br>
+                    <div class="fragment" data-fragment-index="1"><code
+                            class="query"><span class="dfa1">(A)</span><span class="dfa2"> [-B-&gt; (C)]{2,-} </span><span class="dfa3">(D)</span></code><br>
+                    </div>
+                    <div class="r-stack">
+                        <img class="fragment fade-out" data-fragment-index="1" src="diagrams/dfa_long.svg" style="width: 40vw; min-width: 1px;">
+                        <img class="fragment" data-fragment-index="1" src="diagrams/dfa_short.svg" style="width: 40vw; min-width: 1px;">
+                    </div>
+                    <aside class="notes">
+                        Squashing vor Solver<br>
+                        lineare Laufzeit<br>
+                    </aside>
+                </section>
+                <section>
+                    <!-- Thomas -->
+                    <!-- <h2>DFA Squashing</h2> -->
+                    <!-- <code class="query"> <span class="dfa1">()</span><span class="dfa2"> [--&gt; (A)]{4,-} (A) --&gt; (A) [--&gt; (A)]{1,3} </span><span class="dfa3">()</span></code><br> -->
+                    <!-- <code class="query"> <span class="dfa1">()</span><span class="dfa2"> [--&gt; (A)]{6,-} </span><span class="dfa3">()</span></code><br> -->
+                    <!-- <br> -->
+                    <!-- <code class="query"> <span class="dfa1">()</span><span class="dfa2"> [--&gt; (A)]{1,3} (A) --&gt; (A) [--&gt; (A)]{4,-} </span><span class="dfa3">()</span></code><br> -->
+                    <!-- <code class="query"> <span class="dfa1">()</span><span class="dfa2"> [--&gt; (A)]{6,-} </span><span class="dfa3">()</span></code><br> -->
+                    <!-- <br> -->
+                    <!-- <code class="query"> <span class="dfa1">()</span><span class="dfa2"> [--&gt; ()]{4,-} () --&gt; () [--&gt; (A)]{1,3} </span><span class="dfa3">()</span></code><br> -->
+                    <!-- <code class="query"> <span class="dfa1">()</span><span class="dfa2"> [--&gt; ()]{6,-} </span><span class="dfa3">()</span></code><br> -->
+
+                    <pre>
+                        <code class="language-rust" data-code="./cases.rs">
+                        </code>
+                    </pre>
+                </section>
+
+                <section>
+                    <!-- 1min -->
+                    <!-- Thomas -->
+                    <h2>Heuristic & Start Everwhere</h2>
+                    <code
+                        class="query">() --&gt;{1,-} () --&gt; <code class="fragment highlight-red" data-fragment-index="1">(A)</code>
+                    -B-&gt;{1,-} ()</code>
+                    <ul>
+                        <li class="fragment" data-fragment-index="1">Insight: Not all start positions equal</li>
+                        <li class="fragment" data-fragment-index="1">Heuristic</li>
+                        <ul>
+                            <li class="fragment" data-fragment-index="2">Idea: many restrictions at start</li>
+                            <li class="fragment" data-fragment-index="3">Approach: use DFA and rarity of labels</li>
+                            <li class="fragment" data-fragment-index="4">Restrictions: graph structure unkown</li>
+                        </ul>
+                        <li class="fragment" data-fragment-index="5">DFS uses startposition and turns arround</li>
+                    </ul>
+                    <aside class="notes">
+                        Warum wollen wir in der Mitte starten<br>
+                        Wir brauchen: Heuristic und DFS Implementation<br>
+                    </aside>
+                </section>
+                <section>
+                    <!-- 1min -->
+                    <!-- Fabian  -->
+                    <h2>BFS and when to use it</h2>
+                    <!-- - examples -->
+                    <!-- - specific benchmarks -->
+                    <!-- - difficulties -->
+                    <div class="smaller-left-part">
+                        <img class="fragment" data-fragment-index="1"  src="diagrams/bfs_preferable.svg" style="height: 10em;">
+                    </div>
+                    <div class="larger-right-part">
+                        <ul>
+                            <li class="fragment" data-fragment-index="1"><code class="query">() --&gt;{1,-} ()</code></li>
+                            <li class="fragment"><code class="query">(A) -B-&gt;{1,-} (C)</code></li>
+                            <li class="fragment"><code class="query">(A) -B-&gt;{1,7} (C)</code></li>
+                            <li class="fragment"><code class="query">(A) [-B-&gt; (M)]{1,-} (C)</code></li>
+                            <li class="fragment"><code class="query"><span style="color: darkcyan;">... --&gt;</span> (A) [-B-&gt; (M)]{1,-} (C)</code></li>
+                            <li class="fragment">not: <code class="query">(A) -B-&gt;{3,-} (C)</code></li>
+                        </ul>
+                    </div>
+                    <aside class="notes">
+                        <ul>
+                            <li>w/ distance: not all paths with dfs -&gt; maybe missed a shortest path</li>
+                            <li>nach backtracking nicht mehr bekannt, welche Knoten schonmal angeschaut wurden</li>
+                        </ul>
+                    </aside>
+                </section>
+            </section>
+
+            <section>
+                <!-- 2min -->
+                <!-- Leon -->
+                <section>
+                    Optimization Benchmarks
+                    <canvas id="optimizationsBench"></canvas>
+                    <aside class="notes">
+                        Einleitung: drei große Optimierungen, keine auf benchmarks angepassten optimierungen<br>
+
+                        All optimizations are enabled by default.<br>
+                        300 s timeout
+                    </aside>
+                </section>
+                <section>
+                    Optimization Benchmarks
+                    <canvas id="optimizationsBench2"></canvas>
+                    <aside class="notes">
+                        memplus: good to start at front: no benefit from our optimizations<br>
+                    </aside>
+                </section>
+                <section>
+                    Custom Memplus Benchmark
+                    <canvas id="customMemeplusBench"></canvas>
+                    <pre><code>PAIRS ()-->()-->()-->()--> ...</code></pre>
+                    <aside class="notes">
+                        memplus graph with query: <pre><code>PAIRS ()-->  ()-->()-->()-->(Champion)-->(Communicator) [-->(Student)-->(Helper)-->()]{1,2} (Explorer)-->() -FEEDS->{4,6} ()-->() [-FEEDS->()-->(Entrepreneur)]{4,-} ()</code></pre><br>
+                        memplus: good to start at front, this query: added randomness to front → shows heuristic is good<br>
+                        other optimizations don't work with this query
+                    </aside>
+                </section>
+                <section>
+                    <h2>Lessons learned</h2>
+                    <ul>
+                        <li class="fragment">Getting work done in parallel & Test driven is fast</li>
+                        <li class="fragment">Great interfaces are great</li>
+                        <li class="fragment">Designing Heuristics is hard</li>
+                        <li class="fragment">Rust Ownership is challenging but
+                            <ul class="fragment">
+                                <li>Rust has great tooling</li>
+                                <li>Iterators are cool</li>
+                                <li>no UB; easier debugging</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <aside class="notes">
+                        Währendessen gelernt<br>
+                        <ul>
+                            <li>Great tooling: Compiler Error Messages, Clippy, Rustfmt</li>
+                            <li>UB: Undefined Behavior, compared with C/C++</li>
+                        </ul>
+                    </aside>
+                </section>
+            </section>
+        </div>
+    </div>
+
+    <script src="../vendor/external_code/externalcode.js"></script>
+    <script src="../dist/reveal.js"></script>
+    <script src="../plugin/notes/notes.js"></script>
+    <script src="../plugin/markdown/markdown.js"></script>
+    <script src="../plugin/highlight/highlight.js"></script>
+    <script src="../plugin/math/math.js"></script>
+    <script>
+        Reveal.initialize({
+            controls: true,
+            controlsTutorial: false,
+            progress: false,
+            slideNumber: "c/t",
+            hashOneBasedIndex: false,
+            hash: true,
+            navigationMode: "linear",
+            embedded: false,
+            showNotes: false,
+            transition: "slide",
+            transitionSpeed: "default",
+            backgroundTransition: "fade",
+            pdfSeparateFragments: true,
+            autoAnimateDuration: 0.4,
+
+            margin: 0.04,
+            width: 1280,
+            height: 720,
+
+            katex: {
+                local: "../dwn_vendor/katex",
+                trust: true,
+                // needed for colouring
+                strict: false,
+            },
+            plugins: [
+                // needs to be before highlighting
+                Externalcode,
+                RevealMarkdown,
+                RevealHighlight,
+                RevealNotes,    //press S for speaker view
+                RevealMath.KaTeX,
+            ],
+            scrollActivationWidth: null,
+        });
+    </script>
+</body>
+
+</html>

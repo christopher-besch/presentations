@@ -1,0 +1,179 @@
+simple.points
+---------------------------------------------------
+ Rank   Name                Time           Commit
+---------------------------------------------------
+  0     cursedcoder         17 ms          d521fc3
+  1     wer_rastet_rostet   20 ms          1ab83d9
+  2     query-me-softly     30 ms          48c1fbb
+  3     in-rust-we-trust    37 ms          2ddca68
+> 4     cottonwood          50 ms          e9365a8 <
+  5     premature-evil      52 ms          7194fca
+  6     panic               52 ms          c65bcba
+  7     mbjj                53 ms          7b56d5b
+  8     heisenbug           63 ms          27b146b
+  9     bogosort-benutzer   74 ms          8173552
+  10    glados              76 ms          bf28354
+  11    memory-leak         216 ms         11efcc8
+  12    mtdl                337 ms         c01940b
+  13    ferris              484 ms         3541d74
+  14    bigbeautyfulbill    488 ms         412eb3e
+
+ simple.pairs
+---------------------------------------------------
+ Rank   Name                Time           Commit
+---------------------------------------------------
+  0     wer_rastet_rostet   24 ms          1ab83d9
+  1     cursedcoder         29 ms          d521fc3
+  2     in-rust-we-trust    56 ms          2ddca68
+> 3     cottonwood          60 ms          e9365a8 <
+  4     mbjj                64 ms          7b56d5b
+  5     panic               65 ms          c65bcba
+  6     premature-evil      65 ms          7194fca
+  7     query-me-softly     74 ms          48c1fbb
+  8     glados              90 ms          bf28354
+  9     bogosort-benutzer   90 ms          8173552
+  10    heisenbug           115 ms         27b146b
+  11    memory-leak         205 ms         11efcc8
+  12    mtdl                454 ms         c01940b
+  13    ferris              489 ms         3541d74
+  14    bigbeautyfulbill    504 ms         412eb3e
+
+ fixed.points
+---------------------------------------------------
+ Rank   Name                Time           Commit
+---------------------------------------------------
+  0     wer_rastet_rostet   29 ms          1ab83d9
+  1     cursedcoder         32 ms          d521fc3
+  2     mbjj                78 ms          7b56d5b
+> 3     cottonwood          98 ms          e9365a8 <
+  4     premature-evil      288 ms         7194fca
+  5     heisenbug           329 ms         27b146b
+  6     panic               407 ms         c65bcba
+  7     in-rust-we-trust    503 ms         2ddca68
+
+ fixed.pairs
+---------------------------------------------------
+ Rank   Name                Time           Commit
+---------------------------------------------------
+  0     cursedcoder         57 ms          d521fc3
+  1     mbjj                101 ms         7b56d5b
+> 2     cottonwood          130 ms         e9365a8 <
+  3     wer_rastet_rostet   138 ms         1ab83d9
+  4     in-rust-we-trust    265 ms         2ddca68
+  5     bogosort-benutzer   402 ms         8173552
+  6     panic               443 ms         c65bcba
+  7     premature-evil      490 ms         7194fca
+  8     heisenbug           1059 ms        27b146b
+  9     query-me-softly     1086 ms        48c1fbb
+
+ variable.points
+---------------------------------------------------
+ Rank   Name                Time           Commit
+---------------------------------------------------
+  0     cursedcoder         24 ms          d521fc3
+  1     wer_rastet_rostet   28 ms          1ab83d9
+> 2     cottonwood          64 ms          e9365a8 <
+  3     mbjj                100 ms         7b56d5b
+  4     in-rust-we-trust    105 ms         2ddca68
+  5     premature-evil      124 ms         7194fca
+  6     heisenbug           135 ms         27b146b
+  7     panic               172 ms         c65bcba
+  8     bogosort-benutzer   280 ms         8173552
+  9     glados              484 ms         bf28354
+  10    memory-leak         671 ms         11efcc8
+  11    query-me-softly     730 ms         48c1fbb
+  12    ferris              979 ms         3541d74
+  13    mtdl                1371 ms        c01940b
+
+ variable.pairs
+---------------------------------------------------
+ Rank   Name                Time           Commit
+---------------------------------------------------
+  0     wer_rastet_rostet   58 ms          1ab83d9
+  1     cursedcoder         91 ms          d521fc3
+> 2     cottonwood          120 ms         e9365a8 <
+  3     mbjj                185 ms         7b56d5b
+  4     in-rust-we-trust    209 ms         2ddca68
+  5     premature-evil      215 ms         7194fca
+  6     panic               226 ms         c65bcba
+  7     bogosort-benutzer   354 ms         8173552
+  8     glados              517 ms         bf28354
+  9     ferris              837 ms         3541d74
+  10    heisenbug           1444 ms        27b146b
+
+ infinite.points
+---------------------------------------------------
+ Rank   Name                Time           Commit
+---------------------------------------------------
+  0     cursedcoder         27 ms          d521fc3
+  1     wer_rastet_rostet   33 ms          1ab83d9
+> 2     cottonwood          83 ms          e9365a8 <
+  3     in-rust-we-trust    124 ms         2ddca68
+  4     mbjj                142 ms         7b56d5b
+  5     panic               296 ms         c65bcba
+  6     premature-evil      341 ms         7194fca
+  7     heisenbug           417 ms         27b146b
+  8     glados              1226 ms        bf28354
+  9     query-me-softly     1464 ms        48c1fbb
+
+ infinite.pairs
+---------------------------------------------------
+ Rank   Name                Time           Commit
+---------------------------------------------------
+  0     wer_rastet_rostet   94 ms          1ab83d9
+  1     cursedcoder         102 ms         d521fc3
+> 2     cottonwood          152 ms         e9365a8 <
+  3     mbjj                194 ms         7b56d5b
+  4     in-rust-we-trust    263 ms         2ddca68
+  5     panic               389 ms         c65bcba
+  6     premature-evil      656 ms         7194fca
+  7     bogosort-benutzer   1160 ms        8173552
+  8     glados              1299 ms        bf28354
+  9     heisenbug           1795 ms        27b146b
+  10    ferris              2060 ms        3541d74
+
+ combined.points
+---------------------------------------------------
+ Rank   Name                Time           Commit
+---------------------------------------------------
+  0     wer_rastet_rostet   36 ms          1ab83d9
+> 1     cottonwood          81 ms          e9365a8 <
+  2     cursedcoder         85 ms          d521fc3
+  3     premature-evil      174 ms         7194fca
+  4     heisenbug           257 ms         27b146b
+  5     in-rust-we-trust    286 ms         2ddca68
+  6     panic               365 ms         c65bcba
+  7     query-me-softly     2063 ms        48c1fbb
+
+ combined.pairs
+---------------------------------------------------
+ Rank   Name                Time           Commit
+---------------------------------------------------
+> 0     cottonwood          74 ms          e9365a8 <
+  1     wer_rastet_rostet   87 ms          1ab83d9
+  2     cursedcoder         111 ms         d521fc3
+  3     premature-evil      315 ms         7194fca
+  4     in-rust-we-trust    401 ms         2ddca68
+  5     panic               490 ms         c65bcba
+  6     bogosort-benutzer   858 ms         8173552
+  7     heisenbug           1201 ms        27b146b
+
+ alltoall.points
+---------------------------------------------------
+ Rank   Name                Time           Commit
+---------------------------------------------------
+  0     cursedcoder         2451 us        d521fc3
+  1     wer_rastet_rostet   2797 us        1ab83d9
+  2     bogosort-benutzer   19 ms          8173552
+  3     memory-leak         52 ms          11efcc8
+  4     in-rust-we-trust    834 ms         2ddca68
+> 5     cottonwood          26 s           e9365a8 <
+
+ alltoall.pairs
+---------------------------------------------------
+ Rank   Name                Time           Commit
+---------------------------------------------------
+  0     wer_rastet_rostet   22 s           1ab83d9
+> 1     cottonwood          64 s           e9365a8 <
+  2     in-rust-we-trust    68 s           2ddca68
+  3     cursedcoder         110 s          d521fc3
