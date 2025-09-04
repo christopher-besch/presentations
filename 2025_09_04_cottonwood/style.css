@@ -1,0 +1,62 @@
+.image {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.image :first-child {
+    margin-bottom: 0;
+}
+
+.image p {
+    /* font-size: 15pt; */
+    font-size: 20pt;
+    margin-top: 5pt;
+}
+
+.rainbow-text {
+    background-image: linear-gradient(to right, violet, indigo, blue, green, yellow, orange, red);
+    color: transparent;
+    background-clip: text;
+}
+
+ul {
+    max-width: calc(100% - 42px);
+}
+
+.query{
+    font-family: 'Droid Sans Mono', 'monospace', monospace;
+    background-color: lightgray;
+}
+
+.dfa1 {
+    color: rgb(158, 35, 35);
+}
+.dfa2 {
+    color: rgb(38, 38, 155);
+}
+.dfa3 {
+    color: rgb(21, 101, 21);
+}
+
+.smaller-left-part{
+    position: relative;
+    width: 30%;
+    float: left;
+}
+
+.larger-right-part{
+    position: relative;
+    width: 68%;
+    float: left;
+}
+
+#customMemeplusBench {
+    width: 100% !important;
+    /*max-width: 800px;*/
+    height: 550px !important;
+    /*height: 60%;*/
+    display: block;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
