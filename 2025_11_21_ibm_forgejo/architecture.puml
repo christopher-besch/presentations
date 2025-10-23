@@ -1,9 +1,8 @@
 @startuml
 
 folder "models" {
-    database "DB" {
-        
-    }
+    database "DB"
+    [ActionRun model]
 }
 
 folder "modules" {
@@ -12,39 +11,40 @@ folder "modules" {
 
 folder "services" {
     [git code]
+    [mailer code]
 }
 
-folder "web_src" {
-    file "some web source"
-}
+'folder "web_src" {
+'    file "some web source"
+'}
 
 folder "routers" {
     [API]
     [web routes]
 }
 
-folder "templates" {
-    file "go template file"
-}
+'folder "templates" {
+'    file "go template file"
+'}
 
-folder "tests" {
-    [integration tests]
-}
+'folder "tests" {
+'    [integration tests]
+'}
 
-[services] -> [models]
-[services] -> [modules]
+[services] -down-> [models]
+[services] -down-> [modules]
 
-[routers] -> [services]
-[routers] -> [modules]
-[routers] -> [models]
-[routers] -> [web_src]
-[routers] -> [templates]
+[routers] -down-> [services]
+[routers] -down-> [modules]
+[routers] -down-> [models]
+'[routers] -down-> [web_src]
+'[routers] -down-> [templates]
 
-[tests] -> [models]
-[tests] -> [modules]
-[tests] -> [services]
-[tests] -> [web_src]
-[tests] -> [routers]
-[tests] -> [templates]
+'[tests] -down-> [models]
+'[tests] -down-> [modules]
+'[tests] -down-> [services]
+'[tests] -down-> [web_src]
+'[tests] -down-> [routers]
+'[tests] -down-> [templates]
 
 @enduml
