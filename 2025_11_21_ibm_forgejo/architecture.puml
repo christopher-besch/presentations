@@ -1,50 +1,66 @@
 @startuml
 
-folder "models" {
-    database "DB"
-    [ActionRun model]
-}
-
-folder "modules" {
-    [some thing that could be a library]
-}
-
-folder "services" {
-    [git code]
-    [mailer code]
-}
-
-'folder "web_src" {
-'    file "some web source"
-'}
-
-folder "routers" {
-    [API]
-    [web routes]
-}
-
-'folder "templates" {
-'    file "go template file"
-'}
-
-'folder "tests" {
+'folder "/tests" {
 '    [integration tests]
 '}
 
-[services] -down-> [models]
-[services] -down-> [modules]
+folder "/routers" {
+    package web
+    package api
+    'package "api/actions/runner"
+    'package "web/repo/setting"
+}
 
-[routers] -down-> [services]
-[routers] -down-> [modules]
-[routers] -down-> [models]
-'[routers] -down-> [web_src]
-'[routers] -down-> [templates]
+folder "/services" {
+    package notify
+    package actions
+    package mailer
+    package webhook
 
-'[tests] -down-> [models]
-'[tests] -down-> [modules]
-'[tests] -down-> [services]
-'[tests] -down-> [web_src]
-'[tests] -down-> [routers]
-'[tests] -down-> [templates]
+    [notify] -right[hidden]-> [actions]
+    [actions] -right[hidden]-> [mailer]
+    [mailer] -right[hidden]-> [webhook]
+}
+database "git"
+
+folder "/models" {
+    node "ActionRun model"
+}
+database "DB"
+
+folder "/modules" {
+    node "ActionRun struct"
+    '[some thing that could be a library]
+}
+
+'folder "/web_src" {
+'    file "some web source"
+'}
+
+folder "/templates" {
+    'file "html template file"
+    file "/templates/mail/actions/now_done.tmpl"
+}
+
+'[/tests] -down-> [/models]
+'[/tests] -down-> [/modules]
+'[/tests] -down-> [/services]
+''[/tests] -down-> [/web_src]
+'[/tests] -down-> [/routers]
+'[/tests] -down-> [/templates]
+
+[/routers] -down-> [/services]
+[/routers] -down-> [/modules]
+[/routers] -down-> [/models]
+'[/routers] -down-> [/web_src]
+[/routers] -down-> [/templates]
+
+[/services] -down-> [/models]
+[/services] -down-> [/modules]
+'[/services] -down[hidden]-> [/web_src]
+[/services] -down[hidden]-> [/templates]
+[/services] -left-> [git]
+
+[/models] -down-> [DB]
 
 @enduml
