@@ -1,6 +1,9 @@
 name: Deploy Build
 
-on: workflow_dispatch
+on:
+  push:
+    branches:
+      - main
 
 jobs:
   build:
@@ -27,4 +30,3 @@ jobs:
         with:
           branch: deploy
           folder: public
-

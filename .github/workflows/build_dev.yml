@@ -3,7 +3,7 @@ name: Dev Build
 on:
   push:
     branches:
-      - main
+      - dev
 
 jobs:
   build:
@@ -30,4 +30,3 @@ jobs:
         with:
           branch: pages
           folder: public
-
