@@ -26,7 +26,7 @@ database "git"
 folder "/models" {
     node "ActionRun model"
 }
-database "DB"
+database "SQLite"
 
 folder "/modules" {
     node "ActionRun struct"
@@ -37,30 +37,30 @@ folder "/modules" {
 '    file "some web source"
 '}
 
-folder "/templates" {
-    'file "html template file"
-    file "/templates/mail/actions/now_done.tmpl"
-}
+'folder "/templates" {
+'    'file "html template file"
+'    file "/templates/mail/actions/now_done.tmpl"
+'}
 
 '[/tests] -down-> [/models]
 '[/tests] -down-> [/modules]
 '[/tests] -down-> [/services]
 ''[/tests] -down-> [/web_src]
 '[/tests] -down-> [/routers]
-'[/tests] -down-> [/templates]
+''[/tests] -down-> [/templates]
 
 [/routers] -down-> [/services]
 [/routers] -down-> [/modules]
 [/routers] -down-> [/models]
 '[/routers] -down-> [/web_src]
-[/routers] -down-> [/templates]
+'[/routers] -down-> [/templates]
 
 [/services] -down-> [/models]
 [/services] -down-> [/modules]
 '[/services] -down[hidden]-> [/web_src]
-[/services] -down[hidden]-> [/templates]
+'[/services] -down[hidden]-> [/templates]
 [/services] -left-> [git]
 
-[/models] -down-> [DB]
+[/models] -down-> [SQLite]
 
 @enduml
