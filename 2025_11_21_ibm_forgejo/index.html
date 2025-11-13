@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <title>Forgejo Architecture Deep Dive</title>
+    <title>Contributing to Forgejo</title>
     <meta name="description" content="Forgejo Actions Notification Development">
     <meta name="author" content="Christopher Besch">
 
@@ -27,7 +27,7 @@
     <div class="reveal">
         <div class="slides">
             <div class="header-left">
-                Forgejo Architecture Deep Dive
+                Contributing to Forgejo
             </div>
             <div class="header-right">
                 <em>Christopher Besch</em> &bullet;
@@ -37,14 +37,40 @@
                 <section data-state="titleslide dark-background" data-background-image="./bravo_delta.jpg"
                     data-background-opacity="1.0">
                     <div class="half-part">
-                        <h1 style="color: white; margin-bottom: 7vh;">Forgejo Architecture Deep Dive</h1>
+                        <h1 style="color: white; margin-bottom: 7vh;">Contributing to Forgejo</h1>
                     </div>
                 </section>
             </section>
 
             <section>
                 <section>
-                    TODO: What is Forgejo?
+                    <div class="half-part">
+                        <h2>Why Forgejo?</h2>
+                        <ul>
+                            <li>Code Forge<br />(Code Development Platform)</li>
+                            <li>Fully featured<br />(TODO: link to comparison)</li>
+                            <li>Fully Open-Source<br />
+                                &rarr;We can add custom features</li>
+                        </ul>
+                    </div>
+                    <div class="half-part">
+                        <div class="fragment">
+                            <h2>Why not GitHub?</h2>
+                            <ul>
+                                <li>Microsoft may increase license costs (TODO: don't they already do that?)</li>
+                                <li>E.g. Jira DataCenter Sunset<br />
+                                    &rarr;Autonomy is valuable</li>
+                            </ul>
+                        </div>
+                        <div class="fragment" style="margin-top:40px;">
+                            <h2>Why not GitLab?</h2>
+                            <ul>
+                                <li>Only Open-Core<br />
+                                    &rarr;same problem
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </section>
             </section>
 
@@ -229,30 +255,129 @@
             <section>
 
                 <section>
-                    <h2>Action Notifications</h2>
-                    TODO
+                    <h2>Forgejo Actions</h2>
+                    <div class="half-part">
+                        <img src="actions_screenshot.png">
+                    </div>
+                    <div class="half-part">
+                        <ul>
+                            <li>CI/CD:<br />Run code at every push/PR/...</li>
+                            <li>Failure &rarr; developer needs to fix things</li>
+                            <li class="fragment" data-fragment-index="1">How does she notice failure?
+                                <ul>
+                                    <li>Web UI (Pull) <span class="fragment" data-fragment-index="2">Already
+                                            present</span>
+                                    </li>
+                                    <li>Mail (Push) <span class="fragment" data-fragment-index="2">My Job</span></li>
+                                    <li>Webhook (Push) <span class="fragment" data-fragment-index="2">My Job</span></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
                 </section>
                 <section>
-                    <h4><a href="https://codeberg.org/forgejo/forgejo/pulls/7510">#7510</a>: Refactoring through Layers
-                    </h4>
-                    TODO
+                    <h2>How to implement Push Notification</h2>
+                    <ul>
+                        <li>Use pub-sub broker</li>
+                        <li><code>/services/mailer</code> and <code>/services/webhook</code> receive
+                            <code>ActionRunNowDone</code> message
+                        </li>
+                        <li>Something sends <code>ActionRunNowDone</code> message
+                            <ul>
+                                <li class="fragment" data-fragment-index="1"><code>/models/actions</code> notices action
+                                    status changes<br />
+                                </li>
+                                <li class="fragment" data-fragment-index="1">Problem: layered architecture doesn't allow
+                                    importing<br /><code>/services/notify</code></li>
+                            </ul>
+                        </li>
+                    </ul>
                 </section>
                 <section>
-                    <h4><a href="https://codeberg.org/forgejo/forgejo/pulls/7491">#7491</a>: ActionRunNowDone Topic</h4>
-                    TODO
+                    <h2><a href="https://codeberg.org/forgejo/forgejo/pulls/7510">#7510</a>: Refactoring</h2>
+                    <ul>
+                        <li>Move code from <code>/models/actions</code> to <code>/services/actions</code>
+                            <ul>
+                                <li><code>UpdateRunJob</code> changes database &larr; notices status change</li>
+                                <li><code>CleanRepoScheduleTasks</code> calls <code>UpdateRunJob</code></li>
+                                <li><code>CleanRepoScheduleTasks</code> calls <code>CleanRepoScheduleTasks</code></li>
+                            </ul>
+                        </li>
+                        <li>Goal: change as little as possible</li>
+                    </ul>
                 </section>
                 <section>
-                    <h4><a href="https://codeberg.org/forgejo/forgejo/pulls/7509">#7509</a>: Action Notification Mail
-                    </h4>
-                    TODO
+                    <h2><a href="https://codeberg.org/forgejo/forgejo/pulls/7491">#7491</a>:
+                        <code>ActionRunNowDone</code> Topic
+                    </h2>
+                    <ul>
+                        <li>Add <code>ActionRunNowDone</code> topic</li>
+                        <li>Implement <code>sendActionRunNowDoneNotificationIfNeeded</code></li>
+                        <li><code>UpdateRunJob</code> calls <code>sendActionRunNowDoneNotificationIfNeeded</code></li>
+                        <li>A lot of testing</li>
+                    </ul>
                 </section>
                 <section>
-                    <h4><a href="https://codeberg.org/forgejo/forgejo/pulls/7508">#7508</a>: Action Notification Webhook
-                    </h4>
-                    TODO
+                    <h2><a href="https://codeberg.org/forgejo/forgejo/pulls/7509">#7509</a>: Action Notification Mail
+                    </h2>
+                    <ul>
+                        <li><code>/services/mailer</code> listens to <code>ActionRunNowDone</code></li>
+                        <li>Figure out who to send mail to</li>
+                        <li>Template and send pretty email</li>
+                        <li>A lot of testing</li>
+                    </ul>
                 </section>
                 <section>
-                    TODO: other PRs
+                    <h2><a href="https://codeberg.org/forgejo/forgejo/pulls/7508">#7508</a>: Action Notification Webhook
+                    </h2>
+                    <div class="half-part">
+                        <ul>
+                            <li><code>/services/webhook</code> listens to <code>ActionRunNowDone</code></li>
+                            <li>Implement new Webhook type</li>
+                            <li>Update webhook settings</li>
+                            <li>A lot of testing</li>
+                        </ul>
+                    </div>
+                    <div class="half-part">
+                        <img src="webhook_settings.png" width="500">
+                    </div>
+                </section>
+                <section>
+                    <h2>Visualization</h2>
+                    <iframe src="https://christopher-besch.github.io/go_observer_pattern_visualizer/viewer"
+                        allowfullscreen width="1000" height="500"></iframe>
+                    <!-- <iframe src="http://go-vm:8080/" allowfullscreen width="100%" height="700"></iframe> -->
+                </section>
+                <section>
+                    <ul>
+                        <li>Other PRs: <a href="https://codeberg.org/forgejo/forgejo/pulls/7697">#7697</a>, <a
+                                href="https://codeberg.org/forgejo/forgejo/pulls/7508">#7699</a>, <a
+                                href="https://codeberg.org/forgejo/forgejo/pulls/8066">#8066</a>, <a
+                                href="https://codeberg.org/forgejo/forgejo/pulls/8250">#8250</a>, <a
+                                href="https://codeberg.org/forgejo/forgejo/pulls/8227">#8227</a> and <a
+                                href="https://codeberg.org/forgejo/forgejo/pulls/8242">#8242</a>
+                            <ul>
+                                <li>&rarr; cleanup, mail opt-in and resolve naming conflict</li>
+                            </ul>
+                        </li>
+                        <li>70 files touched</li>
+                        <li>2423 lines inserted</li>
+                        <li>630 lines deleted</li>
+                    </ul>
+                </section>
+                <section>
+                    <div class="half-part">
+                        <h2>Lessons</h2>
+                        <ul>
+                            <li>Split feature into multiple PRs</li>
+                            <li>Aim for smallest change</li>
+                            <li>Testing, testing, testing</li>
+                            <li>&rarr; easier to reason about &rarr; easier review</li>
+                        </ul>
+                    </div>
+                    <div class="half-part">
+                        <img class="fragment" src="release_notes.png" />
+                    </div>
                 </section>
             </section>
 
@@ -265,19 +390,23 @@
                             <li>Go project structure</li>
                             <li>Layered architecture</li>
                             <li>Pub-sub pattern</li>
-                            <li>One feature, multiple PRs</li>
+                            <li>Experience in contributing</li>
                         </ul>
                     </div>
-                    <div class="half-part">
+                    <div class="half-part fragment">
                         <h2>There's More</h2>
                         <ul>
-                            <li>The History of Forgejo's Pub-Sub Pattern<br />
+                            <li>Forgejo Actions Notification Development:
+                                <a
+                                    href="https://chris-besch.com/articles/forgejo_actions_notification/">chris-besch.com/articles/forgejo_actions_notification</a>
+                            </li>
+                            <li>The History of Forgejo's Pub-Sub Pattern:
                                 <a
                                     href="https://chris-besch.com/articles/forgejo_pub_sub_pattern_history/">chris-besch.com/articles/forgejo_pub_sub_pattern_history</a>
                             </li>
-                            <li>Forgejo Actions Notification Development<br />
+                            <li>Why I love Open-Source:
                                 <a
-                                    href="https://chris-besch.com/articles/forgejo_actions_notification/">chris-besch.com/articles/forgejo_actions_notification</a>
+                                    href="https://chris-besch.com/articles/open_source/">chris-besch.com/articles/open_source</a>
                             </li>
                         </ul>
                     </div>
