@@ -105,7 +105,7 @@
                         </code>
                     </pre>
                     <ul>
-                        <li><code>go.mod</code> defines a module</li>
+                        <li><code>go.mod</code> defines a module (automatically generated)</li>
                         <li><code>github.com/hashicorp/go-version</code> is dependency, download from GitHub</li>
                         <li>Fork, new maintainer, domain lost: <code>replace</code></li>
                     </ul>
@@ -300,7 +300,6 @@
                             <ul>
                                 <li><code>UpdateRunJob</code> changes database &larr; notices status change</li>
                                 <li><code>CleanRepoScheduleTasks</code> calls <code>UpdateRunJob</code></li>
-                                <li><code>CleanRepoScheduleTasks</code> calls <code>CleanRepoScheduleTasks</code></li>
                             </ul>
                         </li>
                         <li>Goal: change as little as possible</li>
@@ -369,14 +368,19 @@
                     <div class="half-part">
                         <h2>Lessons</h2>
                         <ul>
-                            <li>Split feature into multiple PRs</li>
+                            <li>Forgejo's Maintainers are amazing!</li>
+                            <li>Code research important</li>
                             <li>Aim for smallest change</li>
+                            <li>Split feature into multiple PRs</li>
                             <li>Testing, testing, testing</li>
                             <li>&rarr; easier to reason about &rarr; easier review</li>
                         </ul>
                     </div>
-                    <div class="half-part">
-                        <img class="fragment" src="release_notes.png" />
+                    <div class="half-part fragment">
+                        <img src="release_notes.png" />
+                        <ul>
+                            <li>Upstreamed &rarr; no fork needed</li>
+                        </ul>
                     </div>
                 </section>
             </section>
