@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Contributing to Forgejo</title>
+    <meta name="description" content="Forgejo Actions Notification Development">
+    <meta name="author" content="Christopher Besch">
+
+    <link rel="stylesheet" href="../dist/reset.css">
+    <link rel="stylesheet" href="../dist/reveal.css">
+    <link rel="stylesheet" href="../dist/theme/custom_white.css">
+
+    <!-- code highlighting theme -->
+    <link rel="stylesheet" href="../static/oceanicnext.css">
+
+    <link rel="stylesheet" href="./style.css">
+
+    <script src="libs/chartJS/chart.js"></script>
+    <script src="libs/chartJS/chartjs-plugin-annotation.min.js"></script>
+    <script src="benchCharts.js" type="module"></script>
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <div class="header-left">
+                Contributing to Forgejo
+            </div>
+            <div class="header-right">
+                <em>Christopher Besch</em> &bullet;
+                21st November 2025
+            </div>
+            <section>
+                <section data-state="titleslide dark-background" data-background-image="./bravo_delta.jpg"
+                    data-background-opacity="1.0">
+                    <div class="half-part">
+                        <h1 style="color: white; margin-bottom: 7vh;">Contributing to Forgejo</h1>
+                    </div>
+                </section>
+            </section>
+
+            <section>
+                <section>
+                    <div class="half-part">
+                        <h2>Why Forgejo?</h2>
+                        <ul>
+                            <li>Fully featured code forge<br />(code development platform)</li>
+                            <li>Fully Open-Source<br />
+                                &rarr; Data sovereignty<br />
+                                &rarr; We can add custom features
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="half-part">
+                        <div class="fragment">
+                            <h2>Why not GitHub?</h2>
+                            <ul>
+                                <li>Vendor lock-in:<br />no license &rarr; no access to own data<br />
+                                    &rarr; No Data sovereignty
+                                </li>
+                                <li>Microsoft/Atlassian push us in Cloud<br />
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="fragment" style="margin-top:40px;">
+                            <h2>Why not GitLab?</h2>
+                            <ul>
+                                <li>Only Open-Core<br />
+                                    &rarr; Same problem
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+            </section>
+
+            <section>
+                <section>
+                    <h2>Go is kinda weird...</h2>
+                    <ul>
+                        <li>Import things from Domains? "<code class="language-go">import forgejo.org/cmd</code>"
+                        </li>
+                        <li>Declare unit test with "<code>_test.go</code>" suffix</li>
+                        <li>"<code class="language-go">func SomeFunc()</code>" is exported but "<code
+                                class="language-go">func someFunc()</code>" is not</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Anatomy of a Go Project</h2>
+                    <pre>
+                        <code class="language-txt" data-code="./forgejo_dir_structure.txt">
+                        </code>
+                    </pre>
+                    <ul>
+                        <li>A single module<br />(program or library)</li>
+                        <li>Many packages (each with muliple <code>.go</code> files)</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h4><code>/go.mod</code></h4>
+                    <pre>
+                        <code class="language-go" data-code="./go.mod">
+                        </code>
+                    </pre>
+                    <ul>
+                        <li><code>go.mod</code> defines a module (automatically generated)</li>
+                        <li><code>github.com/hashicorp/go-version</code> is dependency, download from GitHub</li>
+                        <li>Fork, new maintainer, domain lost: <code>replace</code></li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h4><code>/main.go</code></h4>
+                    <pre>
+                        <code class="language-go" data-code="./main.go">
+                        </code>
+                    </pre>
+                    <ul>
+                        <li>Function <code>main</code> in package <code>main</code> is entrypoint</li>
+                        <li>Use <code>cmd</code> package in <code>forgejo.org</code> module<br />This is not a web URL!
+                        </li>
+                    </ul>
+                </section>
+                <section>
+                    <div class="half-part">
+                        <h4><code>/cmd/main.go</code></h4>
+                        <pre>
+                            <code class="language-go" data-code="./cmd_main.go">
+                            </code>
+                        </pre>
+                        <ul>
+                            <li>Package name must be same as parent directory name</li>
+                        </ul>
+                    </div>
+                    <div class="half-part">
+                        <h4><code>/modules/log/init.go</code></h4>
+                        <pre>
+                            <code class="language-go" data-code="./modules_log_init.go">
+                            </code>
+                        </pre>
+                        <ul>
+                        </ul>
+                    </div>
+                </section>
+            </section>
+
+            <section>
+                <section>
+                    <h2>Forgejo's Layered Architecture</h2>
+                    <div class="half-part">
+                        <img src="architecture.svg">
+                    </div>
+                    <div class="half-part">
+                        <ul>
+                            <!-- <li>May import code from same dir</li> -->
+                            <li>Lower Layer self-contained
+                                <ul>
+                                    <li><code>/models</code>: database abstraction</li>
+                                    <li><code>/modules</code>: could be third-party library</li>
+                                    <li>Easier to reason about</li>
+                                </ul>
+                            </li>
+                            <li>Other layers only use code below</li>
+                            <li>&rarr; Code in lower layers easier to reason about</li>
+                        </ul>
+                    </div>
+                </section>
+            </section>
+
+            <section>
+                <section data-auto-animate>
+                    <h2>Problem: Cyclic Imports</h2>
+                    <div class="half-part">
+                        <h4 data-id="title">Logical Dependency</h4>
+                        <img data-id="img" src="imports_without_notify.svg">
+                    </div>
+                    <div class="half-part">
+                        <ul>
+                            <li><code>/services/automerge</code> calls<br />
+                                <code>/services/pull</code><br />
+                                (for mergeability check)
+                            </li>
+                            <li><code>/services/pull</code> calls<br />
+                                <code>/services/automerge</code><br />
+                                (for noticing new PR reviews)
+                            </li>
+                            <li>Go doesn't allow cyclic imports</li>
+                        </ul>
+                    </div>
+                </section>
+                <section data-auto-animate>
+                    <h2>Problem: Cyclic Imports</h2>
+                    <div class="half-part">
+                        <h4 data-id="title">Actual Imports</h4>
+                        <img data-id="img" src="imports_with_notify.svg">
+                    </div>
+                    <div class="half-part">
+                        <ul>
+                            <li><code>/services/automerge</code> calls<br />
+                                <code>/services/pull</code><br />
+                                (for mergeability check)
+                            </li>
+                            <li><code>/services/pull</code> calls<br />
+                                <code>/services/automerge</code><br />
+                                (for noticing new PR reviews)
+                            </li>
+                            <li>Go doesn't allow cyclic imports</li>
+                            <li>Solution: A third package:<br /><code>/services/notify</code></li>
+                        </ul>
+                    </div>
+                </section>
+                <section data-auto-animate>
+                    <h2>Problem: Cyclic Imports</h2>
+                    <div class="half-part">
+                        <h4 data-id="title">Notify Topics</h4>
+                        <img data-id="img" src="imports_without_imports.svg">
+                    </div>
+                    <div class="half-part">
+                        <ul>
+                            <li>Go doesn't allow cyclic imports</li>
+                            <li>Solution: A third package:<br /><code>/services/notify</code></li>
+                            <li>Send/Receive message to/from <code>PullRequestReview</code> topic</li>
+                            <li>Import for other direction<br />(here hidden)</li>
+                            <li>Easy to comprehend and extend system</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Forgejo's Pub-Sub Pattern</h2>
+                    <div class="half-part">
+                        <h4>User</h4>
+                        <pre>
+                            <code class="language-go" data-code="./pub_sub.go">
+                            </code>
+                        </pre>
+                    </div>
+                    <div class="half-part">
+                        <h4>Broker</h4>
+                        <pre>
+                            <code class="language-go" data-code="./notify.go">
+                            </code>
+                        </pre>
+                    </div>
+                </section>
+                <section>
+                    <h2>Visualization</h2>
+                    <iframe src="https://christopher-besch.github.io/go_observer_pattern_visualizer/viewer"
+                        allowfullscreen width="1000" height="500"></iframe>
+                    <!-- <iframe src="http://go-vm:8080/" allowfullscreen width="100%" height="700"></iframe> -->
+                </section>
+            </section>
+
+            <section>
+
+                <section>
+                    <h2>Forgejo Actions</h2>
+                    <div class="half-part">
+                        <img src="actions_screenshot.png">
+                    </div>
+                    <div class="half-part">
+                        <ul>
+                            <li>CI/CD:<br />Run code at every push/PR/...</li>
+                            <li>Failure &rarr; developer needs to fix things</li>
+                            <li class="fragment" data-fragment-index="1">How does she notice failure?
+                                <ul>
+                                    <li>Web UI (Pull) <span class="fragment" data-fragment-index="2">Already
+                                            present</span>
+                                    </li>
+                                    <li>Mail (Push) <span class="fragment" data-fragment-index="2">My Job</span></li>
+                                    <li>Webhook (Push) <span class="fragment" data-fragment-index="2">My Job</span></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+                <section>
+                    <h2>How to implement Push Notification</h2>
+                    <ul>
+                        <li>Use pub-sub broker</li>
+                        <li><code>/services/mailer</code> and <code>/services/webhook</code> receive
+                            <code>ActionRunNowDone</code> message
+                        </li>
+                        <li>Something sends <code>ActionRunNowDone</code> message
+                            <ul>
+                                <li class="fragment" data-fragment-index="1"><code>/models/actions</code> notices action
+                                    status changes<br />
+                                </li>
+                                <li class="fragment" data-fragment-index="1">Problem: layered architecture doesn't allow
+                                    importing<br /><code>/services/notify</code></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </section>
+                <section>
+                    <h2><a href="https://codeberg.org/forgejo/forgejo/pulls/7510">#7510</a>: Refactoring</h2>
+                    <ul>
+                        <li>Move code from <code>/models/actions</code> to <code>/services/actions</code>
+                            <ul>
+                                <li><code>UpdateRunJob</code> changes database &larr; notices status change</li>
+                                <li><code>CleanRepoScheduleTasks</code> calls <code>UpdateRunJob</code></li>
+                            </ul>
+                        </li>
+                        <li>Goal: change as little as possible</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2><a href="https://codeberg.org/forgejo/forgejo/pulls/7491">#7491</a>:
+                        <code>ActionRunNowDone</code> Topic
+                    </h2>
+                    <ul>
+                        <li>Add <code>ActionRunNowDone</code> topic</li>
+                        <li>Implement <code>sendActionRunNowDoneNotificationIfNeeded</code></li>
+                        <li><code>UpdateRunJob</code> calls <code>sendActionRunNowDoneNotificationIfNeeded</code></li>
+                        <li>A lot of testing</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2><a href="https://codeberg.org/forgejo/forgejo/pulls/7509">#7509</a>: Action Notification Mail
+                    </h2>
+                    <ul>
+                        <li><code>/services/mailer</code> listens to <code>ActionRunNowDone</code></li>
+                        <li>Figure out who to send mail to</li>
+                        <li>Template and send pretty email</li>
+                        <li>A lot of testing</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2><a href="https://codeberg.org/forgejo/forgejo/pulls/7508">#7508</a>: Action Notification Webhook
+                    </h2>
+                    <div class="half-part">
+                        <ul>
+                            <li><code>/services/webhook</code> listens to <code>ActionRunNowDone</code></li>
+                            <li>Implement new Webhook type</li>
+                            <li>Update webhook settings</li>
+                            <li>A lot of testing</li>
+                        </ul>
+                    </div>
+                    <div class="half-part">
+                        <img src="webhook_settings.png" width="500">
+                    </div>
+                </section>
+                <section>
+                    <h2>Visualization</h2>
+                    <iframe src="https://christopher-besch.github.io/go_observer_pattern_visualizer/viewer"
+                        allowfullscreen width="1000" height="500"></iframe>
+                    <!-- <iframe src="http://go-vm:8080/" allowfullscreen width="100%" height="700"></iframe> -->
+                </section>
+                <section>
+                    <ul>
+                        <li>Other PRs: <a href="https://codeberg.org/forgejo/forgejo/pulls/7697">#7697</a>,
+                            <!-- <a href="https://codeberg.org/forgejo/forgejo/pulls/7699">#7699</a>,  -->
+                            <a href="https://codeberg.org/forgejo/forgejo/pulls/8066">#8066</a>, <a
+                                href="https://codeberg.org/forgejo/forgejo/pulls/8250">#8250</a>, <a
+                                href="https://codeberg.org/forgejo/forgejo/pulls/8227">#8227</a> and <a
+                                href="https://codeberg.org/forgejo/forgejo/pulls/8242">#8242</a>
+                            <ul>
+                                <li>&rarr; cleanup, mail opt-in and resolve naming conflict</li>
+                            </ul>
+                        </li>
+                        <li>70 files touched</li>
+                        <li>2423 lines inserted</li>
+                        <li>630 lines deleted</li>
+                    </ul>
+                </section>
+                <section>
+                    <div class="half-part">
+                        <h2>Lessons</h2>
+                        <ul>
+                            <li>Forgejo's Maintainers are amazing!</li>
+                            <li>Code research important</li>
+                            <li>Aim for smallest change</li>
+                            <li>Split feature into multiple PRs</li>
+                            <li>Testing, testing, testing</li>
+                            <li>&rarr; Easier to reason about &rarr; easier review</li>
+                        </ul>
+                    </div>
+                    <div class="half-part fragment">
+                        <img src="release_notes.png" />
+                        <ul>
+                            <li>Upstreamed &rarr; no fork needed</li>
+                        </ul>
+                    </div>
+                </section>
+            </section>
+
+            <section>
+                <section>
+                    <div class="half-part">
+                        <h2>What we've Seen</h2>
+                        <ul>
+                            <li>Forgejo is cool</li>
+                            <li>Go project structure</li>
+                            <li>Layered architecture</li>
+                            <li>Pub-sub pattern</li>
+                            <li>Experience in contributing</li>
+                        </ul>
+                    </div>
+                    <div class="half-part fragment">
+                        <h2>There's More</h2>
+                        <ul>
+                            <li>Forgejo Actions Notification Development:
+                                <a
+                                    href="https://chris-besch.com/articles/forgejo_actions_notification/">chris-besch.com/articles/forgejo_actions_notification</a>
+                            </li>
+                            <li>The History of Forgejo's Pub-Sub Pattern:
+                                <a
+                                    href="https://chris-besch.com/articles/forgejo_pub_sub_pattern_history/">chris-besch.com/articles/forgejo_pub_sub_pattern_history</a>
+                            </li>
+                            <li>Why I love Open-Source:
+                                <a
+                                    href="https://chris-besch.com/articles/open_source/">chris-besch.com/articles/open_source</a>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+            </section>
+        </div>
+    </div>
+
+    <script src="../vendor/external_code/externalcode.js"></script>
+    <script src="../dist/reveal.js"></script>
+    <script src="../plugin/notes/notes.js"></script>
+    <script src="../plugin/markdown/markdown.js"></script>
+    <script src="../plugin/highlight/highlight.js"></script>
+    <script src="../plugin/math/math.js"></script>
+    <script>
+        Reveal.initialize({
+            controls: true,
+            controlsTutorial: false,
+            progress: false,
+            slideNumber: "c/t",
+            hashOneBasedIndex: false,
+            hash: true,
+            navigationMode: "linear",
+            embedded: false,
+            showNotes: false,
+            transition: "slide",
+            transitionSpeed: "default",
+            backgroundTransition: "fade",
+            pdfSeparateFragments: true,
+            autoAnimateDuration: 0.4,
+
+            margin: 0.04,
+            width: 1280,
+            height: 720,
+
+            katex: {
+                local: "../dwn_vendor/katex",
+                trust: true,
+                // needed for colouring
+                strict: false,
+            },
+            plugins: [
+                // needs to be before highlighting
+                Externalcode,
+                RevealMarkdown,
+                RevealHighlight,
+                RevealNotes,    //press S for speaker view
+                RevealMath.KaTeX,
+            ],
+            scrollActivationWidth: null,
+        });
+    </script>
+</body>
+
+</html>
