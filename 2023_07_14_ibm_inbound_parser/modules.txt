@@ -1,0 +1,14 @@
+├── config                 ├── handler               
+│   ├── config_parser.go   │   ├── email_to_jira.go  
+│   ├── helper.go          │   ├── handler.go        
+│   └── maintenance.go     │   └── prepare_handler.go
+├── email                  ├── jira_actor            
+│   ├── helper.go          │   ├── create.go         
+│   ├── parse.go           │   ├── get.go            
+│   └── send_mail.go       │   └── helper.go         
+├── email_loader           ├── logging               
+│   ├── dumper.go          │   └── logging.go        
+│   └── dump_loader.go     ├── malware_detection     
+├── global_structs         │   └── clamav.go         
+│   ├── config.go          ├── licenses.go           
+│   └── other.go           └── main.go               

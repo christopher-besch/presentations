@@ -1,0 +1,496 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>inbound_parser—a deep dive</title>
+    <meta name="description" content="inbound_parser—a deep dive">
+    <meta name="author" content="Christopher Besch (IBM)">
+
+    <link rel="stylesheet" href="../dist/reset.css">
+    <link rel="stylesheet" href="../dist/reveal.css">
+    <!-- TODO: select light- or darkmode -->
+    <link rel="stylesheet" href="../dist/theme/ibm_white.css">
+
+    <!-- code highlighting theme -->
+    <link rel="stylesheet" href="../static/oceanicnext.css">
+
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <div class="header-left">
+                inbound_parser—a deep dive
+            </div>
+            <div class="header-right">
+                <em>Christopher Besch (IBM)</em> &bullet; 25. April 2023
+            </div>
+
+            <section>
+                <section data-state="titleslide dark-background" data-background-image="./background_04.png"
+                    data-background-opacity="1.0">
+                    <div class="heading-left">
+                        <h1>inbound_parser</h1>
+                        <h3>A Deep Dive</h3>
+                    </div>
+                </section>
+
+                <section data-auto-animate>
+                    <h3>What we'll talk about</h3>
+                    <ol>
+                        <div data-id="1">
+                            <li>What does the inbound_parser do?</li>
+                        </div>
+                        <li>Development History</li>
+                        <li>Code Example</li>
+                        <li>Wrap Up</li>
+                    </ol>
+                </section>
+            </section>
+
+            <section>
+                <section data-auto-animate>
+                    <div data-id="1">
+                        <h3>What does the inbound_parser do?</h3>
+                    </div>
+                    <img src="./jira.png" width=1050>
+                </section>
+                <section data-auto-animate>
+                    <div data-id="1">
+                        <h3>What does the inbound_parser do?</h3>
+                    </div>
+                    <div class="half-part">
+                        <img src="./jira_service_management_browser.png" width=900>
+                    </div>
+                    <div class="half-part fragment">
+                        <img src="./email.png" width=900>
+                    </div>
+                </section>
+                <section>
+                    <img src="./inbound_parser_overview.png" width=1050>
+                </section>
+            </section>
+
+            <section>
+                <section data-state="dark-background" data-background-image="./background_05.png"
+                    data-background-opacity="1.0" data-auto-animate>
+                    <div class="heading-left">
+                        <h1>Development History</h1>
+                    </div>
+                </section>
+                <section data-state="dark-background" data-background-image="./background_05.png"
+                    data-background-opacity="1.0" data-auto-animate>
+                    <div class="heading-left">
+                        <h1>Development History</h1>
+                        <h3>How Small Ideas can Blow Up</h3>
+                    </div>
+                </section>
+
+                <section data-auto-animate data-auto-animate-restart>
+                    <h3>Five Step Plan to Victory</h3>
+                    <img src="./five_tasks_to_victory_1.png" data-id="1">
+                </section>
+                <section data-auto-animate>
+                    <h3>Five Step Plan to Victory</h3>
+                    <img src="./five_tasks_to_victory_2.png" data-id="1">
+                </section>
+                <section data-auto-animate>
+                    <h3>Five Step Plan to Victory</h3>
+                    <img src="./five_tasks_to_victory_3.png" data-id="1">
+                </section>
+                <section data-auto-animate>
+                    <h3 data-id="1">Five Step Plan to Victory</h3>
+                    <img src="./five_tasks_to_victory_4.png" data-id="1">
+                </section>
+                <section data-auto-animate>
+                    <h3 data-id="1">Five Step Plan to Victory?</h3>
+                    <img src="./five_tasks_to_victory_5.png" data-id="1">
+                </section>
+            </section>
+
+            <section>
+                <section>
+                    <div class="half-part">
+                        <h5>Jira</h5>
+                        <ul>
+                            <li>Issues</li>
+                            <li>Created in agent dashboard</li>
+                            <li>Jira API</li>
+                            <li>Golang library: go-jira</li>
+                        </ul>
+                        <img src="./jira.png" width=1050>
+                    </div>
+                    <div class="half-part">
+                        <h5>Jira Service Management</h5>
+                        <ul>
+                            <li>Requests</li>
+                            <li>Created in customer portal</li>
+                            <li>Jira Servicedesk API</li>
+                            <li>No Golang library</li>
+                        </ul>
+                        <img src="./jira_service_management.png" width=1050>
+                    </div>
+                </section>
+            </section>
+
+            <section>
+                <section data-auto-animate>
+                    <h3 data-id="1">E-Mail Encoding</h3>
+                    <div class="half-part">
+                        <h5>Expected</h5>
+                        <pre>
+                            <code class="language-text" data-code="./expected_mail.dump">
+                            </code>
+                        </pre>
+                    </div>
+                    <div class="half-part fragment">
+                        <h5>Reality</h5>
+                        <pre data-id="2">
+                            <code class="language-text" data-code="./mail.dump">
+                            </code>
+                        </pre>
+                    </div>
+                </section>
+                <section data-auto-animate>
+                    <h3 data-id="1">E-Mail Encoding</h3>
+                    <pre data-id="2">
+                        <code class="language-text" data-code="./encoding.dump">
+                        </code>
+                    </pre>
+                    <ul>
+                        <li>Charset: Windows-1252</li>
+                        <li>Encoding: quoted-printable</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>What does that mean?</h3>
+                    <ul>
+                        <li>Computers work in binary</li>
+                        <li>Map all characters to binary representation -> Charset (e.g. ASCII, Windows-1252, UTF-8,
+                            ...)</li>
+                        <li>Email only supports 7bit ASCII</li>
+                    </ul>
+                </section>
+                <section data-auto-animate>
+                    <table data-id="2">
+                        <tr>
+                            <th>Input</th>
+                            <th>A</th>
+                            <th class="fragment" data-fragment-index="2">Ü</th>
+                        </tr>
+                        <tr>
+                            <th class="fragment" data-fragment-index="1">7bit ASCII (binary)</th>
+                            <th class="fragment" data-fragment-index="1">01000001</th>
+                            <th class="fragment" data-fragment-index="3">🤷</th>
+                        </tr>
+                        <tr class="fragment" data-fragment-index="4">
+                            <th>Windows-1252 (binary)</th>
+                            <th>01000001</th>
+                            <th>11011100</th>
+                        </tr>
+                        <tr class="fragment" data-fragment-index="5">
+                            <th>Windows-1252 (quoted-printable)</th>
+                            <th>A</th>
+                            <th>=DC</th>
+                        </tr>
+                        <tr class="fragment" data-fragment-index="6">
+                            <th>Windows-1252 (quoted-printable) as 7bit ASCIII (binary)</th>
+                            <th>01000001</th>
+                            <th>00111101<br />
+                                01000100<br />
+                                01000011</th>
+                        </tr>
+                    </table>
+                </section>
+                <section data-auto-animate>
+                    <table data-id="2">
+                        <tr>
+                            <th>Input</th>
+                            <th>A</th>
+                            <th>Ü</th>
+                        </tr>
+                        <tr>
+                            <th>7bit ASCII (binary)</th>
+                            <th>01000001</th>
+                            <th>🤷</th>
+                        </tr>
+                        <tr>
+                            <th>UTF-8 (binary)</th>
+                            <th>01000001</th>
+                            <th>11000011<br />
+                                10011100</th>
+                        </tr>
+                        <tr>
+                            <th>UTF-8 (quoted-printable)</th>
+                            <th>A</th>
+                            <!-- quopri.encodestring("Ü".encode("utf-8")) -->
+                            <th>=C3=9C</th>
+                        </tr>
+                        <tr>
+                            <th>UTF-8 (quoted-printable) as 7bit ASCIII (binary)</th>
+                            <th>01000001</th>
+                            <th>00111101<br />
+                                01000011<br />
+                                00110011<br />
+                                00111101<br />
+                                00111001<br />
+                                01000011</th>
+                        </tr>
+                    </table>
+                </section>
+                <section>
+                    <h3>There's so much more</h3>
+                    <ul>
+                        <li>base64 encoding</li>
+                        <li>HTML character references (e.g. <b>&amp;euro;</b>)</li>
+                        <li>Many more charsets...</li>
+                    </ul>
+                </section>
+            </section>
+
+            <section>
+                <section>
+                    <h3>Error Handling</h3>
+                    <div class="clearfix">
+                        <div class="half-part">
+                            <h5>Recoverable Error</h5>
+                            <ul>
+                                <li>E.g. wrong E-Mail encoding</li>
+                                <li>Fault tolerant (continue as much as possible)</li>
+                                <li>-> Defensive Programming</li>
+                            </ul>
+                        </div>
+                        <div class="half-part fragment">
+                            <h5>Untolerable Error</h5>
+                            <ul>
+                                <li>E.g. Jira API rejects request</li>
+                                <li>Fail silently -> Security</li>
+                                <li>Notify Admins via mail (minimal redundant code)</li>
+                                <li>-> Offensive Programming</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <ul class="fragment">
+                        <h5>Always</h5>
+                        <li>Continue receiving other E-Mails / Sendgrid Events</li>
+                        <li>-> Defensive Programming</li>
+                    </ul>
+                </section>
+            </section>
+
+            <section>
+                <section>
+                    <h3 class="fragment" data-fragment-index="2">Data Logging</h3>
+                    <blockquote>
+                        "Rohdaten sind geil!"—"Raw data is awesome!"
+                        <br />
+                        <span style="float: right;">(David Kriesel)</span>
+                    </blockquote>
+                    <br />
+                    <ul class="fragment" data-fragment-index="2">
+                        <li>First order of business: store raw incoming mail</li>
+                        <li>Full offline testing environment</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>Development Workflow</h3>
+                    <ol>
+                        <li>Something goes wrong, (we're not built different)</li>
+                        <li>Get raw data</li>
+                        <li>Attempt fix, add more logging</li>
+                        <li>Run test with raw data in testing environment</li>
+                        <li>Solved <b>and understood</b>? Repeat step 3</li>
+                    </ol>
+                </section>
+                <section>
+                    <h3>Caveats for Deployment</h3>
+                    <ul>
+                        <li>GDPR compliance</li>
+                        <li>Performance</li>
+                        <li>Storage</li>
+                    </ul>
+                </section>
+            </section>
+
+            <section>
+                <section data-state="dark-background" data-background-image="./background_06.png"
+                    data-background-opacity="1.0">
+                    <div class="heading-right">
+                        <h1>Code Example</h1>
+                    </div>
+                </section>
+
+                <section>
+                    <h3>Touching Raw User Input</h3>
+                    <div class="half-part">
+                        <h5>Find Issue Key in Subject</h5>
+                        <pre>
+                            <code class="language-go" data-code="./issue_key.go">
+                            </code>
+                        </pre>
+                        <p></p>
+                        <pre class="inline-pre">
+                            <div>RE: DTHSERVICE-4200 Some Request</div>
+                        </pre>
+                    </div>
+                    <div class="half-part">
+                        <h5>Extract Reply Message</h5>
+                        <pre>
+                            <code class="language-go" data-code="./reply_above.go">
+                            </code>
+                        </pre>
+                        <pre class="inline-pre">
+                            <div>[...]
+                                Mit freundlichen Grüßen
+                                Chris
+
+                                PLEASE REPLY ABOVE THIS LINE
+
+                                Dear Valued Customer,
+                                [...]
+                            </div>
+                        </pre>
+                    </div>
+                </section>
+            </section>
+
+            <section>
+                <section>
+                    <h3>Module Structure</h3>
+                    <pre>
+                        <code class="language-text" data-code="./modules.txt">
+                        </code>
+                    </pre>
+                </section>
+
+                <section>
+                    <h3>Main Structs</h3>
+                    <div class="half-part">
+                        <pre>
+                            <code class="language-go" data-code="./email.go" style="min-height: 415px;">
+                            </code>
+                        </pre>
+                    </div>
+                    <div class="half-part">
+                        <pre>
+                            <code class="language-go" data-code="./ehp.go">
+                            </code>
+                        </pre>
+                    </div>
+                </section>
+
+                <section>
+                    <h3>Handler Function</h3>
+                    <pre>
+                        <code class="language-go" data-code="./handler.go">
+                        </code>
+                    </pre>
+                </section>
+            </section>
+
+            <section>
+                <section data-auto-animate>
+                    <h3 data-id="1">In Action</h3>
+                    <p data-id="2">Customer Mail</p>
+                    <img src="./action_original_mail.png" width=600>
+                </section>
+                <section data-auto-animate>
+                    <h3 data-id="1">In Action</h3>
+                    <p data-id="2">inbound_parser Log</p>
+                    <pre>
+                        <code class="language-text" data-code="./action_log.txt">
+                        </code>
+                    </pre>
+                </section>
+                <section data-auto-animate>
+                    <h3 data-id="1">In Action</h3>
+                    <p data-id="2">Reply Mail</p>
+                    <img src="./action_reply_mail.png" width=1050>
+                </section>
+                <section data-auto-animate>
+                    <h3 data-id="1">In Action</h3>
+                    <p data-id="2">Service Request</p>
+                    <img src="./action_request.png" width=500>
+                </section>
+            </section>
+
+            <section>
+                <section data-state="dark-background" data-background-image="./background_07.png"
+                    data-background-opacity="1.0" data-auto-animate data-auto-animate-restart>
+                    <div data-id="1" class="heading-right block-background">
+                        <h3>Main Takeaways</h3>
+                        <ol>
+                            <li>Aim for deep understanding</li>
+                            <!-- <li>Log everything—things will go wrong</li> -->
+                            <li>Log everything</li>
+                            <!-- <li>Good testing environment first</li> -->
+                            <li>Avoid relying on raw user input</li>
+                            <li>Sometimes no elegant solution</li>
+                        </ol>
+                    </div>
+                </section>
+                <section data-state="dark-background" data-background-image="./background_07.png"
+                    data-background-opacity="1.0" data-auto-animate>
+                    <div data-id="1" class="heading-right">
+                        <pre>
+                            <code class="language-text" data-code="./ibm_logo.txt"
+                                style="font-size: 10pt; line-height: 12pt; text-align: center;">
+                            </code>
+                        </pre>
+                    </div>
+                </section>
+            </section>
+        </div>
+    </div>
+
+    <script src="../vendor/external_code/externalcode.js"></script>
+    <script src="../dist/reveal.js"></script>
+    <script src="../plugin/notes/notes.js"></script>
+    <script src="../plugin/markdown/markdown.js"></script>
+    <script src="../plugin/highlight/highlight.js"></script>
+    <script src="../plugin/math/math.js"></script>
+    <script>
+        Reveal.initialize({
+            controls: true,
+            controlsTutorial: false,
+            progress: false,
+            slideNumber: "c/t",
+            hashOneBasedIndex: false,
+            hash: true,
+            navigationMode: "linear",
+            embedded: false,
+            showNotes: false,
+            transition: "slide",
+            transitionSpeed: "default",
+            backgroundTransition: "fade",
+            pdfSeparateFragments: true,
+            autoAnimateDuration: 0.4,
+
+            margin: 0.04,
+            width: 1280,
+            height: 720,
+
+            katex: {
+                local: "../dwn_vendor/katex",
+                trust: true,
+                // needed for colouring
+                strict: false,
+            },
+            plugins: [
+                // needs to be before highlighting
+                Externalcode,
+                RevealMarkdown,
+                RevealHighlight,
+                RevealNotes,
+                RevealMath.KaTeX,
+            ],
+        });
+    </script>
+</body>
+
+</html>
