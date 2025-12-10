@@ -1,0 +1,224 @@
+--xYzZY
+Content-Disposition: form-data; name="email"
+
+Received: from mx0b-001b2d01.pphosted.com (mxd [148.163.158.5]) by mx.sendgrid.net with ESMTP id iu1CByzyTGmj1nmzr6WpvQ for <floppy-storage-support@staging.dth.ihost.com>; Tue, 04 Jul 2023 07:44:40.600 +0000 (UTC)
+Received: from pps.filterd (m0360072.ppops.net [127.0.0.1])
+    by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3647W7Je016563;
+    Tue, 4 Jul 2023 07:44:39 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=from : to : cc : subject
+ : date : message-id : content-type : mime-version; s=pp1;
+ bh=JXo4zRIb+60oEVsT0E2U2nbFxVdESKC1yFOp9klDtsk=;
+ b=MFzuWfsarSAFunPf/z5/N15Uw24sn3hFAnj3KkktSPCNTXHvUBCE9STscFhShPp+o6LE
+ cLJ3KP50CR/lZK1fQcToRIaWkTaoff+0CK5u/cDxiurhPtYvg2y2mWxh2zpZIvcYXsaH
+ cz4Vq2SlzyH9BFrvrse1Kfl616om/ijVB6d5nENtWVFuuxUmqxRftMtkTsJTMx7km3An
+ kTSaUbu9Wi+kfcI7TKxK2Gnmh30irkEslq5aZfF5SeTygm9XQoiH1GpX5k5mb35E26FD
+ ZsePJv9hXwX/dngP8J2Npkf38hCA5ZQ0Ln65rTz7AwJolBb8JUiG2VFEVvYLPLfWU5Dk 6w==
+Received: from nam11-co1-obe.outbound.protection.outlook.com (mail-co1nam11lp2171.outbound.protection.outlook.com [104.47.56.171])
+    by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3rmf4c8a0s-1
+    (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+    Tue, 04 Jul 2023 07:44:39 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=MFFsbx1HkwRusUpc10FzAmm9IkbM1EV2M6lyv1oAa/xLlwl3VJayXbowblpmUGEHy0kRLTH9uY15EhAW9x8M3MDmScu+1UyTkqIad7MiM4ozzuzjpWHocOF/sohw7AnLk2XmSZW4S+8/T0gyJ4FMlAngiTpJenWy3iLA7jKsRogPaPKdESNsVjg7JLjJdQF592bDpFqxkpPH8qj9UIZoyjGmobk7cSfkuo9Kaytm/EvIelcBWznqze9pqIr9I+nhdEuyKGnKI43hxuZhy8blqRn+s3r3W/nx4/DRs4buO++3fDHOwNuyaEEKOUmSos9J4eNSZ1kMZ2NMSjF2KY8G3Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=JXo4zRIb+60oEVsT0E2U2nbFxVdESKC1yFOp9klDtsk=;
+ b=atylKOFMshcBzQTD3rbA5NJsx+kCuXJX2uwtko1g7ccvMTnaPKzhwPxVpT9RqkZfWc8puh4wBav/FfKLE74Y2uJ8W80/ywC/xnKkhZD+rrC9pK6l2TsBqGzIfEsFIwEFRBooZ/Q4vMpX7ZHuffiOiTtVoZYtYtc8h3zIxeyydrA+GdOf7QqVLAA2zEwQs90Yj6GQJK3KEhmjnUXLvMNQIAthiTeqcRhLUzwLbwdSYdr1qr4lWJ4WiGYlOO1fdE9kBPhBkhiyP60I5aKIE+xa4cjpB9sSc16QDXk0B9cpdK+6vM3S/2oLFLVvAQ9SzA4kBEdx5W6vtSfA6tjr0p6ayg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=ibm.com; dmarc=pass action=none header.from=ibm.com; dkim=pass
+ header.d=ibm.com; arc=none
+Received: from IA1PR15MB6223.namprd15.prod.outlook.com (2603:10b6:208:455::14)
+ by MW4PR15MB4476.namprd15.prod.outlook.com (2603:10b6:303:105::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6544.24; Tue, 4 Jul
+ 2023 07:44:37 +0000
+Received: from IA1PR15MB6223.namprd15.prod.outlook.com
+ ([fe80::83:d845:c8f6:31b2]) by IA1PR15MB6223.namprd15.prod.outlook.com
+ ([fe80::83:d845:c8f6:31b2%5]) with mapi id 15.20.6544.024; Tue, 4 Jul 2023
+ 07:44:37 +0000
+From: Christopher Besch <christopher.besch@ibm.com>
+To: Floppy Storage Support <floppy-storage-support@staging.dth.ihost.com>
+CC: "my-colleague@staging.dth.host.com" <my-colleague@staging.dth.host.com>
+Subject: My Password doesn't work Ahhhhhh
+Thread-Topic: My Password doesn't work Ahhhhhh
+Thread-Index: AQHZrkrq8718F2gVgke4wGkzzX8fTg==
+Date: Tue, 4 Jul 2023 07:44:37 +0000
+Message-ID:
+ <IA1PR15MB6223F49DF010E6A484EF7563F52EA@IA1PR15MB6223.namprd15.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: yes
+X-MS-TNEF-Correlator:
+msip_labels:
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: IA1PR15MB6223:EE_|MW4PR15MB4476:EE_
+x-ms-office365-filtering-correlation-id: 8bb38aed-00b5-4fe4-5a45-08db7c62848c
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info:
+ xYm8ccjMmSH6zrItiipx4bnX7IfjagClgQteeBz6NRR/tLB8ji2igklP8RnxoO0Mdy1xlz+w70Q+QFgtqPVfLvVC/5Vn73VcHzI1EiH2G55F+yoA/Y0XvSCQ8Yd+aQoXK2reRIBh6pXGo/wSN08i//qKFhQymFEBrECUVl07Ih8BsyNzdRZNAgi3fIzRAvg/1nr2gW1Px69H19h0Vhkw+WuWoDDQRfwnmidcDJ7fBGIv9b/zS/KqbFD7q2D+2K0GbiYi+R+nGHIojD19KVR6H1d4N79RuwxgG+BvkC6CtzdaLgdPNLyyjoXh4kefQblWe1IolDy9ChcYiqhKSIQ4yLgwvNRmc7Jwt7rIEDM1RGrrwlX63wo++AQaYq8eP3p5Ac+MiY7PCaeL2Lf/Zlg0e+JxGlfgRaVuHrbpsG6QJr5Z2NhUfWWpRDNZD4QdmcuAkqnFmils3WmqmwUJYBtBEG1NYYu7ZBIiuMYx2JJG4NW+CQDFYmhRIq5dYw4j/kiYotZ2FLBtmF+cQdLnt41n3IsGoxAO+Dtpmf/Qnfy2MA+WutISKxiezS7Mj8jr5RB+CrK4YQ+S0Yxl3pmr34YPmBAnPlWY9tCm9FAgoK5P3cs08BHp0gbG2bNrauwzmNNU
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:de;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:IA1PR15MB6223.namprd15.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(136003)(376002)(346002)(366004)(396003)(39860400002)(451199021)(26005)(478600001)(99936003)(9686003)(6506007)(71200400001)(86362001)(186003)(38100700002)(66446008)(6916009)(66946007)(66556008)(4326008)(66476007)(64756008)(91956017)(76116006)(7696005)(316002)(122000001)(5660300002)(8676002)(8936002)(52536014)(44832011)(38070700005)(4744005)(41300700001)(2906002)(55016003)(33656002);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?Windows-1252?Q?S4O5BLaKu9pYk7C17FBDNyHel4RdtP+0VPNciTbtQB71rdSQD1BIs04I?=
+ =?Windows-1252?Q?0QMKMSUJNyiJ/lXEbRJWxDwNIbdr9ifdc8TLWd8IjeU/lkNfoi4c9foS?=
+ =?Windows-1252?Q?qAII6BNuBrVdwaef5TmH5pEpyPA9P99BEY5lsmciQBNnW+onrICMVkKX?=
+ =?Windows-1252?Q?LuWfp3sVARrndJfGaRqVuMCReyevE1ypiPb/F1TYJyLBQvYoUQYT+TjT?=
+ =?Windows-1252?Q?tHKUVIm/u14jAu1JWHH6+xnMdydWYjskf7QKWSWVhdkbEUDIvSDetZMz?=
+ =?Windows-1252?Q?+2gfgoSeoWvzUqhUgBWwRXpSnK4Yz3MppYZU4Y/W/vrSRzAUdml70loY?=
+ =?Windows-1252?Q?zy6j7fA5DN68DCfZfwi6inNu0UmFcc7WM2wPNHi5+GxvISykrD6gHeqp?=
+ =?Windows-1252?Q?6CZ4hkMVQtIrxePxBHOCLTdQpookMik02d0e6iglpFm4LGMAc9Qr6I0r?=
+ =?Windows-1252?Q?t9GVkNnaqBUlGIlvTGnFyMn8kx3gsvYAEf6Aqv2OwRcjSWiyPhOBaP3p?=
+ =?Windows-1252?Q?dHeldWm3yv2gjX9abfi7BtP05oIkgHDyKOO2sgO5cBAIz5oXXRXQSwsO?=
+ =?Windows-1252?Q?0cNWX7QrweSLtdOTo5B87N917OZiPIUjsiHdDRJ2vNda+cnULHlY2YG5?=
+ =?Windows-1252?Q?MqKjco0ttGyRDUL9fplDoQhOjgVH5Cyc1I/2iPKzx8/Unlyk5xEI3xXG?=
+ =?Windows-1252?Q?S94Uea6O8Bb8AXBBN85nQzUmk4UCbtR/MzxEA99vki09wrEK/9XUoglt?=
+ =?Windows-1252?Q?FjAIoVjZRNrdzehlx62leLMayvZdG81OnzwdA62ND8L7g15ba4RT4C74?=
+ =?Windows-1252?Q?vc0vUY01x4loyx7aMK10koz9P9OfCbJjGYu0T933i2sGVrP+1dxIxpXw?=
+ =?Windows-1252?Q?3khiWgdUDxw8PnbSi/39cN41EwU0buihuj3q+iK5CvvLq7JnVn9xGOvs?=
+ =?Windows-1252?Q?CFZ3Dc/W486TV0EPhH9DQc/0klCVZMoaFX5+YuLkXnI+ewwIWvXupjKz?=
+ =?Windows-1252?Q?i5SNr3iVMyLxiyd2fvoFmJQWzyIoI86EyH6+WRBOzi+6Miuf65NAZ3+k?=
+ =?Windows-1252?Q?khE4XLK3P/r9ab96kQ62q/5xRmSIcIPgemBOtXWEkI7H4jYxTgyOsPGK?=
+ =?Windows-1252?Q?ySMm4iox8Fo3Kp5cP90BdLQSvDHQIxkQpWYngoD7lMh2B5925RL0hrjd?=
+ =?Windows-1252?Q?wLPH44daXazx229nasqJoJlBvTIJ4XK6ntDiGKdmtrunAvbqbETnSP2p?=
+ =?Windows-1252?Q?quDgQZtpjd9PV+dh/Zbrtn+9pK2GNPKX3gemNHB5hwbrIi5hfHXF1fW1?=
+ =?Windows-1252?Q?ajr2dHr1KzRqDSobAn99iy1cDb83YrHpefJKSy3OaqqzD3A9SvakUl7u?=
+ =?Windows-1252?Q?JgpSPmE4aMPx9pJzXcWavOrBusJcPIXcypEEMtX8RBapv4Cjq3gVhAuf?=
+ =?Windows-1252?Q?hKaLp3hcyGPCS5/76MqU+0YtOtGuYKH6SlzsQkHlPRmARqgTa8z3NUqT?=
+ =?Windows-1252?Q?sfG22jIMpoaRW+Ggd/HDTYkrX+EA8LtxZ1d0X4edcZZHbSGPCbt+xf7z?=
+ =?Windows-1252?Q?qTqJCxrSDAQC1OMiCl6Ken8uNQdDwpH+p8ydBto37mVbxsgUTv42v2hp?=
+ =?Windows-1252?Q?OR4/0TZEgmEkjWnJ4WArsCeEOyyhMWkQloYSsF09uTcoUhOUwuoyngaP?=
+ =?Windows-1252?Q?CIftLCNp1+tUiNJoAxPPZdXETBSaN4Er?=
+Content-Type: multipart/mixed;
+    boundary="_002_IA1PR15MB6223F49DF010E6A484EF7563F52EAIA1PR15MB6223namp_"
+MIME-Version: 1.0
+X-OriginatorOrg: ibm.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: IA1PR15MB6223.namprd15.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8bb38aed-00b5-4fe4-5a45-08db7c62848c
+X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Jul 2023 07:44:37.5210
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: fcf67057-50c9-4ad4-98f3-ffca64add9e9
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 7Axdk9gwVUuvC84nTxguZpMq7B+YlKabJTCRrxOGJSJPudjKWBLxxtHaRpCM4+f0KmYxD6u/kmz3ueeKayx+Kx+hkXb9aKVh2R3yX9Ae+JQ=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR15MB4476
+X-Proofpoint-ORIG-GUID: VOjSjECv8wPlj0oUpp5ACEYosR7-s0Kq
+X-Proofpoint-GUID: VOjSjECv8wPlj0oUpp5ACEYosR7-s0Kq
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-07-04_04,2023-06-30_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 spamscore=0
+ priorityscore=1501 malwarescore=0 bulkscore=0 phishscore=0 clxscore=1011
+ mlxscore=0 lowpriorityscore=0 mlxlogscore=999 impostorscore=0 adultscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2305260000
+ definitions=main-2307040060
+
+--_002_IA1PR15MB6223F49DF010E6A484EF7563F52EAIA1PR15MB6223namp_
+Content-Type: text/plain; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
+
+Ahhhhhh=0A=
+=0A=
+=0A=
+=0A=
+=0A=
+Christopher Besch=0A=
+Student=97Cloud Infrastructure, Middleware & DevOps=0A=
+IBM Consulting=0A=
+christopher.besch@ibm.com=0A=
+=0A=
+IBM Deutschland GmbH=0A=
+Vorsitzender des Aufsichtsrats: Sebastian Krause=0A=
+Gesch=E4ftsf=FChrung: Gregor Pillen (Vorsitzender), Dr. Andreas Buchelt, Ga=
+briele Schwarenthorer, Christine Rupp, Frank Theisen=0A=
+Sitz der Gesellschaft: Ehningen / Registergericht: Amtsgericht Stuttgart, H=
+RB 14562 / WEEE-Reg.-Nr. DE 99369940=
+
+--_002_IA1PR15MB6223F49DF010E6A484EF7563F52EAIA1PR15MB6223namp_
+Content-Type: image/png;
+    name="Screenshot 2023-07-04 at 09-44-07 Mail - Christopher Besch -
+ Outlook.png"
+Content-Description: Screenshot 2023-07-04 at 09-44-07 Mail - Christopher
+ Besch - Outlook.png
+Content-Disposition: attachment;
+    filename="Screenshot 2023-07-04 at 09-44-07 Mail - Christopher Besch -
+ Outlook.png"; size=10318; creation-date="Tue, 04 Jul 2023 07:44:22 GMT";
+    modification-date="Tue, 04 Jul 2023 07:44:22 GMT"
+Content-Transfer-Encoding: base64
+
+iVBORw0KGgoAAAANSUhEUgAAAJYAAAC0CAYAAAB2ZdXfAAAgAElEQVR4Xu3dB5g0RdEH8FlzzphQ
+[redacted]
+gg==
+
+--_002_IA1PR15MB6223F49DF010E6A484EF7563F52EAIA1PR15MB6223namp_--
+
+--xYzZY
+Content-Disposition: form-data; name="SPF"
+
+pass
+--xYzZY
+Content-Disposition: form-data; name="envelope"
+
+{"to":["floppy-storage-support@staging.dth.ihost.com"],"from":"christopher.besch@ibm.com"}
+--xYzZY
+Content-Disposition: form-data; name="spam_report"
+
+Spam detection software, running on the system "parsley-p1las1-6495f4ff7b-d4s2p",
+has NOT identified this incoming email as spam.  The original
+message has been attached to this so you can view it or label
+similar future email.  If you have any questions, see
+the administrator of that system for details.
+
+Content preview:  Ahhhhhh Christopher Besch StudentCloud Infrastructure, Middleware
+   & DevOps IBM Consulting christopher.besch@ibm.com
+  IBM Deutschland GmbH Vorsitzender des Aufsichtsrats: Sebastian Krause Geschftsfhrung:
+   Gregor Pillen (Vorsitzender), Dr. Andreas Buchelt, Gabriele Schwarenthorer,
+   Christine Rupp, Frank Theisen Sitz d [...]
+
+Content analysis details:   (-0.1 points, 5.0 required)
+
+ pts rule name              description
+---- ---------------------- --------------------------------------------------
+-0.1 DKIM_VALID             Message has at least one valid DKIM or DK signature
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+-0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
+ 0.0 RCVD_IN_MSPIKE_H5      RBL: Excellent reputation (+5)
+-0.0 T_SCC_BODY_TEXT_LINE   No description available.
+ 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
+
+--xYzZY
+Content-Disposition: form-data; name="cc"
+
+"my-colleague@staging.dth.host.com" <my-colleague@staging.dth.host.com>
+--xYzZY
+Content-Disposition: form-data; name="charsets"
+
+{"to":"UTF-8","from":"UTF-8","subject":"UTF-8","cc":"UTF-8"}
+--xYzZY
+Content-Disposition: form-data; name="dkim"
+
+{@ibm.com : pass}
+--xYzZY
+Content-Disposition: form-data; name="sender_ip"
+
+148.163.158.5
+--xYzZY
+Content-Disposition: form-data; name="to"
+
+Floppy Storage Support <floppy-storage-support@staging.dth.ihost.com>
+--xYzZY
+Content-Disposition: form-data; name="from"
+
+Christopher Besch <christopher.besch@ibm.com>
+--xYzZY
+Content-Disposition: form-data; name="subject"
+
+My Password doesn't work Ahhhhhh
+--xYzZY
+Content-Disposition: form-data; name="spam_score"
+
+-0.1
+--xYzZY--

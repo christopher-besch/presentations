@@ -1,0 +1,51 @@
+received e-mail, dumped at '/var/inbound/dump_dir/email_1688456682471413.dump'
+
+loading email handling params
+parsing email
+writing /run/clamav/scandir/↵
+0_U2NyZWVuc2hvdCAyMDIzLTA3LTA0IGF0IDA5LTQ0LTA↵
+3IE1haWwgLSBDaHJpc3RvcGhlciBCZXNjaCAtIE91dGxvb2sucG5n
+waiting for ClamAV to start
+scanning /run/clamav/scandir
+/run/clamav/scandir: OK
+
+----------- SCAN SUMMARY -----------
+Infected files: 0
+Time: 0.031 sec (0 m 0 s)
+Start Date: 2023:07:04 07:44:42
+End Date:   2023:07:04 07:44:42
+
+deleting files
+At: 04.07.2023 07:44:37 (UTC)
+To: Floppy Storage Support <floppy-storage-support@staging.dth.ihost.com>,↵
+    <floppy-storage-support@staging.dth.ihost.com>
+From: Christopher Besch <christopher.besch@ibm.com>
+Cc: my-colleague@staging.dth.host.com <my-colleague@staging.dth.host.com>
+Subject: My Password doesn't work Ahhhhhh
+Spam Score: -0.100000
+
+getting user for christopher.besch@ibm.com Christopher Besch
+addressee, a Cc or Bcc refers to serviceDesk email
+subject doesn't contain valid issue key
+create request, known user: true
+creating request with summary 'My Password doesn't work Ahhhhhh' from 'cbesch'
+created new request: FLOPS-313
+uploading attachments
+creating comment
+creating temp file↵
+    Screenshot 2023-07-04 at 09-44-07 Mail - Christopher Besch - Outlook.png
+creating comment from temp files
+getting user for↵
+    my-colleague@staging.dth.host.com my-colleague@staging.dth.host.com
+user not found
+getting user for↵
+    my-colleague@staging.dth.host.com my-colleague@staging.dth.host.com
+user not found
+creating customer↵
+    'my-colleague@staging.dth.host.com' 'my-colleague@staging.dth.host.com'
+getting user for↵
+    my-colleague@staging.dth.host.com my-colleague@staging.dth.host.com
+adding my-colleague@staging.dth.host.com <my-colleague@staging.dth.host.com>,↵
+    aka my-colleague@staging.dth.host.com as participant
+adding participant my-colleague@staging.dth.host.com to FLOPS-313
+getting request FLOPS-313
