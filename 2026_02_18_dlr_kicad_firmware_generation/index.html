@@ -1,0 +1,258 @@
+<!-- MIT License -->
+
+<!-- Copyright (c) 2022 Christopher Besch -->
+
+<!-- Permission is hereby granted, free of charge, to any person obtaining a copy -->
+<!-- of this software and associated documentation files (the "Software"), to deal -->
+<!-- in the Software without restriction, including without limitation the rights -->
+<!-- to use, copy, modify, merge, publish, distribute, sublicense, and/or sell -->
+<!-- copies of the Software, and to permit persons to whom the Software is -->
+<!-- furnished to do so, subject to the following conditions: -->
+
+<!-- The above copyright notice and this permission notice shall be included in all -->
+<!-- copies or substantial portions of the Software. -->
+
+<!-- THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR -->
+<!-- IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, -->
+<!-- FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE -->
+<!-- AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER -->
+<!-- LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, -->
+<!-- OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE -->
+<!-- SOFTWARE. -->
+
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>kicad_firmware_generation: Automatic Firmware Generation for Spaceflight Hardware based on Schematics</title>
+    <meta name="description" content="Automatic Firmware Generation for Spaceflight Hardware based on Schematics">
+    <meta name="author" content="Christopher Besch">
+
+    <link rel="stylesheet" href="../dist/reset.css">
+    <link rel="stylesheet" href="../dist/reveal.css">
+    <link rel="stylesheet" href="../dist/theme/custom_white.css">
+
+    <!-- code highlighting theme -->
+    <link rel="stylesheet" href="../static/oceanicnext.css">
+
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <div class="header-left">
+                kicad_firmware_generation
+            </div>
+            <div class="header-right">
+                <em>Christopher Besch</em> &bullet; 18th February 2026
+            </div>
+            <section data-state="titleslide">
+                <div class="half-part">
+                    <h4>kicad_firmware_generation</h4>
+                    <h3>Automatic Firmware Generation for Spaceflight Hardware based on Schematics</h3>
+                </div>
+                <div class="half-part">
+                </div>
+            </section>
+
+            <section>
+                <section>
+                    <h4>Background</h4>
+                    what DLR are doing, why challenging, why EPS important, why not one days work
+                    unknown requirements
+                </section>
+                <section>
+                    <div class="parts">
+                        <div>
+                            <h4>PLUTO: a 6U Cubesat</h4>
+                            <div class="image">
+                                <img src="./pluto.jpg" width="800" />
+                                <p>Credit: DLR (CC BY-NC-ND 3.0)</p>
+                            </div>
+                        </div>
+                        <div>
+                            <h4>PCDU (Power Conditioning and Distribution Unit)</h4>
+                            <ul>
+                                <li></li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+            </section>
+
+            <section>
+                <section>
+                    <h2>Contribution</h2>
+                    <ul>
+                        <li>Group Netlist specification</li>
+                        <li>kicad_firmware_generation implementation
+                            <ol>
+                                <li>kicad_group_netlister</li>
+                                <li>code_gen</li>
+                                <li>netlist_to_csv</li>
+                                <li>group_netlist_merger</li>
+                            </ol>
+                        </li>
+                    </ul>
+                </section>
+                <section data-auto-animate>
+                    <img data-id="1" src="./software_overview_01.png" width="1200" />
+                </section>
+                <section data-auto-animate>
+                    <img data-id="1" src="./software_overview_02.png" width="1200" />
+                </section>
+                <section data-auto-animate>
+                    <img data-id="1" src="./software_overview_03.png" width="1200" />
+                </section>
+                <section data-auto-animate>
+                    <img data-id="1" src="./software_overview_04.png" width="1200" />
+                </section>
+                <section data-auto-animate>
+                    <img data-id="1" src="./software_overview_05.png" width="1200" />
+                </section>
+                <section data-auto-animate>
+                    <img data-id="1" src="./software_overview_06.png" width="1200" />
+                </section>
+                <section data-auto-animate>
+                    <img data-id="1" src="./software_overview_07.png" width="1200" />
+                </section>
+            </section>
+
+            <section>
+                <section>
+                    <h2>kicad_group_netlister</h2>
+                    <ul>
+                        <li>group components</li>
+                        <li>annotations</li>
+                    </ul>
+                </section>
+                <section>
+                    <div class="parts">
+                        <img src="./group_netlist.png" width="500" />
+                        <div>
+                            <h2>Group Netlist</h2>
+                            <ul>
+                                <li>XML document</li>
+                                <li>Python library</li>
+                                <li>Snippet based Design Analysis</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <h2>code_gen</h2>
+                    <ul>
+                        <li>Very small</li>
+                        <li>Uses common library</li>
+                        <li>Jinja2</li>
+                        <li>Private logic in template</li>
+                    </ul>
+                </section>
+                <section>
+                    <img src="./software_overview_07.png" width="1200" />
+                </section>
+            </section>
+
+            <section>
+                <section>
+                    <h2>netlist_to_csv</h2>
+                    <ul>
+                        <li>Very small</li>
+                        <li>Harness Specification</li>
+                        <li>Simplify info; focus on certain things only</li>
+                    </ul>
+                    <img src="./csv.png" width="400" />
+                </section>
+                <section>
+                    <img src="./software_overview_07.png" width="1200" />
+                </section>
+            </section>
+
+            <section>
+                <section>
+                    <h2>group_netlist_merger</h2>
+                    <ul>
+                        <li>Merge multiple PCBs</li>
+                        <li>Group Netlist very good place</li>
+                    </ul>
+                </section>
+                <section data-auto-animate>
+                    <img data-id="1" src="./connectors_01.png" width="600" />
+                </section>
+                <section data-auto-animate>
+                    <img data-id="1" src="./connectors_02.png" width="600" />
+                </section>
+                <section>
+                    <img src="./software_overview_07.png" width="1200" />
+                </section>
+            </section>
+
+            <section>
+                <section>
+                    <h4>Evaluation</h4>
+                    how did we apply it?
+                </section>
+            </section>
+
+            <section>
+                <section>
+                    <h4>kicad_firmware_generation</h4>
+                    <ul>
+                        <li>some summary</li>
+                    </ul>
+                </section>
+            </section>
+        </div>
+    </div>
+
+    <script src="../vendor/external_code/externalcode.js"></script>
+    <script src="../dist/reveal.js"></script>
+    <script src="../plugin/notes/notes.js"></script>
+    <script src="../plugin/markdown/markdown.js"></script>
+    <script src="../plugin/highlight/highlight.js"></script>
+    <script src="../plugin/math/math.js"></script>
+    <script>
+        Reveal.initialize({
+            controls: true,
+            controlsTutorial: false,
+            progress: false,
+            slideNumber: "c/t",
+            hashOneBasedIndex: false,
+            hash: true,
+            navigationMode: "linear",
+            embedded: false,
+            showNotes: false,
+            transition: "slide",
+            transitionSpeed: "default",
+            backgroundTransition: "fade",
+            pdfSeparateFragments: true,
+            autoAnimateDuration: 0.4,
+
+            margin: 0.04,
+            width: 1280,
+            height: 720,
+
+            katex: {
+                local: "../dwn_vendor/katex",
+                trust: true,
+                // needed for colouring
+                strict: false,
+            },
+            plugins: [
+                // needs to be before highlighting
+                Externalcode,
+                RevealMarkdown,
+                RevealHighlight,
+                RevealNotes,
+                RevealMath.KaTeX,
+            ],
+            scrollActivationWidth: null,
+        });
+    </script>
+</body>
+
+</html>
