@@ -26,6 +26,7 @@
 .titleslide .header-left {
     display: none;
 }
+
 // for name of presentation
 .reveal .header-left,
 // for author and name
@@ -36,32 +37,38 @@
     position: absolute;
     z-index: 100;
 }
+
 .reveal .header-right em,
 .reveal .header-left em {
     font-size: 15px;
 }
+
 .reveal .header-left {
     left: 2em;
     top: 1em;
     margin-left: -2vw;
     margin-top: -2vh;
 }
+
 .reveal .header-right {
     right: 2em;
     top: 1em;
     margin-right: -2vw;
     margin-top: -2vh;
 }
+
 .reveal .header-left sup,
 .reveal .header-right sup {
     vertical-align: super;
     font-size: 14.1447px;
     line-height: 14.1667px;
 }
+
 // on dark background image
-.dark-background .header-right, .dark-background .header-left {
+.dark-background .header-right,
+.dark-background .header-left {
     color: white;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 
@@ -83,9 +90,11 @@
     width: 50%;
     float: left;
 }
+
 .clear-float {
     clear: both;
 }
+
 .clearfix {
     overflow: auto;
 }
@@ -95,8 +104,13 @@
     width: 65%;
     float: left;
 }
+
 .heading-right {
     width: 50%;
     float: right;
 }
 
+.parts {
+    display: flex;
+    flex-direction: row;
+}
