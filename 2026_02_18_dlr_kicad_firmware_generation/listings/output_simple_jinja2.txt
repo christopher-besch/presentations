@@ -1,0 +1,18 @@
+    StatusLED
+    /Dist_12V/DCDC1/
+
+    SomeDCDCType
+    /Dist_12V/DCDC1/
+
+    STM32
+    /Controller/
+
+    SomeADCType
+    /ADC1/
+
+    SomeLCLType
+    /DIST_12V/LCL1/
+
+    SomeLCLType
+    /DIST_12V/LCL2/
+

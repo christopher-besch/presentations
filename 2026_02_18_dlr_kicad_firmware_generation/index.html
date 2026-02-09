@@ -86,7 +86,7 @@
 
             <section>
                 <section>
-                    <h2>Contribution</h2>
+                    <h2>Contribution Overview</h2>
                     <ul>
                         <li>Group Netlist specification</li>
                         <li>kicad_firmware_generation implementation
@@ -100,39 +100,40 @@
                     </ul>
                 </section>
                 <section data-auto-animate>
-                    <img data-id="1" src="./software_overview_01.png" width="1200" />
+                    <img data-id="1" src="./images/software_overview_07.png" width="1200" />
+                </section>
+                <section>
+                    <div class="half-part">
+                        <p>KiCad Schematics</p>
+                        <img src="./images/example_schematics_cropped.png" width="400" />
+                    </div>
+                    <div class="half-part">
+                        <!-- <div> -->
+                        <!--     <p>&rarr; Group Netlist</p> -->
+                        <!--     <pre> -->
+                        <!--         <code class="language-jinja2 small-code" data-code="./listings/group_netlist.xml"> -->
+                        <!--         </code> -->
+                        <!--     </pre> -->
+                        <!-- </div> -->
+                        <p>&rarr; C++ Firmware</p>
+                        <pre>
+                            <code class="small-code" data-code="./listings/snippet_board.h">
+                            </code>
+                        </pre>
+                    </div>
                 </section>
                 <section data-auto-animate>
-                    <img data-id="1" src="./software_overview_02.png" width="1200" />
-                </section>
-                <section data-auto-animate>
-                    <img data-id="1" src="./software_overview_03.png" width="1200" />
-                </section>
-                <section data-auto-animate>
-                    <img data-id="1" src="./software_overview_04.png" width="1200" />
-                </section>
-                <section data-auto-animate>
-                    <img data-id="1" src="./software_overview_05.png" width="1200" />
-                </section>
-                <section data-auto-animate>
-                    <img data-id="1" src="./software_overview_06.png" width="1200" />
-                </section>
-                <section data-auto-animate>
-                    <img data-id="1" src="./software_overview_07.png" width="1200" />
+                    <img data-id="1" src="./images/software_overview_01.png" width="1200" />
                 </section>
             </section>
 
             <section>
-                <section>
-                    <h2>kicad_group_netlister</h2>
-                    <ul>
-                        <li>group components</li>
-                        <li>annotations</li>
-                    </ul>
+                <section data-auto-animate>
+                    <img data-id="1" src="./images/software_overview_02.png" width="1200" />
                 </section>
                 <section>
                     <div class="parts">
-                        <img src="./group_netlist.png" width="500" />
+                        <img src="./images/group_netlist.png" width="500" />
                         <div>
                             <h2>Group Netlist</h2>
                             <ul>
@@ -144,6 +145,22 @@
                     </div>
                 </section>
                 <section>
+                    <h2>kicad_group_netlister</h2>
+                    <ul>
+                        <li>group components</li>
+                        <li>annotations</li>
+                    </ul>
+                </section>
+                <section data-auto-animate>
+                    <img data-id="1" src="./images/software_overview_02.png" width="1200" />
+                </section>
+            </section>
+
+            <section>
+                <section data-auto-animate>
+                    <img data-id="1" src="./images/software_overview_03.png" width="1200" />
+                </section>
+                <section>
                     <h2>code_gen</h2>
                     <ul>
                         <li>Very small</li>
@@ -153,11 +170,33 @@
                     </ul>
                 </section>
                 <section>
-                    <img src="./software_overview_07.png" width="1200" />
+                    <div class="half-part">
+                        <p>Jinja2 Template</p>
+                        <pre>
+                            <code class="language-jinja2 small-code" data-code="./listings/simple_jinja2.tmpl">
+                            </code>
+                        </pre>
+                    </div>
+                    <div class="half-part">
+                        <p>Output</p>
+                        <pre>
+                            <code class="small-code" data-code="./listings/output_simple_jinja2.txt">
+                            </code>
+                        </pre>
+                    </div>
+                </section>
+                <section data-auto-animate>
+                    <img data-id="1" src="./images/software_overview_03.png" width="1200" />
+                </section>
+                <section data-auto-animate>
+                    <img data-id="1" src="./images/software_overview_04.png" width="1200" />
                 </section>
             </section>
 
             <section>
+                <section data-auto-animate>
+                    <img data-id="1" src="./images/software_overview_05.png" width="1200" />
+                </section>
                 <section>
                     <h2>netlist_to_csv</h2>
                     <ul>
@@ -165,14 +204,20 @@
                         <li>Harness Specification</li>
                         <li>Simplify info; focus on certain things only</li>
                     </ul>
-                    <img src="./csv.png" width="400" />
+                    <img src="./images/csv.png" width="400" />
                 </section>
-                <section>
-                    <img src="./software_overview_07.png" width="1200" />
+                <section data-auto-animate>
+                    <img data-id="1" src="./images/software_overview_05.png" width="1200" />
+                </section>
+                <section data-auto-animate>
+                    <img data-id="1" src="./images/software_overview_06.png" width="1200" />
                 </section>
             </section>
 
             <section>
+                <section data-auto-animate>
+                    <img data-id="1" src="./images/software_overview_07.png" width="1200" />
+                </section>
                 <section>
                     <h2>group_netlist_merger</h2>
                     <ul>
@@ -181,17 +226,17 @@
                     </ul>
                 </section>
                 <section data-auto-animate>
-                    <img data-id="1" src="./connectors_01.png" width="600" />
+                    <img data-id="1" src="./images/connectors_01.png" width="600" />
                 </section>
                 <section data-auto-animate>
-                    <img data-id="1" src="./connectors_02.png" width="600" />
-                </section>
-                <section>
-                    <img src="./software_overview_07.png" width="1200" />
+                    <img data-id="1" src="./images/connectors_02.png" width="600" />
                 </section>
             </section>
 
             <section>
+                <section>
+                    <img data-id="1" src="./images/software_overview_07.png" width="1200" />
+                </section>
                 <section>
                     <h4>Evaluation</h4>
                     how did we apply it?

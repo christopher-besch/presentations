@@ -1,0 +1,33 @@
+namespace {{ pascal_case(group.path) }} {
+// snippet type: {{ group.group_type }}
+typedef void Handle;
+{% for pin in group.pins.keys() %}
+    {% if pin.startswith("DI_") %}
+        {% set gpio_pin = group.get_single_pin_to_glob(pin, root_glob) %}
+        {% if gpio_pin is not none %}
+            typedef modm::platform::GpioOutput{{ gpio_pin.pin[1:] }}
+                {{ pascal_case(pin) }}Pin;
+        {% endif %}
+    {% endif %}
+    {% if pin.startswith("DO_") %}
+        {% set gpio_pin = group.get_single_pin_to_glob(pin, root_glob) %}
+        {% if gpio_pin is not none %}
+            typedef modm::platform::GpioInput{{ gpio_pin.pin[1:] }}
+                {{ pascal_case(pin) }}Pin;
+        {% endif %}
+    {% endif %}
+    {% if pin.startswith("AO_") %}
+        {% set adc_pin = group.get_single_pin_to_glob(pin, adc_glob) %}
+        {% set gpio_pin = group.get_single_pin_to_glob(pin, root_glob) %}
+        {% if adc_pin is not none %}
+            {% set adc_name = pascal_case(adc_pin.group_id[1])[4:] %}
+            typedef {{adc_name}}::{{ pascal_case(adc_pin.pin.split("_")[1]) }}
+                {{ pascal_case(pin) }}Adc;
+        {% endif %}
+        {% if gpio_pin is not none %}
+            typedef modm::platform::GpioAnalogOutput{{ gpio_pin.pin[1:] }}
+                {{ pascal_case(pin) }}Pin;
+        {% endif %}
+    {% endif %}
+{% endfor %}
+}

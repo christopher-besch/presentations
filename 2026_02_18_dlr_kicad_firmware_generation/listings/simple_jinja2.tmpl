@@ -1,0 +1,5 @@
+{% for group in glob_groups("**") %}
+    {{ group.group_type }}
+    {{ group.group_path }}
+
+{% endfor %}
