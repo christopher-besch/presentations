@@ -64,7 +64,7 @@
                 <section>
                     <div class="parts">
                         <div>
-                            <h3>PLUTO: a 6U Cubesat</h3>
+                            <h3>PLUTO: a satellite</h3>
                             <div class="image">
                                 <img src="./pluto.jpg" width="800" />
                                 <p>Credit: DLR<!-- (CC BY-NC-ND 3.0) --></p>
@@ -73,7 +73,7 @@
                         <div>
                             <h3>PCDU</h3>
                             <ul>
-                                <li>Developed by DLR Avionics Systems</li>
+                                <li>Developed in house</li>
                                 <li>Part of PLUTO</li>
                                 <li>Between solar arrays and subsystems</li>
                                 <li>Central job: TMTC<br />
@@ -133,6 +133,9 @@
                             <code class="small-code" data-code="./listings/snippet_board.h">
                             </code>
                         </pre>
+                        <ul>
+                            <li>Currently: firmware engineer manually reads schematics</li>
+                        </ul>
                     </div>
                 </section>
                 <section>
@@ -143,7 +146,7 @@
                             <li>How to generate C++ firmware?
                                 <ul>
                                     <li>How to integrate non-hardware information?</li>
-                                    <li>How to support differences between PCDUs?</li>
+                                    <!-- <li>How to support differences between PCDUs?</li> -->
                                 </ul>
                             </li>
                             <li>How to make usable outside PCDU development?
@@ -207,17 +210,16 @@
                 <section>
                     <h2>Tool 1: kicad_group_netlister</h2>
                     <div class="half-part">
+                        <img src="./images/example_schematics_cropped.png" width="500" />
+                    </div>
+                    <div class="half-part">
                         <ul>
                             <li>Jobs:
                                 <ol>
                                     <li>Group components</li>
-                                    <li>Find connections between Group Pins</li>
+                                    <li>Find connections</li>
                                 </ol>
                             </li>
-                        </ul>
-                    </div>
-                    <div class="half-part">
-                        <ul>
                             <li>KiCad netlist &rarr; Group Netlist
                                 <ul>
                                     <li>Don't use schematics directly</li>
@@ -261,27 +263,25 @@
                 </section>
                 <section>
                     <h2>Tool 2: code_gen</h2>
-                    <ul>
-                        <li>Read Group Netlist (with Python library)</li>
-                        <li>Pass info to Jinja2 template<br />
-                            &rarr; Project differences (and manual code) in template<br />
-                            &rarr; Support arbitrary language<br />
-                            &rarr; Possible to make tooling Open-Source<br />
-                        </li>
-                    </ul>
-                </section>
-                <section>
+                    <div class="half-part">
+                        <ul>
+                            <li>Read Group Netlist<br />(with Python library)</li>
+                            <li>Pass info to Jinja2 template<br />
+                                &rarr; Project specificities in template<br />
+                                &rarr; Support arbitrary language<br />
+                                &rarr; Possible to make tooling<br />Open-Source<br />
+                            </li>
+                        </ul>
+                    </div>
                     <div class="half-part">
                         <p>Jinja2 Template</p>
                         <pre>
-                            <code class="language-txt small-code" data-code="./listings/simple_jinja2.tmpl">
+                            <code class="language-txt" data-code="./listings/simple_jinja2.tmpl">
                             </code>
                         </pre>
-                    </div>
-                    <div class="half-part">
                         <p>&rarr; Output</p>
                         <pre>
-                            <code class="small-code" data-code="./listings/output_simple_jinja2.txt">
+                            <code class="small-code" data-code="./listings/output_simple_jinja2_short.txt">
                             </code>
                         </pre>
                     </div>
@@ -396,7 +396,7 @@
                     </div>
                     <div class="half-part">
                         <ul>
-                            <li>code_gen:<br />Generate part of PCDU firmware</li>
+                            <li>code_gen:<br />Generate hardware definition C++ header and LCL driver firmware</li>
                             <li>netlist_to_csv:<br />Create PLUTO PCDU CSV for harness specification</li>
                             <li>Group Netlist and Python library:<br />Snippet based design analysis</li>
                         </ul>
@@ -414,7 +414,7 @@
                         <!-- <h4>Main Ideas</h4> -->
                         <ol>
                             <li>KiCad Netlist<br />&rarr; solve tracing problem</li>
-                            <li>Intermediate format<br />&rarr; more use-cases</li>
+                            <li>Intermediate format<br />&rarr; unlocks use-cases</li>
                             <li>Jinja2 &rarr; Open-Source</li>
                         </ol>
                         <img src="./images/software_overview_07.png" width="1200" />
