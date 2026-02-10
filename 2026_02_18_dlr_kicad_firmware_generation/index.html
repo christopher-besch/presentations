@@ -50,7 +50,8 @@
             <div class="header-right">
                 <em>Christopher Besch</em> &bullet; 18th February 2026
             </div>
-            <section data-state="titleslide">
+            <section data-state="titleslide dark-background" data-background-image="./IMG_0092_01.jpg"
+                data-background-opacity="1.0">
                 <div class="half-part">
                     <h4>kicad_firmware_generation</h4>
                     <h3>Automatic Firmware Generation for Spaceflight Hardware based on Schematics</h3>
@@ -61,46 +62,57 @@
 
             <section>
                 <section>
-                    <h4>Background</h4>
-                    what DLR are doing, why challenging, why EPS important, why not one days work
-                    unknown requirements
-                </section>
-                <section>
                     <div class="parts">
                         <div>
-                            <h4>PLUTO: a 6U Cubesat</h4>
+                            <h3>PLUTO: a 6U Cubesat</h3>
                             <div class="image">
                                 <img src="./pluto.jpg" width="800" />
-                                <p>Credit: DLR (CC BY-NC-ND 3.0)</p>
+                                <p>Credit: DLR<!-- (CC BY-NC-ND 3.0) --></p>
                             </div>
                         </div>
                         <div>
-                            <h4>PCDU (Power Conditioning and Distribution Unit)</h4>
+                            <h3>PCDU</h3>
                             <ul>
-                                <li></li>
+                                <li>Part of PLUTO</li>
+                                <li>Between solar arrays and subsystems</li>
+                                <li>Central job: TMTC<br />
+                                    <ul>
+                                        <li>Telemetry (i.e., current draw)</li>
+                                        <li>Telecommand (i.e., power up/down specific subsystem)</li>
+                                    </ul>
+                                </li>
+                                <li>Contains STM32 with firmware</li>
                             </ul>
                         </div>
                     </div>
                 </section>
-            </section>
-
-            <section>
                 <section>
-                    <h2>Contribution Overview</h2>
+                    <h2>PCDU Development</h2>
                     <ul>
-                        <li>Group Netlist specification</li>
-                        <li>kicad_firmware_generation implementation
-                            <ol>
-                                <li>kicad_group_netlister</li>
-                                <li>code_gen</li>
-                                <li>netlist_to_csv</li>
-                                <li>group_netlist_merger</li>
-                            </ol>
+                        <li>Every satellite's PCDU is similar
+                            <ul>
+                                <li>Fundamentally same job</li>
+                                <li>Differences limited to, i.e., different power distributions (12V vs 3.3V)</li>
+                            </ul>
+                        </li>
+                        <li>Snippet based (electrical) design
+                            <ul>
+                                <li>Snippet: group of components with single function</li>
+                                <li>Design new PCDU using existing snippets</li>
+                            </ul>
+                        </li>
+                        <li>Bottleneck: firmware development
+                            <ul>
+                                <li>Design goal: speed up firmware similar to electrical design<br />
+                                    &rarr; "Automatic <b>Firmware Generation</b> for Spaceflight Hardware<br />
+                                    based on
+                                    <b>Schematics</b>"
+                                </li>
+                            </ul>
                         </li>
                     </ul>
-                </section>
-                <section data-auto-animate>
-                    <img data-id="1" src="./images/software_overview_07.png" width="1200" />
+                    <!-- what DLR are doing, why challenging, why EPS important, why not one days work -->
+                    <!-- unknown requirements -->
                 </section>
                 <section>
                     <div class="half-part">
@@ -122,63 +134,151 @@
                         </pre>
                     </div>
                 </section>
+                <section>
+                    <div class="half-part">
+                        <h3>Challenges</h3>
+                        <ul>
+                            <li>How to get hardware specification?</li>
+                            <li>How to generate C++ firmware?
+                                <ul>
+                                    <li>How to integrate non-hardware information?</li>
+                                    <li>How to support differences between PCDUs?</li>
+                                </ul>
+                            </li>
+                            <li>How to make usable outside PCDU development?
+                                <ul>
+                                    <li>What information do other use-cases require?</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="half-part">
+                        <h3>Contribution</h3>
+                        <ul>
+                            <li>Group Netlist specification</li>
+                            <li>Implementation
+                                <ol>
+                                    <li>kicad_group_netlister</li>
+                                    <li>code_gen</li>
+                                    <li>netlist_to_csv</li>
+                                    <li>group_netlist_merger</li>
+                                </ol>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
                 <section data-auto-animate>
+                    <h2 data-id="2">Tooling Overview</h2>
+                    <img data-id="1" src="./images/software_overview_07.png" width="1200" />
+                </section>
+                <section data-auto-animate>
+                    <h2 data-id="2">Tooling Overview (1)</h2>
                     <img data-id="1" src="./images/software_overview_01.png" width="1200" />
                 </section>
             </section>
 
             <section>
                 <section data-auto-animate>
+                    <h2 data-id="2">Tooling Overview (2)</h2>
                     <img data-id="1" src="./images/software_overview_02.png" width="1200" />
                 </section>
                 <section>
-                    <div class="parts">
+                    <div class="half-part">
                         <img src="./images/group_netlist.png" width="500" />
+                    </div>
+                    <div class="half-part">
                         <div>
-                            <h2>Group Netlist</h2>
+                            <h3>Group</h3>
                             <ul>
-                                <li>XML document</li>
-                                <li>Python library</li>
-                                <li>Snippet based Design Analysis</li>
+                                <li>Collection of components</li>
+                                <li>With set of Pins</li>
+                                <li>Can be snippet (doesn't have to)</li>
+                            </ul>
+                            <h3>Group Netlist XML</h3>
+                            <ul>
+                                <li>Abstract view on hardware (challenge: right degree of abstraction)</li>
+                                <li>Stores connections between Groups' Pins</li>
+                                <li>With Python library (parsing and helper functions)</li>
                             </ul>
                         </div>
                     </div>
                 </section>
                 <section>
                     <h2>kicad_group_netlister</h2>
-                    <ul>
-                        <li>group components</li>
-                        <li>annotations</li>
-                    </ul>
+                    <div class="half-part">
+                        <ul>
+                            <li>Jobs:
+                                <ol>
+                                    <li>Group components</li>
+                                    <li>Find connections between Group Pins</li>
+                                </ol>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="half-part">
+                        <ul>
+                            <li>KiCad netlist &rarr; Group Netlist
+                                <ul>
+                                    <li>Don't use schematics directly</li>
+                                    <li>KiCad-CLI creates Netlist</li>
+                                    <li>Circumvent tracing problem: Same behavior as KiCad</li>
+                                </ul>
+                            </li>
+                            <li>Main Info Sources:
+                                <ul>
+                                    <li>Annotations</li>
+                                    <li>KiCad Sheet Hierarchy</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+                <section>
+                    <!-- <h2>kicad_group_netlister Main Sources</h2> -->
+                    <div class="parts">
+                        <div class="">
+                            <h3>Annotations</h3>
+                            <img src="./images/example_schematics_led_cropped.png" width="600" />
+                        </div>
+                        <div class="">
+                            <h3>KiCad Sheet Hierarchy</h3>
+                            <img src="./images/example_schematics_hierarchy.png" width="400" />
+                            <img src="./images/hierarchical_symbol.png" width="400" />
+                        </div>
+                    </div>
                 </section>
                 <section data-auto-animate>
+                    <h2 data-id="2">Tooling Overview (2)</h2>
                     <img data-id="1" src="./images/software_overview_02.png" width="1200" />
                 </section>
             </section>
 
             <section>
                 <section data-auto-animate>
+                    <h2 data-id="2">Tooling Overview (3)</h2>
                     <img data-id="1" src="./images/software_overview_03.png" width="1200" />
                 </section>
                 <section>
                     <h2>code_gen</h2>
                     <ul>
-                        <li>Very small</li>
-                        <li>Uses common library</li>
-                        <li>Jinja2</li>
-                        <li>Private logic in template</li>
+                        <li>Read Group Netlist (with Python library)</li>
+                        <li>Pass info to Jinja2 template<br />
+                            &rarr; Project differences (and manual code) in template<br />
+                            &rarr; Support arbitrary language<br />
+                            &rarr; Possible to make tooling Open-Source<br />
+                        </li>
                     </ul>
                 </section>
                 <section>
                     <div class="half-part">
                         <p>Jinja2 Template</p>
                         <pre>
-                            <code class="language-jinja2 small-code" data-code="./listings/simple_jinja2.tmpl">
+                            <code class="language-txt small-code" data-code="./listings/simple_jinja2.tmpl">
                             </code>
                         </pre>
                     </div>
                     <div class="half-part">
-                        <p>Output</p>
+                        <p>&rarr; Output</p>
                         <pre>
                             <code class="small-code" data-code="./listings/output_simple_jinja2.txt">
                             </code>
@@ -186,15 +286,18 @@
                     </div>
                 </section>
                 <section data-auto-animate>
+                    <h2 data-id="2">Tooling Overview (3)</h2>
                     <img data-id="1" src="./images/software_overview_03.png" width="1200" />
                 </section>
                 <section data-auto-animate>
+                    <h2 data-id="2">Tooling Overview (4)</h2>
                     <img data-id="1" src="./images/software_overview_04.png" width="1200" />
                 </section>
             </section>
 
             <section>
                 <section data-auto-animate>
+                    <h2 data-id="2">Tooling Overview (5)</h2>
                     <img data-id="1" src="./images/software_overview_05.png" width="1200" />
                 </section>
                 <section>
@@ -207,15 +310,18 @@
                     <img src="./images/csv.png" width="400" />
                 </section>
                 <section data-auto-animate>
+                    <h2 data-id="2">Tooling Overview (5)</h2>
                     <img data-id="1" src="./images/software_overview_05.png" width="1200" />
                 </section>
                 <section data-auto-animate>
+                    <h2 data-id="2">Tooling Overview (6)</h2>
                     <img data-id="1" src="./images/software_overview_06.png" width="1200" />
                 </section>
             </section>
 
             <section>
                 <section data-auto-animate>
+                    <h2 data-id="2">Tooling Overview (7)</h2>
                     <img data-id="1" src="./images/software_overview_07.png" width="1200" />
                 </section>
                 <section>
@@ -235,17 +341,18 @@
 
             <section>
                 <section>
+                    <h2 data-id="2">Tooling Overview</h2>
                     <img data-id="1" src="./images/software_overview_07.png" width="1200" />
                 </section>
                 <section>
-                    <h4>Evaluation</h4>
+                    <h2>Evaluation</h2>
                     how did we apply it?
                 </section>
             </section>
 
             <section>
                 <section>
-                    <h4>kicad_firmware_generation</h4>
+                    <h2>kicad_firmware_generation</h2>
                     <ul>
                         <li>some summary</li>
                     </ul>
