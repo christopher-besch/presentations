@@ -18,6 +18,7 @@
 }
 
 .dark-background h4,
-.dark-background h3 {
+.dark-background h3,
+.dark-background li {
     color: white;
 }
