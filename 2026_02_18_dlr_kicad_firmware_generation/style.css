@@ -16,3 +16,8 @@
 .small-code {
     font-size: 14px;
 }
+
+.dark-background h4,
+.dark-background h3 {
+    color: white;
+}
