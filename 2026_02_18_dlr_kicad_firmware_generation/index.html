@@ -64,19 +64,18 @@
                 <section>
                     <div class="parts">
                         <div>
-                            <h3>PLUTO: a satellite</h3>
+                            <h3>PLUTO: a Satellite</h3>
                             <div class="image">
                                 <img src="./pluto.jpg" width="800" />
                                 <p>Credit: DLR<!-- (CC BY-NC-ND 3.0) --></p>
                             </div>
                         </div>
                         <div>
-                            <h3>PCDU</h3>
+                            <h3>PCDU (Power Conditioning and Distribution Unit)</h3>
                             <ul>
+                                <li>Between solar arrays, battery and subsystems</li>
                                 <li>Developed in house</li>
-                                <li>Part of PLUTO</li>
-                                <li>Between solar arrays and subsystems</li>
-                                <li>Central job: TMTC<br />
+                                <li>Important job: TMTC<br />
                                     <ul>
                                         <li>Telemetry (i.e., current draw)</li>
                                         <li>Telecommand (i.e., power up/down specific subsystem)</li>
@@ -90,15 +89,11 @@
                 <section>
                     <h2>PCDU Development</h2>
                     <ul>
-                        <li>Every satellite's PCDU is similar
-                            <ul>
-                                <li>Fundamentally same job</li>
-                                <li>Differences limited to, i.e., different power distributions (12V vs 3.3V)</li>
-                            </ul>
-                        </li>
+                        <li>PCDUs for same satellite class do fundamentally same job<br />
+                            but, e.g., different voltages (e.g., 12V vs 3.3V)</li>
                         <li>Snippet based (electrical) design
                             <ul>
-                                <li>Snippet: group of components with single function</li>
+                                <li>Snippet: group of components with well-defined function</li>
                                 <li>Design new PCDU using existing snippets</li>
                             </ul>
                         </li>
@@ -139,40 +134,40 @@
                     </div>
                 </section>
                 <section>
-                    <div class="half-part">
-                        <h3>Challenges</h3>
-                        <ul>
-                            <li>How to get hardware specification?</li>
-                            <li>How to generate C++ firmware?
-                                <ul>
-                                    <li>How to integrate non-hardware information?</li>
-                                    <!-- <li>How to support differences between PCDUs?</li> -->
-                                </ul>
-                            </li>
-                            <li>How to make usable outside PCDU development?
-                                <ul>
-                                    <li>What information do other use-cases require?</li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="half-part">
-                        <h3>Contribution</h3>
-                        <ul>
-                            <li>Group Netlist specification</li>
-                            <li>Implementation
-                                <ol>
-                                    <li>kicad_group_netlister</li>
-                                    <li>code_gen</li>
-                                    <li>netlist_to_csv</li>
-                                    <li>group_netlist_merger</li>
-                                </ol>
-                            </li>
-                        </ul>
-                    </div>
+                    <!-- <div class="half-part"> -->
+                    <h3>Challenges</h3>
+                    <ul>
+                        <li>How to get and understand hardware specification?</li>
+                        <li>How to generate C++ firmware?
+                            <ul>
+                                <li>How to input information, which isn't in schematics?</li>
+                                <!-- <li>How to support differences between PCDUs?</li> -->
+                            </ul>
+                        </li>
+                        <li>How to make usable outside PCDU development?
+                            <ul>
+                                <li>What information do other use-cases require?</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <!-- </div> -->
+                    <!-- <div class="half-part"> -->
+                    <!--     <h3>Contribution</h3> -->
+                    <!--     <ul> -->
+                    <!--         <li>Group Netlist specification</li> -->
+                    <!--         <li>Implementation -->
+                    <!--             <ol> -->
+                    <!--                 <li>kicad_group_netlister</li> -->
+                    <!--                 <li>code_gen</li> -->
+                    <!--                 <li>netlist_to_csv</li> -->
+                    <!--                 <li>group_netlist_merger</li> -->
+                    <!--             </ol> -->
+                    <!--         </li> -->
+                    <!--     </ul> -->
+                    <!-- </div> -->
                 </section>
                 <section data-auto-animate>
-                    <h2 data-id="2">Tooling Overview</h2>
+                    <h2 data-id="2">Contribution</h2>
                     <img data-id="1" src="./images/software_overview_07.png" width="1200" />
                 </section>
                 <section data-auto-animate>
@@ -387,7 +382,10 @@
                 </section>
                 <section>
                     <h2>Evaluation</h2>
-                    <p>Integration in PCDU Design Process at DLR Avionics Systems</p>
+                    <ul style="margin-bottom: 20px;">
+                        <li>Large synthetic benchmark &rarr; adequate runtime</li>
+                        <li>Integration in PCDU Design Process at DLR Avionics Systems:</li>
+                    </ul>
                     <div class="half-part">
                         <ul>
                             <li>kicad_group_netlister:<br />Annotate PCDU KiCad schematics</li>
