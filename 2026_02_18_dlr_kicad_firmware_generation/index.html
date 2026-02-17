@@ -69,19 +69,20 @@
                                 <img src="./pluto.jpg" width="800" />
                                 <p>Credit: DLR<!-- (CC BY-NC-ND 3.0) --></p>
                             </div>
+                            <!-- <img src="./images/pluto_overview.png" width="400" /> -->
                         </div>
                         <div>
                             <h3>PCDU (Power Conditioning and Distribution Unit)</h3>
                             <ul>
                                 <li>Between solar arrays, battery and subsystems</li>
                                 <li>Developed in house</li>
-                                <li>Important job: TMTC<br />
+                                <li>STM32 with firmware
                                     <ul>
-                                        <li>Telemetry (i.e., current draw)</li>
-                                        <li>Telecommand (i.e., power up/down specific subsystem)</li>
+                                        <li>Important job: TMTC<br />
+                                            Telemetry (i.e., current draw)<br />
+                                            Telecommand (i.e., power up/down specific subsystem)
                                     </ul>
                                 </li>
-                                <li>Contains STM32 with firmware</li>
                             </ul>
                         </div>
                     </div>
@@ -90,10 +91,10 @@
                     <h2>PCDU Development</h2>
                     <ul>
                         <li>PCDUs for same satellite class do fundamentally same job<br />
-                            but, e.g., different voltages (e.g., 12V vs 3.3V)</li>
+                            but, e.g., different voltage outputs (e.g., 12V vs 3.3V)</li>
                         <li>Snippet based (electrical) design
                             <ul>
-                                <li>Snippet: group of components with well-defined function</li>
+                                <li>Snippet: group of components with well-defined function (e.g., ADC)</li>
                                 <li>Design new PCDU using existing snippets</li>
                             </ul>
                         </li>
@@ -113,7 +114,7 @@
                 <section>
                     <div class="half-part">
                         <h3>KiCad Schematics</h3>
-                        <img src="./images/example_schematics_cropped.png" width="400" />
+                        <img src="./images/adc_snippet.png" width="800" />
                     </div>
                     <div class="half-part">
                         <!-- <div> -->
@@ -125,7 +126,7 @@
                         <!-- </div> -->
                         <h3>&rarr; C++ Firmware</h3>
                         <pre>
-                            <code class="small-code" data-code="./listings/snippet_board.h">
+                            <code class="small-code" data-code="./listings/adc_code.h">
                             </code>
                         </pre>
                         <ul>
@@ -140,7 +141,8 @@
                         <li>How to get and understand hardware specification?</li>
                         <li>How to generate C++ firmware?
                             <ul>
-                                <li>How to input information, which isn't in schematics?</li>
+                                <li>How to enrich data from schematics with other information?<br />
+                                    (e.g., TMTC protocol specification)</li>
                                 <!-- <li>How to support differences between PCDUs?</li> -->
                             </ul>
                         </li>
@@ -183,7 +185,7 @@
                 </section>
                 <section>
                     <div class="half-part">
-                        <img src="./images/group_netlist.png" width="500" />
+                        <img src="./images/group_netlist_02.png" width="500" />
                     </div>
                     <div class="half-part">
                         <div>
@@ -205,7 +207,7 @@
                 <section>
                     <h2>Tool 1: kicad_group_netlister</h2>
                     <div class="half-part">
-                        <img src="./images/example_schematics_cropped.png" width="500" />
+                        <img src="./images/adc_snippet_cropped.png" width="500" />
                     </div>
                     <div class="half-part">
                         <ul>
@@ -222,25 +224,32 @@
                                     <li>Circumvent tracing problem: Same behavior as KiCad</li>
                                 </ul>
                             </li>
-                            <li>Main Info Sources:
-                                <ul>
-                                    <li>Annotations</li>
-                                    <li>KiCad Sheet Hierarchy</li>
-                                </ul>
-                            </li>
+                            <!-- <li>Main Info Sources: -->
+                            <!--     <ul> -->
+                            <!--         <li>Annotations</li> -->
+                            <!--         <li>KiCad Sheet Hierarchy</li> -->
+                            <!--     </ul> -->
+                            <!-- </li> -->
                         </ul>
                     </div>
                 </section>
                 <section>
-                    <!-- <h2>kicad_group_netlister Main Sources</h2> -->
+                    <h3>Group ID</h3>
+                    <code><span style="color: red;">ICA_EPS_Distribution</span><span
+                            style="color: blue;">/ADCS/ADC1/</span><span
+                            style="color: green;">Snippet_ADC128S102</span></code>
+                    <code><span
+                            style="color: red;">Schematic</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+                            style="color: blue;">Sheet&nbsp;Path</span>&nbsp;<span
+                            style="color: green;">Group&nbsp;Type</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code>
                     <div class="parts">
                         <div class="">
-                            <h3>Annotations</h3>
-                            <img src="./images/example_schematics_led_cropped.png" width="600" />
+                            <h4>Annotations (Group Type and Pin Name)</h4>
+                            <img src="./images/adc_annotations.png" width="800" />
                         </div>
                         <div class="">
-                            <h3>KiCad Sheet Hierarchy</h3>
-                            <img src="./images/example_schematics_hierarchy.png" width="400" />
+                            <h4>KiCad Sheet Hierarchy</h4>
+                            <!-- <img src="./images/example_schematics_hierarchy.png" width="400" /> -->
                             <img src="./images/hierarchical_symbol.png" width="400" />
                         </div>
                     </div>
@@ -264,7 +273,7 @@
                             <li>Pass info to Jinja2 template<br />
                                 &rarr; Project specificities in template<br />
                                 &rarr; Support arbitrary language<br />
-                                &rarr; Possible to make tooling<br />Open-Source<br />
+                                &rarr; Open-Source tooling<br />
                             </li>
                         </ul>
                     </div>
@@ -276,7 +285,7 @@
                         </pre>
                         <p>&rarr; Output</p>
                         <pre>
-                            <code class="small-code" data-code="./listings/output_simple_jinja2_short.txt">
+                            <code class="language-txt small-code" data-code="./listings/output_simple_jinja2_short.txt">
                             </code>
                         </pre>
                     </div>
@@ -350,7 +359,7 @@
                         </ul>
                     </div>
                     <div class="half-part">
-                        <img data-id="1" src="./images/connectors_01.png" width="600" />
+                        <img data-id="1" src="./images/connectors_03.png" width="600" />
                     </div>
                 </section>
                 <section data-auto-animate>
@@ -370,7 +379,7 @@
                         </ul>
                     </div>
                     <div class="half-part">
-                        <img data-id="1" src="./images/connectors_02.png" width="600" />
+                        <img data-id="1" src="./images/connectors_04.png" width="600" />
                     </div>
                 </section>
             </section>
@@ -381,11 +390,14 @@
                     <img data-id="1" src="./images/software_overview_07.png" width="1200" />
                 </section>
                 <section>
-                    <h2>Evaluation</h2>
-                    <ul style="margin-bottom: 20px;">
-                        <li>Large synthetic benchmark &rarr; adequate runtime</li>
-                        <li>Integration in PCDU Design Process at DLR Avionics Systems:</li>
-                    </ul>
+                    <!-- <h2>Evaluation</h2> -->
+                    <h3>Integration in PCDU Design Process</h3>
+                    <!-- TODO: add quantitative results -->
+                    <!-- TODO: runtime, lines of code -->
+                    <!-- <ul style="margin-bottom: 20px;"> -->
+                    <!--     <li>Large synthetic benchmark &rarr; adequate runtime</li> -->
+                    <!--     <li>Integration in PCDU Design Process at DLR Avionics Systems:</li> -->
+                    <!-- </ul> -->
                     <div class="half-part">
                         <ul>
                             <li>kicad_group_netlister:<br />Annotate PCDU KiCad schematics</li>
@@ -398,6 +410,61 @@
                             <li>netlist_to_csv:<br />Create PLUTO PCDU CSV for harness specification</li>
                             <li>Group Netlist and Python library:<br />Snippet based design analysis</li>
                         </ul>
+                    </div>
+                </section>
+                <section>
+                    <h3>Quantitative Evaluation</h3>
+                    <div class="half-part">
+                        <ul>
+                            <!-- <li>Developer time saved (difficult to measure)</li> -->
+                            <li>Lines of code:
+
+
+                                <table>
+                                    <tr>
+                                        <td>Group Netlist library</td>
+                                        <td>414</td>
+                                    </tr>
+                                    <tr>
+                                        <td>kicad_group_netlister</td>
+                                        <td>426</td>
+                                    </tr>
+                                    <tr>
+                                        <td>code_gen</td>
+                                        <td>118</td>
+                                    </tr>
+                                    <tr>
+                                        <td>netlist_to_csv</td>
+                                        <td>169</td>
+                                    </tr>
+                                    <tr>
+                                        <td>group_netlist merger</td>
+                                        <td>185</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Snippet based design analysis</td>
+                                        <td>65</td>
+                                    </tr>
+                                </table>
+
+                                <!-- <ul> -->
+                                <!--     <li>Group Netlist library: 414</li> -->
+                                <!--     <li>kicad_group_netlister: 426</li> -->
+                                <!--     <li>code_gen: 118</li> -->
+                                <!--     <li>netlist_to_csv: 169</li> -->
+                                <!--     <li>group_netlist merger: 185</li> -->
+                                <!--     <li>Snippet based design analysis: 65</li> -->
+                                <!-- </ul> -->
+                            </li>
+                            <li>Asserts: 160</li>
+                        </ul>
+                    </div>
+                    <div class="half-part">
+                        <ul>
+                            <li>PLUTO's PCDU: 1.7s (sum of all tools; component count: 2494) </li>
+                            <li>Synthetic benchmark: 120 tests</li>
+                        </ul>
+                        <img src="./images/synth_results_full.svg" width="1200" />
                     </div>
                 </section>
             </section>
@@ -419,6 +486,37 @@
                     </div>
                     <a
                         href="https://github.com/DLR-RY/kicad_firmware_generation">github.com/DLR-RY/kicad_firmware_generation</a>
+                </section>
+            </section>
+
+            <section>
+                <section>
+                    <h1>Appendix</h1>
+                </section>
+                <section>
+                    <h3>Development Process</h3>
+                    <div>
+                        <div class="half-part">
+                            <p>State 1</p>
+                            <img src="./images/software_overview_old1.png" width="600" />
+                            <p>State 2</p>
+                            <img src="./images/software_overview_old2.png" width="600" />
+                        </div>
+                        <div class="half-part">
+                            <p>State 3</p>
+                            <img src="./images/software_overview_07.png" width="600" />
+                            <ul>
+                                <li>Rapid iteration great<br />&larr; requirements unknown</li>
+                                <li>Striving for simplicity great</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <img src="./images/group_netlist_01.png" width="500" />
+                </section>
+                <section>
+                    <img src="./images/connectors_02.png" width="600" />
                 </section>
             </section>
         </div>
