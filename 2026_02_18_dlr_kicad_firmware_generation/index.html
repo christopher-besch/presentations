@@ -75,7 +75,7 @@
                             <h3>PCDU (Power Conditioning and Distribution Unit)</h3>
                             <ul>
                                 <li>Between solar arrays, battery and subsystems</li>
-                                <li>Developed in house</li>
+                                <!-- <li>Developed in house</li> -->
                                 <li>STM32 with firmware
                                     <ul>
                                         <li>Important job: TMTC<br />
@@ -141,8 +141,9 @@
                         <li>How to get and understand hardware specification?</li>
                         <li>How to generate C++ firmware?
                             <ul>
+                                <!-- <li>How to enrich data with project specific information?</li> -->
                                 <li>How to enrich data from schematics with other information?<br />
-                                    (e.g., TMTC protocol specification)</li>
+                                    (e.g., OS abstractions)</li>
                                 <!-- <li>How to support differences between PCDUs?</li> -->
                             </ul>
                         </li>
@@ -386,32 +387,35 @@
 
             <section>
                 <section>
-                    <h2 data-id="2">Tooling Overview</h2>
-                    <img data-id="1" src="./images/software_overview_07.png" width="1200" />
+                    <!-- <h2>Tooling Overview</h2> -->
+                    <!-- <div class="half-part"> -->
+                    <img src="./images/software_overview_07.png" width="800" />
+                    <!-- </div> -->
+                    <!-- <div class="half-part"> -->
+                    <h4>Integration in PCDU Design Process</h4>
+                    <ul>
+                        <li>Generate hardware definition C++ header and LCL driver firmware<br />
+                            &rarr; Found error in hardware</li>
+                        <li>Generate spreadsheet harness specification</li>
+                    </ul>
+                    <!-- </div> -->
                 </section>
-                <section>
-                    <!-- <h2>Evaluation</h2> -->
-                    <h3>Integration in PCDU Design Process</h3>
-                    <!-- TODO: add quantitative results -->
-                    <!-- TODO: runtime, lines of code -->
-                    <!-- <ul style="margin-bottom: 20px;"> -->
-                    <!--     <li>Large synthetic benchmark &rarr; adequate runtime</li> -->
-                    <!--     <li>Integration in PCDU Design Process at DLR Avionics Systems:</li> -->
-                    <!-- </ul> -->
-                    <div class="half-part">
-                        <ul>
-                            <li>kicad_group_netlister:<br />Annotate PCDU KiCad schematics</li>
-                            <li>group_netlist_merger:<br />Support both PLUTO PCDU's Distribution and SOLBAT boards</li>
-                        </ul>
-                    </div>
-                    <div class="half-part">
-                        <ul>
-                            <li>code_gen:<br />Generate hardware definition C++ header and LCL driver firmware</li>
-                            <li>netlist_to_csv:<br />Create PLUTO PCDU CSV for harness specification</li>
-                            <li>Group Netlist and Python library:<br />Snippet based design analysis</li>
-                        </ul>
-                    </div>
-                </section>
+                <!-- <section> -->
+                <!--     <h3>Integration in PCDU Design Process</h3> -->
+                <!--     <div class="half-part"> -->
+                <!--         <ul> -->
+                <!--             <li>kicad_group_netlister:<br />Annotate PCDU KiCad schematics</li> -->
+                <!--             <li>group_netlist_merger:<br />Support both PLUTO PCDU's Distribution and SOLBAT boards</li> -->
+                <!--         </ul> -->
+                <!--     </div> -->
+                <!--     <div class="half-part"> -->
+                <!--         <ul> -->
+                <!--             <li>code_gen:<br />Generate hardware definition C++ header and LCL driver firmware</li> -->
+                <!--             <li>netlist_to_csv:<br />Create PLUTO PCDU CSV for harness specification</li> -->
+                <!--             <li>Group Netlist and Python library:<br />Snippet based design analysis</li> -->
+                <!--         </ul> -->
+                <!--     </div> -->
+                <!-- </section> -->
                 <section>
                     <h3>Quantitative Evaluation</h3>
                     <div class="half-part">
@@ -506,8 +510,8 @@
                             <p>State 3</p>
                             <img src="./images/software_overview_07.png" width="600" />
                             <ul>
-                                <li>Rapid iteration great<br />&larr; requirements unknown</li>
-                                <li>Striving for simplicity great</li>
+                                <li>Rapid iteration: great<br />&larr; requirements unknown</li>
+                                <li>Striving for simplicity: great</li>
                             </ul>
                         </div>
                     </div>
