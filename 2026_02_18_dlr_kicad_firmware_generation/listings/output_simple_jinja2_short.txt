@@ -1,8 +1,7 @@
-    StatusLED
-    /Dist_12V/DCDC1/
+    ICA_EPS_Distribution
+    /ADCS/ADC1/
+    Snippet_ADC128S102
 
-    SomeDCDCType
-    /Dist_12V/DCDC1/
-
-    STM32
+    ICA_EPS_Distribution
     /Controller/
+    STM32
