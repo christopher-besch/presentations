@@ -1,0 +1,576 @@
+<!-- MIT License -->
+
+<!-- Copyright (c) 2022 Christopher Besch -->
+
+<!-- Permission is hereby granted, free of charge, to any person obtaining a copy -->
+<!-- of this software and associated documentation files (the "Software"), to deal -->
+<!-- in the Software without restriction, including without limitation the rights -->
+<!-- to use, copy, modify, merge, publish, distribute, sublicense, and/or sell -->
+<!-- copies of the Software, and to permit persons to whom the Software is -->
+<!-- furnished to do so, subject to the following conditions: -->
+
+<!-- The above copyright notice and this permission notice shall be included in all -->
+<!-- copies or substantial portions of the Software. -->
+
+<!-- THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR -->
+<!-- IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, -->
+<!-- FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE -->
+<!-- AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER -->
+<!-- LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, -->
+<!-- OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE -->
+<!-- SOFTWARE. -->
+
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>kicad_firmware_generation: Automatic Firmware Generation for Spaceflight Hardware based on Schematics</title>
+    <meta name="description" content="Automatic Firmware Generation for Spaceflight Hardware based on Schematics">
+    <meta name="author" content="Christopher Besch">
+
+    <link rel="stylesheet" href="../dist/reset.css">
+    <link rel="stylesheet" href="../dist/reveal.css">
+    <link rel="stylesheet" href="../dist/theme/custom_white.css">
+
+    <!-- code highlighting theme -->
+    <link rel="stylesheet" href="../static/oceanicnext.css">
+
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <div class="header-left">
+                kicad_firmware_generation
+            </div>
+            <div class="header-right">
+                <em>Christopher Besch</em> &bullet; 20th February 2026
+            </div>
+            <section data-state="titleslide dark-background" data-background-image="./IMG_0092_01.jpg"
+                data-background-opacity="1.0">
+                <div class="half-part">
+                    <h4>kicad_firmware_generation</h4>
+                    <h3>Automatic Firmware Generation for Spaceflight Hardware based on Schematics</h3>
+                </div>
+                <div class="half-part">
+                </div>
+            </section>
+
+            <section>
+                <section>
+                    <div class="parts">
+                        <div>
+                            <h3>PLUTO: a Satellite</h3>
+                            <div class="image">
+                                <img src="./pluto.jpg" width="800" />
+                                <p>Credit: DLR<!-- (CC BY-NC-ND 3.0) --></p>
+                            </div>
+                            <!-- <img src="./images/pluto_overview.png" width="400" /> -->
+                            <img src="./DLR.png" width="300" />
+                        </div>
+                        <div>
+                            <h3>PCDU (Power Conditioning and Distribution Unit)</h3>
+                            <ul>
+                                <li>Between solar arrays, battery and subsystems</li>
+                                <!-- <li>Developed in house</li> -->
+                                <li>STM32 with firmware
+                                    <ul>
+                                        <li>Important job: TMTC<br />
+                                            Telemetry (i.e., current draw)<br />
+                                            Telecommand (i.e., power up/down specific subsystem)
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <h2>PCDU Development</h2>
+                    <ul>
+                        <li>PCDUs for same satellite class do fundamentally same job<br />
+                            but, e.g., different voltage outputs (e.g., 12V vs 3.3V)</li>
+                        <li>Snippet based (electrical) design
+                            <ul>
+                                <li>Snippet: group of components with well-defined function (e.g., ADC)</li>
+                                <li>Design new PCDU using existing snippets</li>
+                            </ul>
+                        </li>
+                        <li>Bottleneck: firmware development
+                            <ul>
+                                <li>Design goal: speed up firmware similar to electrical design<br />
+                                    &rarr; "Automatic <b>Firmware Generation</b> for Spaceflight Hardware<br />
+                                    based on
+                                    <b>Schematics</b>"
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <!-- what DLR are doing, why challenging, why EPS important, why not one days work -->
+                    <!-- unknown requirements -->
+                </section>
+                <section>
+                    <div class="half-part">
+                        <h3>KiCad Schematics</h3>
+                        <img src="./images/adc_snippet.png" width="800" />
+                    </div>
+                    <div class="half-part">
+                        <!-- <div> -->
+                        <!--     <p>&rarr; Group Netlist</p> -->
+                        <!--     <pre> -->
+                        <!--         <code class="language-jinja2 small-code" data-code="./listings/group_netlist.xml"> -->
+                        <!--         </code> -->
+                        <!--     </pre> -->
+                        <!-- </div> -->
+                        <h3>&rarr; C++ Firmware</h3>
+                        <pre>
+                            <code class="small-code" data-code="./listings/adc_code.h">
+                            </code>
+                        </pre>
+                        <ul>
+                            <li>Currently: firmware engineer manually reads schematics</li>
+                        </ul>
+                    </div>
+                </section>
+                <section>
+                    <!-- <div class="half-part"> -->
+                    <h3>Challenges</h3>
+                    <ul>
+                        <li>How to get and understand hardware specification?</li>
+                        <li>How to generate C++ firmware?
+                            <ul>
+                                <!-- <li>How to enrich data with project specific information?</li> -->
+                                <li>How to enrich data from schematics with other information?<br />
+                                    (e.g., OS abstractions)</li>
+                                <!-- <li>How to support differences between PCDUs?</li> -->
+                            </ul>
+                        </li>
+                        <li>How to make usable outside PCDU development?
+                            <ul>
+                                <li>What information do other use-cases require?</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <!-- </div> -->
+                    <!-- <div class="half-part"> -->
+                    <!--     <h3>Contribution</h3> -->
+                    <!--     <ul> -->
+                    <!--         <li>Group Netlist specification</li> -->
+                    <!--         <li>Implementation -->
+                    <!--             <ol> -->
+                    <!--                 <li>kicad_group_netlister</li> -->
+                    <!--                 <li>code_gen</li> -->
+                    <!--                 <li>netlist_to_csv</li> -->
+                    <!--                 <li>group_netlist_merger</li> -->
+                    <!--             </ol> -->
+                    <!--         </li> -->
+                    <!--     </ul> -->
+                    <!-- </div> -->
+                </section>
+                <section data-auto-animate>
+                    <h2 data-id="2">Contribution</h2>
+                    <img data-id="1" src="./images/software_overview_07.png" width="1200" />
+                </section>
+                <section data-auto-animate>
+                    <h2 data-id="2">Tooling Overview (1)</h2>
+                    <img data-id="1" src="./images/software_overview_01.png" width="1200" />
+                </section>
+            </section>
+
+            <section>
+                <section data-auto-animate>
+                    <h2 data-id="2">Tooling Overview (2)</h2>
+                    <img data-id="1" src="./images/software_overview_02.png" width="1200" />
+                </section>
+                <section>
+                    <div class="half-part">
+                        <img src="./images/group_netlist_02.png" width="500" />
+                    </div>
+                    <div class="half-part">
+                        <div>
+                            <h3>Group</h3>
+                            <ul>
+                                <li>Collection of components</li>
+                                <li>With set of Pins</li>
+                                <li>Can be snippet (doesn't have to)</li>
+                            </ul>
+                            <h3>Group Netlist XML</h3>
+                            <ul>
+                                <li>Abstract view on hardware (challenge: right degree of abstraction)</li>
+                                <li>Store Group connections</li>
+                                <li>With Python library (parse and provide different perspectives)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <h2>Tool 1: kicad_group_netlister</h2>
+                    <div class="half-part">
+                        <img src="./images/adc_snippet_cropped.png" width="500" />
+                    </div>
+                    <div class="half-part">
+                        <ul>
+                            <li>Jobs:
+                                <ol>
+                                    <li>Group components</li>
+                                    <li>Find connections</li>
+                                </ol>
+                            </li>
+                            <li>KiCad netlist &rarr; Group Netlist
+                                <ul>
+                                    <li>Don't use schematics directly</li>
+                                    <li>KiCad-CLI creates Netlist</li>
+                                    <li>Circumvent tracing problem: Same behavior as KiCad</li>
+                                </ul>
+                            </li>
+                            <!-- <li>Main Info Sources: -->
+                            <!--     <ul> -->
+                            <!--         <li>Annotations</li> -->
+                            <!--         <li>KiCad Sheet Hierarchy</li> -->
+                            <!--     </ul> -->
+                            <!-- </li> -->
+                        </ul>
+                    </div>
+                </section>
+                <section>
+                    <h3>Group ID</h3>
+                    <code><span style="color: red;">ICA_EPS_Distribution</span><span
+                            style="color: blue;">/ADCS/ADC1/</span><span
+                            style="color: green;">Snippet_ADC128S102</span></code>
+                    <code><span
+                            style="color: red;">Schematic</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+                            style="color: blue;">Sheet&nbsp;Path</span>&nbsp;<span
+                            style="color: green;">Group&nbsp;Type</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code>
+                    <div class="parts">
+                        <div class="">
+                            <h4>Annotations (Group Type and Pin Name)</h4>
+                            <img src="./images/adc_annotations.png" width="800" />
+                        </div>
+                        <div class="">
+                            <h4>KiCad Sheet Hierarchy</h4>
+                            <!-- <img src="./images/example_schematics_hierarchy.png" width="400" /> -->
+                            <img src="./images/hierarchical_symbol.png" width="400" />
+                        </div>
+                    </div>
+                </section>
+                <section data-auto-animate>
+                    <h2 data-id="2">Tooling Overview (2)</h2>
+                    <img data-id="1" src="./images/software_overview_02.png" width="1200" />
+                </section>
+            </section>
+
+            <section>
+                <section data-auto-animate>
+                    <h2 data-id="2">Tooling Overview (3)</h2>
+                    <img data-id="1" src="./images/software_overview_03.png" width="1200" />
+                </section>
+                <section>
+                    <h2>Tool 2: code_gen</h2>
+                    <div class="half-part">
+                        <ul>
+                            <li>Read Group Netlist<br />(with Python library)</li>
+                            <li>Pass info to Jinja2 template<br />
+                                &rarr; Project specificities in template<br />
+                                &rarr; Support arbitrary language<br />
+                                &rarr; Open-Source tooling<br />
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="half-part">
+                        <p>Jinja2 Template</p>
+                        <pre>
+                            <code class="language-txt" data-code="./listings/simple_jinja2.tmpl">
+                            </code>
+                        </pre>
+                        <p>&rarr; Output</p>
+                        <pre>
+                            <code class="language-txt small-code" data-code="./listings/output_simple_jinja2_short.txt">
+                            </code>
+                        </pre>
+                    </div>
+                </section>
+                <section data-auto-animate>
+                    <h2 data-id="2">Tooling Overview (3)</h2>
+                    <img data-id="1" src="./images/software_overview_03.png" width="1200" />
+                </section>
+                <section data-auto-animate>
+                    <h2 data-id="2">Tooling Overview (4)</h2>
+                    <img data-id="1" src="./images/software_overview_04.png" width="1200" />
+                </section>
+            </section>
+
+            <section>
+                <section data-auto-animate>
+                    <h2 data-id="2">Tooling Overview (5)</h2>
+                    <img data-id="1" src="./images/software_overview_05.png" width="1200" />
+                </section>
+                <section>
+                    <h2>Tool 3: netlist_to_csv</h2>
+                    <div class="half-part">
+                        <ul>
+                            <li>Example use-case: harness specification
+                                <ul>
+                                    <li>Wiring between subsystems</li>
+                                </ul>
+                            </li>
+                            <li>Create spreadsheet showing
+                                <ul>
+                                    <li>list of connectors</li>
+                                    <li>connector types</li>
+                                    <li>connector pinouts</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="half-part">
+                        <img src="./images/csv_cropped.png" width="1000" />
+                    </div>
+                </section>
+                <section data-auto-animate>
+                    <h2 data-id="2">Tooling Overview (5)</h2>
+                    <img data-id="1" src="./images/software_overview_05.png" width="1200" />
+                </section>
+                <section data-auto-animate>
+                    <h2 data-id="2">Tooling Overview (6)</h2>
+                    <img data-id="1" src="./images/software_overview_06.png" width="1200" />
+                </section>
+            </section>
+
+            <section>
+                <section data-auto-animate>
+                    <h2 data-id="2">Tooling Overview (7)</h2>
+                    <img data-id="1" src="./images/software_overview_07.png" width="1200" />
+                </section>
+                <section data-auto-animate data-auto-animate-restart>
+                    <div class="half-part">
+                        <h2 style="margin-top: 50px;">Tool 4: group_netlist_merger</h2>
+                        <ul>
+                            <li>Multiple PCBs with connectors</li>
+                            <li>Use:
+                                <ol>
+                                    <li>Generate Group Netlist for each PCB</li>
+                                    <li>Specify connectors to connect
+                                        &rarr; group_netlist_merger</li>
+                                    <li>Use combined Group Netlist<br />
+                                        e.g., firmware for combined hardware</li>
+                                </ol>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="half-part">
+                        <img data-id="1" src="./images/connectors_03.png" width="600" />
+                    </div>
+                </section>
+                <section data-auto-animate>
+                    <div class="half-part">
+                        <h2 style="margin-top: 50px;">Tool 4: group_netlist_merger</h2>
+                        <ul>
+                            <li>Multiple PCBs with connectors</li>
+                            <li>Use:
+                                <ol>
+                                    <li>Generate Group Netlist for each PCB</li>
+                                    <li>Specify connectors to connect
+                                        &rarr; group_netlist_merger</li>
+                                    <li>Use combined Group Netlist<br />
+                                        e.g., firmware for combined hardware</li>
+                                </ol>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="half-part">
+                        <img data-id="1" src="./images/connectors_04.png" width="600" />
+                    </div>
+                </section>
+            </section>
+
+            <section>
+                <section>
+                    <!-- <h2>Tooling Overview</h2> -->
+                    <!-- <div class="half-part"> -->
+                    <img src="./images/software_overview_07.png" width="800" />
+                    <!-- </div> -->
+                    <!-- <div class="half-part"> -->
+                    <h4>Integration in PCDU Design Process</h4>
+                    <ul>
+                        <li>Generate hardware definition C++ header and LCL driver firmware<br />
+                            &rarr; Found error in hardware</li>
+                        <li>Generate spreadsheet harness specification</li>
+                    </ul>
+                    <!-- </div> -->
+                </section>
+                <!-- <section> -->
+                <!--     <h3>Integration in PCDU Design Process</h3> -->
+                <!--     <div class="half-part"> -->
+                <!--         <ul> -->
+                <!--             <li>kicad_group_netlister:<br />Annotate PCDU KiCad schematics</li> -->
+                <!--             <li>group_netlist_merger:<br />Support both PLUTO PCDU's Distribution and SOLBAT boards</li> -->
+                <!--         </ul> -->
+                <!--     </div> -->
+                <!--     <div class="half-part"> -->
+                <!--         <ul> -->
+                <!--             <li>code_gen:<br />Generate hardware definition C++ header and LCL driver firmware</li> -->
+                <!--             <li>netlist_to_csv:<br />Create PLUTO PCDU CSV for harness specification</li> -->
+                <!--             <li>Group Netlist and Python library:<br />Snippet based design analysis</li> -->
+                <!--         </ul> -->
+                <!--     </div> -->
+                <!-- </section> -->
+                <section>
+                    <h3>Quantitative Evaluation</h3>
+                    <div class="half-part">
+                        <ul>
+                            <!-- <li>Developer time saved (difficult to measure)</li> -->
+                            <li>Lines of code:
+
+
+                                <table>
+                                    <tr>
+                                        <td>Group Netlist library</td>
+                                        <td>414</td>
+                                    </tr>
+                                    <tr>
+                                        <td>kicad_group_netlister</td>
+                                        <td>426</td>
+                                    </tr>
+                                    <tr>
+                                        <td>code_gen</td>
+                                        <td>118</td>
+                                    </tr>
+                                    <tr>
+                                        <td>netlist_to_csv</td>
+                                        <td>169</td>
+                                    </tr>
+                                    <tr>
+                                        <td>group_netlist merger</td>
+                                        <td>185</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Snippet based design analysis</td>
+                                        <td>65</td>
+                                    </tr>
+                                </table>
+
+                                <!-- <ul> -->
+                                <!--     <li>Group Netlist library: 414</li> -->
+                                <!--     <li>kicad_group_netlister: 426</li> -->
+                                <!--     <li>code_gen: 118</li> -->
+                                <!--     <li>netlist_to_csv: 169</li> -->
+                                <!--     <li>group_netlist merger: 185</li> -->
+                                <!--     <li>Snippet based design analysis: 65</li> -->
+                                <!-- </ul> -->
+                            </li>
+                            <li>Asserts: 160</li>
+                        </ul>
+                    </div>
+                    <div class="half-part">
+                        <ul>
+                            <li>PLUTO's PCDU: 1.7s (sum of all tools; component count: 2494) </li>
+                            <li>Synthetic benchmark: 120 tests</li>
+                        </ul>
+                        <img src="./images/synth_results_full.svg" width="1200" />
+                    </div>
+                </section>
+            </section>
+
+            <section>
+                <section data-state="dark-background" data-background-image="./IMG_5928_cropped.jpg"
+                    data-background-opacity="1.0">
+                    <div class="half-part">
+                        &nbsp;
+                    </div>
+                    <div class="half-part">
+                        <!-- <h4>Main Ideas</h4> -->
+                        <ol>
+                            <li>KiCad Netlist<br />&rarr; solve tracing problem</li>
+                            <li>Intermediate format<br />&rarr; unlocks use-cases</li>
+                            <li>Jinja2 &rarr; Open-Source</li>
+                        </ol>
+                        <img src="./images/software_overview_07.png" width="1200" />
+                    </div>
+                    <a
+                        href="https://github.com/DLR-RY/kicad_firmware_generation">github.com/DLR-RY/kicad_firmware_generation</a>
+                </section>
+            </section>
+
+            <section>
+                <section>
+                    <h1>Appendix</h1>
+                </section>
+                <section>
+                    <h3>Development Process</h3>
+                    <div>
+                        <div class="half-part">
+                            <p>State 1</p>
+                            <img src="./images/software_overview_old1.png" width="600" />
+                            <p>State 2</p>
+                            <img src="./images/software_overview_old2.png" width="600" />
+                        </div>
+                        <div class="half-part">
+                            <p>State 3</p>
+                            <img src="./images/software_overview_07.png" width="600" />
+                            <ul>
+                                <li>Rapid iteration: great<br />&larr; requirements unknown</li>
+                                <li>Striving for simplicity: great</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <img src="./images/group_netlist_01.png" width="500" />
+                </section>
+                <section>
+                    <img src="./images/connectors_02.png" width="600" />
+                </section>
+            </section>
+        </div>
+    </div>
+
+    <script src="../vendor/external_code/externalcode.js"></script>
+    <script src="../dist/reveal.js"></script>
+    <script src="../plugin/notes/notes.js"></script>
+    <script src="../plugin/markdown/markdown.js"></script>
+    <script src="../plugin/highlight/highlight.js"></script>
+    <script src="../plugin/math/math.js"></script>
+    <script>
+        Reveal.initialize({
+            controls: true,
+            controlsTutorial: false,
+            progress: false,
+            slideNumber: "c/t",
+            hashOneBasedIndex: false,
+            hash: true,
+            navigationMode: "linear",
+            embedded: false,
+            showNotes: false,
+            transition: "slide",
+            transitionSpeed: "default",
+            backgroundTransition: "fade",
+            pdfSeparateFragments: true,
+            autoAnimateDuration: 0.4,
+
+            margin: 0.04,
+            width: 1280,
+            height: 720,
+
+            katex: {
+                local: "../dwn_vendor/katex",
+                trust: true,
+                // needed for colouring
+                strict: false,
+            },
+            plugins: [
+                // needs to be before highlighting
+                Externalcode,
+                RevealMarkdown,
+                RevealHighlight,
+                RevealNotes,
+                RevealMath.KaTeX,
+            ],
+            scrollActivationWidth: null,
+        });
+    </script>
+</body>
+
+</html>

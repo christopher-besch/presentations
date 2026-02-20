@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='utf-8'?>
+<groupNetlist>
+    <netlist>
+        <sources>
+            <source>/path/to/Example.kicad_sch</source>
+        </sources>
+        <date>2026-01-05T14:56:19.655613</date>
+        <tool>kicad_group_netlister v0.1.0</tool>
+    </netlist>
+    <groups>
+        <!-- -snip- -->
+    </groups>
+    <nets>
+        <!-- -snip- -->
+    </nets>
+</groupNetlist>

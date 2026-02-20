@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<snippetMap>
+    <netlist>
+        <source>/mnt/workspace/netlist.xml</source>
+        <date>29/08/2010 21:07:51</date>
+        <tool>kicad_snippet_mapper v0.1.0</tool>
+    </netlist>
+
+    <rootSnippet name="/Controller/STM32" type="STM32">
+        <snippetMapFields>
+            <snippetMapField name="some key">some value</snippetMapField>
+            <snippetMapField name="another key">again some value</snippetMapField>
+        </snippetMapFields>
+        <pins>
+            <pin name="PD0" />
+            <pin name="PD1" />
+            <pin name="PD2" />
+        </pins>
+    </rootSnippet>
+
+    <snippets>
+        <snippet name="/ADCs/ADC8/ADC128S102" type="ADC128S102">
+            <snippetMapFields>
+                <snippetMapFields>
+                    <snippetMapField name="some key">some value</snippetMapField>
+                    <snippetMapField name="another key">again some value</snippetMapField>
+                </snippetMapFields>
+            </snippetMapFields>
+            <pins>
+                <pin name="MISO" rootSnippetPin="PC11" />
+                <pin name="MOSI" rootSnippetPin="PC12" />
+                <pin name="SCK" rootSnippetPin="PC10" />
+                <pin name="CS" />
+            </pins>
+        </snippet>
+    </snippets>
+</snippetMap>

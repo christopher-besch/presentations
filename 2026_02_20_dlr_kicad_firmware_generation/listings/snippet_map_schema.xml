@@ -1,0 +1,70 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified"
+ xmlns:xs="http://www.w3.org/2001/XMLSchema">
+ <xs:element name="snippetMap"> <xs:complexType> <xs:sequence>
+  <xs:element name="netlist"> <xs:complexType> <xs:sequence>
+   <xs:element type="xs:string" name="source" />
+   <xs:element type="xs:string" name="date" />
+   <xs:element type="xs:string" name="tool" />
+  </xs:sequence> </xs:complexType> </xs:element>
+  <xs:element name="rootSnippet"> <xs:complexType>
+   <xs:sequence>
+    <xs:element name="snippetMapFields"> <xs:complexType> <xs:sequence>
+     <xs:element name="snippetMapField" maxOccurs="unbounded"
+      minOccurs="0"> <xs:complexType>
+      <xs:simpleContent>
+       <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="name"
+         use="optional" />
+       </xs:extension>
+      </xs:simpleContent>
+     </xs:complexType> </xs:element>
+    </xs:sequence> </xs:complexType> </xs:element>
+    <xs:element name="pins"> <xs:complexType> <xs:sequence>
+     <xs:element name="pin" maxOccurs="unbounded" minOccurs="0"> <xs:complexType>
+      <xs:simpleContent>
+       <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="name"
+         use="optional" />
+       </xs:extension>
+      </xs:simpleContent>
+     </xs:complexType> </xs:element>
+    </xs:sequence> </xs:complexType> </xs:element>
+   </xs:sequence>
+   <xs:attribute type="xs:string" name="name" />
+   <xs:attribute type="xs:string" name="type" />
+  </xs:complexType> </xs:element>
+  <xs:element name="snippets"> <xs:complexType> <xs:sequence>
+   <xs:element name="snippet"> <xs:complexType>
+    <xs:sequence>
+     <xs:element name="snippetMapFields"> <xs:complexType> <xs:sequence>
+      <xs:element name="snippetMapField"
+       maxOccurs="unbounded" minOccurs="0"> <xs:complexType>
+       <xs:simpleContent>
+        <xs:extension base="xs:string">
+         <xs:attribute type="xs:string"
+          name="name" use="optional" />
+        </xs:extension>
+       </xs:simpleContent>
+      </xs:complexType> </xs:element>
+     </xs:sequence> </xs:complexType> </xs:element>
+     <xs:element name="pins"> <xs:complexType> <xs:sequence>
+      <xs:element name="pin" maxOccurs="unbounded"
+       minOccurs="0"> <xs:complexType>
+       <xs:simpleContent>
+        <xs:extension base="xs:string">
+         <xs:attribute type="xs:string"
+          name="name" use="optional" />
+         <xs:attribute type="xs:string"
+          name="rootSnippetPin"
+          use="optional" />
+        </xs:extension>
+       </xs:simpleContent>
+      </xs:complexType> </xs:element>
+     </xs:sequence> </xs:complexType> </xs:element>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="name" />
+    <xs:attribute type="xs:string" name="type" />
+   </xs:complexType> </xs:element>
+  </xs:sequence> </xs:complexType> </xs:element>
+ </xs:sequence> </xs:complexType> </xs:element>
+</xs:schema>

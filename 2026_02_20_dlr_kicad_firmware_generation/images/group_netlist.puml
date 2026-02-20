@@ -1,0 +1,88 @@
+@startuml
+
+'skinparam componentStyle rectangle
+skinparam nodesep 60
+skinparam DefaultFontSize 40
+skinparam ranksep 150
+
+rectangle "\nGroup ID representation:\nExample/Controller/STM32\nSchematic: Example\nGroup Path: /Controller/\nGroup Type: STM32" as controller {
+    port PA1
+    portout PA2
+    portout PA3
+    portout PA4
+    portout PA5
+    portout PA6
+    portout PA7
+    portout PA8
+    portout PA9
+    port PA10
+}
+
+rectangle "\nGroup ID representation:\nExample/DIST_12V/LCL1/SomeLCLType\nSchematic: Example\nGroup Path: /DIST_12V/LCL1/\nGroup Type: SomeLCLType" as lcl1 {
+    port DI_ON as lcl1_di_on
+    port DI_OFF as lcl1_di_off
+    port AO_CURRENT as lcl1_ao_current
+}
+
+rectangle "\nGroup ID representation:\nExample/DIST_12V/LCL2/SomeLCLType\nSchematic: Example\nGroup Path: /DIST_12V/LCL2/\nGroup Type: SomeLCLType" as lcl2 {
+    port DI_ON as lcl2_di_on
+    port DI_OFF as lcl2_di_off
+    port AO_CURRENT as lcl2_ao_current
+}
+
+'rectangle "\nGroup ID representation:\nExample/Controller/SPI1\nSchematic: Example\nGroup Path: /Controller/\nGroup Type: SPI1" as spi1 {
+'    port MOSI as spi_mosi
+'    port MISO as spi_miso
+'    port SCK as spi_sck
+'}
+
+rectangle "\nGroup ID representation:\nExample/ADC1/SomeADCType\nSchematic: Example\nGroup Path: /ADC1/\nGroup Type: SomeADCType\n\n" as adc1 {
+    port AI_CH0
+    portout AI_CH1
+    portout AI_CH2
+    port MOSI as adc_mosi
+    port MISO as adc_miso
+    port SCK as adc_sck
+    port CS
+
+    note "some key: some value\nanother key: again some value" as test
+}
+
+rectangle "\nGroup ID representation:\nExample/DIST_12V/DCDC1/SomeDCDCType\nSchematic: Example\nGroup Path: /DIST_12V/DCDC1/\nGroup Type: SomeDCDCType" as dcdc1 {
+    portout DI_EN as dcdc_di_en
+    portout AO_TEMP
+}
+
+rectangle "\nGroup ID representation:\nExample/DIST_12V/DCDC1/StatusLED\nSchematic: Example\nGroup Path: /DIST_12V/DCDC1/\nGroup Type: StatusLED" as led {
+    portout DI_EN as led_di_en
+}
+
+led_di_en -- PA1
+dcdc_di_en -- led_di_en
+
+dcdc_di_en -- PA1
+AO_TEMP -- AI_CH0
+
+led -[hidden]right-> dcdc1
+
+PA2 -- lcl1_di_on
+PA3 -- lcl1_di_off
+AI_CH1 -- lcl1_ao_current
+
+PA8 -- lcl2_di_on
+PA9 -- lcl2_di_off
+AI_CH2 -- lcl2_ao_current
+
+PA5 -- adc_mosi
+PA6 -- adc_miso
+PA7 -- adc_sck
+PA4 -- CS
+
+'PA5 -- spi_mosi
+'PA6 -- spi_miso
+'PA7 -- spi_sck
+
+dcdc1 -[hidden]right-> lcl1
+lcl1 -[hidden]right-> lcl2
+
+@enduml
