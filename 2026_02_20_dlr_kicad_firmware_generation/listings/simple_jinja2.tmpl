@@ -1,0 +1,6 @@
+{% for group in glob_groups("**") %}
+    {{ group.schematic }}
+    {{ group.path }}
+    {{ group.group_type }}
+
+{% endfor %}

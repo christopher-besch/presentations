@@ -1,0 +1,44 @@
+@startuml
+
+'left to right direction
+
+'skinparam componentStyle rectangle
+skinparam nodesep 60
+'skinparam ranksep 80
+
+rectangle "Board1/Controller/STM32" as controller {
+    portout PA1
+    portout PA2
+}
+
+rectangle "Board1/Connector" as connector1 {
+    portin 1 as con11
+    portin 2 as con12
+}
+
+rectangle "Board2/Connector" as connector2 {
+    portout 1 as con21
+    portout 2 as con22
+}
+
+rectangle "Board2/StatusLED1/StatusLED" as led1 {
+    port DI_EN as led1en
+}
+
+rectangle "Board2/StatusLED2/StatusLED" as led2 {
+    port DI_EN as led2en
+}
+
+PA1 -- con11
+PA2 -- con12
+
+con21 -- led1en
+con22 -- led2en
+
+'connector1 -[hidden]right-> connector2
+'controller -[hidden]up-> connector2
+
+'to_replace'con11 -- con21
+'to_replace'con12 -- con22
+
+@enduml

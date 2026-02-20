@@ -1,0 +1,63 @@
+<!-- -snip- -->
+<groups>
+    <group schematic="Example" path="/Controller/" type="STM32">
+        <groupMapFields />
+        <pins>
+            <pin name="PA1" />
+            <pin name="PA2" />
+            <pin name="PA3" />
+            <pin name="PA4" />
+            <pin name="PA5" />
+            <pin name="PA6" />
+            <pin name="PA7" />
+            <pin name="PA8" />
+            <pin name="PA9" />
+            <pin name="PA10" />
+        </pins>
+    </group>
+    <group schematic="Example" path="/ADC1/" type="SomeADCType">
+        <groupMapFields>
+            <groupMapField name="some key">some value</groupMapField>
+            <groupMapField name="another key">again some value</groupMapField>
+        </groupMapFields>
+        <pins>
+            <pin name="MISO" />
+            <pin name="MOSI" />
+            <pin name="SCK" />
+            <pin name="CS" />
+            <pin name="AI_CH0" />
+            <pin name="AI_CH1" />
+            <pin name="AI_CH2" />
+        </pins>
+    </group>
+    <group schematic="Example" path="/DIST_12V/DCDC1" type="StatusLED">
+        <groupMapFields />
+        <pins>
+            <pin name="DI_EN" />
+        </pins>
+    </group>
+    <group schematic="Example" path="/DIST_12V/DCDC1" type="SomeDCDCType">
+        <groupMapFields />
+        <pins>
+            <pin name="DI_EN" />
+            <pin name="AO_TEMP" />
+        </pins>
+    </group>
+    <group schematic="Example" path="/DIST_12V/LCL1" type="SomeLCLType">
+        <groupMapFields />
+        <pins>
+            <pin name="DI_ON" />
+            <pin name="DI_OFF" />
+            <pin name="AO_CURRENT" />
+        </pins>
+    </group>
+    <group schematic="Example" path="/DIST_12V/LCL2" type="SomeLCLType">
+        <groupMapFields />
+        <pins>
+            <pin name="DI_ON" />
+            <pin name="DI_OFF" />
+            <pin name="AO_CURRENT" />
+        </pins>
+    </group>
+</groups>
+<!-- -snip- -->

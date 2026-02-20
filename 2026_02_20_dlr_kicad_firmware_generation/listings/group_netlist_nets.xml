@@ -1,0 +1,61 @@
+<!-- -snip- -->
+<nets>
+    <!-- Unconnected Pin on Controller -->
+    <net>
+        <node schematic="Example" path="/Controller/" type="STM32" pin="PA10" />
+    </net>
+    <!-- For ADC1 -->
+    <net>
+        <node schematic="Example" path="/Controller/" type="STM32" pin="PA6" />
+        <node schematic="Example" path="/ADC1/" type="SomeADCType" pin="MISO" />
+    </net>
+    <net>
+        <node schematic="Example" path="/Controller/" type="STM32" pin="PA5" />
+        <node schematic="Example" path="/ADC1/" type="SomeADCType" pin="MOSI" />
+    </net>
+    <net>
+        <node schematic="Example" path="/Controller/" type="STM32" pin="PA7" />
+        <node schematic="Example" path="/ADC1/" type="SomeADCType" pin="SCK" />
+    </net>
+    <net>
+        <node schematic="Example" path="/Controller/" type="STM32" pin="PA4" />
+        <node schematic="Example" path="/ADC1/" type="SomeADCType" pin="CS" />
+    </net>
+    <!-- For DCDC1 and StatusLED -->
+    <net>
+        <node schematic="Example" path="/Controller/" type="STM32" pin="PA1" />
+        <node schematic="Example" path="/DIST_12V/DCDC1" type="StatusLED" pin="DI_EN" />
+        <node schematic="Example" path="/DIST_12V/DCDC1" type="SomeDCDCType" pin="DI_EN" />
+    </net>
+    <net>
+        <node schematic="Example" path="/ADC1/" type="SomeADCType" pin="AI_CH0" />
+        <node schematic="Example" path="/DIST_12V/DCDC1" type="SomeDCDCType" pin="AO_TEMP" />
+    </net>
+    <!-- For LCL1 -->
+    <net>
+        <node schematic="Example" path="/Controller/" type="STM32" pin="PA2" />
+        <node schematic="Example" path="/DIST_12V/LCL1" type="SomeLCLType" pin="DI_ON" />
+    </net>
+    <net>
+        <node schematic="Example" path="/Controller/" type="STM32" pin="PA3" />
+        <node schematic="Example" path="/DIST_12V/LCL1" type="SomeLCLType" pin="DI_OFF" />
+    </net>
+    <net>
+        <node schematic="Example" path="/ADC1/" type="SomeADCType" pin="AI_CH1" />
+        <node schematic="Example" path="/DIST_12V/LCL1" type="SomeLCLType" pin="AO_CURRENT" />
+    </net>
+    <!-- For LCL2 -->
+    <net>
+        <node schematic="Example" path="/Controller/" type="STM32" pin="PA8" />
+        <node schematic="Example" path="/DIST_12V/LCL2" type="SomeLCLType" pin="DI_ON" />
+    </net>
+    <net>
+        <node schematic="Example" path="/Controller/" type="STM32" pin="PA9" />
+        <node schematic="Example" path="/DIST_12V/LCL2" type="SomeLCLType" pin="DI_OFF" />
+    </net>
+    <net>
+        <node schematic="Example" path="/ADC1/" type="SomeADCType" pin="AI_CH2" />
+        <node schematic="Example" path="/DIST_12V/LCL2" type="SomeLCLType" pin="AO_CURRENT" />
+    </net>
+</nets>
+<!-- -snip- -->
