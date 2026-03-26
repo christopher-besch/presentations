@@ -1,0 +1,349 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Open-Source Approval IBM</title>
+    <meta name="description" content="Open-Source Approval at IBM">
+    <meta name="author" content="Christopher Besch (IBM)">
+
+    <link rel="stylesheet" href="../dist/reset.css">
+    <link rel="stylesheet" href="../dist/reveal.css">
+    <link rel="stylesheet" href="../dist/theme/ibm_white.css">
+
+    <!-- code highlighting theme -->
+    <link rel="stylesheet" href="../static/oceanicnext.css">
+
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <div class="header-left">
+                Open-Source Approval IBM
+            </div>
+            <div class="header-right">
+                <em>Christopher Besch (IBM)</em> &bullet; 23rd February 2024
+            </div>
+
+            <section>
+                <section data-state="titleslide dark-background" data-background-image="./background_01.png">
+                    <div class="heading-right">
+                        <h1 style="color: white">Open-Source@IBM</h1><br />
+                        <h3 style="color: white">How docker_logdna got published</h3>
+                    </div>
+                </section>
+
+                <section data-auto-animate>
+                    <h3>What we'll talk about</h3>
+                    <ol>
+                        <li>docker_logdna Recap</li>
+                        <li>What is / Why Open-Source?</li>
+                        <li>Digression: TLS vs TETRA</li>
+                        <li>How to Open-Source@IBM?</li>
+                    </ol>
+                </section>
+            </section>
+
+            <section>
+                <h2>docker_logdna Recap</h2>
+                <ul>
+                    <li class="fragment">Docker logging driver for Logdna / IBM Log Analysis</li>
+                    <li class="fragment">Installed from container registry on server</li>
+                    <li class="fragment">Developed October 2023 on <a
+                            href="https://github.ibmgcloud.net/dth/docker_logdna">DTH
+                            GitHub</a></li>
+                    <li class="fragment">Open-Sourced December 2023 on <a
+                            href="https://github.com/ibm/docker_logdna">public GitHub</a>
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <section data-state="dark-background" data-background-image="./background_02.png">
+                    <div class="heading-right">
+                        <h1 style="color: white">What is Open-Source?</h1>
+                        <h3 class="fragment" style="color: white">This is not legal advice</h3>
+                    </div>
+                </section>
+                <section>
+                    <h2>You (privately) wrote some Code, <br />Now What?</h2>
+                    <ul>
+                        <li class="fragment" data-fragment-index="1">Publish installer?</li>
+                        <li class="fragment" data-fragment-index="2">Publish source code?</li>
+                        <li class="fragment" data-fragment-index="3">Your code, your copyright!</li>
+                        <ul>
+                            <li class="fragment" data-fragment-index="3">→ Without license public not allowed to
+                                use/modify code</li>
+                            <li class="fragment" data-fragment-index="4">→ You choose license</li>
+                        </ul>
+                    </ul>
+                </section>
+                <section>
+                    <div class="half-part">
+                        <h2>Free (Open-Source)</h2>
+                        <p>(as in <b>free</b>dom)</p>
+                        <ul>
+                            <li class="fragment" data-fragment-index="1">Published source-code<br />
+                                under Open-Source license (OSI approved)
+                            </li>
+                            <ul>
+                                <li class="fragment" data-fragment-index="3">Private/Commercial use</li>
+                                <li class="fragment" data-fragment-index="4">Modification</li>
+                                <li class="fragment" data-fragment-index="5">Conditions<br />(e.g. publish only under
+                                    same license)</li>
+                                <li class="fragment" data-fragment-index="6">Still your copyright</li>
+                            </ul>
+                        </ul>
+                    </div>
+                    <div class="half-part">
+                        <h2>Non-free</h2>
+                        <p><br /></p>
+                        <ul>
+                            <li class="fragment" data-fragment-index="10">Published (with source-code)<br />
+                                under proprietary/no license
+                                <ul>
+                                    <li class="fragment" data-fragment-index="12">Sold software<br />
+                                        (E.g. Jira)</li>
+                                </ul>
+                            </li>
+                            <li class="fragment" data-fragment-index="13">Trade secret</li>
+                            <ul>
+                                <li class="fragment" data-fragment-index="14">Private server application<br />
+                                    (E.g. inbound_parser)</li>
+                            </ul>
+                        </ul>
+                    </div>
+                </section>
+                <section>
+                    <h3>Open-Source Licenses</h3>
+                    <div class="half-part">
+                        <h5>Permissive Licenses</h5>
+                        <ul>
+                            <li class="fragment" data-fragment-index="1">MIT, BSD, Apache, ...</li>
+                            <ul>
+                                <li class="fragment" data-fragment-index="2">No warranty/liability</li>
+                                <li class="fragment" data-fragment-index="3">Derivative work with attribution<br />
+                                    <span class="fragment" data-fragment-index="4">Under any license</span>
+                                </li>
+                            </ul>
+                        </ul>
+                    </div>
+                    <div class="half-part">
+                        <h5>Copyleft Licenses</h5>
+                        <ul>
+                            <li class="fragment" data-fragment-index="11">GPL, AGPL, ...</li>
+                            <ul>
+                                <li class="fragment" data-fragment-index="11">Derivative work under same
+                                    license conditions</li>
+                            </ul>
+                            <li class="fragment" data-fragment-index="12">LGPL, EPL, ...</li>
+                            <ul>
+                                <li class="fragment" data-fragment-index="12">Use as library ok under different license
+                                    conditions</li>
+                            </ul>
+                        </ul>
+                    </div>
+                </section>
+                <section>
+                    <h1 style="color: red">Check Dependency Compatibility!</h1>
+                    <ul>
+                        <li>Your dependencies limit your license choices</li>
+                    </ul>
+                </section>
+            </section>
+
+            <section>
+                <section>
+                    <h3>External Advantages</h3>
+                    <ul>
+                        <li class="fragment" data-fragment-index="1">Broader adoption
+                            <ul>
+                                <li class="fragment" data-fragment-index="1">Create ecosystem</li>
+                                <li class="fragment" data-fragment-index="2">Sell other products (e.g. Docker Desktop)
+                                </li>
+                                <li class="fragment" data-fragment-index="3">Control</li>
+                            </ul>
+                        </li>
+                        <li class="fragment" data-fragment-index="4">Outside contributions
+                            <ul>
+                                <li class="fragment" data-fragment-index="4">Research institutions</li>
+                                <li class="fragment" data-fragment-index="4">Find talent</li>
+                            </ul>
+                        </li>
+                        <li class="fragment" data-fragment-index="6">We take a lot from open-source, give back
+                            <ul>
+                                <li class="fragment" data-fragment-index="6">Ecosystem health</li>
+                                <li class="fragment" data-fragment-index="6">IBM's image</li>
+                            </ul>
+                        </li>
+                        <li class="fragment" data-fragment-index="7">Addition for CV</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Internal Advantages</h3>
+                    <ul>
+                        <li class="fragment">No authentication for install</li>
+                        <li class="fragment">Easier communication with external projects/support</li>
+                        <li class="fragment">Work mentality: no security through obscurity</li>
+                        <li class="fragment">External trust</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Actual Advantages for docker_logdna</h2>
+                    <ul>
+                        <li class="fragment">External Contribution: <a
+                                href="https://github.com/IBM/docker_logdna/pull/2">PR</a></li>
+                        <li class="fragment">Used in <a href="https://github.com/moby/moby/issues/47248">Docker
+                                regression report</a>
+                        </li>
+                        <li class="fragment">Easier install without private container registry</li>
+                        <li class="fragment">IBM Log Analysis more attractive</li>
+                    </ul>
+                </section>
+            </section>
+
+            <section>
+                <section data-state="dark-background" data-background-image="./background_06.png">
+                    <br />
+                    <br />
+                    <br />
+                    <h1 style="color: white">TLS vs TETRA</h1>
+                    <h3 style="color: white">Security by Design vs Security through Obscurity</h3>
+                </section>
+                <section>
+                    <div class="half-part">
+                        <h3>TLS</h3>
+                        <ul>
+                            <li class="fragment" data-fragment-index="1">HTTPS encryption protocol</li>
+                            <li class="fragment" data-fragment-index="2">Open Standard: <a
+                                    href="https://datatracker.ietf.org/doc/html/rfc2246">RFC 2246</a></li>
+                            <li class="fragment" data-fragment-index="2">Uses public cryptography</li>
+                            <li class="fragment" data-fragment-index="3">Open-Source implementation: OpenSSL</li>
+                        </ul>
+                    </div>
+                    <div class="half-part">
+                        <h3 class="fragment" data-fragment-index="4">Heartbleed</h3>
+                        <ul>
+                            <li class="fragment" data-fragment-index="5">Vulnerability in OpenSSL</li>
+                            <li class="fragment" data-fragment-index="6">Discovered 2 years after release</li>
+                            <li class="fragment" data-fragment-index="7">Patched&amp;Disclosed 6 days after
+                                discovery
+                            </li>
+                        </ul>
+                        <img class="fragment" data-fragment-index="4" src="./heartbleed.png" width="200">
+                    </div>
+                </section>
+                <section>
+                    <div class="half-part">
+                        <h3>Tetra</h3>
+                        <ul>
+                            <li class="fragment" data-fragment-index="2">Mobile radio protocol<br />used globally by
+                                military,
+                                critical infrastructure, ...
+                            </li>
+                            <li class="fragment" data-fragment-index="3">ETSI standard</li>
+                            <li class="fragment" data-fragment-index="4">Proprietary cryptography</li>
+                        </ul>
+                        <div class="image fragment" data-fragment-index="2">
+                            <img src="./tetra.jpg" width="300">
+                            <p>©2024 Motorola Solutions</p>
+                        </div>
+                    </div>
+                    <div class="half-part">
+                        <h3 class="fragment" data-fragment-index="5">TETRA:BURST</h3>
+                        <ul>
+                            <li class="fragment" data-fragment-index="6">5 vulnerabilities</li>
+                            <li class="fragment" data-fragment-index="7">Found 25+ years after release at first
+                                security
+                                analysis<br />(by reverse-engineering)</li>
+                            <li class="fragment" data-fragment-index="8">Work-around: Use TLS over Tetra</li>
+                        </ul>
+                        <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/MXPBkWvlN8c"></iframe> -->
+                        <img class="fragment" data-fragment-index="5" src="./tetraburst.png" width="300">
+                    </div>
+                </section>
+            </section>
+
+            <section>
+                <section data-state="dark-background" data-background-image="./background_03.png">
+                    <div class="heading-right">
+                        <h1><a style="color: white">How to Open-Source@IBM</a></h1>
+                        <p class="fragment" data-fragment-index="1" style="color: white">As of Q1 2024</p>
+                        <p class="fragment" data-fragment-index="1" style="color: white">[redacted]</p>
+                    </div>
+                </section>
+            </section>
+
+            <section>
+                <section data-state="dark-background" data-background-image="./background_05.png"
+                    data-transition="none">
+                    <div class="heading-right">
+                        <h3>Enjoy Open-Source @</h3>
+                        <video width=500 muted playsinline>
+                            <source src="./ibm_logo.webm" type="video/webm">
+                        </video>
+                    </div>
+                </section>
+                <section data-state="dark-background" data-background-image="./background_05.png"
+                    data-transition="none">
+                    <div class="heading-right">
+                        <h3>Enjoy Open-Source @</h3>
+                        <video width=500 data-autoplay muted playsinline>
+                            <source src="./ibm_logo.webm" type="video/webm">
+                        </video>
+                    </div>
+                </section>
+            </section>
+        </div>
+    </div>
+
+    <script src="../vendor/external_code/externalcode.js"></script>
+    <script src="../dist/reveal.js"></script>
+    <script src="../plugin/notes/notes.js"></script>
+    <script src="../plugin/markdown/markdown.js"></script>
+    <script src="../plugin/highlight/highlight.js"></script>
+    <script src="../plugin/math/math.js"></script>
+    <script>
+        Reveal.initialize({
+            controls: true,
+            controlsTutorial: false,
+            progress: false,
+            slideNumber: "c/t",
+            hashOneBasedIndex: false,
+            hash: true,
+            navigationMode: "linear",
+            embedded: false,
+            showNotes: false,
+            transition: "slide",
+            transitionSpeed: "default",
+            backgroundTransition: "fade",
+            pdfSeparateFragments: true,
+            autoAnimateDuration: 0.4,
+
+            margin: 0.04,
+            width: 1280,
+            height: 720,
+
+            katex: {
+                local: "../dwn_vendor/katex",
+                trust: true,
+                // needed for colouring
+                strict: false,
+            },
+            plugins: [
+                // needs to be before highlighting
+                Externalcode,
+                RevealMarkdown,
+                RevealHighlight,
+                RevealNotes,
+                RevealMath.KaTeX,
+            ],
+        });
+    </script>
+</body>
+
+</html>
