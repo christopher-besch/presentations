@@ -30,7 +30,10 @@
 // for name of presentation
 .reveal .header-left,
 // for author and name
-.reveal .header-right {
+.reveal .header-right,
+// for logos
+.reveal .footer-right,
+.reveal .footer-left {
     font-size: 15px;
     line-height: 15px;
 
@@ -39,7 +42,9 @@
 }
 
 .reveal .header-right em,
-.reveal .header-left em {
+.reveal .header-left em,
+.reveal .footer-right em,
+.reveal .footer-left em {
     font-size: 15px;
 }
 
@@ -57,8 +62,32 @@
     margin-top: -2vh;
 }
 
+.reveal .footer-right {
+    right: 2em;
+    bottom: 2em;
+    margin-right: -2vw;
+    margin-bottom: -2vh;
+
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+.reveal .footer-left {
+    left: 2em;
+    bottom: 2em;
+    margin-left: -2vw;
+    margin-bottom: -2vh;
+
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
 .reveal .header-left sup,
-.reveal .header-right sup {
+.reveal .header-right sup,
+.reveal .footer-right sup,
+.reveal .footer-left sup {
     vertical-align: super;
     font-size: 14.1447px;
     line-height: 14.1667px;

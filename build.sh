@@ -40,12 +40,12 @@ echo "installing custom themes..."
 cp -v ../theme/source/* ./css/theme/source
 cp -v ../theme/template/* ./css/theme/template
 
-echo "installing yarn dependencies..."
+echo "installing npm dependencies..."
 rm -v package-lock.json || true
-yarn install
+npm install
 
 echo "building reveal.js..."
-yarn run build
+npm run build
 popd
 
 echo "creating public dir..."

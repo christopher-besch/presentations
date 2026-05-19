@@ -1,0 +1,155 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>TSN for Spaceflight</title>
+    <meta name="author" content="Christopher Besch">
+
+    <link rel="stylesheet" href="../dist/reset.css">
+    <link rel="stylesheet" href="../dist/reveal.css">
+    <link rel="stylesheet" href="../dist/theme/custom_white.css">
+
+    <!-- code highlighting theme -->
+    <link rel="stylesheet" href="../static/oceanicnext.css">
+
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <div class="header-left">
+                TSN for Spacecraft
+            </div>
+            <div class="header-right">
+                <em>Christopher Besch</em> &bullet; 20th May 2026
+            </div>
+            <div class="footer-left">
+            </div>
+            <div class="footer-right">
+                <img src="./DLR.png" height="60" />
+                <img src="./CESlogo.png" height="60" />
+            </div>
+            <section data-state="titleslide dark-background" data-background-image="./IMG_0981.jpg"
+                data-background-opacity="1.0">
+                <div class="half-part">
+                    &nbsp;
+                </div>
+                <div class="half-part">
+                    <h2>TSN for Spacecraft
+                        <!-- <br />and<br />Generating Firmware from Schematics -->
+                    </h2>
+                </div>
+            </section>
+
+            <section>
+                <section>
+                    <h3>Networking inside Spacecraft</h3>
+                    <ul>
+                        <li>Real-time: worst-case latency, delay</li>
+                        <li>Previously: proprietary point-to-point connections<br />
+                            &rarr; heavy, costly</li>
+                        <!-- <li>Metrics: -->
+                        <!--     <ul> -->
+                        <!--         <li>Worst-case latency, delay</li> -->
+                        <!--         <li>Cost, weight</li> -->
+                        <!--     </ul> -->
+                        <!-- </li> -->
+                        <li>Can we use Ethernet &amp; IP?</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Transport Layer</h3>
+                    <div class="half-part">
+                        <h4>UDP</h4>
+                        <ul>
+                            <li>Unreliable service<br />(e.g., packets might be dropped)</li>
+                            <li>Simple (3 pages in RFC 768)</li>
+                        </ul>
+                    </div>
+                    <div class="half-part">
+                        <h4>TCP</h4>
+                        <ul>
+                            <li>Reliable service using<br />Automatic Repeat Request (ARQ)</li>
+                            <li>Complex (98 pages in RFC 9293)</li>
+                        </ul>
+                    </div>
+                </section>
+                <section>
+                    <h3>Time Sensitive Networking (TSN)</h3>
+                    <ul>
+                        <li>Reliability at link layer: never drop a packet &rarr; no need for TCP</li>
+                        <li>Accurate time-stamps based on PTP (Precision Time Protocol)</li>
+                        <li>Hard timing guarantees</li>
+                    </ul>
+                </section>
+                <!-- <section> -->
+                <!--     <h3>Hardware Requirements for TSN</h3> -->
+                <!--     <div class="half-part"> -->
+                <!--         <h4>For TSN Endpoints</h4> -->
+                <!--         <ul> -->
+                <!--             <li>IEEE 802.1AS: gPTP (based on IEEE 1588, PTP)</li> -->
+                <!--             <li>IEEE 802.1Qav: credit-based traffic shaper</li> -->
+                <!--         </ul> -->
+                <!--     </div> -->
+                <!--     <div class="half-part"> -->
+                <!--         <h4>TSN Switching</h4> -->
+                <!--         <ul> -->
+                <!--             <li></li> -->
+                <!--         </ul> -->
+                <!--     </div> -->
+                <!-- </section> -->
+            </section>
+        </div>
+    </div>
+
+    <script src="../vendor/external_code/externalcode.js"></script>
+    <script src="../dist/reveal.js"></script>
+    <script src="../plugin/notes/notes.js"></script>
+    <script src="../plugin/markdown/markdown.js"></script>
+    <script src="../plugin/highlight/highlight.js"></script>
+    <script src="../plugin/math/math.js"></script>
+    <script>
+        Reveal.initialize({
+            controls: true,
+            controlsTutorial: false,
+            progress: false,
+            slideNumber: "c/t",
+            hashOneBasedIndex: false,
+            hash: true,
+            navigationMode: "linear",
+            embedded: false,
+            showNotes: false,
+            transition: "none",
+            transitionSpeed: "fast",
+            backgroundTransition: "fade",
+            pdfSeparateFragments: true,
+            autoAnimateDuration: 0.4,
+
+            margin: 0.04,
+            width: 1280,
+            height: 720,
+
+            katex: {
+                local: "../dwn_vendor/katex",
+                trust: true,
+                // needed for colouring
+                strict: false,
+            },
+            plugins: [
+                // needs to be before highlighting
+                Externalcode,
+                RevealMarkdown,
+                RevealHighlight,
+                RevealNotes,
+                RevealMath.KaTeX,
+            ],
+            scrollActivationWidth: null,
+        });
+    </script>
+</body>
+
+</html>
