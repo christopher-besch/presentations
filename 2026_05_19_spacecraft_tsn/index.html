@@ -47,9 +47,9 @@
 
             <section>
                 <section>
-                    <h3>Networking inside Spacecraft</h3>
+                    <h2>Networking inside Spacecraft</h2>
                     <ul>
-                        <li>Real-time: worst-case latency, delay</li>
+                        <li>Real-time: worst-case delay, jitter</li>
                         <li>Previously: proprietary point-to-point connections<br />
                             &rarr; heavy, costly</li>
                         <!-- <li>Metrics: -->
@@ -62,16 +62,16 @@
                     </ul>
                 </section>
                 <section>
-                    <h3>Transport Layer</h3>
+                    <h2>Transport Layer</h2>
                     <div class="half-part">
-                        <h4>UDP</h4>
+                        <h3>UDP</h3>
                         <ul>
                             <li>Unreliable service<br />(e.g., packets might be dropped)</li>
                             <li>Simple (3 pages in RFC 768)</li>
                         </ul>
                     </div>
                     <div class="half-part">
-                        <h4>TCP</h4>
+                        <h3>TCP</h3>
                         <ul>
                             <li>Reliable service using<br />Automatic Repeat Request (ARQ)</li>
                             <li>Complex (98 pages in RFC 9293)</li>
@@ -79,24 +79,32 @@
                     </div>
                 </section>
                 <section>
-                    <h3>Time Sensitive Networking (TSN)</h3>
+                    <h2>Time Sensitive Networking (TSN)</h2>
                     <ul>
+                        <li>Standardised under IEEE 802.1Q</li>
                         <li>Reliability at link layer: never drop a packet &rarr; no need for TCP</li>
                         <li>Accurate time-stamps based on PTP (Precision Time Protocol)</li>
                         <li>Hard timing guarantees</li>
                     </ul>
                 </section>
+                <section>
+                    <h2>My PdF Task</h2>
+                    <ul>
+                        <li>Validate TSN for use in spacecraft</li>
+                        <li>Build a demonstrator</li>
+                    </ul>
+                </section>
                 <!-- <section> -->
-                <!--     <h3>Hardware Requirements for TSN</h3> -->
+                <!--     <h2>Hardware Requirements for TSN</h2> -->
                 <!--     <div class="half-part"> -->
-                <!--         <h4>For TSN Endpoints</h4> -->
+                <!--         <h3>For TSN Endpoints</h3> -->
                 <!--         <ul> -->
                 <!--             <li>IEEE 802.1AS: gPTP (based on IEEE 1588, PTP)</li> -->
                 <!--             <li>IEEE 802.1Qav: credit-based traffic shaper</li> -->
                 <!--         </ul> -->
                 <!--     </div> -->
                 <!--     <div class="half-part"> -->
-                <!--         <h4>TSN Switching</h4> -->
+                <!--         <h3>TSN Switching</h3> -->
                 <!--         <ul> -->
                 <!--             <li></li> -->
                 <!--         </ul> -->
