@@ -1,0 +1,245 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>TSN for Spaceflight</title>
+    <meta name="author" content="Christopher Besch">
+
+    <link rel="stylesheet" href="../dist/reset.css">
+    <link rel="stylesheet" href="../dist/reveal.css">
+    <link rel="stylesheet" href="../dist/theme/custom_white.css">
+
+    <!-- code highlighting theme -->
+    <link rel="stylesheet" href="../static/oceanicnext.css">
+
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <div class="header-left">
+                kicad_firmware_generation, TSN and Zephyr on Casio
+            </div>
+            <div class="header-right">
+                <em>Christopher Besch</em> &bullet; 19th June 2026
+            </div>
+            <div class="footer-left">
+            </div>
+            <div class="footer-right">
+                <img src="./DLR.png" height="60" />
+                <img src="./CESlogo.png" height="60" />
+            </div>
+            <section data-state="titleslide dark-background" data-background-image="./IMG_0981.jpg"
+                data-background-opacity="1.0">
+                <div class="half-part">
+                    &nbsp;
+                </div>
+                <div class="half-part">
+                    <h2>
+                        <ol>
+                            <li>kicad_firmware_<br />generation</li>
+                            <li>TSN for Spacecraft</li>
+                            <li>Zephyr on Casio</li>
+                        </ol>
+                    </h2>
+                    <!-- <h2>kicad_firmware_<br />generation;<br /> -->
+                    <!--     TSN for Spacecraft;<br /> -->
+                    <!--     Zephyr using Casio -->
+                    <!-- </h2> -->
+                </div>
+            </section>
+
+            <section>
+                <section>
+                    <h2>Automatic Firmware Generation for Spaceflight Hardware based on Schematics</h2>
+                </section>
+            </section>
+
+            <section>
+                <section data-state="dark-background" data-background-image="./IMG_0981.jpg"
+                    data-background-opacity="1.0">
+                    <div class="half-part">
+                        &nbsp;
+                    </div>
+                    <div class="half-part">
+                        <h2>
+                            Part 2:<br />TSN for Spacecraft
+                        </h2>
+                    </div>
+                </section>
+                <section>
+                    <h2>Networking inside Spacecraft</h2>
+                    <ul>
+                        <li>Real-time: worst-case delay, jitter</li>
+                        <li>Previously: proprietary point-to-point connections<br />
+                            &rarr; heavy, costly</li>
+                        <!-- <li>Metrics: -->
+                        <!--     <ul> -->
+                        <!--         <li>Worst-case latency, delay</li> -->
+                        <!--         <li>Cost, weight</li> -->
+                        <!--     </ul> -->
+                        <!-- </li> -->
+                        <li>Can we use Ethernet &amp; IP?</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Transport Layer</h2>
+                    <div class="half-part">
+                        <h3>UDP</h3>
+                        <ul>
+                            <li>Unreliable service<br />(e.g., packets might be dropped)</li>
+                            <li>Simple (3 pages in RFC 768)</li>
+                        </ul>
+                    </div>
+                    <div class="half-part">
+                        <h3>TCP</h3>
+                        <ul>
+                            <li>Reliable service using<br />Automatic Repeat Request (ARQ)</li>
+                            <li>Complex (98 pages in RFC 9293)</li>
+                        </ul>
+                    </div>
+                </section>
+                <section>
+                    <h2>Time Sensitive Networking (TSN)</h2>
+                    <ul>
+                        <li>Standardised under IEEE 802.1Q</li>
+                        <li>Reliability at link layer: never drop a packet &rarr; no need for TCP</li>
+                        <li>Accurate time-stamps based on PTP (Precision Time Protocol)</li>
+                        <li>Hard timing guarantees</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>My PdF Task</h2>
+                    <ul>
+                        <li>Validate TSN for use in spacecraft</li>
+                        <li>Build a demonstrator</li>
+                    </ul>
+                </section>
+                <!-- <section> -->
+                <!--     <h2>Hardware Requirements for TSN</h2> -->
+                <!--     <div class="half-part"> -->
+                <!--         <h3>For TSN Endpoints</h3> -->
+                <!--         <ul> -->
+                <!--             <li>IEEE 802.1AS: gPTP (based on IEEE 1588, PTP)</li> -->
+                <!--             <li>IEEE 802.1Qav: credit-based traffic shaper</li> -->
+                <!--         </ul> -->
+                <!--     </div> -->
+                <!--     <div class="half-part"> -->
+                <!--         <h3>TSN Switching</h3> -->
+                <!--         <ul> -->
+                <!--             <li></li> -->
+                <!--         </ul> -->
+                <!--     </div> -->
+                <!-- </section> -->
+            </section>
+
+            <section>
+                <section data-state="dark-background" data-background-image="./IMG_0981.jpg"
+                    data-background-opacity="1.0">
+                    <div class="half-part">
+                        &nbsp;
+                    </div>
+                    <div class="half-part">
+                        <h2>
+                            Part 3:<br />Zephyr on Casio
+                        </h2>
+                    </div>
+                </section>
+                <section>
+                    <div class="half-part">
+                        <h4>Casio A199W, launched in 1989</h4>
+                        <ul>
+                            <li>Few features</li>
+                        </ul>
+                        <h4>Ollee Watch, launched in 2025</h4>
+                        <ul>
+                            <li>Replaces Casio A199W PCB</li>
+                            <li>Many features<br />
+                                a small smartwatch with Bluetooth and app</li>
+                            <li>STM32WB55RG</li>
+                            <li>Closed-source firmware and app</li>
+                        </ul>
+                    </div>
+                    <div class="half-part">
+                        <h4>Morse Watch, my Project</h4>
+                        <ul>
+                            <li>Using Casio case/LCD and Ollee PCB</li>
+                            <li>Open-source firmware</li>
+                            <li>Using Zephyr</li>
+                            <li>Super low-power<br />
+                                battery life target: 1 year</li>
+                        </ul>
+                    </div>
+                </section>
+                <section>
+                    <h3>Project Mile Stones</h3>
+                    <ul>
+                        <li>Built dev kit for Casio LCD</li>
+                        <li>Reverse-engineered Ollee hardware</li>
+                        <li>Created custom Zephyr board definition for Ollee PCB<br />
+                            (generating device tree with kicad_firmware_generation)</li>
+                        <li>Built firmware using Zephyr, Bluetooth, OTA (MCUboot, MCUmgr)</li>
+                        <li>Implemented a Zephyr driver for STM32 direct LCD drive</li>
+                        <li><a href="http://chris-besch.com/articles/zephyr_lcd_driver/">Article on Zephyr LCD driver
+                                development</a></li>
+                        <li><a href="https://chris-besch.com/articles/soc_option_bytes">Article on Zephyr's IWDG
+                                watchdog driver</a></li>
+                        <li>Zephyr PR <a href="https://github.com/zephyrproject-rtos/zephyr/pull/108622">#108622</a>
+                        </li>
+                    </ul>
+                </section>
+            </section>
+        </div>
+    </div>
+
+    <script src="../vendor/external_code/externalcode.js"></script>
+    <script src="../dist/reveal.js"></script>
+    <script src="../plugin/notes/notes.js"></script>
+    <script src="../plugin/markdown/markdown.js"></script>
+    <script src="../plugin/highlight/highlight.js"></script>
+    <script src="../plugin/math/math.js"></script>
+    <script>
+        Reveal.initialize({
+            controls: true,
+            controlsTutorial: false,
+            progress: false,
+            slideNumber: "c/t",
+            hashOneBasedIndex: false,
+            hash: true,
+            navigationMode: "linear",
+            embedded: false,
+            showNotes: false,
+            transition: "none",
+            transitionSpeed: "fast",
+            backgroundTransition: "fade",
+            pdfSeparateFragments: true,
+            autoAnimateDuration: 0.4,
+
+            margin: 0.04,
+            width: 1280,
+            height: 720,
+
+            katex: {
+                local: "../dwn_vendor/katex",
+                trust: true,
+                // needed for colouring
+                strict: false,
+            },
+            plugins: [
+                // needs to be before highlighting
+                Externalcode,
+                RevealMarkdown,
+                RevealHighlight,
+                RevealNotes,
+                RevealMath.KaTeX,
+            ],
+            scrollActivationWidth: null,
+        });
+    </script>
+</body>
+
+</html>
