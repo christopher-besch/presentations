@@ -46,16 +46,74 @@
                             <li>Zephyr on Casio</li>
                         </ol>
                     </h2>
-                    <!-- <h2>kicad_firmware_<br />generation;<br /> -->
-                    <!--     TSN for Spacecraft;<br /> -->
-                    <!--     Zephyr using Casio -->
-                    <!-- </h2> -->
                 </div>
             </section>
 
             <section>
+                <section data-state="dark-background" data-background-image="./IMG_0981.jpg"
+                    data-background-opacity="1.0">
+                    <div class="half-part">
+                        &nbsp;
+                    </div>
+                    <div class="half-part">
+                        <h3>Part 1: Automatic Firmware Generation for Spaceflight Hardware based on Schematics</h3>
+                    </div>
+                </section>
                 <section>
-                    <h2>Automatic Firmware Generation for Spaceflight Hardware based on Schematics</h2>
+                    <h2>kicad_firmware_generation</h2>
+                    <div class="half-part">
+                        <ul>
+                            <li>Generate Group Netlist from KiCad schematics</li>
+                            <li>Generate Code from Group Netlist</li>
+                            <li>My bachelor thesis:
+                                <ul>
+                                    <li>implementation</li>
+                                </ul>
+                            </li>
+                            <li>My PdF:
+                                <ul>
+                                    <li>Writing paper</li>
+                                    <li>More analysis</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="half-part">
+                        <ul>
+                            <li>Use case: DLR PCDU satellite module
+                                <img src="./images/pcdu.jpg" />
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+                <section>
+                    <h2>Synthetic Benchmark</h2>
+                    <div class="half-part">
+                        <ul>
+                            <li>120 test cases</li>
+                            <li>Made with KiCad Open-Hardware projects</li>
+                            <li>Automatically add synthetic annotations to schematics</li>
+                            <li>Test runtime of kicad_firmware_generation</li>
+                        </ul>
+                    </div>
+                    <div class="half-part">
+                        <img src="./images/synth_results_combined.svg" />
+                    </div>
+                </section>
+                <section>
+                    <h2>Systematic Fault Injection</h2>
+                    <div class="half-part">
+                        <ul>
+                            <li>Inject faults into PCDU schematics:<br />
+                                swap labels, delete cables</li>
+                            <li>8885 unique faults</li>
+                            <li>Over a week on CES server</li>
+                            <li>Manual sample (300 cases) for fault classification</li>
+                        </ul>
+                    </div>
+                    <div class="half-part">
+                        <img src="./images/fault_injection_results.svg" />
+                    </div>
                 </section>
             </section>
 
@@ -113,28 +171,89 @@
                     </ul>
                 </section>
                 <section>
-                    <h2>My PdF Task</h2>
+                    <h2>My Task</h2>
                     <ul>
                         <li>Validate TSN for use in spacecraft</li>
                         <li>Build a demonstrator</li>
+                        <li>TODO: ring topology</li>
                     </ul>
                 </section>
-                <!-- <section> -->
-                <!--     <h2>Hardware Requirements for TSN</h2> -->
-                <!--     <div class="half-part"> -->
-                <!--         <h3>For TSN Endpoints</h3> -->
-                <!--         <ul> -->
-                <!--             <li>IEEE 802.1AS: gPTP (based on IEEE 1588, PTP)</li> -->
-                <!--             <li>IEEE 802.1Qav: credit-based traffic shaper</li> -->
-                <!--         </ul> -->
-                <!--     </div> -->
-                <!--     <div class="half-part"> -->
-                <!--         <h3>TSN Switching</h3> -->
-                <!--         <ul> -->
-                <!--             <li></li> -->
-                <!--         </ul> -->
-                <!--     </div> -->
-                <!-- </section> -->
+                <section>
+                    <h2>Linux TSN Support</h2>
+                    <ul>
+                        <li>TODO</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Zephyr TSN Support</h2>
+                    <ul>
+                        <li>TODO</li>
+                    </ul>
+                </section>
+                <section>
+                    <div class="half-part">
+                        <h3>Software Requirements</h3>
+                        <ul>
+                            <li>Open-source networking stack</li>
+                            <li>Embedded</li>
+                            <li>Real-time</li>
+                        </ul>
+                    </div>
+                    <div class="half-part">
+                        <h3>Options</h3>
+                        <ul>
+                            <li>Linux with PREEMPT_RT</li>
+                            <li>Zephyr</li>
+                        </ul>
+                    </div>
+                </section>
+                <section>
+                    <h2>Hardware Requirements for TSN</h2>
+                    <div class="half-part">
+                        <h3>For TSN Endpoints</h3>
+                        <ul>
+                            <li>IEEE 802.1AS: gPTP (based on IEEE 1588: PTP)</li>
+                            <li>IEEE 802.1Qav: credit-based traffic shaper</li>
+                        </ul>
+                    </div>
+                    <div class="half-part">
+                        <h3>TSN Switching</h3>
+                        <ul>
+                            <li>In-hardware switch</li>
+                            <li>IEEE 802.1Qci: Per-Stream Filtering and Policing</li>
+                            <li>Switchdev driver</li>
+                        </ul>
+                    </div>
+                </section>
+                <section>
+                    <h2>Hardware Options</h2>
+                    <div class="half-part">
+                        <h3>ST</h3>
+                        <ul>
+                            <li>STM32 MCU: no MMU &rarr; no Linux</li>
+                            <li>STM32MP1: no TSN</li>
+                            <li>STM32MP2 (like STM32MP257F): closed source drivers for switch (no switchdev
+                                implementation)</li>
+                        </ul>
+                        <h3>NXP</h3>
+                        <ul>
+                            <li>i.MX 8DXL + SJA1105Q: expensive</li>
+                            <li>NXP Layerscape 1028A: expensive</li>
+                            <!-- <li>other chips: no support by GenAVB_TSNGenAVB_TSN</li> -->
+                        </ul>
+                    </div>
+                    <div class="half-part">
+                        <h3>Intel</h3>
+                        <ul>
+                            <li>i226-it: PCIe card; not embedded; no switch</li>
+                        </ul>
+                        <h3>Texas Instruments</h3>
+                        <ul>
+                            <li>SK-AM64B</li>
+                            <li>TMDS64EVM: expansion connector with RMII for other PHYs</li>
+                        </ul>
+                    </div>
+                </section>
             </section>
 
             <section>
@@ -176,21 +295,21 @@
                     </div>
                 </section>
                 <section>
-                    <h3>Project Mile Stones</h3>
-                    <ul>
-                        <li>Built dev kit for Casio LCD</li>
-                        <li>Reverse-engineered Ollee hardware</li>
-                        <li>Created custom Zephyr board definition for Ollee PCB<br />
-                            (generating device tree with kicad_firmware_generation)</li>
-                        <li>Built firmware using Zephyr, Bluetooth, OTA (MCUboot, MCUmgr)</li>
-                        <li>Implemented a Zephyr driver for STM32 direct LCD drive</li>
+                    <h2>Project Mile Stones</h2>
+                    <ol>
+                        <li>Casio LCD dev kit</li>
+                        <li>Reverse-engineered Ollee KiCad schematics</li>
+                        <li>Zephyr board definition for Ollee<br />
+                            (using kicad_firmware_generation)</li>
+                        <li>Zephyr application: Bluetooth, OTA (MCUboot, MCUmgr)</li>
+                        <li>Zephyr driver for STM32 direct LCD drive</li>
                         <li><a href="http://chris-besch.com/articles/zephyr_lcd_driver/">Article on Zephyr LCD driver
                                 development</a></li>
                         <li><a href="https://chris-besch.com/articles/soc_option_bytes">Article on Zephyr's IWDG
                                 watchdog driver</a></li>
                         <li>Zephyr PR <a href="https://github.com/zephyrproject-rtos/zephyr/pull/108622">#108622</a>
                         </li>
-                    </ul>
+                    </ol>
                 </section>
             </section>
         </div>
