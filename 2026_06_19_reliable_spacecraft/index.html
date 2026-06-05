@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <title>TSN for Spaceflight</title>
+    <title>Trustworthy Embedded Systems for Spaceflight</title>
     <meta name="author" content="Christopher Besch">
 
     <link rel="stylesheet" href="../dist/reset.css">
@@ -22,7 +22,7 @@
     <div class="reveal">
         <div class="slides">
             <div class="header-left">
-                kicad_firmware_generation, TSN and Zephyr on Casio
+                Trustworthy Embedded Systems for Spaceflight
             </div>
             <div class="header-right">
                 <em>Christopher Besch</em> &bullet; 19th June 2026
@@ -33,20 +33,44 @@
                 <img src="./DLR.png" height="60" />
                 <img src="./CESlogo.png" height="60" />
             </div>
-            <section data-state="titleslide dark-background" data-background-image="./IMG_0981.jpg"
-                data-background-opacity="1.0">
-                <div class="half-part">
-                    &nbsp;
-                </div>
-                <div class="half-part">
-                    <h2>
-                        <ol>
-                            <li>kicad_firmware_<br />generation</li>
-                            <li>TSN for Spacecraft</li>
-                            <li>Zephyr on Casio</li>
-                        </ol>
-                    </h2>
-                </div>
+
+            <section>
+                <section data-state="titleslide dark-background" data-background-image="./IMG_0981.jpg"
+                    data-background-opacity="1.0">
+                    <div class="half-part">
+                        &nbsp;
+                    </div>
+                    <!-- TODO: make cern image darker -->
+                    <div class="half-part">
+                        <h2>Trustworthy Embedded Systems for Spaceflight</h2>
+                    </div>
+                </section>
+                <section data-background-image="./new_glenn.png" data-state="dark-background">
+                    <div class="half-part">
+                        <ul>
+                            <li>Expensive (9-figures launch price <a
+                                    href="https://arstechnica.com/space/2023/10/oops-it-looks-like-the-ariane-6-rocket-may-not-offer-europe-any-launch-savings/">source</a>)
+                            </li>
+                            <li>Largely autonomous; too fast, too deadly for humans</li>
+                            <li>Single Failure Criterion redundancy: "carrying out its mission in spite of the failure
+                                of any single component" (US Nuclear Regulatory Commission 1977)</li>
+                            <li>New Glenn static fire (video source: <a
+                                    href="https://www.youtube.com/watch?v=1O90WZJALYc">Spaceflight now</a>)
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+                <section data-background-video="./new_glenn.mp4" data-background-video-muted="true"
+                    data-state="dark-background">
+                </section>
+                <section>
+                    <h3>Sub-projects</h3>
+                    <ol>
+                        <li>kicad_firmware_<br />generation</li>
+                        <li>TSN for Spacecraft</li>
+                        <li>Zephyr on Casio</li>
+                    </ol>
+                </section>
             </section>
 
             <section>
@@ -72,6 +96,7 @@
                             </li>
                             <li>My PdF:
                                 <ul>
+                                    <li>Port to KiCad 10</li>
                                     <li>Writing paper</li>
                                     <li>More analysis</li>
                                 </ul>
@@ -254,6 +279,13 @@
                         </ul>
                     </div>
                 </section>
+                <section>
+                    <h3>Skills Needed</h3>
+                    <ul>
+                        <li>Linux (PREEMPT_RT) internals (already practical experience)</li>
+                        <li>Zephyr application, driver development (no prior experience)</li>
+                    </ul>
+                </section>
             </section>
 
             <section>
@@ -316,6 +348,7 @@
             <section>
                 <section>
                     <h3>Summary</h3>
+                    <!-- TODO: images for three parts -->
                     <div class="half-part">
                         <ol>
                             <li>kicad_firmware_generation
