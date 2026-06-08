@@ -46,16 +46,22 @@
                     </div>
                 </section>
                 <section data-background-image="./new_glenn.png" data-state="dark-background">
+                    <h3>Why Reliability in Spaceflight</h3>
                     <div class="half-part">
                         <ul>
-                            <li>Expensive (9-figures launch price <a
-                                    href="https://arstechnica.com/space/2023/10/oops-it-looks-like-the-ariane-6-rocket-may-not-offer-europe-any-launch-savings/">source</a>)
-                            </li>
-                            <li>Largely autonomous; too fast, too deadly for humans</li>
-                            <li>Single Failure Criterion redundancy: "carrying out its mission in spite of the failure
-                                of any single component" (US Nuclear Regulatory Commission 1977)</li>
-                            <li>New Glenn static fire (video source: <a
-                                    href="https://www.youtube.com/watch?v=1O90WZJALYc">Spaceflight now</a>)
+                            <li>Reliability: perform function under given condition and time [2]</li>
+                            <!--                                 In conclusion, system dependability is largely a design decision, and it requires -->
+                            <!-- the right combination of architectural ﬂexibility and equipping the ﬂight software -->
+                            <!-- with the proper decision making power to avoid depending on a human operator -->
+                            <!-- to decide what to do. -->
+                            <li>Expensive (9-figure launch price [1])</li>
+                            <li>Real-time: bounded latency required</li>
+                            <li>Largely autonomous: too fast, too deadly for humans</li>
+                        </ul>
+                    </div>
+                    <div class="half-part">
+                        <ul>
+                            <li>Example: New Glenn static fire [3]
                             </li>
                         </ul>
                     </div>
@@ -64,7 +70,16 @@
                     data-state="dark-background">
                 </section>
                 <section>
-                    <h3>Sub-projects</h3>
+                    <h3>Research Areas</h3>
+                    <ul>
+                        <li>Hardware-Software Co-design: Bridge different perspectives</li>
+                        <li>Accelerate firmware development</li>
+                        <li>Reliability at what cost?</li>
+                        <li>Of-the-shelf components?</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Sub-Projects</h3>
                     <ol>
                         <li>kicad_firmware_<br />generation</li>
                         <li>TSN for Spacecraft</li>
@@ -84,23 +99,26 @@
                     </div>
                 </section>
                 <section>
-                    <h2>kicad_firmware_generation</h2>
+                    <h2>kicad_firmware_generation:<br />Bachelor Thesis</h2>
                     <div class="half-part">
                         <ul>
                             <li>Generate Group Netlist from KiCad schematics</li>
-                            <li>Generate Code from Group Netlist</li>
-                            <li>My bachelor thesis:
-                                <ul>
-                                    <li>implementation</li>
-                                </ul>
-                            </li>
-                            <li>My PdF:
-                                <ul>
-                                    <li>Port to KiCad 10</li>
-                                    <li>Writing paper</li>
-                                    <li>More analysis</li>
-                                </ul>
-                            </li>
+                            <li>Generate code from Group Netlist</li>
+                            <li>Implement for KiCad v9</li>
+                        </ul>
+                    </div>
+                    <div class="half-part">
+                        <img src="./images/software_overview_07.png" />
+                    </div>
+                </section>
+                <section>
+                    <h2>kicad_firmware_generation:<br />PdF</h2>
+                    <div class="half-part">
+                        <ul>
+                            <li>Port to KiCad v10</li>
+                            <li>Writing paper (currently under review)</li>
+                            <li>Runtime analysis</li>
+                            <li>Fault injection analysis</li>
                         </ul>
                     </div>
                     <div class="half-part">
@@ -119,6 +137,7 @@
                             <li>Made with KiCad Open-Hardware projects</li>
                             <li>Automatically add synthetic annotations to schematics</li>
                             <li>Test runtime of kicad_firmware_generation</li>
+                            <li>Result: negligible runtime</li>
                         </ul>
                     </div>
                     <div class="half-part">
@@ -134,6 +153,7 @@
                             <li>8885 unique faults</li>
                             <li>Over a week on CES server</li>
                             <li>Manual sample (300 cases) for fault classification</li>
+                            <li>Result: 75% of relevant otherwise not found faults detected</li>
                         </ul>
                     </div>
                     <div class="half-part">
@@ -196,25 +216,27 @@
                     </ul>
                 </section>
                 <section>
-                    <h2>My Task</h2>
+                    <h2>Ring Topology</h2>
                     <ul>
-                        <li>Validate TSN for use in spacecraft</li>
-                        <li>Build a demonstrator</li>
-                        <li>TODO: ring topology</li>
+                        <li>TODO: </li>
+                        <li>Single Failure Criterion redundancy: "carrying out its mission in spite of the failure
+                            of any single component" (US Nuclear Regulatory Commission 1977)</li>
+                        <li>Goal: Validate TSN for use in spacecraft</li>
+                        <li>Goal: Build a demonstrator</li>
                     </ul>
                 </section>
-                <section>
-                    <h2>Linux TSN Support</h2>
-                    <ul>
-                        <li>TODO</li>
-                    </ul>
-                </section>
-                <section>
-                    <h2>Zephyr TSN Support</h2>
-                    <ul>
-                        <li>TODO</li>
-                    </ul>
-                </section>
+                <!-- <section> -->
+                <!--     <h2>Linux TSN Support</h2> -->
+                <!--     <ul> -->
+                <!--         <li>TODO</li> -->
+                <!--     </ul> -->
+                <!-- </section> -->
+                <!-- <section> -->
+                <!--     <h2>Zephyr TSN Support</h2> -->
+                <!--     <ul> -->
+                <!--         <li>TODO</li> -->
+                <!--     </ul> -->
+                <!-- </section> -->
                 <section>
                     <div class="half-part">
                         <h3>Software Requirements</h3>
@@ -282,7 +304,7 @@
                 <section>
                     <h3>Skills Needed</h3>
                     <ul>
-                        <li>Linux (PREEMPT_RT) internals (already practical experience)</li>
+                        <li>Linux (PREEMPT_RT) internals</li>
                         <li>Zephyr application, driver development (no prior experience)</li>
                     </ul>
                 </section>
@@ -339,7 +361,8 @@
                                 development</a></li>
                         <li><a href="https://chris-besch.com/articles/soc_option_bytes">Article on Zephyr's IWDG
                                 watchdog driver</a></li>
-                        <li>Zephyr PR <a href="https://github.com/zephyrproject-rtos/zephyr/pull/108622">#108622</a>
+                        <li>Zephyr contribution <a
+                                href="https://github.com/zephyrproject-rtos/zephyr/pull/108622">#108622</a>
                         </li>
                     </ol>
                 </section>
@@ -348,17 +371,22 @@
             <section>
                 <section>
                     <h3>Summary</h3>
-                    <!-- TODO: images for three parts -->
-                    <div class="half-part">
+                    <div class="third-part">
                         <ol>
-                            <li>kicad_firmware_generation
+                            <li>kicad_firmware_<br />generation
+                                <img src="./images/pcdu.jpg" />
                                 <ul>
                                     <li>Paper writing</li>
                                     <li>Synthetic benchmark</li>
                                     <li>Fault injection</li>
                                 </ul>
                             </li>
+                        </ol>
+                    </div>
+                    <div class="third-part">
+                        <ol start="2">
                             <li>TSN for Spacecraft
+                                <img src="./images/ti_modules.jpg" />
                                 <ul>
                                     <li>TSN literature research</li>
                                     <li>Hardware selection</li>
@@ -367,17 +395,32 @@
                             </li>
                             </ul>
                     </div>
-                    <div class="half-part">
+                    <div class="third-part">
                         <ol start="3">
                             <li>Zephyr on Casio
+                                <img src="./images/casio.jpg" />
                                 <ul>
-                                    <li>Zephyr learning project</li>
                                     <li>Working demo</li>
-                                    <li>2 articles, 1 PR</li>
+                                    <li>2 articles</li>
+                                    <li>Zephyr contribution</li>
                                 </ul>
                             </li>
                         </ol>
                     </div>
+                </section>
+
+                <section>
+                    <h3>References</h3>
+                    <ul>
+                        <li>[1] <a
+                                href="https://arstechnica.com/space/2023/10/oops-it-looks-like-the-ariane-6-rocket-may-not-offer-europe-any-launch-savings/">ars
+                                Technica, Oops—It looks like the Ariane 6 rocket may not offer Europe any launch
+                                savings</a></li>
+                        <li>[2] I. Chechile, Space Technology A Short Introduction</li>
+                        <li>[3] <a href="https://www.youtube.com/watch?v=1O90WZJALYc">Spaceflight now, New Glenn
+                                Anomaly</a>
+                        </li>
+                    </ul>
                 </section>
             </section>
         </div>
