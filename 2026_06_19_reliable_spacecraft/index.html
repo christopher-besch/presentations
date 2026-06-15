@@ -40,7 +40,6 @@
                     <div class="half-part">
                         &nbsp;
                     </div>
-                    <!-- TODO: make cern image darker -->
                     <div class="half-part">
                         <h2>Trustworthy Embedded Systems for Spaceflight</h2>
                     </div>
@@ -54,7 +53,7 @@
                             <!-- the right combination of architectural ﬂexibility and equipping the ﬂight software -->
                             <!-- with the proper decision making power to avoid depending on a human operator -->
                             <!-- to decide what to do. -->
-                            <li>Expensive (9-figure launch price [2])</li>
+                            <li>Expensive (9-figures launch [2])</li>
                             <li>Real-time: bounded latency required</li>
                             <li>Largely autonomous: too fast, too deadly for humans</li>
                         </ul>
@@ -62,6 +61,17 @@
                     <div class="half-part">
                         <ul>
                             <li>Example: New Glenn static fire [3]
+                            </li>
+                        </ul>
+
+                        <ul class="references" style="margin-top: 300px">
+                            <li>[1] I. Chechile, Space Technology A Short Introduction</li>
+                            <li>[2] <a
+                                    href="https://arstechnica.com/space/2023/10/oops-it-looks-like-the-ariane-6-rocket-may-not-offer-europe-any-launch-savings/">ars
+                                    Technica, Oops—It looks like the Ariane 6 rocket may not offer Europe any launch
+                                    savings</a></li>
+                            <li>[3] <a href="https://www.youtube.com/watch?v=1O90WZJALYc">Spaceflight now, New Glenn
+                                    Anomaly</a>
                             </li>
                         </ul>
                     </div>
@@ -81,7 +91,7 @@
                 <section>
                     <h3>Sub-Projects</h3>
                     <ol>
-                        <li>kicad_firmware_<br />generation</li>
+                        <li>Generate Firmware from KiCad</li>
                         <li>TSN for Spacecraft</li>
                         <li>Zephyr on Casio</li>
                     </ol>
@@ -99,13 +109,16 @@
                     </div>
                 </section>
                 <section>
-                    <h2>kicad_firmware_generation</h2>
+                    <h2>Generate Firmware from KiCad</h2>
                     <h4>state of the art</h4>
                     <div class="half-part">
                         <ul>
-                            <li>Generate Group Netlist from KiCad schematics</li>
-                            <li>Generate code from Group Netlist</li>
-                            <li>Implement for KiCad v9</li>
+                            <li><a
+                                    href="https://github.com/DLR-RY/kicad_firmware_generation/">github.com/DLR-RY/kicad_firmware_generation</a>
+                            </li>
+                            <!-- <li>Generate Group Netlist from KiCad schematics</li> -->
+                            <!-- <li>Generate code from Group Netlist</li> -->
+                            <li>Implemented for KiCad v9</li>
                             <li>Applied in PCDU development process;<br />found electrical design fault</li>
                         </ul>
                     </div>
@@ -115,7 +128,7 @@
                 </section>
                 <section>
                     <h2>kicad_firmware_generation</h2>
-                    <h4>Goal of PdF</h4>
+                    <h4>goal of PdF</h4>
                     <div class="half-part">
                         <ul>
                             <li>Port to KiCad v10</li>
@@ -220,13 +233,17 @@
                 </section>
                 <section>
                     <h2>Ring Topology</h2>
-                    <ul>
-                        <li>TODO: ring topology diagram</li>
-                        <li>Single Failure Criterion redundancy: "carrying out its mission in spite of the failure
-                            of any single component" (US Nuclear Regulatory Commission 1977)</li>
-                        <li>Goal: Validate TSN for use in spacecraft</li>
-                        <li>Goal: Build a demonstrator</li>
-                    </ul>
+                    <div class="half-part">
+                        <ul>
+                            <li>Single Failure Criterion redundancy: "carrying out its mission in spite of the failure
+                                of any single component" (US Nuclear Regulatory Commission 1977)</li>
+                            <li>Goal: Validate TSN for use in spacecraft</li>
+                            <li>Goal: Build a demonstrator</li>
+                        </ul>
+                    </div>
+                    <div class="half-part">
+                        <img src="./images/ring.svg" width="800" />
+                    </div>
                 </section>
                 <!-- <section> -->
                 <!--     <h2>Linux TSN Support</h2> -->
@@ -308,7 +325,8 @@
                     <h3>Skills Needed</h3>
                     <ul>
                         <li>Linux (PREEMPT_RT) internals</li>
-                        <li>Zephyr application, driver development (no prior experience)</li>
+                        <li>Linux networking</li>
+                        <li>Zephyr application, driver development</li>
                     </ul>
                 </section>
             </section>
@@ -410,20 +428,6 @@
                             </li>
                         </ol>
                     </div>
-                </section>
-
-                <section>
-                    <h3>References</h3>
-                    <ul>
-                        <li>[1] I. Chechile, Space Technology A Short Introduction</li>
-                        <li>[2] <a
-                                href="https://arstechnica.com/space/2023/10/oops-it-looks-like-the-ariane-6-rocket-may-not-offer-europe-any-launch-savings/">ars
-                                Technica, Oops—It looks like the Ariane 6 rocket may not offer Europe any launch
-                                savings</a></li>
-                        <li>[3] <a href="https://www.youtube.com/watch?v=1O90WZJALYc">Spaceflight now, New Glenn
-                                Anomaly</a>
-                        </li>
-                    </ul>
                 </section>
             </section>
         </div>
