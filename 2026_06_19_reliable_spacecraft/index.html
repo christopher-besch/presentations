@@ -115,10 +115,10 @@
                             <li><a
                                     href="https://github.com/DLR-RY/kicad_firmware_generation/">github.com/DLR-RY/kicad_firmware_generation</a>
                             </li>
+                            <li>Group components to Groups &rarr; firmware interested in inter-Group connections</li>
                             <!-- <li>Generate Group Netlist from KiCad schematics</li> -->
                             <!-- <li>Generate code from Group Netlist</li> -->
                             <li>Implemented for KiCad v9</li>
-                            <li>Applied in PCDU development process;<br />found electrical design fault</li>
                         </ul>
                     </div>
                     <div class="half-part">
@@ -126,23 +126,28 @@
                     </div>
                 </section>
                 <section>
+                    <h2>Use Case: PLUTO's PCDU</h2>
+                    <div class="half-part">
+                        <ul>
+                            <li>Power Conditioning and Distribution Unit</li>
+                            <li>Applied kicad_firmware_generation in PCDU development process</li>
+                            <li>Found electrical design fault: swapped pins</li>
+                        </ul>
+                    </div>
+                    <div class="half-part">
+                        <img src="./images/pcdu.jpg" width="500" />
+                        <img src="./images/pluto.jpg" width="500" />
+                    </div>
+                </section>
+                <section>
                     <h2>kicad_firmware_generation</h2>
                     <h4>goal of PdF</h4>
-                    <div class="half-part">
-                        <ul>
-                            <li>Port to KiCad v10</li>
-                            <li>Writing paper (currently under review)</li>
-                            <li>Runtime analysis</li>
-                            <li>Fault injection analysis</li>
-                        </ul>
-                    </div>
-                    <div class="half-part">
-                        <ul>
-                            <li>Use case: DLR PCDU satellite module
-                                <img src="./images/pcdu.jpg" />
-                            </li>
-                        </ul>
-                    </div>
+                    <ul>
+                        <li>Runtime analysis</li>
+                        <li><b>Fault injection analysis</b></li>
+                        <li>Writing paper (currently under review)</li>
+                        <li>Port to KiCad v10</li>
+                    </ul>
                 </section>
                 <section>
                     <h2>Synthetic Benchmark</h2>
@@ -168,7 +173,7 @@
                             <li>8885 unique faults</li>
                             <li>Over a week on CES server</li>
                             <li>Manual sample (300 cases) for fault classification</li>
-                            <li>Result: 75% of relevant otherwise not found faults detected</li>
+                            <li>Result: detected 75% of otherwise not found Group Pin swaps</li>
                         </ul>
                     </div>
                     <div class="half-part">
@@ -244,6 +249,20 @@
                         <img src="./images/ring.svg" width="800" />
                     </div>
                 </section>
+                <section>
+                    <h2>Ring Topology</h2>
+                    <div class="half-part">
+                        <ul>
+                            <li>Single Failure Criterion redundancy: "carrying out its mission in spite of the failure
+                                of any single component" (US Nuclear Regulatory Commission 1977)</li>
+                            <li>Goal: Validate TSN for use in spacecraft</li>
+                            <li>Goal: Build a demonstrator</li>
+                        </ul>
+                    </div>
+                    <div class="half-part">
+                        <img src="./images/ring_cross.svg" width="800" />
+                    </div>
+                </section>
                 <!-- <section> -->
                 <!--     <h2>Linux TSN Support</h2> -->
                 <!--     <ul> -->
@@ -256,23 +275,6 @@
                 <!--         <li>TODO</li> -->
                 <!--     </ul> -->
                 <!-- </section> -->
-                <section>
-                    <div class="half-part">
-                        <h3>Software Requirements</h3>
-                        <ul>
-                            <li>Open-source networking stack</li>
-                            <li>Embedded</li>
-                            <li>Real-time</li>
-                        </ul>
-                    </div>
-                    <div class="half-part">
-                        <h3>OS Options</h3>
-                        <ul>
-                            <li>Linux with PREEMPT_RT</li>
-                            <li>Zephyr</li>
-                        </ul>
-                    </div>
-                </section>
                 <section>
                     <h2>Hardware Requirements for TSN</h2>
                     <div class="half-part">
@@ -317,6 +319,23 @@
                         <h3>Intel</h3>
                         <ul>
                             <li>i226-it: PCIe card; not embedded; no switch</li>
+                        </ul>
+                    </div>
+                </section>
+                <section>
+                    <div class="half-part">
+                        <h3>Software Requirements</h3>
+                        <ul>
+                            <li>Open-source networking stack</li>
+                            <li>Embedded</li>
+                            <li>Real-time</li>
+                        </ul>
+                    </div>
+                    <div class="half-part">
+                        <h3>OS Options</h3>
+                        <ul>
+                            <li>Linux with PREEMPT_RT</li>
+                            <li>Zephyr</li>
                         </ul>
                     </div>
                 </section>
@@ -369,13 +388,18 @@
                     </div>
                 </section>
                 <section>
-                    <h2>Project Mile Stones</h2>
-                    <ol>
+                    <h2>Zephyr Learning Progress</h2>
+                    <ul>
                         <li>Casio LCD dev kit</li>
                         <li>Reverse-engineered Ollee KiCad schematics</li>
                         <li>Zephyr board definition for Ollee<br />
                             (using kicad_firmware_generation)</li>
                         <li>Zephyr application: Bluetooth, OTA (MCUboot, MCUmgr)</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Zephyr Contributions</h2>
+                    <ul>
                         <li>Zephyr driver for STM32 direct LCD drive</li>
                         <li><a href="http://chris-besch.com/articles/zephyr_lcd_driver/">Article on Zephyr LCD driver
                                 development</a></li>
@@ -384,7 +408,7 @@
                         <li>Zephyr contribution <a
                                 href="https://github.com/zephyrproject-rtos/zephyr/pull/108622">#108622</a>
                         </li>
-                    </ol>
+                    </ul>
                 </section>
             </section>
 
