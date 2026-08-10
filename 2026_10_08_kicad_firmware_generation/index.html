@@ -1,0 +1,159 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Automating Firmware Generation from Schematics for Microcontroller based Designs</title>
+    <meta name="author" content="Christopher Besch, Janis S. Häseker, Hassan Nassar, Norbert Toth, Jörg Henkel">
+
+    <link rel="stylesheet" href="../dist/reset.css">
+    <link rel="stylesheet" href="../dist/reveal.css">
+    <link rel="stylesheet" href="../dist/theme/custom_white.css">
+
+    <!-- code highlighting theme -->
+    <link rel="stylesheet" href="../static/oceanicnext.css">
+
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <div class="header-left">
+                Automating Firmware Generation from Schematics for Microcontroller based Designs
+            </div>
+            <div class="header-right">
+                <em>Automating Firmware Generation from Schematics for Microcontroller based Designs</em> &bullet; 8th October 2026
+            </div>
+            <div class="footer-left">
+            </div>
+            <div class="footer-right">
+                <img src="./DLR.png" height="60" />
+                <img src="./CESlogo.png" height="60" />
+            </div>
+
+            <section>
+                <section data-state="titleslide dark-background" data-background-image="./IMG_0981.jpg"
+                    data-background-opacity="1.0">
+                    <div class="half-part">
+                        &nbsp;
+                    </div>
+                    <div class="half-part">
+                        <h2>Automating Firmware Generation from Schematics for Microcontroller based Designs</h2>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>PLUTO's PCDU</h2>
+                    <h4>Power Conditioning and Distribution Unit</h4>
+                    <div class="half-part">
+                        <img src="./images/pluto.jpg" />
+                    </div>
+                    <div class="half-part">
+                        <img src="./images/pcdu.jpg" />
+                    </div>
+                </section>
+                <section>
+                    <h2>Generate Firmware from KiCad</h2>
+                    <h4>state of the art</h4>
+                    <div class="half-part">
+                        <ul>
+                            <li><a
+                                    href="https://github.com/DLR-RY/kicad_firmware_generation/">github.com/DLR-RY/kicad_firmware_generation</a>
+                            </li>
+                            <li>Group components to Groups &rarr; firmware interested in inter-Group connections</li>
+                            <!-- <li>Generate Group Netlist from KiCad schematics</li> -->
+                            <!-- <li>Generate code from Group Netlist</li> -->
+                            <li>Implemented for KiCad v9</li>
+                            <li>Applied in PCDU development process</li>
+                            <li>Found electrical design fault: swapped pins in PCDU</li>
+                        </ul>
+                    </div>
+                    <div class="half-part">
+                        <img src="./images/software_overview_07.png" />
+                    </div>
+                </section>
+                <section>
+                    <h2>Synthetic Benchmark</h2>
+                    <div class="half-part">
+                        <ul>
+                            <li>120 test cases</li>
+                            <li>Made with KiCad Open-Hardware projects</li>
+                            <li>Automatically add synthetic annotations to schematics</li>
+                            <li>Test runtime of kicad_firmware_generation</li>
+                            <li>Result: negligible runtime</li>
+                        </ul>
+                    </div>
+                    <div class="half-part">
+                        <img src="./images/synth_results_combined.svg" />
+                    </div>
+                </section>
+                <section>
+                    <h2>Systematic Fault Injection</h2>
+                    <div class="half-part">
+                        <ul>
+                            <li>Inject faults into PCDU schematics:<br />
+                                swap labels, delete cables</li>
+                            <li>8885 unique faults</li>
+                            <li>Over a week on CES server</li>
+                            <li>Manual sample (300 cases) for fault classification</li>
+                            <li>Result: detected 75% of otherwise not found Group Pin swaps</li>
+                        </ul>
+                    </div>
+                    <div class="half-part">
+                        <img src="./images/fault_injection_results.svg" />
+                    </div>
+                </section>
+            </section>
+        </div>
+    </div>
+
+    <script src="../vendor/external_code/externalcode.js"></script>
+    <script src="../dist/reveal.js"></script>
+    <script src="../plugin/notes/notes.js"></script>
+    <script src="../plugin/markdown/markdown.js"></script>
+    <script src="../plugin/highlight/highlight.js"></script>
+    <script src="../plugin/math/math.js"></script>
+    <script>
+        Reveal.initialize({
+            controls: true,
+            controlsTutorial: false,
+            progress: false,
+            slideNumber: "c/t",
+            hashOneBasedIndex: false,
+            hash: true,
+            navigationMode: "linear",
+            embedded: false,
+            showNotes: false,
+            transition: "none",
+            transitionSpeed: "fast",
+            backgroundTransition: "fade",
+            pdfSeparateFragments: true,
+            autoAnimateDuration: 0.4,
+
+            margin: 0.04,
+            width: 1280,
+            height: 720,
+
+            katex: {
+                local: "../dwn_vendor/katex",
+                trust: true,
+                // needed for colouring
+                strict: false,
+            },
+            plugins: [
+                // needs to be before highlighting
+                Externalcode,
+                RevealMarkdown,
+                RevealHighlight,
+                RevealNotes,
+                RevealMath.KaTeX,
+            ],
+            scrollActivationWidth: null,
+        });
+    </script>
+</body>
+
+</html>
