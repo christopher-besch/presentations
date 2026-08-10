@@ -36,8 +36,8 @@ html * {
   --r-heading4-size: 1em;
   --r-code-font: monospace;
   --r-link-color: #268bd2;
-  --r-link-color-dark: rgb(32.3, 118.15, 178.5);
-  --r-link-color-hover: rgb(77.5161290323, 162.8774193548, 222.8838709677);
+  --r-link-color-dark: rgb(12.6666666667%, 46.3333333333%, 70%);
+  --r-link-color-hover: rgb(30.3984819734%, 63.8734977862%, 87.4054395952%);
   --r-selection-background-color: #d33682;
   --r-selection-color: #fff;
   --r-overlay-element-bg-color: 0, 0, 0;

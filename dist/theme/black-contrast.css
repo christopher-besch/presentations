@@ -35,9 +35,9 @@ section.has-light-background, section.has-light-background h1, section.has-light
   --r-heading4-size: 1em;
   --r-code-font: monospace;
   --r-link-color: #42affa;
-  --r-link-color-dark: rgb(19.8216494845, 155.4536082474, 248.7783505155);
-  --r-link-color-hover: rgb(94.35, 187, 250.75);
-  --r-selection-background-color: rgb(113.25, 195, 251.25);
+  --r-link-color-dark: rgb(7.7731958763%, 60.9621993127%, 97.560137457%);
+  --r-link-color-hover: rgb(37%, 73.3333333333%, 98.3333333333%);
+  --r-selection-background-color: rgb(44.4117647059%, 76.4705882353%, 98.5294117647%);
   --r-selection-color: #fff;
   --r-overlay-element-bg-color: 240, 240, 240;
   --r-overlay-element-fg-color: 0, 0, 0;
