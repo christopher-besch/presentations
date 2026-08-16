@@ -25,8 +25,8 @@
                 Automating Firmware Generation from Schematics for Microcontroller based Designs
             </div>
             <div class="header-right">
-                <em>Christopher Besch, Janis S. Häseker, Hassan Nassar, Norbert Toth, Jörg Henkel</em> &bullet; 8th
-                October 2026
+                <em>Christopher Besch, Janis S. Häseker, Hassan Nassar, Norbert Toth, Jörg Henkel</em> &bullet; 16th
+                August 2026
             </div>
             <div class="footer-left">
             </div>
@@ -48,27 +48,25 @@
                     <!-- </div> -->
                     <aside class="notes">
                         My name is Christopher Besch and I propose to generate firmware from schematics.
-                        At the German Aerospace Centre Institute for Space Systems we develop satellites.
-                        Our next satellite to orbit is PLUTO, shown in this artistic render.
+                        At the German Aerospace Centre Institute of Space Systems our next satellite to orbit is PLUTO.
                     </aside>
                 </section>
 
                 <section>
-                    <h2>PCDU</h2>
-                    <img src="./images/pcdu.jpg" />
+                    <h2>PLUTO's PCDU (Power Conditioning and Distribution Unit)</h2>
+                    <img src="./images/pcdu.jpg" width="800" />
                     <aside class="notes">
-                        Like every other satellite, PLUTO has a PCDU, it's Power Conditioning and Distribution Unit.
-                        At the DLR we develop both PCDUs' hardware and firmware in house.
-                        Each satellite's PCDU performs the same operation, distributing power, but for different
-                        subsystems.
-                        Therefore, our PCDU hardware development benefits from a snippet based approach:
-                        We construct the hardware not from individual components but from snippets, groups of components
-                        performing a well defined function.
-                        This allows us to individually test snippets and quickly develop a new PCDU's hardware
-                        based
-                        on a library of snippets.<br />
-                        The firmware development, however, still needed to create custom code for each and every PCDU.
-                        The process of reading the schematics and adjusting pin definitions alone isn't just laborious
+                        Like every other satellite, PLUTO has a PCDU.
+                        At the DLR we develop both the PCDU's hardware and firmware.
+                        Because each satellite's PCDU performs a similar function, our PCDU hardware development
+                        already benefits from our snippet based process.<br />
+                        <!-- , distributing power, but for different subsystems. -->
+                        <!-- We construct the hardware not from individual components but from snippets, groups of components -->
+                        <!-- performing a well defined function. -->
+                        <!-- This allows us to individually test snippets and quickly develop a new PCDU's hardware.<br /> -->
+                        The firmware development, however, still had to create custom code for each and every PCDU.
+                        Crucially, the process of reading the schematics and adjusting pin definitions alone isn't just
+                        laborious
                         but also highly prone to errors.
                     </aside>
                 </section>
@@ -85,15 +83,12 @@
                     <aside class="notes">
                         To tackle this problem we got together with the Chair for Embedded Systems at the Karlsruhe
                         Institute for Technology and together introduce the Group Netlist.
-                        The picture on the right shows a simplified Group Netlist.
                         The Group Netlist is an abstract and tool agnostic representation of the hardware.<br />
                         We group multiple components fulfilling a well defined function into Groups.
-                        The schematics on the left, for example, shows a Group — an ADC.
-                        You can find it in the Group Netlist on the right, attaching the current measurement with the
-                        microcontroller.
+                        The schematics on the left, for example, shows one such Group.
+                        You can find this ADC in the simplified Group Netlist on the right.
                         As you can see, the Group Netlist represents what Groups there are and how they interconnect.
-                        Therefore, the Group Netlist contains exactly the information needed to write firmware:
-                        what functionality is there and through which microcontroller pin does it connect.
+                        Therefore, the Group Netlist contains exactly the information needed to write firmware.
                     </aside>
                 </section>
 
@@ -110,23 +105,23 @@
                     <aside class="notes">
                         To validate our approach, we implemented kicad_firmware_generation, a reference implementation
                         for KiCad.
-                        Going through the flowchart from left to right, kicad_firmware_generation starts by generating
-                        an XML Group
-                        Netlist out of the hardware's KiCad netlist.
-                        To understand what Groups there are, each snippet's external pin needs an annotation, as you can
-                        see on the left.
-                        Afterwards kicad_firmware_generation generates firmware from the Group Netlist and Jinja2
+                        It starts by generating an XML Group Netlist out of the hardware's KiCad
+                        netlist.
+                        To understand what Groups there are, each snippet's external pin needs a simple annotation.
+                        <!-- , as you can see on the right. -->
+                        Afterwards our tooling generates firmware from the Group Netlist and Jinja2
                         templates.<br />
                         The workflow is entirely deterministic and thus fit for continuous integration.
                         Where previously a cumbersome process bridged hardware and firmware development, our approach
                         continuously runs and ensures that hardware and software are consistent.<br />
-                        Furthermore, after we introduced kicad_firmware_generation into our PCDU firmware development it
+                        Once we introduced our tooling into the PCDU development it
                         found a fault in the PCDU's electrical design!
                         Two control pins for a power switch were swapped.
                         No one spotted this fault before because the power switch and the microcontroller are actually
                         on different boards, bridged through a large connector.
-                        One had to trace the circuit through five pages of schematics split across two projects.
-                        Our firmware generation based on the Group Netlist caught the fault.
+                        One has to trace the circuit through five pages of schematics split across two projects to find
+                        the fault.
+                        Our tooling caught the fault as a by-product of firmware generation.
                     </aside>
                 </section>
 
@@ -146,15 +141,16 @@
                         <img src="./images/synth_results_combined.svg" />
                     </div>
                     <aside class="notes">
-                        To quantify the validation ability, we systematically injected thousands of faults into the
+                        To quantify the validation ability, we systematically injected faults into the
                         PCDU schematics and checked how many our tooling caught.
-                        This showed that our tooling finds up to 75% of those faults similar to the real fault in our
+                        This showed that our tooling finds up to 75% of the faults similar to the real one in our
                         hardware.
-                        Lastly, to show our approaches scalability, we took 120 Open-Hardware KiCad projects, added
-                        synthetic annotations and measured the runtime of our tooling.
-                        As you can see on the right, the runtime is bottlenecked by KiCad's own netlist exporter.<br />
-                        This shows that our approach doesn't just accelerate firmware development for small project.
-                        Our approach is also highly useful at finding faults and scales to large projects.
+                        Lastly, to show our approach's scalability, we took Open-Hardware KiCad projects, added
+                        synthetic annotations and measured our tooling's runtime, which turned out negligible.<br />
+                        <!-- As you can see, the runtime is bottlenecked by KiCad's own netlist exporter.<br /> -->
+                        <!-- This shows that our approach doesn't just accelerate firmware development for small projects. -->
+                        This shows that our approach is highly capable at finding faults and also scales to large
+                        projects.
                     </aside>
                 </section>
 
@@ -171,7 +167,7 @@
                             href="https://github.com/DLR-RY/kicad_firmware_generation/">github.com/DLR-RY/kicad_firmware_generation</a>
                     </div>
                     <aside class="notes">
-                        I thank you for your attention and please find our published Open-Source online.
+                        I thank you for your attention and please find our published Open-Source tooling online.
                     </aside>
                 </section>
             </section>
