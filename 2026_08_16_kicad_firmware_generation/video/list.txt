@@ -1,0 +1,10 @@
+file '2026-08-16 19-18-17.mkv'
+file '2026-08-16 19-18-33.mkv'
+file '2026-08-16 19-21-53.mkv'
+file '2026-08-16 19-24-15.mkv'
+file '2026-08-16 19-25-42.mkv'
+file '2026-08-16 19-26-18.mkv'
+# ffmpeg -f concat -safe 0 -i list.txt  -c copy output.mkv
+# git clone https://github.com/richardpl/arnndn-models
+# ffmpeg -i output.mkv -af 'arnndn=model=./arnndn-models/std.rnnn:mix=0.8' -c:a aac -b:a 320k -c:v copy output_filtered.mkv
+# ffmpeg -i output_filtered.mkv -vcodec libx264 -f mp4 -vb 1024k -preset slow -pix_fmt yuv420p output_filtered.mp4
