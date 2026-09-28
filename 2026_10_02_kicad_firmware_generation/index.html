@@ -1,0 +1,367 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Automating Firmware Generation from Schematics for Microcontroller based Designs</title>
+    <meta name="author" content="Christopher Besch, Janis S. Häseker, Hassan Nassar, Norbert Toth, Jörg Henkel">
+
+    <link rel="stylesheet" href="../dist/reset.css">
+    <link rel="stylesheet" href="../dist/reveal.css">
+    <link rel="stylesheet" href="../dist/theme/custom_white.css">
+
+    <!-- code highlighting theme -->
+    <link rel="stylesheet" href="../static/oceanicnext.css">
+
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <div class="header-left">
+                Automating Firmware Generation from Schematics for Microcontroller based Designs
+            </div>
+            <div class="header-right">
+                <em>Christopher Besch, Janis S. Häseker, Hassan Nassar, Norbert Toth, Jörg Henkel</em> &bullet; 2nd
+                October 2026
+            </div>
+            <div class="footer-left">
+            </div>
+            <div class="footer-right">
+                <img src="./DLR.png" height="60" />
+                <img src="./CESlogo.png" height="60" />
+            </div>
+
+            <section>
+                <section data-state="titleslide dark-background" data-background-image="./pluto.jpg"
+                    data-background-opacity="1.0">
+                    <h2 style="padding-bottom: 400px;">Automating Firmware Generation from Schematics for
+                        Microcontroller based Designs</h2>
+                    <!-- <div class="half-part"> -->
+                    <!--     <img style="padding-bottom: 400px;" src="./pcdu.jpg" height="150" /> -->
+                    <!-- </div> -->
+                    <!-- <div class="half-part"> -->
+                    <!--     &nbsp; -->
+                    <!-- </div> -->
+                    <aside class="notes">
+                        My name is Christopher Besch and I propose to generate firmware from schematics.
+                        At the German Aerospace Centre Institute of Space Systems our next satellite to orbit is PLUTO.
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>PLUTO's PCDU (Power Conditioning and Distribution Unit)</h2>
+                    <img src="./pcdu.jpg" width="800" />
+                    <aside class="notes">
+                        Like every other satellite, PLUTO has a PCDU.
+                        At the DLR we develop both the PCDU's hardware and firmware.
+                        Because each satellite's PCDU performs a similar function, our PCDU hardware development
+                        already benefits from our snippet based process.<br />
+                        <!-- , distributing power, but for different subsystems. -->
+                        <!-- We construct the hardware not from individual components but from snippets, groups of components -->
+                        <!-- performing a well defined function. -->
+                        <!-- This allows us to individually test snippets and quickly develop a new PCDU's hardware.<br /> -->
+                        The firmware development, however, still had to create custom code for each and every PCDU.
+                        Crucially, the process of reading the schematics and adjusting pin definitions alone isn't just
+                        laborious
+                        but also highly prone to errors.
+                    </aside>
+                </section>
+
+                <section>
+                    <div class="half-part">
+                        <h4>A Snippet</h4>
+                        <img src="./adc_snippet.png" />
+                    </div>
+                    <div class="half-part">
+                        <h4>A Group Netlist</h4>
+                        <img src="./group_netlist.png" />
+                    </div>
+                    <aside class="notes">
+                        To tackle this problem we got together with the Chair for Embedded Systems at the Karlsruhe
+                        Institute for Technology and together introduce the Group Netlist.
+                        The Group Netlist is an abstract and tool agnostic representation of the hardware.<br />
+                        We group multiple components fulfilling a well defined function into Groups.
+                        The schematics on the left, for example, shows one such Group.
+                        You can find this ADC in the simplified Group Netlist on the right.
+                        As you can see, the Group Netlist represents what Groups there are and how they interconnect.
+                        Therefore, the Group Netlist contains exactly the information needed to write firmware.
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>kicad_firmware_generation</h2>
+                    <div class="half-part">
+                        <img src="./software_overview_07.png" />
+                    </div>
+                    <div class="half-part">
+                        <img src="./adc_annotations.png" />
+                    </div>
+                    <a
+                        href="https://github.com/DLR-RY/kicad_firmware_generation/">github.com/DLR-RY/kicad_firmware_generation</a>
+                    <aside class="notes">
+                        To validate our approach, we implemented kicad_firmware_generation, a reference implementation
+                        for KiCad.
+                        It starts by generating an XML Group Netlist out of the hardware's KiCad
+                        netlist.
+                        To understand what Groups there are, each snippet's external pin needs a simple annotation.
+                        <!-- , as you can see on the right. -->
+                        Afterwards our tooling generates firmware from the Group Netlist and Jinja2
+                        templates.<br />
+                        The workflow is entirely deterministic and thus fit for continuous integration.
+                        Where previously a cumbersome process bridged hardware and firmware development, our approach
+                        continuously runs and ensures that hardware and software are consistent.<br />
+                        Once we introduced our tooling into the PCDU development it
+                        found a fault in the PCDU's electrical design!
+                        Two control pins for a power switch were swapped.
+                        No one spotted this fault before because the power switch and the microcontroller are actually
+                        on different boards, bridged through a large connector.
+                        One has to trace the circuit through five pages of schematics split across two projects to find
+                        the fault.
+                        Our tooling caught the fault as a by-product of firmware generation.
+                    </aside>
+                </section>
+
+                <section>
+                    <div class="half-part">
+                        <h4>Systematic Fault Injection</h4>
+                        <!-- <img src="./fault_injection_results.svg" /> -->
+                        <ul>
+                            <li>Inject faults into PCDU schematics:<br />
+                                swap labels, delete cables</li>
+                            <li>8885 unique faults</li>
+                            <li>Result: detected up to 75% of otherwise not found Group Pin swaps</li>
+                        </ul>
+                    </div>
+                    <div class="half-part">
+                        <h4>Synthetic Benchmark</h4>
+                        <img src="./synth_results_combined.svg" />
+                    </div>
+                    <aside class="notes">
+                        To quantify the validation ability, we systematically injected faults into the
+                        PCDU schematics and checked how many our tooling caught.
+                        This showed that our tooling finds up to 75% of the faults similar to the real one in our
+                        hardware.
+                        Lastly, to show our approach's scalability, we took Open-Hardware KiCad projects, added
+                        synthetic annotations and measured our tooling's runtime, which turned out negligible.<br />
+                        <!-- As you can see, the runtime is bottlenecked by KiCad's own netlist exporter.<br /> -->
+                        <!-- This shows that our approach doesn't just accelerate firmware development for small projects. -->
+                        This shows that our approach is highly capable at finding faults and also scales to large
+                        projects.
+                    </aside>
+                </section>
+
+                <section>
+                    <div class="half-part">
+                        <h4>Group Netlist</h4>
+                        <img src="./group_netlist.png" />
+                    </div>
+                    <div class="half-part">
+                        <h4>kicad_firmware_generation</h4>
+                        <img src="./software_overview_07.png" width="800" />
+                        <br />
+                        <a
+                            href="https://github.com/DLR-RY/kicad_firmware_generation/">github.com/DLR-RY/kicad_firmware_generation</a>
+                    </div>
+                    <aside class="notes">
+                        I thank you for your attention and please find our published Open-Source tooling online.
+                    </aside>
+                </section>
+            </section>
+
+            <section>
+                <section>
+                    <h1>Time Sensitive Network (TSN)</h1>
+                </section>
+                <section>
+                    <h2>Networking inside Spacecraft</h2>
+                    <ul>
+                        <li>Real-time: worst-case delay, jitter</li>
+                        <li>Previously: specialized point-to-point connections<br />
+                            &rarr; heavy, costly, power inefficient</li>
+                        <!-- <li>Metrics: -->
+                        <!--     <ul> -->
+                        <!--         <li>Worst-case latency, delay</li> -->
+                        <!--         <li>Cost, weight</li> -->
+                        <!--     </ul> -->
+                        <!-- </li> -->
+                        <li>Can we use Ethernet &amp; IP?</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Transport Layer</h2>
+                    <div class="half-part">
+                        <h3>UDP</h3>
+                        <ul>
+                            <li>Unreliable service<br />(e.g., packets might be dropped)</li>
+                            <li>Simple (3 pages in RFC 768)</li>
+                        </ul>
+                    </div>
+                    <div class="half-part">
+                        <h3>TCP</h3>
+                        <ul>
+                            <li>Reliable service using<br />Automatic Repeat Request (ARQ)</li>
+                            <li>Complex (98 pages in RFC 9293)</li>
+                        </ul>
+                    </div>
+                </section>
+                <section>
+                    <h2>Time Sensitive Networking (TSN)</h2>
+                    <ul>
+                        <li>Standardised under IEEE 802.1Q</li>
+                        <li>Reliability at link layer: never drop a packet &rarr; no need for TCP</li>
+                        <li>Accurate time-stamps based on PTP (Precision Time Protocol)</li>
+                        <li>Hard timing guarantees</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Redundant TSN Ring for Space</h3>
+                    <div class="half-part">
+                        <img src="./ring.svg" width="500" />
+                    </div>
+                    <div class="half-part">
+                        <ul>
+                            <li>Single failure criterion</li>
+                            <li>Goal: Demonstrator, Validation</li>
+                        </ul>
+                    </div>
+                </section>
+                <section>
+                    <h3>Redundant TSN Ring for Space</h3>
+                    <div class="half-part">
+                        <img src="./ring_cross.svg" width="500" />
+                    </div>
+                    <div class="half-part">
+                        <ul>
+                            <li>Single failure criterion</li>
+                            <li>Goal: Demonstrator, Validation</li>
+                        </ul>
+                    </div>
+                </section>
+            </section>
+
+            <section>
+                <section>
+                    <h3>TSN VPN</h3>
+                    <div class="half-part">
+                        <img src="./tsn_vpn.svg" width="500"/>
+                    </div>
+                    <div class="half-part">
+                        <ul>
+                            <li>Link remote locations with VPN for best-effort and real-time traffic</li>
+                            <li>Problem: public Internet without real-time guarantees</li>
+                            <li>Idea: separate real-time network into source and drain sections<br />
+                                synthetic delay to hide jitter, hidden by faked PTP</li>
+                        </ul>
+                    </div>
+                </section>
+                <section>
+                    <h3>TSN VPN Development</h3>
+                    <div class="half-part">
+                        <img src="./tsn_dlr_setup.svg" width="500"/>
+                    </div>
+                    <div class="half-part">
+                        <ul>
+                            <li>Goal: Implementation, Validation</li>
+                            <li>Source and drain at same physical location</li>
+                            <li>Proxy in Karlsruhe for real Internet delay</li>
+                            <li>Measure latency with 1PPS</li>
+                        </ul>
+                    </div>
+                </section>
+                <section>
+                    <h3>Completed Steps</h3>
+                    <ul>
+                        <li>6-module ring demonstrator setup in Karlsruhe</li>
+                        <li>Hardware procurement at DLR</li>
+                        <li>PTP Test with two devices</li>
+                        <li>Investigation into Zephyr and Device Trees</li>
+                        <li>Research into Linux networking stack</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Completed Artefacts</h3>
+                    <ul>
+                        <li>State of the art report</li>
+                        <li>DLR Proposal for TSN VPN development setup</li>
+                        <li><a href="https://chris-besch.com/articles/linux_networking/">Article on Linux userspace networking</a></li>
+                        <li><a href="https://chris-besch.com/articles/saints_row_3_wireguard/">Article on UDP broadcast relay over Wireguard</a></li>
+                        <li><a href="http://chris-besch.com/articles/zephyr_lcd_driver/">Article on Zephyr LCD driver development</a></li>
+                        <li><a href="https://chris-besch.com/articles/soc_option_bytes">Article on Zephyr's IWDG watchdog driver</a></li>
+                        <li>Zephyr contribution <a href="https://github.com/zephyrproject-rtos/zephyr/pull/108622">#108622</a></li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Next Steps</h3>
+                    <ul>
+                        <li>Setup 1PPS Measurement</li>
+                        <li>Setup Redundant Ring Networking</li>
+                        <li>Simulate TSN Ring Traffic</li>
+                        <li>Simulate TSN Ring fault scenario</li>
+                        <li>Design &amp; Setup TSN VPN Setup</li>
+                        <li>Implement TSN VPN</li>
+                        <li>Test TSN VPN</li>
+                    </ul>
+                </section>
+                <section>
+                    <div class="half-part">
+                        <img src="./ring_cross.svg" width="700" />
+                    </div>
+                    <div class="half-part">
+                        <img src="./tsn_dlr_setup.svg" width="500"/>
+                    </div>
+                </section>
+            </section>
+        </div>
+    </div>
+
+    <script src="../vendor/external_code/externalcode.js"></script>
+    <script src="../dist/reveal.js"></script>
+    <script src="../plugin/notes/notes.js"></script>
+    <script src="../plugin/markdown/markdown.js"></script>
+    <script src="../plugin/highlight/highlight.js"></script>
+    <script src="../plugin/math/math.js"></script>
+    <script>
+        Reveal.initialize({
+            controls: true,
+            controlsTutorial: false,
+            progress: false,
+            slideNumber: "c/t",
+            hashOneBasedIndex: false,
+            hash: true,
+            navigationMode: "linear",
+            embedded: false,
+            showNotes: false,
+            transition: "none",
+            transitionSpeed: "fast",
+            backgroundTransition: "fade",
+            pdfSeparateFragments: true,
+            autoAnimateDuration: 0.4,
+
+            margin: 0.04,
+            width: 1280,
+            height: 720,
+
+            katex: {
+                local: "../dwn_vendor/katex",
+                trust: true,
+                // needed for colouring
+                strict: false,
+            },
+            plugins: [
+                // needs to be before highlighting
+                Externalcode,
+                RevealMarkdown,
+                RevealHighlight,
+                RevealNotes,
+                RevealMath.KaTeX,
+            ],
+            scrollActivationWidth: null,
+        });
+    </script>
+</body>
+
+</html>
