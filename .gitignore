@@ -186,3 +186,4 @@ cottonwood_presentation.iml
 *.synctex.gz
 
 *.autosave.xopp
+.~lock*
