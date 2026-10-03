@@ -1,0 +1,187 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Automating Firmware Generation from Schematics for Microcontroller based Designs</title>
+    <meta name="author" content="Christopher Besch, Janis S. Häseker, Hassan Nassar, Norbert Toth, Jörg Henkel">
+
+    <link rel="stylesheet" href="../dist/reset.css">
+    <link rel="stylesheet" href="../dist/reveal.css">
+    <link rel="stylesheet" href="../dist/theme/custom_white.css">
+
+    <!-- code highlighting theme -->
+    <link rel="stylesheet" href="../static/oceanicnext.css">
+
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <div class="header-left">
+                Automating Firmware Generation from Schematics for Microcontroller based Designs
+            </div>
+            <div class="header-right">
+                <em>Christopher Besch, Janis S. Häseker, Hassan Nassar, Norbert Toth, Jörg Henkel</em> &bullet; 2nd
+                October 2026
+            </div>
+            <div class="footer-left">
+            </div>
+            <div class="footer-right">
+                <img src="./DLR.png" height="60" />
+                <img src="./CESlogo.png" height="60" />
+                <img src="./kit.jpg" height="60" />
+            </div>
+
+            <section>
+                <section data-state="titleslide dark-background" data-background-image="./pluto.jpg"
+                    data-background-opacity="1.0">
+                    <h2 style="padding-bottom: 400px;">Automating Firmware Generation from Schematics for
+                        Microcontroller based Designs</h2>
+                    <!-- <div class="half-part"> -->
+                    <!--     <img style="padding-bottom: 400px;" src="./pcdu.jpg" height="150" /> -->
+                    <!-- </div> -->
+                    <!-- <div class="half-part"> -->
+                    <!--     &nbsp; -->
+                    <!-- </div> -->
+                </section>
+
+                <section>
+                    <h2>PLUTO's PCDU (Power Conditioning and Distribution Unit)</h2>
+                    <div class="half-part">
+                        <img src="./pcdu.jpg" width="800" />
+                    </div>
+                    <div class="half-part">
+                        <ul>
+                            <li>PCDUs perform similar objective but for different satellite subsystems</li>
+                            <li>Custom hardware/firmware</li>
+                            <li>Snippet based hardware design</li>
+                            <li>Problem: firmware development from scratch
+                                &rarr; laborious, hardware/firmware inconsistencies</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section>
+                    <div class="half-part">
+                        <h4>Example: An ADC Snippet</h4>
+                        <img src="./adc_snippet.png" />
+                    </div>
+                    <div class="half-part">
+                        <ul>
+                            <li>Idea: generate firmware based on data in schematics</li>
+                            <li>Simple example: pindefinition C++ header file</li>
+                            <li>Many details in schematic irrelevant
+                                &rarr; abstract to Group</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section>
+                    <div class="half-part">
+                        <h4>A Group Netlist</h4>
+                        <img src="./group_netlist.png" />
+                    </div>
+                    <div class="half-part">
+                        <ul>
+                            <li></li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>kicad_firmware_generation</h2>
+                    <div class="half-part">
+                        <img src="./software_overview_07.png" />
+                    </div>
+                    <div class="half-part">
+                        <img src="./adc_annotations.png" />
+                    </div>
+                    <a
+                        href="https://github.com/DLR-RY/kicad_firmware_generation/">github.com/DLR-RY/kicad_firmware_generation</a>
+                </section>
+
+                <section>
+                    <div class="half-part">
+                        <h4>Systematic Fault Injection</h4>
+                        <!-- <img src="./fault_injection_results.svg" /> -->
+                        <ul>
+                            <li>Inject faults into PCDU schematics:<br />
+                                swap labels, delete cables</li>
+                            <li>8885 unique faults</li>
+                            <li>Result: detected up to 75% of otherwise not found Group Pin swaps</li>
+                        </ul>
+                    </div>
+                    <div class="half-part">
+                        <h4>Synthetic Benchmark</h4>
+                        <img src="./synth_results_combined.svg" />
+                    </div>
+                </section>
+
+                <section>
+                    <div class="half-part">
+                        <h4>Group Netlist</h4>
+                        <img src="./group_netlist.png" />
+                    </div>
+                    <div class="half-part">
+                        <h4>kicad_firmware_generation</h4>
+                        <img src="./software_overview_07.png" width="800" />
+                        <br />
+                        <a
+                            href="https://github.com/DLR-RY/kicad_firmware_generation/">github.com/DLR-RY/kicad_firmware_generation</a>
+                    </div>
+                </section>
+            </section>
+        </div>
+    </div>
+
+    <script src="../vendor/external_code/externalcode.js"></script>
+    <script src="../dist/reveal.js"></script>
+    <script src="../plugin/notes/notes.js"></script>
+    <script src="../plugin/markdown/markdown.js"></script>
+    <script src="../plugin/highlight/highlight.js"></script>
+    <script src="../plugin/math/math.js"></script>
+    <script>
+        Reveal.initialize({
+            controls: false,
+            controlsTutorial: false,
+            progress: false,
+            slideNumber: "c/t",
+            hashOneBasedIndex: false,
+            hash: true,
+            navigationMode: "linear",
+            embedded: false,
+            showNotes: false,
+            transition: "none",
+            transitionSpeed: "fast",
+            backgroundTransition: "fade",
+            pdfSeparateFragments: true,
+            autoAnimateDuration: 0.4,
+
+            margin: 0.04,
+            width: 1280,
+            height: 720,
+
+            katex: {
+                local: "../dwn_vendor/katex",
+                trust: true,
+                // needed for colouring
+                strict: false,
+            },
+            plugins: [
+                // needs to be before highlighting
+                Externalcode,
+                RevealMarkdown,
+                RevealHighlight,
+                RevealNotes,
+                RevealMath.KaTeX,
+            ],
+            scrollActivationWidth: null,
+        });
+    </script>
+</body>
+
+</html>
