@@ -60,9 +60,9 @@
                         <ul>
                             <li>PCDUs similar between satellites</li>
                             <li>Custom hardware/firmware</li>
-                            <li>Snippet based hardware design: design PCDUs from snippets, not individual components</li>
+                            <li><b>Snippet based hardware design</b>: design PCDUs from snippets, not individual components</li>
                             <li>Problem: firmware development from scratch<br />
-                                &rarr; laborious, hardware/firmware inconsistencies</li>
+                                &rarr; laborious, hardware/firmware <b>inconsistencies</b></li>
                         </ul>
                     </div>
                 </section>
@@ -105,8 +105,8 @@
                     <div class="half-part">
                         <ul>
                             <h4>kicad_firmware_generation</h4>
-                            <li>Schematic annotations define Groups</li>
-                            <li>Very easy with reused snippets</li>
+                            <li>Schematic annotations define Groups<br />
+                                Very <b>easy with reused</b> snippets</li>
                             <li>Open-Source: <a href="https://github.com/DLR-RY/kicad_firmware_generation/">github.com/DLR-RY/kicad_firmware_generation</a></li>
                         </ul>
                     </div>
@@ -133,16 +133,14 @@
                 <section>
                     <h4>Systematic Fault Injection</h4>
                     <div class="half-part">
+                        <img src="./fault_injection_results_without_erc.svg" />
+                    </div>
+                    <div class="half-part">
                         <!-- <img src="./fault_injection_results.svg" /> -->
                         <ul>
                             <li>Inject 8885 unique faults into PCDU schematics</li>
                             <li>Result: detected up to <b>75%</b> of Group Pin swaps unfound by KiCad's Electrical Rules Checker (ERC)</li>
                             <li>Also: benchmark shows generation runtime <b>below 1sec</b></li>
-                        </ul>
-                    </div>
-                    <div class="half-part">
-                        <img src="./fault_injection_results_without_erc.svg" />
-                        <ul>
                         </ul>
                     </div>
                 </section>
