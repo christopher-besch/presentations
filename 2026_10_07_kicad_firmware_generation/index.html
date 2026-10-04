@@ -1,6 +1,7 @@
 <!doctype html>
 <html>
 
+<!-- TODO: highlight relevant parts; bold text here and there -->
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -22,13 +23,15 @@
     <div class="reveal">
         <div class="slides">
             <div class="header-left">
-                Automating Firmware Generation from Schematics for Microcontroller based Designs
+                <!-- Automating Firmware Generation from Schematics for Microcontroller based Designs -->
             </div>
             <div class="header-right">
                 <em>Christopher Besch, Janis S. Häseker, Hassan Nassar, Norbert Toth, Jörg Henkel</em> &bullet; 2nd
                 October 2026
             </div>
             <div class="footer-left">
+                <div><span class="hide-on-titleslide">Automating Firmware Generation from Schematics<br />
+                    for Microcontroller based Designs &bullet;</span> <span>ESWEEK, Barcelona</div>
             </div>
             <div class="footer-right">
                 <img src="./DLR.png" height="60" />
@@ -39,8 +42,7 @@
             <section>
                 <section data-state="titleslide dark-background" data-background-image="./pluto.jpg"
                     data-background-opacity="1.0">
-                    <h2 style="padding-bottom: 400px;">Automating Firmware Generation from Schematics for
-                        Microcontroller based Designs</h2>
+                    <h2 style="padding-bottom: 400px;">Automating Firmware Generation from Schematics for Microcontroller based Designs</h2>
                     <!-- <div class="half-part"> -->
                     <!--     <img style="padding-bottom: 400px;" src="./pcdu.jpg" height="150" /> -->
                     <!-- </div> -->
@@ -117,32 +119,31 @@
                     </div>
                     <div class="half-part">
                         <ul>
-                            <li>Idea: a Jinja2 template for each Group Type</li>
+                            <li>A Jinja2 template per Group Type</li>
                             <li>Generate firmware from Group Netlist and Jinja2 templates</li>
                             <li>Key advantage: fully deterministic<br />
                                 &rarr; suitable for CI-pipeline</li>
                             <li>Successfully integrated into PLUTO's PCDU development</li>
-                            <li>Found hardware fault in PCDU</li>
+                            <li>Remove days of manual labour</li>
+                            <li>Found <b>hardware fault</b> in PCDU</li>
                         </ul>
                     </div>
                 </section>
 
                 <section>
+                    <h4>Systematic Fault Injection</h4>
                     <div class="half-part">
-                        <h4>Systematic Fault Injection</h4>
                         <!-- <img src="./fault_injection_results.svg" /> -->
                         <ul>
-                            <li>Inject faults into PCDU schematics:<br />
-                                swap labels, delete cables</li>
-                            <li>8885 unique faults</li>
-                            <li>Result: detected up to 75% of otherwise not found Group Pin swaps</li>
+                            <li>Inject 8885 unique faults into PCDU schematics</li>
+                            <li>Result: detected up to 75% of Group Pin swaps unfound by KiCad's Electrical Rules Checker (ERC)</li>
                             <li>Also: benchmark shows generation runtime below 1sec</li>
                         </ul>
                     </div>
                     <div class="half-part">
-                        <h4>Synthetic Benchmark</h4>
-                        <!-- TODO: make better -->
-                        <img src="./fault_injection_results.svg" />
+                        <img src="./fault_injection_results_without_erc.svg" />
+                        <ul>
+                        </ul>
                     </div>
                 </section>
 

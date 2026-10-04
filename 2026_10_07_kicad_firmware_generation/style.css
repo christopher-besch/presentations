@@ -25,12 +25,34 @@
     color: white;
 }
 
+.reveal .header-right em,
+.reveal .header-left em,
+.reveal .footer-right em,
+.reveal .footer-left em {
+    font-size: 30px;
+}
+
 .references li {
-    font-size: 20px;
+    font-size: 25px;
 }
 
 .slide-number a {
-    font-size: 30px;
+    font-size: 20px;
+}
+
+.reveal .header-right,
+.reveal .header-left,
+.reveal .footer-right,
+.reveal .footer-left {
+    font-size: 25px;
+    line-height: 1.0em;
+}
+
+.reveal .header-right em,
+.reveal .header-left em,
+.reveal .footer-right em,
+.reveal .footer-left em {
+    font-size: 25px;
 }
 
 .qr-code {
@@ -41,4 +63,8 @@
 
 .qr-code img {
     image-rendering: pixelated;
+}
+
+.titleslide .hide-on-titleslide {
+    display: none;
 }

@@ -47,6 +47,16 @@
   z-index: 100;
 }
 
+.reveal .header-left,
+.reveal .footer-left {
+  text-align: left;
+}
+
+.reveal .header-right,
+.reveal .footer-right {
+  text-align: right;
+}
+
 .reveal .header-right em,
 .reveal .header-left em,
 .reveal .footer-right em,
@@ -72,7 +82,7 @@
   right: 2em;
   bottom: 2em;
   margin-right: -2vw;
-  margin-bottom: -2vh;
+  margin-bottom: -5vh;
   display: flex;
   flex-direction: row;
   gap: 5px;
@@ -82,7 +92,7 @@
   left: 2em;
   bottom: 2em;
   margin-left: -2vw;
-  margin-bottom: -2vh;
+  margin-bottom: -5vh;
   display: flex;
   flex-direction: row;
   gap: 5px;
